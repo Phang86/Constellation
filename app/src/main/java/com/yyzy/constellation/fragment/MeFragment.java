@@ -43,7 +43,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private TextView tvName,tvJie,tvTui,tvHuan;
     private SharedPreferences spf;
     private int selectPos = 0;
-    //private AlertDialog.Builder dialog = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
