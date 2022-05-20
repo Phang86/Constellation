@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.MeFragment"
+    android:background="@color/bgyellow"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/meFrag_cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/dimen_2dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:id="@+id/meFrag_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="白羊座"
+        android:textSize="@dimen/size_16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dimen_20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_50dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="@dimen/dimen_50dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guanyu"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/size_18sp"
+            android:layout_marginLeft="@dimen/dimen_10dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_2dp"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimen_5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="@dimen/dimen_50dp"/>
+
+        <TextView
+            android:id="@+id/meFrag_tv_jieshao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/jieshao"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/size_18sp"
+            android:layout_marginLeft="@dimen/dimen_10dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_2dp"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimen_5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="@dimen/dimen_50dp"/>
+
+        <TextView
+            android:id="@+id/meFrag_tv_huanfu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:text="@string/huanfu"
+            android:textSize="@dimen/size_18sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_2dp"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimen_5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="@dimen/dimen_30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="@dimen/dimen_50dp"/>
+
+        <TextView
+            android:id="@+id/meFrag_tv_tuichu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tuichu"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/size_18sp"
+            android:layout_marginLeft="@dimen/dimen_10dp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_2dp"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dimen_5dp"/>
+</LinearLayout>

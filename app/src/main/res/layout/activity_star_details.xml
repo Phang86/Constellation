@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activity.StarDetailsActivity"
+    android:background="@color/bgyellow">
+
+    <include layout="@layout/star_details_title"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/star_details_cv"
+        android:layout_width="@dimen/dimen_78dp"
+        android:layout_height="@dimen/dimen_78dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_40dp"
+        android:src="@drawable/ic_launcher_background"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/dimen_2dp" />
+
+    <TextView
+        android:id="@+id/star_details_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:text="白羊座"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_16sp"/>
+
+    <TextView
+        android:id="@+id/star_details_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3月21日--4月19日"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:padding="@dimen/dimen_5dp"
+        android:background="@color/lightpink"
+        android:textSize="@dimen/size_15sp"/>
+
+    <ListView
+        android:id="@+id/star_details_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:divider="@null"
+        android:dividerHeight="@dimen/dimen_0dp"
+        android:scrollbars="none"/>
+</LinearLayout>

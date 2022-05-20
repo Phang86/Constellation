@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.StarStartActivity"
+    android:orientation="vertical"
+    android:background="@color/bgyellow">
+
+    <include layout="@layout/star_details_title"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/dimen_10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/man"
+                android:textColor="@color/lightblue"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/starStart_cv_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_width="@dimen/dimen_2dp"
+                app:civ_border_color="@color/lightblue"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_man"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="白羊座"
+                android:gravity="center"
+                android:textColor="@color/lightblue"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_15sp"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:layout_weight="1"
+            android:textSize="60sp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/woman"
+                android:textColor="@color/lightpink"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/starStart_cv_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_width="@dimen/dimen_2dp"
+                app:civ_border_color="@color/lightpink"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_woman"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="白羊座"
+                android:gravity="center"
+                android:textColor="@color/lightpink"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_15sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:paddingRight="@dimen/dimen_20dp">
+
+            <TextView
+                android:id="@+id/starStart_tv_pd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:textSize="@dimen/size_16sp"
+                android:padding="@dimen/dimen_10dp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_vs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:padding="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_pf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10dp"
+                android:layout_gravity="center|left"
+                android:textSize="@dimen/size_16sp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_bz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:padding="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_jx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:padding="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/starStart_tv_zy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:padding="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp"
+                android:background="@drawable/footer_tv_bg"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

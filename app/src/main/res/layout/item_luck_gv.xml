@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_20dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_luck_cv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:civ_border_color="@color/grey"
+        app:civ_border_width="@dimen/dimen_2dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/item_luck_tv"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="白羊座"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="@dimen/size_16sp"/>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/main_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:text="@string/app_name"
+        android:textColor="@color/pink"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_20sp"
+        android:gravity="center"
+        android:background="@color/lightyellow"/>
+
+    <RadioGroup
+        android:id="@+id/main_rb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lightyellow"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/dimen_5dp">
+
+        <RadioButton
+            android:id="@+id/main_rb_star"
+            style="@style/main_rb"
+            android:text="@string/label_star"
+            android:drawableTop="@drawable/main_rb_star"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/main_rb_partnership"
+            style="@style/main_rb"
+            android:text="@string/label_partnership"
+            android:drawableTop="@drawable/main_rb_partnership"/>
+
+        <RadioButton
+            android:id="@+id/main_rb_luck"
+            style="@style/main_rb"
+            android:text="@string/label_luck"
+            android:drawableTop="@drawable/main_rb_luck"/>
+
+        <RadioButton
+            android:id="@+id/main_rb_me"
+            style="@style/main_rb"
+            android:text="@string/label_me"
+            android:drawableTop="@drawable/main_rb_me"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/main_layout_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_rb"
+        android:layout_below="@id/main_tv_title"
+        android:orientation="vertical"/>
+
+</RelativeLayout>
