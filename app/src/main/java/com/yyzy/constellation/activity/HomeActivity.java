@@ -12,16 +12,26 @@ import android.widget.TextView;
 
 import com.yyzy.constellation.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     private TextView tv;
     private int time = 4;
     private SharedPreferences firstSpf;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        initView();
+    protected int initLayout() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected void initView() {
+        tv = findViewById(R.id.home_tv);
+        handler.sendEmptyMessageDelayed(1,1000);
+        firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     Handler handler = new Handler(){
@@ -53,10 +63,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     };
-
-    private void initView() {
-        tv = findViewById(R.id.home_tv);
-        handler.sendEmptyMessageDelayed(1,1000);
-        firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
-    }
 }

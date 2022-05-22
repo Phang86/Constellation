@@ -32,11 +32,11 @@
     <color name="gray_600">#737373</color>
     <color name="green_200">#c75fe768</color>
     <color name="green_500">#37964C</color>
-    <color name="blue_200">#0025ff</color>
     <color name="blue_text">#344261</color>
     <color name="blue_100">#344261</color>
     <color name="blue">#5481dd</color>
     <color name="black_200">#454544</color>
     <color name="yellow_100">#fdf299</color>
     <color name="white_text">#FFFFFFFF</color>
+    <color name="bg">#CCFF99</color>
 </resources>

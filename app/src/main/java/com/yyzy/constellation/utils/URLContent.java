@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 public class URLContent {
     //登录、注册  本地服务器接口
-    public static final String BASE_URL = "http://192.168.1.100:8080/myapp";
+    public static final String BASE_URL = "http://192.168.1.102:8080/myapp";
     //注册  本地服务器接口
     //星座配对网络接口
     public static String getPartnerURL(String man,String woman){

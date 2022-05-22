@@ -28,7 +28,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class LuckDetailsActivity extends AppCompatActivity implements View.OnClickListener,LoadDataAsyncTask.OnGetNetDataListener {
+public class LuckDetailsActivity extends BaseActivity implements View.OnClickListener,LoadDataAsyncTask.OnGetNetDataListener {
 
     private TextView title;
     private ImageView ivBack;
@@ -38,18 +38,23 @@ public class LuckDetailsActivity extends AppCompatActivity implements View.OnCli
     private List<LuckItemEntity> mData = new ArrayList<>();
     private LuckItemLvAdapter adapter;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_luck_details);
-        initView();
-        //加载储存在本地的数据
-        loadThisData();
-        //加载网络数据
-        loadNetData();
+    protected int initLayout() {
+        return R.layout.activity_luck_details;
     }
 
-    private void loadThisData() {
+    @Override
+    protected void initView() {
+        title = findViewById(R.id.details_title);
+        ivBack = findViewById(R.id.details_back);
+        cv = findViewById(R.id.luck_details_cv);
+        listView = findViewById(R.id.luck_details_lv);
+        ivBack.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initData() {
         //获取上一个页面传过来的数据
         Intent intent = getIntent();
         starName = intent.getStringExtra("starName");
@@ -59,7 +64,9 @@ public class LuckDetailsActivity extends AppCompatActivity implements View.OnCli
         cv.setImageBitmap(bitmap);
         title.setText(starName);
 
+        loadNetData();
     }
+
 
     private void loadNetData() {
         String url = URLContent.getLuckURL(starName);
@@ -89,17 +96,6 @@ public class LuckDetailsActivity extends AppCompatActivity implements View.OnCli
         mData.add(e);
         adapter = new LuckItemLvAdapter(this,mData);
         listView.setAdapter(adapter);
-    }
-
-    //初始化控件
-    private void initView() {
-        title = findViewById(R.id.details_title);
-        ivBack = findViewById(R.id.details_back);
-        cv = findViewById(R.id.luck_details_cv);
-        listView = findViewById(R.id.luck_details_lv);
-        ivBack.setOnClickListener(this);
-
-
     }
 
     @Override

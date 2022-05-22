@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.StarStartActivity"
     android:orientation="vertical"
-    android:background="@color/bgyellow">
+    android:background="@drawable/bg">
 
     <include layout="@layout/star_details_title"/>
 

@@ -19,7 +19,7 @@ import com.yyzy.constellation.fragment.PartnershipFragment;
 import com.yyzy.constellation.fragment.StarFragment;
 import com.yyzy.constellation.utils.AssetsUtils;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private RadioGroup radioGroup;
     private FragmentManager manager;
     private Bundle bundle;
@@ -27,26 +27,35 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private TextView title;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int initLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
         StarInfoEntity starInfoEntity = loadData();
         bundle = new Bundle();
         bundle.putSerializable("info",starInfoEntity);
-        initView();
-        addFragmentPage();
-    }
-    //加载数据  读取Assets文件夹下的xzcontent.json文件
-    private StarInfoEntity loadData() {
-        String json = AssetsUtils.getJsonFromAssets(this, "xzcontent/xzcontent.json");
-        Gson gson = new Gson();
-        StarInfoEntity infoEntity = gson.fromJson(json, StarInfoEntity.class);
-        AssetsUtils.saveBitmapFromAssets(this,infoEntity);
-        return infoEntity;
+
+        radioGroup = findViewById(R.id.main_rb);
+        //为RadioGroup控件设置监听，判断点击哪个
+        radioGroup.setOnCheckedChangeListener(this);
+        //分别实例化对应的Fragment
+        starFragment = new StarFragment();
+        starFragment.setArguments(bundle);
+        partnershipFragment = new PartnershipFragment();
+        partnershipFragment.setArguments(bundle);
+        luckFragment = new LuckFragment();
+        luckFragment.setArguments(bundle);
+        meFragment = new MeFragment();
+        meFragment.setArguments(bundle);
+
+        title = findViewById(R.id.main_tv_title);
     }
 
-    //为布局管理器添加相应的Fragment
-    private void addFragmentPage() {
+    @Override
+    protected void initData() {
+        //为布局管理器添加相应的Fragment
         //创建碎片管理者对象
         manager = getSupportFragmentManager();
         //创建碎片处理事务的对象
@@ -63,23 +72,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         transaction.commit();
     }
 
-    //初始化控件
-    private void initView() {
-        radioGroup = findViewById(R.id.main_rb);
-        //为RadioGroup控件设置监听，判断点击哪个
-        radioGroup.setOnCheckedChangeListener(this);
-        //分别实例化对应的Fragment
-        starFragment = new StarFragment();
-        starFragment.setArguments(bundle);
-        partnershipFragment = new PartnershipFragment();
-        partnershipFragment.setArguments(bundle);
-        luckFragment = new LuckFragment();
-        luckFragment.setArguments(bundle);
-        meFragment = new MeFragment();
-        meFragment.setArguments(bundle);
-
-        title = findViewById(R.id.main_tv_title);
+    //加载数据  读取Assets文件夹下的xzcontent.json文件
+    private StarInfoEntity loadData() {
+        String json = AssetsUtils.getJsonFromAssets(this, "xzcontent/xzcontent.json");
+        Gson gson = new Gson();
+        StarInfoEntity infoEntity = gson.fromJson(json, StarInfoEntity.class);
+        AssetsUtils.saveBitmapFromAssets(this,infoEntity);
+        return infoEntity;
     }
+
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {

@@ -15,7 +15,7 @@ import com.yyzy.constellation.adapter.WelcomeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends BaseActivity {
 
     private ViewPager viewPager;
     //存放图片
@@ -23,27 +23,12 @@ public class WelcomeActivity extends AppCompatActivity {
     private List<ImageView> mDatas = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        initPager();
-        setPagerListener();
+    protected int initLayout() {
+        return R.layout.activity_welcome;
     }
 
-    //为最有一张页面设置监听事件
-    private void setPagerListener() {
-        int size = mDatas.size() - 1;
-        ImageView imageView = mDatas.get(size);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
-                finish();
-            }
-        });
-    }
-
-    private void initPager() {
+    @Override
+    protected void initView() {
         viewPager = findViewById(R.id.welcome_vp);
 
         for (int i = 0; i < img.length; i++) {
@@ -57,5 +42,19 @@ public class WelcomeActivity extends AppCompatActivity {
         }
         WelcomeAdapter adapter = new WelcomeAdapter(mDatas);
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    protected void initData() {
+        //为最有一张页面设置监听事件
+        int size = mDatas.size() - 1;
+        ImageView imageView = mDatas.get(size);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
     }
 }

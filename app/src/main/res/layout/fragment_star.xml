@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.StarFragment"
-    android:background="@color/bgyellow">
+    android:background="@drawable/bg">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/starFrag_vp"

@@ -6,11 +6,11 @@
     tools:context=".fragment.PartnershipFragment"
     android:orientation="vertical"
     android:padding="@dimen/dimen_20dp"
-    android:background="@color/bgyellow">
+    android:background="@drawable/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="130dp"
         android:orientation="horizontal"
         android:padding="@dimen/dimen_15dp"
         android:background="@drawable/partnership_man_bg">
@@ -42,7 +42,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="130dp"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:padding="@dimen/dimen_15dp"
@@ -84,7 +84,7 @@
         android:id="@+id/partnershipFrag_btn_lucky"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_15dp"
+        android:padding="@dimen/dimen_10dp"
         android:text="@string/lucky"
         android:textSize="@dimen/size_16sp"
         android:layout_marginTop="@dimen/dimen_120dp"
@@ -96,7 +96,7 @@
         android:id="@+id/partnershipFrag_btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_15dp"
+        android:padding="@dimen/dimen_10dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:text="@string/start_partnership"
         android:textSize="@dimen/size_16sp"

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.StarDetailsActivity"
-    android:background="@color/bgyellow">
+    android:background="@drawable/bg">
 
     <include layout="@layout/star_details_title"/>
 

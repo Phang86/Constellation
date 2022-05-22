@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import skin.support.SkinCompatManager;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -83,6 +84,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvName.setText(name);
     }
 
+    protected String findByKey(String key) {
+        SharedPreferences sp = getActivity().getSharedPreferences("sp_ttit", MODE_PRIVATE);
+        return sp.getString(key, "");
+    }
+
+    protected void insertVal(String key, String val) {
+        SharedPreferences sp = getActivity().getSharedPreferences("sp_ttit", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(key, val);
+        editor.commit();
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -98,7 +112,15 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 alertDialog.show();
                 break;
             case R.id.meFrag_tv_huanfu:
-
+                String skin = findByKey("skin");
+                if (skin.equals("night")){
+                    // 恢复应用默认皮肤
+                    SkinCompatManager.getInstance().restoreDefaultTheme();
+                    insertVal("skin","defualt");
+                }else {
+                    SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+                    insertVal("skin","night");
+                }
                 break;
             case R.id.meFrag_tv_tuichu:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getContext())

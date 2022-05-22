@@ -38,7 +38,7 @@ import okhttp3.Response;
 
 import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView tv;
     private EditText edUser, edPwd;
@@ -51,24 +51,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean mPasswordFlag = false;//记住密码标志
     private boolean mAutoLoginFlag = false;//自动登录标志
 
-    public void intentJump(Class cla) {
-        startActivity(new Intent(this,cla));
-    }
 
-    public void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_login;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initView();
-        loadData();
-    }
-
-    //初始化控件
-    private void initView() {
+    protected void initView() {
         tv = findViewById(R.id.btnLogin_tv_register);
         edUser = findViewById(R.id.edLogin_user);
         edPwd = findViewById(R.id.edLogin_pwd);
@@ -78,8 +68,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv.setOnClickListener(this);
     }
 
-    //加载数据
-    private void loadData() {
+    @Override
+    protected void initData() {
         SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
         //如果不为空
         if (sharedPreferences != null) {
@@ -122,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         @Override
         public void onClick(View v) {
             //设置登录监听
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.btnLogin_login:
                     String user = edUser.getText().toString().trim();
                     String pwd = edPwd.getText().toString().trim();
@@ -131,23 +121,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //2  创建Editor对象，写入值
                     editor.putString("username", user);
                     if (mRemenber.isChecked()) {
-                        if(!mPasswordFlag){
+                        if (!mPasswordFlag) {
                             mPasswordFlag = true;
                         }
                         editor.putBoolean("remenber", mPasswordFlag);
                         editor.putString("password", pwd);
                         //选中自动登录
-                        if (mAutoLogin.isChecked()){
+                        if (mAutoLogin.isChecked()) {
                             mAutoLoginFlag = true;
-                        }else{
+                        } else {
                             mAutoLoginFlag = false;
                         }
                         editor.putBoolean("auto", mAutoLoginFlag);
-                    }else {
-                        if(!mPasswordFlag){
+                    } else {
+                        if (!mPasswordFlag) {
                             showToast("密码状态异常！");
-                            Log.e("TAG", "!mPasswordFlag: "+"异常");
-                            return ;
+                            Log.e("TAG", "!mPasswordFlag: " + "异常");
+                            return;
                         }
                         //取消自动登录和记住密码,清空密码
                         mPasswordFlag = false;
@@ -161,6 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     login(user, pwd);
             }
         }
+
     };
 
     private void login(String user, String pwd) {
