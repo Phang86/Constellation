@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
     public static String setContent(){
-        String content = "此应用是一个星座配对软件，功能包括：星座介绍、星配分析、星座配对、星座运势等功能。";
+        String content = "此应用是一款星座配对多功能软件，功能包括：星座介绍、星配分析、星座配对、星座运势、出行天气、姓氏查找等功能。";
         return content;
     }
 

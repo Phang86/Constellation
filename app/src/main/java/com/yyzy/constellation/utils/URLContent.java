@@ -33,4 +33,38 @@ public class URLContent {
         String path = "http://web.juhe.cn/constellation/getAll?consName="+name+"&type=year&key=7610d57786604caf00b00db70ebdc31f";
         return path;
     }
+
+
+    //天气预报网络接口
+    private static final String temp_url = "http://apis.juhe.cn/simpleWeather/query?";
+    //天气预报网络接口键值
+    //private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
+    //private static final String KEY = "864bdd5bfbaa5474078aa98ec94ed947";
+    private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
+
+
+    public static String getTemp_url(String city){
+        try {
+            //转UTF-8格式
+            city = URLEncoder.encode(city,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        //拼接网络地址   path = temp_url + city + key;
+        String path = temp_url+"city="+city+"&key="+KEY;
+        return path;
+    }
+
+    //天气  空气指数接口
+    private static final String index_url = "http://apis.juhe.cn/simpleWeather/life?";
+    public static String getIndex_url(String city){
+        try {
+            //转UTF-8格式
+            city = URLEncoder.encode(city,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String path = index_url+"city="+city+"&key="+KEY;
+        return path;
+    }
 }

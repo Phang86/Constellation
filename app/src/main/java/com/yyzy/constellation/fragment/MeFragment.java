@@ -27,6 +27,7 @@ import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.DialogUtils;
 import com.yyzy.constellation.utils.StringUtils;
+import com.yyzy.constellation.weather.activity.WeatherActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -37,11 +38,12 @@ import skin.support.SkinCompatManager;
 import static android.content.Context.MODE_PRIVATE;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
+    private int flag = Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK;
     private StarInfoEntity starInfoEntity;
     private List<StarInfoEntity.StarinfoDTO> mDatas;
     private Map<String, Bitmap> imgMap;
     private CircleImageView cv;
-    private TextView tvName,tvJie,tvTui,tvHuan;
+    private TextView tvName,tvJie,tvTui,tvHuan,tvWeather,tvNameLookup;
     private SharedPreferences spf;
     private int selectPos = 0;
 
@@ -70,10 +72,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvJie = view.findViewById(R.id.meFrag_tv_jieshao);
         tvHuan = view.findViewById(R.id.meFrag_tv_huanfu);
         tvTui = view.findViewById(R.id.meFrag_tv_tuichu);
+        tvWeather = view.findViewById(R.id.meFrag_tv_weather);
+        tvNameLookup = view.findViewById(R.id.meFrag_tv_nameLookup);
         cv.setOnClickListener(this);
         tvJie.setOnClickListener(this);
         tvHuan.setOnClickListener(this);
         tvTui.setOnClickListener(this);
+        tvWeather.setOnClickListener(this);
+        tvNameLookup.setOnClickListener(this);
 
         //获取保存在sp里面的状态  并设置
         String name = spf.getString("name", "白羊座");
@@ -136,22 +142,25 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                 editor.clear();
                                 //提交
                                 editor.commit();
-                                int falg = Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK;
                                 Intent intent = new Intent(getContext(), LoginActivity.class);
-                                intent.setFlags(falg);
+                                intent.setFlags(flag);
                                 startActivity(intent);
                                 Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
-
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //取消按钮
-
                             }
                         });
                 dialog.create().show();
+                break;
+            case R.id.meFrag_tv_weather:
+                startActivity(new Intent(getContext(),WeatherActivity.class));
+                break;
+            case R.id.meFrag_tv_nameLookup:
+
                 break;
         }
     }

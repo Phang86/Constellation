@@ -3,6 +3,10 @@ package com.yyzy.constellation.utils;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.yyzy.constellation.weather.db.DBManager;
+
+import org.xutils.x;
+
 import skin.support.SkinCompatManager;
 import skin.support.app.SkinAppCompatViewInflater;
 
@@ -10,6 +14,8 @@ public class Constellation extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        x.Ext.init(this);
+        DBManager.initDB(this);
         SkinCompatManager.withoutActivity(this)
                 .addInflater(new SkinAppCompatViewInflater())           // 基础控件换肤初始化
                 .setSkinStatusBarColorEnable(false)                     // 关闭状态栏换肤，默认打开[可选]

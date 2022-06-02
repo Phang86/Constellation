@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".weather.activity.WeatherActivity"
+    android:background="@mipmap/bg3">
+
+
+    <RelativeLayout
+        android:id="@+id/weather_layout_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dimen_10dp">
+
+        <ImageView
+            android:id="@+id/weather_iv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/icon_add" />
+
+        <ImageView
+            android:id="@+id/weather_iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/icon_more" />
+
+        <LinearLayout
+            android:id="@+id/weather_layout_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/weather_iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_back"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginLeft="@dimen/dimen_5dp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/weather_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/weather_iv_back"
+        android:layout_above="@+id/weather_layout_relative">
+    </androidx.viewpager.widget.ViewPager>
+</RelativeLayout>

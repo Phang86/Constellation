@@ -88,10 +88,10 @@ public class RegisterActivity extends BaseActivity{
             showToast("注册密码不能为空哦！");
             return;
         } else if (!checkPassword(pwd)) {
-            showToast("密码只能用大小写字母、数字组合，长度不低于8不大于16！");
+            showToast("密码输入格式不正确！密码只能用大小写字母、数字组合，长度不低于8不大于16！");
             return;
         } else if (!checkUsername(user)) {
-            showToast("用户名只能大小写字母，长度不低于6不大于12！");
+            showToast("用户名输入格式不正确！用户名只能大小写字母，长度不低于6不大于12！");
             return;
         }
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；

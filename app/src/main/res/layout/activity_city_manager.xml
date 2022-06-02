@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".weather.activity.CityManagerActivity">
+
+    <RelativeLayout
+        android:id="@+id/city_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5">
+
+        <ImageView
+            android:id="@+id/city_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageView
+            android:id="@+id/city_iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_write"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/cityManager"
+            android:textSize="@dimen/size_20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+    <View
+        android:id="@+id/city_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:layout_below="@id/city_top_layout"
+        android:background="#dcdcdc"/>
+
+    <ListView
+        android:id="@+id/city_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/city_view"
+        android:divider="@null"/>
+
+    <ImageView
+        android:id="@+id/city_iv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/icon_add"
+        android:layout_margin="@dimen/dimen_5dp"/>
+</RelativeLayout>

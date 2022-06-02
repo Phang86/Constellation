@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LocalMusicActivity"
+    android:orientation="vertical"
+    android:background="@drawable/bg">
+
+    <include
+        android:id="@+id/shang"
+        layout="@layout/star_details_title"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/music_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_below="@+id/shang"
+        android:layout_above="@+id/bottom"
+        android:background="@mipmap/bg2"/>
+
+   <RelativeLayout
+       android:id="@+id/bottom"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:background="@drawable/bg_two">
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/dimen_1dp"
+           android:background="@color/grey"/>
+
+       <ImageView
+           android:id="@+id/titleImg"
+           android:layout_width="@dimen/dimen_70dp"
+           android:layout_height="@dimen/dimen_70dp"
+           android:src="@mipmap/icon_song"
+           android:background="@mipmap/a1"/>
+
+       <TextView
+           android:id="@+id/tvGeMing"
+           android:layout_width="150dp"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/titleImg"
+           android:textSize="@dimen/size_16sp"
+           android:layout_marginTop="@dimen/dimen_15dp"
+           android:textStyle="bold"
+           android:singleLine="true"
+           android:ellipsize="end"/>
+
+       <TextView
+           android:id="@+id/tvGeShou"
+           android:layout_width="150dp"
+           android:layout_height="wrap_content"
+           android:layout_toRightOf="@+id/titleImg"
+           android:layout_below="@+id/tvGeMing"
+           android:textSize="@dimen/size_13sp"
+           android:singleLine="true"
+           android:ellipsize="end"/>
+
+
+       <ImageView
+           android:id="@+id/ivNext"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_centerVertical="true"
+           android:src="@mipmap/icon_next"
+           android:layout_marginRight="@dimen/dimen_10dp"
+           android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+       <ImageView
+           android:id="@+id/ivPlay"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@id/ivNext"
+           android:layout_marginRight="@dimen/dimen_5dp"
+           android:layout_marginBottom="@dimen/dimen_10dp"
+           android:src="@mipmap/icon_play"/>
+
+       <ImageView
+           android:id="@+id/ivLast"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:layout_toLeftOf="@id/ivPlay"
+           android:src="@mipmap/icon_last"
+           android:layout_marginRight="@dimen/dimen_5dp"
+           android:layout_marginBottom="@dimen/dimen_10dp"/>
+   </RelativeLayout>
+</RelativeLayout>

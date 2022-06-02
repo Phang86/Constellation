@@ -3,6 +3,7 @@ package com.yyzy.constellation.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.textclassifier.TextLinks;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
-public abstract class BaseActivity extends AppCompatActivity {
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+public abstract class BaseActivity extends AppCompatActivity implements Callback.CacheCallback<String>{
     public Context context;
+
+    public void loadDatas(String url){
+        RequestParams params = new RequestParams(url);
+        x.http().get(params,this);
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,5 +55,30 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public AppCompatDelegate getDelegate() {
         return SkinAppCompatDelegateImpl.get(this, this);
+    }
+
+    @Override
+    public boolean onCache(String result) {
+        return false;
+    }
+
+    @Override
+    public void onSuccess(String result) {
+
+    }
+
+    @Override
+    public void onError(Throwable ex, boolean isOnCallback) {
+
+    }
+
+    @Override
+    public void onCancelled(CancelledException cex) {
+
+    }
+
+    @Override
+    public void onFinished() {
+
     }
 }

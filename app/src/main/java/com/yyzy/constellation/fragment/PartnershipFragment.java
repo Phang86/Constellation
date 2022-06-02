@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.LocalMusicActivity;
 import com.yyzy.constellation.activity.StarStartActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
@@ -90,7 +91,7 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.partnershipFrag_btn_lucky:
-
+                startActivity(new Intent(getContext(),LocalMusicActivity.class));
                 break;
             case R.id.partnershipFrag_btn_start:
                 //获取当前图片位置

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".weather.activity.SearchCityActivity"
+    android:background="@color/gray_200"
+    android:padding="@dimen/dimen_10dp"
+    android:layout_gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/search_iv_back"
+                    android:layout_width="@dimen/dimen_25dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:src="@mipmap/icon_back"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dimen_10dp" />
+
+                <EditText
+                    android:id="@+id/search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/search_iv_back"
+                    android:layout_toLeftOf="@+id/search_iv_confirm"
+                    android:hint="@string/searchCity"
+                    android:background="@drawable/search_bg"
+                    android:paddingLeft="@dimen/dimen_15dp"
+                    android:paddingTop="@dimen/dimen_5dp"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:paddingBottom="@dimen/dimen_5dp"
+                    android:textSize="@dimen/size_18sp" />
+
+                <ImageView
+                    android:id="@+id/search_iv_confirm"
+                    android:layout_width="@dimen/dimen_25dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dimen_15dp"
+                    android:src="@mipmap/icon_search"
+                    android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/search_tv_hotCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_layout"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:textSize="@dimen/size_18sp"
+            android:text="@string/hotCity"/>
+
+        <GridView
+            android:id="@+id/search_gv"
+            android:layout_below="@+id/search_tv_hotCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:numColumns="5"
+            android:background="@drawable/hotcity_bg" />
+</RelativeLayout>

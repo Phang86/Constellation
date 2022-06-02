@@ -48,4 +48,6 @@ dependencies {
 
     implementation 'skin.support:skin-support:+'                   // skin-support
     implementation 'skin.support:skin-support-appcompat:+'         // skin-support 基础控件支持
+
+    implementation 'org.xutils:xutils:+'
 }
