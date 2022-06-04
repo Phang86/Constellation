@@ -65,6 +65,9 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.city_iv_back:
+                Intent intent = new Intent(CityManagerActivity.this, WeatherActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 finish();
                 break;
             case R.id.city_iv_delete:
@@ -82,4 +85,5 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
                 break;
         }
     }
+
 }
