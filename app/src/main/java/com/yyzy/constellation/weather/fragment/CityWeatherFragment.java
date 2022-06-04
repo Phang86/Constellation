@@ -1,6 +1,7 @@
 package com.yyzy.constellation.weather.fragment;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +32,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class CityWeatherFragment extends BaseFragment implements View.OnClickListener {
     private TextView tempTv, cityTv, conditionTv, windTv, dateTv, tempRangeTv, clothIndexTv, carIndexTv, coldIndexTv, sportIndexTv, raysIndexTv, airIndexTv;
     private LinearLayout futureLayout;
     private WeatherIndexEntity.ResultDTO.LifeDTO life;   //网络天气指数存放类
     private int error_code = 10012;        //网络请求失败码
     private String city;
+    private int bgNum;
+    private ScrollView scrollView;
+    private SharedPreferences bg_pref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,6 +91,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             //表示更新城市数据失败，则应该添加此城市的数据信息
             DBManager.addCityInfo(city,result);
         }
+
     }
 
     @Override
@@ -149,6 +158,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         raysIndexTv = view.findViewById(R.id.cityFrag_tv_rays);
         airIndexTv = view.findViewById(R.id.cityFrag_tv_air);
         futureLayout = view.findViewById(R.id.cityFrag_center_layout);
+        scrollView = view.findViewById(R.id.cityFrag_scroll);
 
         //为控件添加点击事件
         clothIndexTv.setOnClickListener(this);
@@ -157,6 +167,8 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         sportIndexTv.setOnClickListener(this);
         raysIndexTv.setOnClickListener(this);
         airIndexTv.setOnClickListener(this);
+
+        changeBg();
     }
 
     @Override
@@ -220,5 +232,28 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 break;
         }
         builder.create().show();
+    }
+
+    //换壁纸的方法
+    public void changeBg(){
+        bg_pref = getActivity().getSharedPreferences("bg_pref", MODE_PRIVATE);
+        bgNum = bg_pref.getInt("bg", 2);
+        switch (bgNum) {
+            case 0:
+                scrollView.setBackgroundResource(R.mipmap.bg4);
+                break;
+            case 1:
+                scrollView.setBackgroundResource(R.mipmap.bg);
+                break;
+            case 2:
+                scrollView.setBackgroundResource(R.mipmap.bg2);
+                break;
+            case 3:
+                scrollView.setBackgroundResource(R.mipmap.bg3);
+                break;
+            case 4:
+                scrollView.setBackgroundResource(R.mipmap.bg5);
+                break;
+        }
     }
 }

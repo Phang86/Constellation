@@ -74,4 +74,15 @@ public class DBManager {
         }
         return list;
     }
+
+    //根据城市名称，删除城市在数据库当中的数据
+    public static int deleteInfoCity(String city){
+        return database.delete("info","city=?",new String[]{city});
+    }
+
+    //删除表当中所有的数据信息
+    public static void deleteAllInfo(){
+        String sql = "delete from info";
+        database.execSQL(sql);
+    }
 }

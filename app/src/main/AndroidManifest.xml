@@ -16,10 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true">
-        <activity android:name=".weather.activity.SearchCityActivity"></activity>
+        <activity android:name=".weather.activity.MoreActivity"/>
+        <activity android:name=".weather.activity.SearchCityActivity" />
         <activity android:name=".weather.activity.DeleteCityActivity" />
         <activity android:name=".weather.activity.CityManagerActivity" />
-        <activity android:name=".weather.activity.WeatherActivity" />
+        <activity android:name=".weather.activity.WeatherActivity"/>
         <activity android:name=".activity.LocalMusicActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />

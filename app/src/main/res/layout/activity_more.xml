@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".weather.activity.MoreActivity">
+
+    <RelativeLayout
+        android:id="@+id/more_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:background="#f5f5f5">
+
+        <ImageView
+            android:id="@+id/more_iv_back"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/moreSet"
+            android:textSize="@dimen/size_20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+    <View
+        android:id="@+id/more_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:layout_below="@id/city_top_layout"
+        android:background="#dcdcdc"/>
+
+    <LinearLayout
+        android:id="@+id/more_layout_updateBg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@mipmap/more_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/updateBg"
+            android:textSize="@dimen/size_16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/gray_200"
+        android:layout_marginLeft="@dimen/dimen_45dp"
+        android:layout_marginRight="@dimen/dimen_10dp"/>
+
+    <RadioGroup
+        android:id="@+id/more_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <RadioButton
+            android:id="@+id/more_rg_rbt_default"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
+            android:background="@color/gray_500"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/defaultBg"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/more_rg_rbt_green"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_weight="1"
+            android:background="#c5edd1"
+            android:button="@null"
+            android:text="@string/green"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/more_rg_rbt_pink"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
+            android:background="#fcafae"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/pink"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/more_rg_rbt_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
+            android:background="#87ceeb"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/blue"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/more_rg_rbt_star"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
+            android:background="#B1CCE1"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="@string/star"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/more_layout_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@mipmap/more_cache" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            android:textSize="@dimen/size_16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/gray_200"
+        android:layout_marginLeft="@dimen/dimen_45dp"
+        android:layout_marginRight="@dimen/dimen_10dp"/>
+
+    <LinearLayout
+        android:id="@+id/more_layout_enjoy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/more_share"
+            android:layout_margin="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enjoy"
+            android:textSize="@dimen/size_16sp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/gray_200"
+        android:layout_marginLeft="@dimen/dimen_45dp"
+        android:layout_marginRight="@dimen/dimen_10dp"/>
+
+    <LinearLayout
+        android:id="@+id/more_layout_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/more_version"
+            android:layout_margin="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/more_tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textSize="@dimen/size_16sp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/gray_200"
+        android:layout_marginLeft="@dimen/dimen_45dp"
+        android:layout_marginRight="@dimen/dimen_10dp"/>
+
+</LinearLayout>

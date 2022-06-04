@@ -35,4 +35,14 @@
     <string name="cityManager">城市管理</string>
     <string name="searchCity">搜索国内城市</string>
     <string name="hotCity">热门城市</string>
+    <string name="moreSet">更多设置</string>
+    <string name="green">青瓦白墙</string>
+    <string name="pink">粉妆玉砌</string>
+    <string name="blue">透明润泽</string>
+    <string name="updateBg">更换壁纸</string>
+    <string name="clear">清理缓存</string>
+    <string name="version">软件版本</string>
+    <string name="enjoy">分享软件</string>
+    <string name="defaultBg">默认壁纸</string>
+    <string name="star">星夜彩绘</string>
 </resources>
