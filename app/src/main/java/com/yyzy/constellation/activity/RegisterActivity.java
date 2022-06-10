@@ -28,8 +28,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.yyzy.constellation.utils.StringUtils.checkPassword;
-import static com.yyzy.constellation.utils.StringUtils.checkUsername;
 
 public class RegisterActivity extends BaseActivity{
     private EditText edRegisterUser, edRegisterPwd;
@@ -69,16 +67,6 @@ public class RegisterActivity extends BaseActivity{
         });
     }
 
-//    private void initView() {
-
-//    }
-
-    //private void initData() {
-
-
-
-
-
     private void register(String user, String pwd) {
         //判断用户输入的密码和账号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
         if (TextUtils.isEmpty(user)) {
@@ -88,10 +76,10 @@ public class RegisterActivity extends BaseActivity{
             showToast("注册密码不能为空哦！");
             return;
         } else if (!checkPassword(pwd)) {
-            showToast("密码输入格式不正确！密码只能用大小写字母、数字组合，长度不低于8不大于16！");
+            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度不短于8不长于16！");
             return;
         } else if (!checkUsername(user)) {
-            showToast("用户名输入格式不正确！用户名只能大小写字母，长度不低于6不大于12！");
+            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度不短于6不长于12！");
             return;
         }
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
@@ -122,7 +110,7 @@ public class RegisterActivity extends BaseActivity{
                     @Override
                     public void run() {
                         if (resultStr.equals("success")) {
-                            showToast("您已注册成功！");
+                            showToast("恭喜，您已注册成功！赶紧前往登录吧！");
                             edRegisterUser.setText("");
                             edRegisterPwd.setText("");
                         } else if (resultStr.equals("error")) {

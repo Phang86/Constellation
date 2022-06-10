@@ -37,6 +37,7 @@
     <color name="blue">#5481dd</color>
     <color name="black_200">#454544</color>
     <color name="yellow_100">#fdf299</color>
+    <color name="yellow_300"></color>
     <color name="white_text">#FFFFFFFF</color>
     <color name="bg">#CCFF99</color>
     <color name="colorPink">#33FFC0Cb</color>

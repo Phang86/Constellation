@@ -17,7 +17,7 @@
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             android:src="@mipmap/icon_back"
-            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_margin="@dimen/dimen_10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"/>
 
@@ -26,7 +26,7 @@
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             android:src="@mipmap/icon_write"
-            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_margin="@dimen/dimen_10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/cityManager"
-            android:textSize="@dimen/size_20sp"
+            android:textSize="@dimen/size_16sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
     </RelativeLayout>
@@ -55,10 +55,10 @@
 
     <ImageView
         android:id="@+id/city_iv_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@mipmap/icon_add"
-        android:layout_margin="@dimen/dimen_5dp"/>
+        android:layout_margin="@dimen/dimen_10dp"/>
 </RelativeLayout>

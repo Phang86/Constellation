@@ -1,48 +1,57 @@
 <resources>
-    <string name="app_name">星座缘</string>
-    <string name="label_star">星座</string>
-    <string name="label_star_details">星座详情</string>
-    <string name="label_partnership">配对</string>
-    <string name="label_luck">运势</string>
-    <string name="label_me">我的</string>
-    <string name="starCharacter">星座特性：</string>
-    <string name="starParse">星座解析</string>
-    <string name="man">男生:</string>
-    <string name="woman">女生:</string>
-    <string name="partnership_info">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
-    <string name="start_partnership">开始配对分析</string>
-    <string name="lucky">放松一下</string>
-    <string name="jieshao">功能介绍</string>
-    <string name="guanyu">关于应用</string>
-    <string name="tuichu">退出登陆</string>
-    <string name="weather">出行天气</string>
-    <string name="nameLookup">姓氏查找</string>
-    <string name="huanfu">主题换肤</string>
-    <string name="login">登录</string>
-    <string name="register">注册</string>
-    <string name="eduser">请输入用户名</string>
-    <string name="edpwd">请输入密码</string>
-    <string name="auto_login">自动登录</string>
-    <string name="remember_pwd">记住密码</string>
-    <string name="no_register">没有账号？前往注册</string>
-    <string name="youzhanghao">我已有账号，快速登录</string>
-    <string name="cloth">穿衣指数</string>
-    <string name="cold">感冒指数</string>
-    <string name="rays">紫外线指数</string>
-    <string name="air">空调指数</string>
-    <string name="sport">运动指数</string>
-    <string name="washCar">洗车指数</string>
-    <string name="cityManager">城市管理</string>
-    <string name="searchCity">搜索国内城市</string>
-    <string name="hotCity">热门城市</string>
-    <string name="moreSet">更多设置</string>
-    <string name="green">青瓦白墙</string>
-    <string name="pink">粉妆玉砌</string>
-    <string name="blue">透明润泽</string>
-    <string name="updateBg">更换壁纸</string>
-    <string name="clear">清理缓存</string>
-    <string name="version">软件版本</string>
-    <string name="enjoy">分享软件</string>
-    <string name="defaultBg">默认壁纸</string>
-    <string name="star">星夜彩绘</string>
+    <string name="app_name" translatable="false">星座缘</string>
+    <string name="label_star" translatable="false">星座</string>
+    <string name="label_star_details" translatable="false">星座详情</string>
+    <string name="label_partnership" translatable="false">配对</string>
+    <string name="label_luck" translatable="false">运势</string>
+    <string name="label_me" translatable="false">我的</string>
+    <string name="starCharacter" translatable="false">星座特性：</string>
+    <string name="starParse" translatable="false">星座解析</string>
+    <string name="man" translatable="false">男生:</string>
+    <string name="woman" translatable="false">女生:</string>
+    <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
+    <string name="start_partnership" translatable="false">开始配对分析</string>
+    <string name="lucky" translatable="false">放松一下</string>
+    <string name="jieshao" translatable="false">功能介绍</string>
+    <string name="guanyu" translatable="false">关于应用</string>
+    <string name="tuichu" translatable="false">退出登陆</string>
+    <string name="weather" translatable="false">出行天气</string>
+    <string name="nameLookup" translatable="false">姓氏查找</string>
+    <string name="huanfu" translatable="false">主题换肤</string>
+    <string name="login" translatable="false">登录</string>
+    <string name="register" translatable="false">注册</string>
+    <string name="eduser" translatable="false">请输入用户名</string>
+    <string name="edpwd" translatable="false">请输入密码</string>
+    <string name="auto_login" translatable="false">自动登录</string>
+    <string name="remember_pwd" translatable="false">记住密码</string>
+    <string name="no_register" translatable="false">没有账号？前往注册</string>
+    <string name="youzhanghao" translatable="false">我已有账号，快速登录</string>
+    <string name="cloth" translatable="false">穿衣指数</string>
+    <string name="cold" translatable="false">感冒指数</string>
+    <string name="rays" translatable="false">紫外线指数</string>
+    <string name="air" translatable="false">空调指数</string>
+    <string name="sport" translatable="false">运动指数</string>
+    <string name="washCar" translatable="false">洗车指数</string>
+    <string name="cityManager" translatable="false">城市管理</string>
+    <string name="searchCity" translatable="false">搜索国内城市</string>
+    <string name="hotCity" translatable="false">热门城市</string>
+    <string name="moreSet" translatable="false">更多设置</string>
+    <string name="green" translatable="false">青瓦白墙</string>
+    <string name="pink" translatable="false">粉妆玉砌</string>
+    <string name="blue" translatable="false">透明润泽</string>
+    <string name="updateBg" translatable="false">更换壁纸</string>
+    <string name="clear" translatable="false">清理缓存</string>
+    <string name="version" translatable="false">应用版本</string>
+    <string name="enjoy" translatable="false">分享应用</string>
+    <string name="defaultBg" translatable="false">默认壁纸</string>
+    <string name="star" translatable="false">星夜彩绘</string>
+    <string name="findCity" translatable="false">查找城市</string>
+    <string name="deleteCity" translatable="false">删除城市</string>
+    <string name="findDict" translatable="false">查找字典</string>
+    <string name="findText" translatable="false">请输入查找文字</string>
+    <string name="pinyinQuery" translatable="false">拼音查找</string>
+    <string name="bushouQuery" translatable="false">部首查找</string>
+    <string name="chengyuQuery" translatable="false">成语查找</string>
+    <string name="xiangji" translatable="false">图文识字</string>
+    <string name="everyDay" translatable="false">每日金句</string>
 </resources>

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.adapter.LuckItemAdapter;
+import com.yyzy.constellation.dict.activity.DictActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.DialogUtils;
@@ -160,7 +161,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(),WeatherActivity.class));
                 break;
             case R.id.meFrag_tv_nameLookup:
-
+                startActivity(new Intent(getContext(), DictActivity.class));
                 break;
         }
     }

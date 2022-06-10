@@ -45,15 +45,13 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
         layoutClear.setOnClickListener(this);
         layoutEnjoy.setOnClickListener(this);
         layoutVersion.setOnClickListener(this);
-
-
     }
 
     @Override
     protected void initData() {
         bgPref = getSharedPreferences("bg_pref", MODE_PRIVATE);
         String versionName = getVersion();
-        versionTv.setText("当前版本号"+versionName);
+        versionTv.setText("当前版本号："+versionName);
         setRGListener();
     }
 

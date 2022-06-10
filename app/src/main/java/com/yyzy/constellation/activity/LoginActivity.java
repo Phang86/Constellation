@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -161,6 +164,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("密码不能为空哦！");
             return;
+        }else if (!checkPassword(pwd)){
+            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度不短于8不长于16！");
+            return;
+        }else if (!checkUsername(user)){
+            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度不短于6不长于12！");
+            return;
         }
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
@@ -175,8 +184,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.e("TAG", "onFailure: " + e.getMessage().toString());
                 Looper.prepare();
+                Log.e("TAG", "onFailure: " + e.getMessage().toString());
                 showToast("登录失败！服务器连接超时！");
                 Looper.loop();
             }
@@ -193,6 +202,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         }else{
                             List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
                             }.getType());
+                            Log.e("TAG", "run: "+dataEntity.toString() );
                             data = dataEntity;
                             if (data.size() > 0 && data != null) {
                                 //拿到Username

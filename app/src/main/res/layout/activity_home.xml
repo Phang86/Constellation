@@ -11,10 +11,11 @@
         android:id="@+id/home_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/size_25sp"
-        android:textColor="@color/grey"
+        android:text="倒计时"
+        android:textSize="@dimen/size_16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/home_tv_bg"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_20dp"/>
+        android:layout_marginRight="@dimen/dimen_10dp"/>
 </RelativeLayout>

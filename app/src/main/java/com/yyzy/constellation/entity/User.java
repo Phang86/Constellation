@@ -46,4 +46,15 @@ public class User {
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", createTime='" + createTime + '\'' +
+                '}';
+    }
 }

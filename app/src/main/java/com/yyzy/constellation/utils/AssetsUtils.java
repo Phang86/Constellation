@@ -86,4 +86,6 @@ public class AssetsUtils {
     public static Map<String, Bitmap> getLogeImgMap() {
         return logeImgMap;
     }
+
+
 }

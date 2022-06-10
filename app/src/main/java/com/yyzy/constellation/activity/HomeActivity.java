@@ -57,7 +57,7 @@ public class HomeActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 }else {
-                    tv.setText("倒计时\t\t"+String.valueOf(time));
+                    tv.setText("倒计时\t"+String.valueOf(time)+"秒");
                     handler.sendEmptyMessageDelayed(1,1000);
                 }
             }

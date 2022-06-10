@@ -58,6 +58,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         Bundle bundle = getArguments();
         city = bundle.getString("city");
         String url = URLContent.getTemp_url(city);
+
         //获取父类加载数据的方法
         loadData(url);
         //获取网络天气指数信息

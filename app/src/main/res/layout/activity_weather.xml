@@ -18,15 +18,15 @@
 
         <ImageView
             android:id="@+id/weather_iv_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
             android:layout_alignParentLeft="true"
             android:src="@mipmap/icon_add" />
 
         <ImageView
             android:id="@+id/weather_iv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_30dp"
+            android:layout_height="@dimen/dimen_30dp"
             android:layout_alignParentRight="true"
             android:src="@mipmap/icon_more" />
 

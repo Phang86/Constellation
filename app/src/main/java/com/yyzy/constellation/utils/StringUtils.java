@@ -9,24 +9,8 @@ public class StringUtils {
         return content;
     }
 
-    /*
-    * 注册：严格使用正则表达式
-    **/
-    // 验证用户名是否匹配指定格式的方法
-    public static boolean checkUsername(String user) {
-        //用户名只能大小写字母，长度不低于6不大于12。
-        String regexp = "^[a-zA-Z]{6,12}$";
-        Pattern pattern = Pattern.compile(regexp);
-        Matcher matcher = pattern.matcher(user);
-        return matcher.matches();
-    }
-
-    // 验证密码是否匹配指定格式的方法
-    public static boolean checkPassword(String pwd) {
-        //密码只能用大小写字母、数字组合，长度不低于8不大于16。
-        String regexp = "^[0-9a-zA-Z]{8,16}$";
-        Pattern pattern = Pattern.compile(regexp);
-        Matcher matcher = pattern.matcher(pwd);
-        return matcher.matches();
+    public static String setString(){
+        String str = "有了理想，有了目标，有了奋斗，才会在未来的旅途中走得更远。";
+        return str;
     }
 }

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dict.activity.DictActivity"
+    android:orientation="vertical"
+    android:background="@color/gray_200">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/dimen_20dp">
+
+        <ImageView
+            android:id="@+id/dict_iv_back"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            style="@style/titleTvStyle"
+            android:text="@string/findDict"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/dict_iv_set"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_setting"
+            android:layout_margin="@dimen/dimen_10dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <EditText
+            android:id="@+id/dict_ed"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@drawable/dict_ed_bg"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:hint="@string/findText"
+            android:textColorHint="@color/grey"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/dict_iv_search"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/search"
+            android:layout_marginRight="@dimen/dimen_20dp"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/dict_layout_bg"
+        android:padding="@dimen/dimen_15dp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/dict_tv_pinyin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/m_pinyin"
+            android:gravity="center"
+            android:text="@string/pinyinQuery"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/dict_tv_bushou"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/m_bushou"
+            android:text="@string/bushouQuery"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/dict_tv_chengyu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/m_chengyu"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:gravity="center"
+            android:text="@string/chengyuQuery"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/dict_tv_xiangji"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:drawableTop="@mipmap/m_xiangji"
+            android:text="@string/xiangji"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:background="@drawable/dict_layout_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/everyDay"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/dict_tv_everyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dimen_5dp"/>
+    </LinearLayout>
+</LinearLayout>
