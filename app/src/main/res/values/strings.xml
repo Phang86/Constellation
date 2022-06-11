@@ -47,11 +47,12 @@
     <string name="star" translatable="false">星夜彩绘</string>
     <string name="findCity" translatable="false">查找城市</string>
     <string name="deleteCity" translatable="false">删除城市</string>
-    <string name="findDict" translatable="false">查找字典</string>
+    <string name="findDict" translatable="false">姓氏查找</string>
     <string name="findText" translatable="false">请输入查找文字</string>
     <string name="pinyinQuery" translatable="false">拼音查找</string>
     <string name="bushouQuery" translatable="false">部首查找</string>
     <string name="chengyuQuery" translatable="false">成语查找</string>
     <string name="xiangji" translatable="false">图文识字</string>
     <string name="everyDay" translatable="false">每日金句</string>
+    <string name="loading" translatable="false">加载中...</string>
 </resources>
