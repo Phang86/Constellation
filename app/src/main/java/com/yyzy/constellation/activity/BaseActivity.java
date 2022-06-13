@@ -90,7 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
      **/
     // 验证用户名是否匹配指定格式的方法
     public static boolean checkUsername(String user) {
-        //用户名只能大小写字母，长度不低于6不大于12。
+        //用户名只能大小写字母，长度为6~12位。
         String regexp = "^[a-zA-Z]{6,12}$";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(user);
@@ -99,7 +99,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
 
     // 验证密码是否匹配指定格式的方法
     public static boolean checkPassword(String pwd) {
-        //密码只能用大小写字母、数字组合，长度不低于8不大于16。
+        //密码只能用大小写字母、数字组合，长度为8~16位。
         String regexp = "^[0-9a-zA-Z]{8,16}$";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(pwd);

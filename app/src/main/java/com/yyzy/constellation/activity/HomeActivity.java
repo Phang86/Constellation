@@ -28,6 +28,7 @@ public class HomeActivity extends BaseActivity {
         tv = findViewById(R.id.home_tv);
         handler.sendEmptyMessageDelayed(1,1000);
         firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
+        //点击定时装置直接跳过
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +52,7 @@ public class HomeActivity extends BaseActivity {
             super.handleMessage(msg);
                 if (msg.what == 1) {
                     time--;
-                    if (time == 0) {
+                    if (time == -1) {
                         //判断是否第一次进入
                         boolean isFirst = firstSpf.getBoolean("isFirst", true);
                         Intent intent = new Intent();

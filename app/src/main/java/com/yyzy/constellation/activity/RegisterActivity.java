@@ -29,7 +29,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class RegisterActivity extends BaseActivity{
+public class RegisterActivity extends BaseActivity {
     private EditText edRegisterUser, edRegisterPwd;
     private Button mbtnRegister;
     private TextView tv;
@@ -53,7 +53,7 @@ public class RegisterActivity extends BaseActivity{
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
             }
         });
@@ -75,11 +75,11 @@ public class RegisterActivity extends BaseActivity{
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("注册密码不能为空哦！");
             return;
-        } else if (!checkPassword(pwd)) {
-            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度不短于8不长于16！");
-            return;
         } else if (!checkUsername(user)) {
-            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度不短于6不长于12！");
+            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            return;
+        } else if (!checkPassword(pwd)) {
+            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；

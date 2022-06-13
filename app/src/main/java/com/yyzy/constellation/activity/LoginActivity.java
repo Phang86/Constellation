@@ -164,11 +164,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("密码不能为空哦！");
             return;
-        }else if (!checkPassword(pwd)){
-            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度不短于8不长于16！");
-            return;
         }else if (!checkUsername(user)){
-            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度不短于6不长于12！");
+            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            return;
+        }else if (!checkPassword(pwd)){
+            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }
         OkHttpClient okHttpClient = new OkHttpClient();
