@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.BaseSearchActivity;
+import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.PinBuWordEntity;
 import com.yyzy.constellation.utils.CommonUtils;
 import com.yyzy.constellation.utils.HttpUtils;
@@ -34,9 +35,16 @@ public class SearchBushouActivity extends BaseSearchActivity {
         //加载网络数据
         loadData(url);
         loadNetDataResult(this,url);
+        setGVListener(CommonUtils.TYPE_BUSHOU);
+
+
     }
 
 
-
-
+    //网络获取失败时，调用的接口
+    @Override
+    public void onError(Throwable ex, boolean isOnCallback) {
+        List<PinBuWordEntity.ResultBean.ListBean> list = DBmanager.queryBsWordFromPywordtb(word, page, pageSize);
+        refreshDataByGV(list);
+    }
 }

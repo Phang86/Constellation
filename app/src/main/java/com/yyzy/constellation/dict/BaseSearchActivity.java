@@ -6,7 +6,9 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +17,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.adapter.SearchLeftAdapter;
 import com.yyzy.constellation.dict.adapter.SearchRightAdapter;
+import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.PinBuEntity;
 import com.yyzy.constellation.dict.entity.PinBuWordEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
@@ -59,7 +63,6 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         initView();
         //初始化GridView的数据源
         initGridDada();
-        setGVListener();
     }
 
     private void initView() {
@@ -130,7 +133,37 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         gridView.setAdapter(gridViewAdapter);
     }
 
-    public void setGVListener() {
+    public void setGVListener(int type) {
+        //下拉加载的监听器
+        gridView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+        gridView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<GridView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<GridView> refreshView) {
+                //判断当前页数是否小于总页数
+                if (page < totalPage){
+                    page++;
+                    if (type == CommonUtils.TYPE_PINYIN) {
+                        url = URLContent.getPinyinurl(word,page,pageSize);
+                    }else if (type == CommonUtils.TYPE_BUSHOU) {
+                        url = URLContent.getBushouurl(word,page,pageSize);
+                    }
+                    loadData(url);
+                }else {
+                    //否则不用加载数据   提示用户
+                    gridView.onRefreshComplete();
+                    Toast.makeText(BaseSearchActivity.this, "没有更多数据了哦！", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //给GridView的item添加点击事件,点击则跳转到详情界面
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //跳转到详情界面
+
+            }
+        });
 
     }
 
@@ -205,10 +238,22 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         List<PinBuWordEntity.ResultBean.ListBean> list = resultBean.getList();
         //将数据进行加载
         refreshDataByGV(list);
+        //将加载到的网络数据写入到数据库中
+        writeDBByThread(list);
+    }
+
+    //将网络数据保存到数据库中  使用子线程加载和保存网络数据
+    private void writeDBByThread(List<PinBuWordEntity.ResultBean.ListBean> list) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DBmanager.insertListToPywordtb(list);
+            }
+        }).start();
     }
 
     //设置GridView当中的数据，提示适配器重新加载
-    private void refreshDataByGV(List<PinBuWordEntity.ResultBean.ListBean> list) {
+    public void refreshDataByGV(List<PinBuWordEntity.ResultBean.ListBean> list) {
         if (page == 1) {
             gridDatas.clear();
             gridDatas.addAll(list);
@@ -225,6 +270,7 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
     public void onError(Throwable ex, boolean isOnCallback) {
         //获取失败时
         Log.e("获取数据失败", "onError: " + isOnCallback);
+
     }
 
     @Override
