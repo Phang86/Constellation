@@ -69,7 +69,7 @@ public class HomeActivity extends BaseActivity {
                         startActivity(intent);
                         finish();
                     }else {
-                        tv.setText("倒计时"+String.valueOf(time)+"秒"+"\t点击跳过");
+                        tv.setText("跳过\t"+String.valueOf(time));
                         handler.sendEmptyMessageDelayed(1,1000);
                     }
                 }

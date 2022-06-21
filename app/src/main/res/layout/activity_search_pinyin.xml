@@ -50,9 +50,10 @@
             android:layout_weight="2"
             android:numColumns="4"
             android:gravity="center"
+            android:layout_gravity="center"
             android:verticalSpacing="@dimen/dimen_2dp"
             android:horizontalSpacing="@dimen/dimen_2dp"
-            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginLeft="@dimen/dimen_10dp"/>
     </LinearLayout>
 </LinearLayout>
