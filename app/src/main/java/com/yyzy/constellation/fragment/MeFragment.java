@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.AppInfoActivity;
 import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.adapter.LuckItemAdapter;
 import com.yyzy.constellation.dict.activity.DictActivity;
@@ -44,7 +46,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private List<StarInfoEntity.StarinfoDTO> mDatas;
     private Map<String, Bitmap> imgMap;
     private CircleImageView cv;
-    private TextView tvName,tvJie,tvTui,tvHuan,tvWeather,tvNameLookup;
+    private TextView tvName,tvJie,tvTui,tvHuan,tvWeather,tvNameLookup,tvInfo;
     private SharedPreferences spf;
     private int selectPos = 0;
 
@@ -75,12 +77,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvTui = view.findViewById(R.id.meFrag_tv_tuichu);
         tvWeather = view.findViewById(R.id.meFrag_tv_weather);
         tvNameLookup = view.findViewById(R.id.meFrag_tv_nameLookup);
+        tvInfo = view.findViewById(R.id.meFrag_tv_info);
         cv.setOnClickListener(this);
         tvJie.setOnClickListener(this);
         tvHuan.setOnClickListener(this);
         tvTui.setOnClickListener(this);
         tvWeather.setOnClickListener(this);
         tvNameLookup.setOnClickListener(this);
+        tvInfo.setOnClickListener(this);
 
         //获取保存在sp里面的状态  并设置
         String name = spf.getString("name", "白羊座");
@@ -89,6 +93,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         Bitmap bitmap = imgMap.get(logoname);
         cv.setImageBitmap(bitmap);
         tvName.setText(name);
+        //Log.e("TAG", "用户名："+findByKey("name")+"\t"+"创建时间："+findByKey("createTime"));
     }
 
     protected String findByKey(String key) {
@@ -106,6 +111,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.meFrag_cv:
                 showDialog();
@@ -158,10 +164,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 dialog.create().show();
                 break;
             case R.id.meFrag_tv_weather:
-                startActivity(new Intent(getContext(),WeatherActivity.class));
+                intent.setClass(getContext(),WeatherActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             case R.id.meFrag_tv_nameLookup:
-                startActivity(new Intent(getContext(), DictActivity.class));
+                intent.setClass(getContext(),DictActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+            case R.id.meFrag_tv_info:
+                intent.setClass(getContext(), AppInfoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

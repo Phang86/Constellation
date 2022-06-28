@@ -194,22 +194,23 @@
         android:id="@+id/more_layout_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/more_version"
-            android:layout_margin="@dimen/dimen_10dp"/>
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@mipmap/more_version" />
 
         <TextView
             android:id="@+id/more_tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/version"
-            android:textSize="@dimen/size_16sp"/>
+            android:textSize="@dimen/size_16sp" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.yyzy.constellation">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".utils.Constellation"
@@ -15,9 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Constellation"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".dict.activity.SearchPinyinActivity"></activity>
-        <activity android:name=".dict.activity.SearchBushouActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon, android:theme">
+        <activity android:name=".activity.AppInfoActivity"></activity>
+        <activity android:name=".dict.activity.WordInfoActivity" />
+        <activity android:name=".dict.activity.SearchPinyinActivity" />
+        <activity android:name=".dict.activity.SearchBushouActivity" />
         <activity android:name=".dict.activity.DictActivity" />
         <activity android:name=".weather.activity.MoreActivity" />
         <activity android:name=".weather.activity.SearchCityActivity" />

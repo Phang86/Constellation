@@ -25,6 +25,7 @@
     <color name="darkblue">#4876FF</color>
     <color name="lightblue">#4EA5DB</color>
     <color name="lightred">#EC7171</color>
+    <color name="red">#F44336</color>
 
 
     <color name="gray_500">#bcbcbc</color>
@@ -37,8 +38,9 @@
     <color name="blue">#5481dd</color>
     <color name="black_200">#454544</color>
     <color name="yellow_100">#fdf299</color>
-    <color name="yellow_300"></color>
+    <color name="yellow_300">#fdf299</color>
     <color name="white_text">#FFFFFFFF</color>
     <color name="bg">#CCFF99</color>
     <color name="colorPink">#33FFC0Cb</color>
+    <color name="Blue">#6495ED</color>
 </resources>

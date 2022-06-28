@@ -40,8 +40,13 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
     }
 
     public void showToast(String msg) {
-        Looper.prepare();
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-        Looper.loop();
+        try {
+            Looper.prepare();
+            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            Looper.loop();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

@@ -196,39 +196,47 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (resultStr.equals("error")){
-                            showToast("登录失败！账号或密码不正确！");
-                            return;
-                        }else{
-                            List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
-                            }.getType());
-                            Log.e("TAG", "run: "+dataEntity.toString() );
-                            data = dataEntity;
-                            if (data.size() > 0 && data != null) {
-                                //拿到Username
-                                String user = data.get(0).getUserName();
-                                mDialog = new ProgressDialog(LoginActivity.this);
-                                mDialog.setMessage("账号正在登录中...");
-                                mDialog.setCancelable(false);//设置不能通过后退键取消
-                                mDialog.show();
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        intentJump(MainActivity.class);
-                                        finish();
-                                        showToast("您已登录成功！");
-                                        SharedPreferences sp = getSharedPreferences("sp_ttit",MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
-                                        editor.putString("name",user);                          // 存入数据
-                                        editor.commit();
-                                        mDialog.cancel();
-                                    }
-                                },2000);
-                            } else {
-                                showToast("登录失败！服务器连接超时！");
+                        try {
+                            if (resultStr.equals("error")){
+                                showToast("登录失败！账号或密码不正确！");
                                 return;
+                            }else{
+                                List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
+                                }.getType());
+                                Log.e("TAG", "run: "+dataEntity.toString() );
+                                data = dataEntity;
+                                if (data.size() > 0 && data != null) {
+                                    //拿到Username
+                                    String user = data.get(0).getUserName();
+                                    mDialog = new ProgressDialog(LoginActivity.this);
+                                    mDialog.setMessage("账号正在登录中...");
+                                    mDialog.setCancelable(false);//设置不能通过后退键取消
+                                    mDialog.show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            intentJump(MainActivity.class);
+                                            finish();
+                                            showToast("您已登录成功！");
+                                            SharedPreferences sp = getSharedPreferences("sp_ttit",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
+                                            editor.putString("name",user);
+                                            editor.putString("createTime",data.get(0).getCreateTime());
+                                            editor.putString("phone",data.get(0).getMobile());
+                                            // 存入数据
+                                            editor.commit();
+                                            mDialog.cancel();
+                                        }
+                                    },2000);
+                                } else {
+                                    showToast("登录失败！服务器连接超时！");
+                                    return;
+                                }
                             }
+                        }catch (Exception e){
+                            e.printStackTrace();
                         }
+
                     }
                 });
             }

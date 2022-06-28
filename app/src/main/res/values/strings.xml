@@ -13,7 +13,8 @@
     <string name="start_partnership" translatable="false">开始配对分析</string>
     <string name="lucky" translatable="false">放松一下</string>
     <string name="jieshao" translatable="false">功能介绍</string>
-    <string name="guanyu" translatable="false">关于应用</string>
+    <string name="guanyu" translatable="false">用户信息</string>
+    <string name="appInfo" translatable="false">用户详情</string>
     <string name="tuichu" translatable="false">退出登陆</string>
     <string name="weather" translatable="false">出行天气</string>
     <string name="nameLookup" translatable="false">姓氏查找</string>
@@ -42,6 +43,9 @@
     <string name="updateBg" translatable="false">更换壁纸</string>
     <string name="clear" translatable="false">清理缓存</string>
     <string name="version" translatable="false">应用版本</string>
+    <string name="phone" translatable="false">手机号</string>
+    <string name="userName" translatable="false">用户名</string>
+    <string name="createTime" translatable="false">创建时间</string>
     <string name="enjoy" translatable="false">分享应用</string>
     <string name="defaultBg" translatable="false">默认壁纸</string>
     <string name="star" translatable="false">星夜彩绘</string>
@@ -55,4 +59,10 @@
     <string name="xiangji" translatable="false">图文识字</string>
     <string name="everyDay" translatable="false">每日金句</string>
     <string name="loading" translatable="false">加载中...</string>
+    <string name="wordInfo" translatable="false">文字详情</string>
+    <string name="JiBenJieS" translatable="false">基本解释</string>
+    <string name="InfoJieS" translatable="false">详细解释</string>
+    <string name="buShou" translatable="false">部首：null</string>
+    <string name="wuBi" translatable="false">五笔：null</string>
+    <string name="biHua" translatable="false">笔画：null</string>
 </resources>

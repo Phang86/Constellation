@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +32,8 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
     private ImageView ivBack;
     private String woman_name,man_name;
     private String woman_logo,man_logo;
+    private String url;
+    private PartnerAsyncEntity entity;
 
     @Override
     protected int initLayout() {
@@ -74,11 +78,9 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
         Map<String, Bitmap> woman = AssetsUtils.getContentLogoImgMap();
         Bitmap womanMap = woman.get(woman_logo);
         cvWoman.setImageBitmap(womanMap);
-
         pdTv.setText("星座配对："+man_name+"和"+woman_name+"配对");
         vsTv.setText("VS："+man_name+" vs "+woman_name);
-
-        String url = URLContent.getPartnerURL(man_name, woman_name);
+        url = URLContent.getPartnerURL(man_name, woman_name);
         LoadDataAsyncTask task = new LoadDataAsyncTask(this, this, true);
         task.execute(url);
     }
@@ -87,16 +89,25 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onSuccess(String json) {
-        if (!TextUtils.isEmpty(json)) {
-            PartnerAsyncEntity entity = new Gson().fromJson(json, PartnerAsyncEntity.class);
-            PartnerAsyncEntity.ResultDTO result = entity.getResult();
-
-            pfTv.setText("配对："+result.getZhishu()+" "+result.getJieguo());
-            bzTv.setText("星座比重："+result.getBizhong());
-            jxTv.setText("解析：\n\n"+result.getLianai());
-            zyTv.setText("注意事项：\n\n"+result.getZhuyi());
+        try {
+            if (!TextUtils.isEmpty(json)) {
+                entity = new Gson().fromJson(json, PartnerAsyncEntity.class);
+                PartnerAsyncEntity.ResultDTO result = entity.getResult();
+                if (entity.getResult() == null || entity.getError_code() == 10012) {
+                    showToast("今日接口访问次数已上限！");
+                    return;
+                }
+                pfTv.setText("配对："+result.getZhishu()+" "+result.getJieguo());
+                bzTv.setText("星座比重："+result.getBizhong());
+                jxTv.setText("解析：\n\n"+result.getLianai());
+                zyTv.setText("注意事项：\n\n"+result.getZhuyi());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
+
 
 
     @Override

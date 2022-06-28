@@ -116,9 +116,9 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.more_iv_back:
-                Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+//                Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
                 finish();
                 break;
             case R.id.more_layout_updateBg:
@@ -137,18 +137,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private String getVersion() {
-        //获取应用的版本名称
-        PackageManager packageManager = getPackageManager();
-        String versionName = null;
-        try {
-            PackageInfo info = packageManager.getPackageInfo(getPackageName(), 0);
-            versionName = info.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return versionName;
-    }
+
 
     private void enjoyApp(String msg) {
         Intent intent = new Intent(Intent.ACTION_SEND);

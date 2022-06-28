@@ -60,7 +60,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.dict_iv_back:
-                intentJump(MainActivity.class);
+                //intentJump(MainActivity.class);
                 finish();
                 break;
             case R.id.dict_iv_set:
@@ -86,6 +86,12 @@ public class DictActivity extends BaseActivity implements View.OnClickListener {
                 if (TextUtils.isEmpty(text)) {
                     showToast("输入框不能空！");
                     return;
+                }else if (!TextUtils.isEmpty(text)){
+                    intent.setClass(this, WordInfoActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("zi",text);
+                    startActivity(intent);
+                    editText.setText("");
                 }
                 break;
         }

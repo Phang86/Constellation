@@ -1,6 +1,7 @@
 package com.yyzy.constellation.dict;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.dict.activity.WordInfoActivity;
 import com.yyzy.constellation.dict.adapter.SearchLeftAdapter;
 import com.yyzy.constellation.dict.adapter.SearchRightAdapter;
 import com.yyzy.constellation.dict.db.DBmanager;
@@ -160,8 +162,14 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //跳转到详情界面
-
+                PinBuWordEntity.ResultBean.ListBean bean = gridDatas.get(position);
+                String zi = bean.getZi();
+                //跳转到对应文字详情界面
+                Intent intent = new Intent();
+                intent.putExtra("zi",zi);
+                intent.setClass(getBaseContext(), WordInfoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
@@ -247,7 +255,11 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DBmanager.insertListToPywordtb(list);
+                try {
+                    DBmanager.insertListToPywordtb(list);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
@@ -270,7 +282,6 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
     public void onError(Throwable ex, boolean isOnCallback) {
         //获取失败时
         Log.e("获取数据失败", "onError: " + isOnCallback);
-
     }
 
     @Override
@@ -290,11 +301,17 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
             public void run() {
                 String json = HttpUtils.getJSONFromNet(url);
                 PinBuWordEntity entity = new Gson().fromJson(json, PinBuWordEntity.class);
-                if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == 10012) {
-                    Looper.prepare();
-                    Toast.makeText(context, "请求接口次数今日已上限！", Toast.LENGTH_SHORT).show();
-                    Looper.loop();
-                    return;
+                try {
+                    if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == 10012) {
+                        Looper.prepare();
+                        Toast.makeText(context, "请求接口次数今日已上限！", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                        return;
+                    }else {
+                        return;
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         }).start();

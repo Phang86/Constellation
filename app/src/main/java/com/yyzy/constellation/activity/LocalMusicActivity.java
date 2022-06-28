@@ -70,7 +70,11 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         musicRv.setLayoutManager(manager);
         //加载本地数据源
-        loadLocalMusicData();
+        try {
+            loadLocalMusicData();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         //设置recycleView的item每一项的点击事件
         setEventListener();
     }

@@ -1,5 +1,8 @@
 package com.yyzy.constellation.utils;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

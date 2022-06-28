@@ -17,8 +17,8 @@ public class URLContent {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String path = "http://apis.juhe.cn/xzpd/query?men="+man+"&women="+woman+"&key=0b2e6cb43593654c90614ef441b8b2f3";
-        //String path = "http://apis.juhe.cn/xzpd/query?men="+man+"&women="+woman+"&key=aab7f23b9a6149ef03e1b8136e38b640";
+        //String path = "http://apis.juhe.cn/xzpd/query?men="+man+"&women="+woman+"&key=0b2e6cb43593654c90614ef441b8b2f3";
+        String path = "http://apis.juhe.cn/xzpd/query?men="+man+"&women="+woman+"&key=aab7f23b9a6149ef03e1b8136e38b640";
         return path;
     }
 
@@ -74,8 +74,8 @@ public class URLContent {
     public static String bushourul = "http://v.juhe.cn/xhzd/querybs?key=";
 
     //字典key
-    //public static final String DICTKEY = "3022583457067131a719f84d10efd275";
-    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
+    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
+    //public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
 
     public static String wordurl = "http://v.juhe.cn/xhzd/query?key=";
 

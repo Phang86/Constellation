@@ -2,6 +2,8 @@ package com.yyzy.constellation.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.textclassifier.TextLinks;
 import android.widget.Toast;
@@ -85,6 +87,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
 
     }
 
+
+
     /*
      * 注册：严格使用正则表达式
      **/
@@ -104,5 +108,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(pwd);
         return matcher.matches();
+    }
+
+    public String getVersion() {
+        //获取应用的版本名称
+        PackageManager packageManager = getPackageManager();
+        String versionName = null;
+        try {
+            PackageInfo info = packageManager.getPackageInfo(getPackageName(), 0);
+            versionName = info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionName;
     }
 }
