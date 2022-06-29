@@ -222,7 +222,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                             showToast("您已登录成功！");
                                             SharedPreferences sp = getSharedPreferences("sp_ttit",MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
-                                            editor.putString("name",user);
+                                            editor.putString("name",edUser.getText().toString().trim());
                                             editor.putString("createTime",data.get(0).getCreateTime());
                                             editor.putString("phone",data.get(0).getMobile());
                                             // 存入数据
@@ -249,10 +249,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin_tv_register:
+                tv.setTextColor(getResources().getColor(R.color.red));
                 //跳转注册页面
                 intentJump(RegisterActivity.class);
                 finish();
-                tv.setTextColor(getResources().getColor(R.color.red));
                 break;
         }
     }

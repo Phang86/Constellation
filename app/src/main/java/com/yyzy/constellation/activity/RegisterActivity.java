@@ -53,9 +53,9 @@ public class RegisterActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tv.setTextColor(getResources().getColor(R.color.red));
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
-                tv.setTextColor(getResources().getColor(R.color.red));
             }
         });
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
