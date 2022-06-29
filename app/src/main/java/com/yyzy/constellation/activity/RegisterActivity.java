@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -34,7 +35,6 @@ public class RegisterActivity extends BaseActivity {
     private Button mbtnRegister;
     private TextView tv;
 
-
     @Override
     protected int initLayout() {
         return R.layout.activity_register;
@@ -55,6 +55,7 @@ public class RegisterActivity extends BaseActivity {
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
+                tv.setTextColor(getResources().getColor(R.color.red));
             }
         });
         mbtnRegister.setOnClickListener(new View.OnClickListener() {

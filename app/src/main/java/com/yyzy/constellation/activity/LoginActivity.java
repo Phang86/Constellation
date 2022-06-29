@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -138,7 +140,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         editor.putBoolean("auto", mAutoLoginFlag);
                     } else {
                         if (!mPasswordFlag) {
-                            showToast("密码状态异常！");
+                            showToast("请勾选复选框！");
                             Log.e("TAG", "!mPasswordFlag: " + "异常");
                             return;
                         }
@@ -250,6 +252,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 //跳转注册页面
                 intentJump(RegisterActivity.class);
                 finish();
+                tv.setTextColor(getResources().getColor(R.color.red));
                 break;
         }
     }

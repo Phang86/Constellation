@@ -10,7 +10,7 @@
     <string name="man" translatable="false">男生:</string>
     <string name="woman" translatable="false">女生:</string>
     <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
-    <string name="start_partnership" translatable="false">开始配对分析</string>
+    <string name="start_partnership" translatable="false">开始配对</string>
     <string name="lucky" translatable="false">放松一下</string>
     <string name="jieshao" translatable="false">功能介绍</string>
     <string name="guanyu" translatable="false">用户信息</string>
@@ -42,7 +42,7 @@
     <string name="blue" translatable="false">透明润泽</string>
     <string name="updateBg" translatable="false">更换壁纸</string>
     <string name="clear" translatable="false">清理缓存</string>
-    <string name="version" translatable="false">应用版本</string>
+    <string name="version" translatable="false">应用版本号</string>
     <string name="phone" translatable="false">手机号</string>
     <string name="userName" translatable="false">用户名</string>
     <string name="createTime" translatable="false">创建时间</string>

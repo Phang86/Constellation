@@ -188,40 +188,50 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
                 stopMusic();
                 break;
             case R.id.ivLast:
-                if (currentPos == 0) {
-                    showToast("当前已是第一首！");
-                    return;
+                try {
+                    if (currentPos == 0) {
+                        showToast("当前已是第一首！");
+                        return;
+                    }
+                    currentPos = currentPos - 1;
+                    LocalMusicEntity lastMusic = mDatas.get(currentPos);
+                    playMusicInMusicEntity(lastMusic);
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                currentPos = currentPos - 1;
-                LocalMusicEntity lastMusic = mDatas.get(currentPos);
-                playMusicInMusicEntity(lastMusic);
                 break;
             case R.id.ivPlay:
-                if (currentPos == -1) {
-                    showToast("请选择需要播放的音乐！");
-                    return;
-                }
-                if (mediaPlayer.isPlaying()) {
-                    //此时音乐正在播放，需要暂停音乐
-                    pauseMusic();
-                }else{
-                    //未播放音乐，需要播放音乐
-                    playMusic();
+                try {
+                    if (currentPos == -1) {
+                        showToast("请选择需要播放的音乐！");
+                        return;
+                    }
+                    if (mediaPlayer.isPlaying()) {
+                        //此时音乐正在播放，需要暂停音乐
+                        pauseMusic();
+                    }else{
+                        //未播放音乐，需要播放音乐
+                        playMusic();
+                    }
+                }catch (Exception e){
+
                 }
                 break;
             case R.id.ivNext:
-                if (currentPos == mDatas.size()-1) {
-                    showToast("当前已是最后一首！");
-                    return;
+                try {
+                    if (currentPos == mDatas.size()-1) {
+                        showToast("当前已是最后一首！");
+                        return;
+                    }
+                    currentPos = currentPos + 1;
+                    LocalMusicEntity nextMusic = mDatas.get(currentPos);
+                    playMusicInMusicEntity(nextMusic);
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                currentPos = currentPos + 1;
-                LocalMusicEntity nextMusic = mDatas.get(currentPos);
-                playMusicInMusicEntity(nextMusic);
                 break;
         }
     }
-
-    
 
     @Override
     protected void onDestroy() {

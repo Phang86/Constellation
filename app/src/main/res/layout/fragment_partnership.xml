@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,9 +9,11 @@
     android:background="@drawable/bg">
 
     <LinearLayout
+        android:id="@+id/partnershipFrag_layout_man"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="@dimen/dimen_130dp"
         android:orientation="horizontal"
+
         android:padding="@dimen/dimen_15dp"
         android:background="@drawable/partnership_man_bg">
         <TextView
@@ -40,12 +42,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/partnershipFrag_layout_woman"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="@dimen/dimen_130dp"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:padding="@dimen/dimen_15dp"
-        android:background="@drawable/partnership_woman_bg">
+        android:background="@drawable/partnership_woman_bg"
+        android:layout_below="@+id/partnershipFrag_layout_man">
         <TextView
             android:id="@+id/partnershipFrag_tv_woman"
             android:layout_width="@dimen/dimen_0dp"
@@ -72,36 +76,44 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/partnershipFrag_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/partnership_info"
         android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_below="@+id/partnershipFrag_layout_woman"
         android:textSize="@dimen/size_16sp"/>
 
-
-
-    <Button
-        android:id="@+id/partnershipFrag_btn_start"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_120dp"
-        android:padding="@dimen/dimen_10dp"
-        android:text="@string/start_partnership"
-        android:textSize="@dimen/size_16sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/partnership_btn_bg"/>
+        android:orientation="vertical"
+        android:layout_below="@+id/partnershipFrag_tv"
+        android:layout_marginTop="@dimen/dimen_50dp"
+        android:layout_marginBottom="@dimen/dimen_50dp">
+
+        <Button
+            android:id="@+id/partnershipFrag_btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/start_partnership"
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/partnership_btn_bg"/>
 
 
-    <Button
-        android:id="@+id/partnershipFrag_btn_lucky"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:padding="@dimen/dimen_10dp"
-        android:text="@string/lucky"
-        android:textSize="@dimen/size_16sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/partnership_btn_bg"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/partnershipFrag_btn_lucky"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/partnership_btn_bg"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/lucky"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>
