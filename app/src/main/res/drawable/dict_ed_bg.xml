@@ -7,6 +7,6 @@
     <padding
         android:bottom="@dimen/dimen_15dp"
         android:left="@dimen/dimen_15dp"
-        android:right="@dimen/dimen_35dp"
+        android:right="@dimen/dimen_15dp"
         android:top="@dimen/dimen_15dp"/>
 </shape>

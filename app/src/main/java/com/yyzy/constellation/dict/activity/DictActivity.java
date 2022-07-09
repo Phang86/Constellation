@@ -44,7 +44,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
     private ImageView imgBack,imgSet;
     private TextView tvPinYin,tvBuShou,tvChengYu,tvXiangJi,tvString;
     private EditText editText;
-    private ImageView imgSearch;
+    //private ImageView imgSearch;
     private String text;
     private boolean hasGotToken = false;
     private static final int REQUEST_CODE_GENERAL_BASIC = 106;
@@ -65,7 +65,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         tvChengYu = findViewById(R.id.dict_tv_chengyu);
         tvXiangJi = findViewById(R.id.dict_tv_xiangji);
         editText = findViewById(R.id.dict_ed);
-        imgSearch = findViewById(R.id.dict_iv_search);
+        //imgSearch = findViewById(R.id.dict_iv_search);
         tvString = findViewById(R.id.dict_tv_everyDay);
 
         imgBack.setOnClickListener(this);
@@ -74,7 +74,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         tvBuShou.setOnClickListener(this);
         tvChengYu.setOnClickListener(this);
         tvXiangJi.setOnClickListener(this);
-        imgSearch.setOnClickListener(this);
+        //imgSearch.setOnClickListener(this);
         editText.setOnEditorActionListener(this);
         tvString.setText(StringUtils.setString());
     }
@@ -123,18 +123,18 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                         CameraActivity.CONTENT_TYPE_GENERAL);
                 startActivityForResult(intent, REQUEST_CODE_GENERAL_BASIC);
                 break;
-            case R.id.dict_iv_search:
-                if (TextUtils.isEmpty(text)) {
-                    showToast("输入框不能空！");
-                    return;
-                }else if (!TextUtils.isEmpty(text)){
-                    intent.setClass(this, WordInfoActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("zi",text);
-                    startActivity(intent);
-                    editText.setText("");
-                }
-                break;
+            //case R.id.dict_iv_search:
+//                if (TextUtils.isEmpty(text)) {
+//                    showToast("输入框不能空！");
+//                    return;
+//                }else if (!TextUtils.isEmpty(text)){
+//                    intent.setClass(this, WordInfoActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    intent.putExtra("zi",text);
+//                    startActivity(intent);
+//                    editText.setText("");
+//                }
+                //break;
         }
     }
 

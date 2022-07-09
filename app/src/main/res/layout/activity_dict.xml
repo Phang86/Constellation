@@ -43,12 +43,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10dp">
 
-        <EditText
+        <com.yyzy.constellation.utils.MyEditText
             android:id="@+id/dict_ed"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@drawable/dict_ed_bg"
             android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/dict_ed_bg"
+            android:singleLine="true"
+            android:layout_centerVertical="true"
             android:hint="@string/findText"
             android:textColorHint="@color/grey"
             android:textColor="@color/black"
@@ -58,14 +60,14 @@
             android:maxLength="1"
             android:inputType="text"/>
 
-        <ImageView
-            android:id="@+id/dict_iv_search"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_width="@dimen/dimen_25dp"
-            android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/search"
-            android:layout_marginRight="@dimen/dimen_20dp"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/dict_iv_search"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_width="@dimen/dimen_25dp"-->
+<!--            android:layout_height="@dimen/dimen_25dp"-->
+<!--            android:src="@mipmap/search"-->
+<!--            android:layout_marginRight="@dimen/dimen_20dp"/>-->
     </RelativeLayout>
 
 

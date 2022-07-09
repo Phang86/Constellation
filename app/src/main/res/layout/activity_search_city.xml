@@ -48,7 +48,7 @@
             android:padding="@dimen/dimen_10dp">
 
 
-                <EditText
+                <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/search_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
