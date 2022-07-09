@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_200"
+    tools:context=".dict.activity.ChengYuActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <ImageView
+            android:id="@+id/chengyu_iv_back"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            style="@style/titleTvStyle"
+            android:text="@string/chengyuQuery"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <EditText
+            android:id="@+id/chengyu_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@drawable/dict_ed_bg"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:hint="@string/findChengyu"
+            android:textColorHint="@color/grey"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_15sp"
+            android:imeOptions="actionSearch"
+            android:textStyle="bold"
+            android:maxLength="4"
+            android:inputType="text"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history"
+        android:textSize="@dimen/size_15sp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:textColor="@color/gray_600"
+        android:textStyle="bold"/>
+
+    <GridView
+        android:id="@+id/chengyu_gv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_150dp"
+        android:numColumns="4"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"/>
+</LinearLayout>

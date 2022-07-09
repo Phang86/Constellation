@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".weather.activity.MoreActivity">
 
     <RelativeLayout
@@ -55,13 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/updateBg"
+            android:textColor="@color/gray_600"
             android:textSize="@dimen/size_16sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_200"
+        android:background="@color/gray_500"
         android:layout_marginLeft="@dimen/dimen_45dp"
         android:layout_marginRight="@dimen/dimen_10dp"/>
 
@@ -154,13 +156,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clear"
+            android:textColor="@color/gray_600"
             android:textSize="@dimen/size_16sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_200"
+        android:background="@color/gray_500"
         android:layout_marginLeft="@dimen/dimen_45dp"
         android:layout_marginRight="@dimen/dimen_10dp"/>
 
@@ -181,12 +184,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enjoy"
-            android:textSize="@dimen/size_16sp"/>
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/gray_600"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_200"
+        android:background="@color/gray_500"
         android:layout_marginLeft="@dimen/dimen_45dp"
         android:layout_marginRight="@dimen/dimen_10dp"/>
 
@@ -208,13 +212,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/version"
-            android:textSize="@dimen/size_16sp" />
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/gray_600"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_200"
+        android:background="@color/gray_500"
         android:layout_marginLeft="@dimen/dimen_45dp"
         android:layout_marginRight="@dimen/dimen_10dp"/>
 

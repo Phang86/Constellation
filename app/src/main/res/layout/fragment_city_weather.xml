@@ -24,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/size_40sp"
                 android:layout_centerHorizontal="true"
-                android:text="25℃"/>
+                android:text="25℃"
+                android:textColor="@color/gray_600"/>
 
             <TextView
                 android:id="@+id/cityFrag_tv_city"

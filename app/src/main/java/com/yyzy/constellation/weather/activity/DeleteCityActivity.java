@@ -55,7 +55,7 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                intentJump(CityManagerActivity.class);
+                                //intentJump(CityManagerActivity.class);
                                 finish();
                             }
                         })
@@ -68,7 +68,7 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                     DBManager.deleteInfoCity(city);
                     adapter.notifyDataSetChanged();
                 }
-                intentJump(CityManagerActivity.class);
+                //intentJump(CityManagerActivity.class);
                 finish();
                 break;
         }

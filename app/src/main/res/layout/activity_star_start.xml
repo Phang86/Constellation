@@ -109,6 +109,7 @@
             android:paddingRight="@dimen/dimen_20dp">
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_pd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,6 +120,7 @@
                 android:layout_marginBottom="@dimen/dimen_10dp"/>
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_vs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -129,6 +131,7 @@
                 android:layout_marginBottom="@dimen/dimen_10dp"/>
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_pf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,6 +142,7 @@
                 android:layout_marginBottom="@dimen/dimen_10dp"/>
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_bz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,6 +153,7 @@
                 android:layout_marginBottom="@dimen/dimen_10dp"/>
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_jx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,6 +164,7 @@
                 android:layout_marginBottom="@dimen/dimen_10dp"/>
 
             <TextView
+                android:textColor="@color/gray_600"
                 android:id="@+id/starStart_tv_zy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

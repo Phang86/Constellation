@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,7 +64,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 int bg = bgPref.getInt("bg", 0);
                 SharedPreferences.Editor editor = bgPref.edit();
                 Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 switch (checkedId) {
                     case R.id.more_rg_rbt_default:
                         if (bg == 0) {
@@ -116,9 +117,9 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.more_iv_back:
-//                Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
+                Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
                 break;
             case R.id.more_layout_updateBg:
@@ -165,5 +166,16 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         radioGroup.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(MoreActivity.this, WeatherActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

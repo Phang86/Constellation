@@ -134,16 +134,25 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.weather_iv_back:
-                intentJump(MainActivity.class);
+                //intentJump(MainActivity.class);
                 finish();
                 break;
             case R.id.weather_iv_more:
-                intentJump(MoreActivity.class);
+                //intentJump(MoreActivity.class);
+                intent.setClass(this,MoreActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
                 break;
             case R.id.weather_iv_add:
-                intentJump(CityManagerActivity.class);
+                //intentJump(CityManagerActivity.class);
+                intent.setClass(this,CityManagerActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                //finish();
                 break;
         }
     }
@@ -153,7 +162,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     protected void onRestart() {
         super.onRestart();
         List<String> list = DBManager.queryAllCityName();
-        if (list.size() == 0) {
+        if (list.size() == 0 || list==null) {
             list.add("衡阳");
         }
         //清空原来的数据源

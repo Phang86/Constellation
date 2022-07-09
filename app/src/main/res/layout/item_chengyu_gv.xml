@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_200">
+
+    <TextView
+        android:id="@+id/item_chengyu_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_15sp"
+        android:gravity="center"
+        android:text="@string/chengyuInfo"
+        android:background="@drawable/item_chengyu_gv_bg"
+        android:layout_margin="@dimen/dimen_5dp"
+        android:textColor="@color/black"/>
+</LinearLayout>

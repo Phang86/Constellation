@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +17,9 @@ import com.yyzy.constellation.R;
 public class HomeActivity extends BaseActivity {
     private TextView tv;
     private int time = 5;
-    private SharedPreferences firstSpf;
+    private SharedPreferences firstSpf,userNameSpf;
+    private String username;
+    private String password;
 
     @Override
     protected int initLayout() {
@@ -28,12 +31,20 @@ public class HomeActivity extends BaseActivity {
         tv = findViewById(R.id.home_tv);
         handler.sendEmptyMessageDelayed(1,1000);
         firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
-        //点击定时装置直接跳过
+        userNameSpf = getSharedPreferences("busApp", MODE_PRIVATE);
+        username = userNameSpf.getString("username", "");
+        password = userNameSpf.getString("password", "");
+        //点击定时装置进行相应的逻辑判断    判断密码和账号是否注销
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(HomeActivity.this, LoginActivity.class);
+                //如账号、密码未注销，则直接跳到应用主界面
+                if (!username.trim().isEmpty() || !password.trim().isEmpty()){
+                    intent.setClass(HomeActivity.this,MainActivity.class);
+                }else{  //如账号、密码已注销，则跳到应用登录界面
+                    intent.setClass(HomeActivity.this, LoginActivity.class);
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 handler.removeCallbacksAndMessages(null);
@@ -63,8 +74,12 @@ public class HomeActivity extends BaseActivity {
                             edit.putBoolean("isFirst",false);
                             edit.commit();
                         }else {
-                            //不是第一次进入  直接跳过引导页面进入
-                            intent.setClass(HomeActivity.this,LoginActivity.class);
+                            if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
+                                intent.setClass(HomeActivity.this, MainActivity.class);
+                            } else {
+                                //不是第一次进入  直接跳过引导页面进入
+                                intent.setClass(HomeActivity.this, LoginActivity.class);
+                            }
                         }
                         startActivity(intent);
                         finish();
@@ -75,5 +90,4 @@ public class HomeActivity extends BaseActivity {
                 }
         }
     };
-
 }

@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/size_14sp"
         android:layout_centerVertical="true"
+        android:textColor="@color/gray_600"
         android:text="周六"/>
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_centerVertical="true"
         android:textSize="@dimen/size_14sp"
         android:text="晴天天天天天津啊踢啊"
+        android:textColor="@color/gray_600"
         android:layout_toRightOf="@+id/item_center_tv_date"
         android:layout_marginLeft="@dimen/dimen_10dp"
         android:layout_marginRight="@dimen/dimen_10dp"
@@ -30,7 +32,8 @@
         android:layout_width="@dimen/dimen_100dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/size_14sp"
-        android:text="jfdsijfdisijfidfjfdsfddffd"
+        android:textColor="@color/gray_600"
+        android:text="南风转北风"
         android:layout_toRightOf="@id/item_center_tv_con"
         android:layout_centerVertical="true"
         android:singleLine="true"
@@ -41,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/size_14sp"
+        android:textColor="@color/gray_600"
         android:layout_centerVertical="true"
         android:text="9~15℃"
         android:layout_alignParentRight="true"/>

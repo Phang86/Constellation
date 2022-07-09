@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dict.activity.DictActivity"
     android:orientation="vertical"
+    tools:context=".dict.activity.DictActivity"
     android:background="@color/gray_200">
 
     <RelativeLayout
@@ -53,6 +53,7 @@
             android:textColorHint="@color/grey"
             android:textColor="@color/black"
             android:textSize="@dimen/size_15sp"
+            android:imeOptions="actionSearch"
             android:textStyle="bold"
             android:maxLength="1"
             android:inputType="text"/>

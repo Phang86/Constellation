@@ -43,7 +43,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         imgSearch.setOnClickListener(this);
 
         //设置适配器
-        adapter = new ArrayAdapter<>(this, R.layout.item_hotcity, hotCity);
+        adapter = new ArrayAdapter<>(this, R.layout.item_hotcity, R.id.item_hotcity_tv,hotCity);
         gv.setAdapter(adapter);
     }
 
@@ -63,7 +63,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_iv_back:
-                intentJump(CityManagerActivity.class);
+                //intentJump(CityManagerActivity.class);
                 finish();
                 break;
             case R.id.search_iv_confirm:
@@ -85,9 +85,10 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         if (entity.getError_code() == 0) {
             Intent intent = new Intent();
             intent.setClass(this,WeatherActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("city",city);
             startActivity(intent);
+            finish();
         }else if (entity.getError_code() == 207301){
             showToast("暂时未收入此城市信息！");
         }else {

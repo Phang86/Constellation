@@ -59,6 +59,9 @@
                     android:paddingTop="@dimen/dimen_5dp"
                     android:paddingRight="@dimen/dimen_10dp"
                     android:textStyle="bold"
+                    android:lines="1"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
                     android:paddingBottom="@dimen/dimen_5dp"
@@ -91,7 +94,5 @@
             android:layout_below="@+id/search_tv_hotCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:numColumns="5"
-            android:background="@drawable/hotcity_bg" />
+            android:numColumns="6"/>
 </RelativeLayout>

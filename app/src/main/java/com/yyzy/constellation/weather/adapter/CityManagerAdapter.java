@@ -58,7 +58,7 @@ public class CityManagerAdapter extends BaseAdapter {
         WeatherEntity.ResultDTO.RealtimeDTO realtime = result.getRealtime();
         WeatherEntity.ResultDTO.FutureDTO futureDTO = result.getFuture().get(0);
 
-        holder.tvCondition.setText("天气:"+realtime.getInfo());
+        holder.tvCondition.setText("天气："+realtime.getInfo());
         holder.tvWind.setText(realtime.getDirect()+realtime.getPower());
         holder.tvTemp.setText(realtime.getTemperature()+"℃");
         holder.tvTempRange.setText(futureDTO.getTemperature());

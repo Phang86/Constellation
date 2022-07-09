@@ -24,5 +24,6 @@
         android:text="@string/partnership_info"
         android:background="@drawable/footer_tv_bg"
         android:padding="@dimen/dimen_10dp"
+        android:textColor="@color/gray_600"
         android:textSize="@dimen/size_15sp"/>
 </LinearLayout>

@@ -4,8 +4,8 @@
     <solid android:color="@color/white"/>
     <stroke android:color="#6495ED" android:width="@dimen/dimen_2dp"/>
     <padding
-        android:top="@dimen/dimen_10dp"
-        android:bottom="@dimen/dimen_10dp"
-        android:left="@dimen/dimen_10dp"
-        android:right="@dimen/dimen_10dp"/>
+        android:top="@dimen/dimen_8dp"
+        android:bottom="@dimen/dimen_8dp"
+        android:left="@dimen/dimen_12dp"
+        android:right="@dimen/dimen_12dp"/>
 </shape>

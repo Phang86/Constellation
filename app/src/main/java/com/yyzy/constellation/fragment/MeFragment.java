@@ -147,6 +147,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 //清空所有
                                 editor.clear();
+                                //editor.remove("username");
+                                //editor.remove("password");
                                 //提交
                                 editor.commit();
                                 Intent intent = new Intent(getContext(), LoginActivity.class);

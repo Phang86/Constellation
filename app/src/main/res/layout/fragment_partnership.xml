@@ -82,7 +82,8 @@
         android:text="@string/partnership_info"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:layout_below="@+id/partnershipFrag_layout_woman"
-        android:textSize="@dimen/size_16sp"/>
+        android:textSize="@dimen/size_16sp"
+        android:textColor="@color/gray_600"/>
 
     <LinearLayout
         android:layout_width="match_parent"
