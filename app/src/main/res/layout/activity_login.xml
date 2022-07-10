@@ -43,12 +43,13 @@
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@mipmap/account" />
 
-                <EditText
+                <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/edLogin_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
+
                     android:hint="@string/eduser"
                     android:inputType="text"
                     android:paddingRight="@dimen/dimen_15dp"
@@ -78,7 +79,7 @@
                     android:layout_height="@dimen/dimen_15dp"
                     android:background="@mipmap/pwd" />
 
-                <EditText
+                <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/edLogin_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

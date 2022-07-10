@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
 import com.yyzy.constellation.dict.entity.PinBuWordEntity;
 import com.yyzy.constellation.dict.entity.WordEntity;
 import com.yyzy.constellation.utils.CommonUtils;
@@ -165,5 +166,58 @@ public class DBmanager {
             return resultBean;
         }
         return null;
+    }
+
+    //插入成语的相关信息到成语表当中
+    public static void insertCyToCyutb(ChengyuInfoEntity.ResultBean bean){
+        ContentValues values = new ContentValues();
+        values.put("name",bean.getName());
+        values.put("pinyin",bean.getPinyin());
+        String jbsyList = listToString(bean.getJbsy());
+        values.put("jbsy",jbsyList);
+        String xxsyList = listToString(bean.getXxsy());
+        values.put("xxsy",xxsyList);
+        values.put("chuchu",bean.getChuchu());
+        values.put("liju",bean.getLiju());
+        String jycList = listToString(bean.getJyc());
+        values.put("jyc",jycList);
+        String fycList = listToString(bean.getFyc());
+        values.put("fyc",fycList);
+        database.insert(CommonUtils.TABLE_CYUTB,null,values);
+    }
+
+    //查询成语的相关信息
+    public static ChengyuInfoEntity.ResultBean queryCyFromCyutb(String cyu){
+        String sql = "select * from cyutb where name=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{cyu});
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+            String jbsy = cursor.getString(cursor.getColumnIndex("jbsy"));
+            List<String> jbsyList = stringToList(jbsy);
+            String xxsy = cursor.getString(cursor.getColumnIndex("xxsy"));
+            List<String> xxsyList = stringToList(xxsy);
+            String chuchu = cursor.getString(cursor.getColumnIndex("chuchu"));
+            String liju = cursor.getString(cursor.getColumnIndex("liju"));
+            String jyc = cursor.getString(cursor.getColumnIndex("jyc"));
+            List<String> jycList = stringToList(jyc);
+            String fyc = cursor.getString(cursor.getColumnIndex("fyc"));
+            List<String> fycList = stringToList(fyc);
+            ChengyuInfoEntity.ResultBean bean = new ChengyuInfoEntity.ResultBean(name,pinyin,jbsyList,xxsyList,chuchu,liju,jycList,fycList);
+            return  bean;
+        }
+        return null;
+    }
+
+
+    public static List<String> queryAllCyFromCyutb(){
+        List<String> list = new ArrayList<>();
+        String sql = "select name from cyutb";
+        Cursor cursor = database.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            list.add(name);
+        }
+        return list;
     }
 }

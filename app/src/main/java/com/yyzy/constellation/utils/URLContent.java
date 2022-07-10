@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 public class URLContent {
     //登录、注册  本地服务器接口
-    public static final String BASE_URL = "http://192.168.2.19:8080/myapp";
+    public static final String BASE_URL = "http://192.168.1.41:8080/myapp";
     //注册  本地服务器接口
     //星座配对网络接口
     public static String getPartnerURL(String man,String woman){
@@ -74,8 +74,8 @@ public class URLContent {
     public static String bushourul = "http://v.juhe.cn/xhzd/querybs?key=";
 
     //字典key
-    //public static final String DICTKEY = "3022583457067131a719f84d10efd275";
-    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
+    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
+    //public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
 
     public static String wordurl = "http://v.juhe.cn/xhzd/query?key=";
 

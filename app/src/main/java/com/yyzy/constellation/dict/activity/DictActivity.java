@@ -95,7 +95,9 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                 finish();
                 break;
             case R.id.dict_iv_set:
-
+                intent.setClass(this, SetActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
             case R.id.dict_tv_pinyin:
                 intent.setClass(this, SearchPinyinActivity.class);

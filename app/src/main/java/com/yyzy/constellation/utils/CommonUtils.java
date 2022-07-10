@@ -5,4 +5,5 @@ public class CommonUtils {
     public static final String FILE_PINYIN = "pinyin.txt",FILE_BUSHOU = "bushou.txt";
     public static final String TABLE_PYWORDTB = "pywordtb";
     public static final String TABLE_WORDTB = "wordtb";
+    public static final String TABLE_CYUTB = "cyutb";
 }

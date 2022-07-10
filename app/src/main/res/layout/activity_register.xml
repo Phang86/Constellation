@@ -42,7 +42,7 @@
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@mipmap/account" />
 
-                <EditText
+                <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/edRegister_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                     android:layout_height="@dimen/dimen_15dp"
                     android:background="@mipmap/pwd" />
 
-                <EditText
+                <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/edRegister_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

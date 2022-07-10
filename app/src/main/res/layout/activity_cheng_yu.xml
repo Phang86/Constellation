@@ -41,7 +41,6 @@
             android:background="@drawable/dict_ed_bg"
             android:layout_margin="@dimen/dimen_10dp"
             android:hint="@string/findChengyu"
-            android:drawableRight="@drawable/ic_delete"
             android:textColorHint="@color/grey"
             android:textColor="@color/black"
             android:textSize="@dimen/size_15sp"

@@ -25,6 +25,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     private RadioGroup radioGroup;
     private ImageView back;
     private SharedPreferences bgPref;
+    private String versionName;
 
     @Override
     protected int initLayout() {
@@ -51,7 +52,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         bgPref = getSharedPreferences("bg_pref", MODE_PRIVATE);
-        String versionName = getVersion();
+        versionName = getVersion();
         versionTv.setText("当前版本号："+versionName);
         setRGListener();
     }
@@ -135,6 +136,16 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
             case R.id.more_layout_enjoy:
                 enjoyApp("星座缘下载网址");
                 break;
+            case R.id.more_layout_version:
+                AlertDialog dialog = new AlertDialog.Builder(this).create();
+                dialog.setTitle("应用版本");
+                dialog.setMessage("当前应用版本号为:\t"+versionName);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setCancelable(true);
+                dialog.show();
+                break;
+            default:
+
         }
     }
 

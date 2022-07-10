@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_200"
+    tools:context=".dict.activity.SetActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <ImageView
+            android:id="@+id/set_iv_back"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            style="@style/titleTvStyle"
+            android:text="@string/set"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/set_layout_collect"
+                style="@style/setLayoutStyle">
+
+                <ImageView
+                    style="@style/setImgStyle"
+                    android:src="@mipmap/ic_soucang"/>
+
+                <TextView
+                    android:text="@string/collect"
+                    style="@style/setTvStyle"/>
+            </LinearLayout>
+
+            <View
+                style="@style/setViewStyle"/>
+
+            <LinearLayout
+                android:id="@+id/set_layout_enjoy"
+                style="@style/setLayoutStyle">
+
+                <ImageView
+                    style="@style/setImgStyle"
+                    android:src="@mipmap/mine_share"/>
+
+                <TextView
+                    android:text="@string/enjoy"
+                    style="@style/setTvStyle"/>
+            </LinearLayout>
+
+            <View
+                style="@style/setViewStyle"/>
+            <LinearLayout
+                android:id="@+id/set_layout_about"
+                style="@style/setLayoutStyle">
+
+                <ImageView
+                    style="@style/setImgStyle"
+                    android:src="@mipmap/mine_about_us"/>
+
+                <TextView
+                    android:text="@string/about"
+                    style="@style/setTvStyle"/>
+            </LinearLayout>
+
+            <View
+                style="@style/setViewStyle"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

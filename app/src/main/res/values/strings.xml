@@ -46,12 +46,15 @@
     <string name="phone" translatable="false">手机号</string>
     <string name="userName" translatable="false">用户名</string>
     <string name="createTime" translatable="false">创建时间</string>
-    <string name="enjoy" translatable="false">分享应用</string>
+    <string name="enjoyApp" translatable="false">分享应用</string>
+    <string name="enjoy" translatable="false">分享</string>
+    <string name="about" translatable="false">关于我们</string>
     <string name="defaultBg" translatable="false">默认壁纸</string>
     <string name="star" translatable="false">星夜彩绘</string>
     <string name="findCity" translatable="false">查找城市</string>
     <string name="deleteCity" translatable="false">删除城市</string>
     <string name="findDict" translatable="false">姓氏查找</string>
+    <string name="set" translatable="false">设置</string>
     <string name="findText" translatable="false">请输入需要查找的文字</string>
     <string name="findChengyu" translatable="false">请输入需要查找的成语</string>
     <string name="pinyinQuery" translatable="false">拼音查找</string>
@@ -68,4 +71,5 @@
     <string name="buShou" translatable="false">部首：null</string>
     <string name="wuBi" translatable="false">五笔：null</string>
     <string name="biHua" translatable="false">笔画：null</string>
+    <string name="collect" translatable="false">收藏</string>
 </resources>

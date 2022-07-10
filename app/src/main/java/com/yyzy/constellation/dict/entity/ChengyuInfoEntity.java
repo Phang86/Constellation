@@ -33,7 +33,23 @@ public class ChengyuInfoEntity {
         this.error_code = error_code;
     }
 
+
+
     public static class ResultBean {
+        public ResultBean() {
+        }
+
+        public ResultBean(String name, String pinyin, List<String> jbsy, List<String> xxsy, String chuchu, String liju, List<String> jyc, List<String> fyc) {
+            this.name = name;
+            this.pinyin = pinyin;
+            this.jbsy = jbsy;
+            this.xxsy = xxsy;
+            this.chuchu = chuchu;
+            this.liju = liju;
+            this.jyc = jyc;
+            this.fyc = fyc;
+        }
+
         private String name;
         private String pinyin;
         private List<String> jbsy;
@@ -106,5 +122,21 @@ public class ChengyuInfoEntity {
         public void setFyc(List<String> fyc) {
             this.fyc = fyc;
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "name='" + name + '\'' +
+                    ", pinyin='" + pinyin + '\'' +
+                    ", jbsy=" + jbsy +
+                    ", xxsy=" + xxsy +
+                    ", chuchu='" + chuchu + '\'' +
+                    ", liju='" + liju + '\'' +
+                    ", jyc=" + jyc +
+                    ", fyc=" + fyc +
+                    '}';
+        }
     }
+
+
 }

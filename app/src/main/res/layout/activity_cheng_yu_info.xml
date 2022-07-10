@@ -56,32 +56,32 @@
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_one"
-                    android:text="一"
-                    style="@style/chengyuInfoTvMax"/>
+                    style="@style/chengyuInfoTvMax"
+                    android:text="空"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_two"
-                    android:text="心"
-                    style="@style/chengyuInfoTvMax"/>
+                    style="@style/chengyuInfoTvMax"
+                    android:text="空"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_three"
-                    android:text="一"
-                    style="@style/chengyuInfoTvMax"/>
+                    style="@style/chengyuInfoTvMax"
+                    android:text="空"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_four"
-                    android:text="意"
-                    style="@style/chengyuInfoTvMax"/>
+                    style="@style/chengyuInfoTvMax"
+                    android:text="空"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/chengyuInfo_tv_pinyin"
-                android:text="拼音: yi、xin、yi、yi"
+                android:text="拼音：null"
                 style="@style/chengyuInfoMin"/>
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_tongyici"
-                android:text="同义词:"
+                android:text="同义词：null"
                 style="@style/chengyuInfoMin"/>
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_tongyici"
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_fanyici"
-                android:text="反义词:"
+                android:text="反义词：null"
                 style="@style/chengyuInfoMin"/>
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_fanyici"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:text=""
+                    android:text="null"
                     android:layout_below="@+id/chengyuInfo_view"
                     android:gravity="center"
                     android:textColor="@color/black"
@@ -145,7 +145,7 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_chuchu_js"
                     android:layout_below="@+id/chengyuInfo_tv_biaoyu"
-                    android:text=""
+                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_chuchu"
                     style="@style/chengyuInfoTvright"/>
 
@@ -158,7 +158,7 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_liju_js"
                     android:layout_below="@+id/chengyuinfo_tv_chuchu_js"
-                    android:text=""
+                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_liju"
                     style="@style/chengyuInfoTvright"/>
 
@@ -171,7 +171,7 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_yufa_js"
                     android:layout_below="@+id/chengyuinfo_tv_liju_js"
-                    android:text=""
+                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_yufa"
                     style="@style/chengyuInfoTvright"/>
 
@@ -184,7 +184,7 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_yinzheng_js"
                     android:layout_below="@+id/chengyuinfo_tv_yufa_js"
-                    android:text=""
+                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_yinzheng"
                     style="@style/chengyuInfoTvright"/>
 
@@ -197,7 +197,7 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_shili_js"
                     android:layout_below="@+id/chengyuinfo_tv_yinzheng_js"
-                    android:text=""
+                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_shili"
                     style="@style/chengyuInfoTvright"/>
             </RelativeLayout>
@@ -229,7 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_10dp"
-                    android:text=""
+                    android:text="null"
                     android:layout_below="@+id/chengyuInfo_viewT"
                     android:gravity="center"
                     android:textColor="@color/black"

@@ -20,8 +20,12 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "zi varchar(10) unique not null, py varchar(10), wubi varchar(10), pinyin varchar(10), bushou varchar(10), bihua varchar(10))";
         db.execSQL(sql);
 
-        String sqlt = "create table wordtb(_id integer primary key autoincrement,id varchar(20),zi varchar(10) unique not null,py varchar(10), wubi varchar(10), pinyin varchar(10), bushou varchar(10), bihua varchar(10),jijie text,xiangjie text)";
-        db.execSQL(sqlt);
+        String word = "create table wordtb(_id integer primary key autoincrement,id varchar(20),zi varchar(10) unique not null,py varchar(10), wubi varchar(10), pinyin varchar(10), bushou varchar(10), bihua varchar(10),jijie text,xiangjie text)";
+        db.execSQL(word);
+
+
+        String cyu = "create table cyutb(_id integer primary key autoincrement,name varchar(30) unique not null,pinyin varchar(50),jbsy text,xxsy text,chuchu text,liju text,jyc text,fyc text)";
+        db.execSQL(cyu);
     }
 
     @Override

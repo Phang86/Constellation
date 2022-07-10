@@ -17,9 +17,12 @@ import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.dict.db.DBmanager;
+import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ChengYuActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
@@ -59,6 +62,16 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        searchEt.setText("");
+        mData.clear();
+        List<String> list = DBmanager.queryAllCyFromCyutb();
+        mData.addAll(list);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.chengyu_iv_back:
@@ -82,9 +95,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }else{
                     //把文本输入的信息添加到集合
-                    mData.add(text);
-                    //提示适配器更新
-                    adapter.notifyDataSetChanged();
+
                     //跳转页面
                     startPage(text);
                     //清空文本框
