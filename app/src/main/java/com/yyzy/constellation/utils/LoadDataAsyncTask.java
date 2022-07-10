@@ -12,7 +12,7 @@ public class LoadDataAsyncTask extends AsyncTask<String,Void,String> {
     private boolean isShowDialog = false;
 
     public void initDialog(){
-        dialog = new DiyProgressDialog(context,"正在加载中...");
+        dialog = new DiyProgressDialog(context,"正在加载···");
         //dialog.setTitle("提示信息");
     }
 
