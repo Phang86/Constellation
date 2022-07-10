@@ -1,6 +1,7 @@
 package com.yyzy.constellation.fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ import com.yyzy.constellation.dict.activity.DictActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.DialogUtils;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.weather.activity.WeatherActivity;
 
@@ -151,10 +154,20 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                 //editor.remove("password");
                                 //提交
                                 editor.commit();
-                                Intent intent = new Intent(getContext(), LoginActivity.class);
-                                intent.setFlags(flag);
-                                startActivity(intent);
-                                Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
+                                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
+                                dialog1.setCancelable(false);//设置不能通过后退键取消
+                                dialog1.show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                                        intent.setFlags(flag);
+                                        startActivity(intent);
+                                        dialog1.cancel();
+                                        Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
+                                    }
+                                },3000);
+
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {

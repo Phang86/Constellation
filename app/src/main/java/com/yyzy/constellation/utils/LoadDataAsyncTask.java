@@ -8,13 +8,12 @@ public class LoadDataAsyncTask extends AsyncTask<String,Void,String> {
 
     private Context context;
     private OnGetNetDataListener listener;
-    private ProgressDialog dialog;
+    private DiyProgressDialog dialog;
     private boolean isShowDialog = false;
 
     public void initDialog(){
-        dialog = new ProgressDialog(context);
-        dialog.setTitle("提示信息");
-        dialog.setMessage("正在加载中......");
+        dialog = new DiyProgressDialog(context,"正在加载中...");
+        //dialog.setTitle("提示信息");
     }
 
     public LoadDataAsyncTask(Context context, OnGetNetDataListener listener,boolean isShowDialog) {

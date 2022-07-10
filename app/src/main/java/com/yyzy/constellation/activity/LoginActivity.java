@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +51,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private Button btnLogin;
     private List<User> data = new ArrayList<>();
     private String userPassword;
-    private ProgressDialog mDialog;
+    private DiyProgressDialog mDialog;
 
     private CheckBox mRemenber,mAutoLogin;
     private boolean mPasswordFlag = false;//记住密码标志
@@ -210,8 +211,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 if (data.size() > 0 && data != null) {
                                     //拿到Username
                                     String user = data.get(0).getUserName();
-                                    mDialog = new ProgressDialog(LoginActivity.this);
-                                    mDialog.setMessage("账号正在登录中...");
+                                    mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
                                     mDialog.setCancelable(false);//设置不能通过后退键取消
                                     mDialog.show();
                                     new Handler().postDelayed(new Runnable() {
