@@ -40,15 +40,17 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
         switch (v.getId()) {
             case R.id.set_iv_back:
                 finish();
                 break;
             case R.id.set_layout_collect:
-
+                intent.setClass(this,CollectActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
             case R.id.set_layout_enjoy:
-                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT,"应用下载地址");
                 startActivity(Intent.createChooser(intent,"分享到"));

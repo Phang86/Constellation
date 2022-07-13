@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.AndroidException;
 import android.util.Log;
@@ -23,7 +24,10 @@ import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.PinBuWordEntity;
 import com.yyzy.constellation.dict.entity.WordEntity;
+import com.yyzy.constellation.fragment.MeFragment;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
+import com.yyzy.constellation.utils.Mydialog;
 import com.yyzy.constellation.utils.URLContent;
 
 import java.util.ArrayList;
@@ -39,6 +43,11 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
     private List<String> jijie;
     private List<String> xiangjie;
     private ArrayAdapter<String> adapter;
+    private DiyProgressDialog dialog;
+    //设置标志是否被收藏
+    private boolean isCollect = false;
+    //判断这个汉字是否在数据库已经存在
+    private boolean isExist = false;
 
     @Override
     protected int initLayout() {
@@ -70,13 +79,41 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         tvJs.setOnClickListener(this);
 
         //设置适配器
-        String s = mDatas.toString();
+        //String s = mDatas.toString();
         adapter = new ArrayAdapter<String>(this, R.layout.item_word_jslv,R.id.item_word_tv, mDatas);
         lvJs.setAdapter(adapter);
         //加载网络数据
         loadDatas(url);
+        //判断此文字是否被收藏
+        isExist = DBmanager.isExistZiInCollwordtb(zi);
+        isCollect = isExist;
+        //设置收藏按钮的颜色
+        setCollectBtnColor();
     }
 
+    //根据收藏状态改变收藏星星的背景
+    private void setCollectBtnColor() {
+        if (isCollect) {
+            ivCollect.setImageResource(R.mipmap.ic_collection_fs);
+        }else {
+            ivCollect.setImageResource(R.mipmap.ic_collection);
+        }
+    }
+
+    //当Activity销毁时，将收藏的汉字插入或删除
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (isExist && !isCollect) {
+            //原来数据收藏，现在取消删除
+            DBmanager.deleteZiToCollwordtb(zi);
+        }
+        if (!isExist && isCollect) {
+            //原来数据未收藏，现在添加到收藏
+            DBmanager.insertZiToCollwordtb(zi);
+        }
+    }
 
     @Override
     protected void initData() {
@@ -90,7 +127,9 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.wordInfo_iv_collect:
-
+                //如果状态发生改变则进行取反
+                isCollect = !isCollect;
+                setCollectBtnColor();
                 break;
             case R.id.wordInfo_tv_js:
                 tvJs.setTextColor(Color.parseColor("#6495ED"));
@@ -118,14 +157,22 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+
     @Override
     public void onSuccess(String result) {
-        WordEntity json = new Gson().fromJson(result, WordEntity.class);
-        WordEntity.ResultBean bean = json.getResult();
-        //插入数据库
-        DBmanager.insertWordToWordtb(bean);
-        //将数据显示在View控件上
-        notifyView(bean);
+
+        if (!result.isEmpty()) {
+            WordEntity json = new Gson().fromJson(result, WordEntity.class);
+            WordEntity.ResultBean bean = json.getResult();
+            //插入数据库
+            DBmanager.insertWordToWordtb(bean);
+            //将数据显示在View控件上
+            notifyView(bean);
+        }else{
+            return;
+        }
+
+
     }
 
     private void notifyView(WordEntity.ResultBean bean) {
@@ -150,8 +197,10 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         WordEntity.ResultBean bean = DBmanager.queryWordFromWordtb(zi);
         if (bean != null){
             notifyView(bean);
+            //dialog.cancel();
         }else {
             showToast("今日接口访问次数已上限！");
+            //dialog.cancel();
             return;
         }
     }

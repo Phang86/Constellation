@@ -3,6 +3,7 @@ package com.yyzy.constellation.dict;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.yyzy.constellation.dict.entity.PinBuEntity;
 import com.yyzy.constellation.dict.entity.PinBuWordEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.CommonUtils;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -57,6 +59,7 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
     public int pageSize = 48;  //默认一页获取48条数据
     public String word = "";   //点击了左侧的哪个拼音或部首
     public String url = "";
+    private DiyProgressDialog dialog;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -239,8 +242,8 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
 
     @Override
     public void onSuccess(String result) {
-        //获取成功时
         PinBuWordEntity entity = new Gson().fromJson(result, PinBuWordEntity.class);
+        //获取成功时
         PinBuWordEntity.ResultBean resultBean = entity.getResult();
         totalPage = resultBean.getTotalpage();
         List<PinBuWordEntity.ResultBean.ListBean> list = resultBean.getList();

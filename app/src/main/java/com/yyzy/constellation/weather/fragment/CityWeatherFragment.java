@@ -1,6 +1,7 @@
 package com.yyzy.constellation.weather.fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,9 +12,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
 import com.yyzy.constellation.utils.URLContent;
 import com.yyzy.constellation.weather.db.DBManager;
@@ -43,6 +47,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     private int bgNum;
     private ScrollView scrollView;
     private SharedPreferences bg_pref;
+    private DiyProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,11 +77,15 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             public void run() {
                 String json = HttpUtils.getJSONFromNet(indexUrl);
                 WeatherIndexEntity fromJson = new Gson().fromJson(json, WeatherIndexEntity.class);
-                if (fromJson.getReason().equals("超过每日可允许请求次数!") || fromJson.getError_code() == error_code || fromJson.getResult() == null){
-                    showToast("超过每日可允许请求次数!");
-                    return;
+                try {
+                    if (fromJson.getReason().equals("超过每日可允许请求次数!") || fromJson.getError_code() == error_code || fromJson.getResult() == null){
+                        showToast("超过每日可允许请求次数!");
+                        return;
+                    }
+                    life = fromJson.getResult().getLife();
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                life = fromJson.getResult().getLife();
             }
         }).start();
     }
@@ -84,15 +93,17 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onSuccess(String result) {
         super.onSuccess(result);
-        //当获取数据成功时，解析并展示数据
-        parseShowData(result);
-        //更新数据
-        int i = DBManager.updateInfoByCity(city, result);
-        if (i <= 0) {
-            //表示更新城市数据失败，则应该添加此城市的数据信息
-            DBManager.addCityInfo(city,result);
-        }
+        if (!result.isEmpty()){
+            //当获取数据成功时，解析并展示数据
+            parseShowData(result);
+            //更新数据
+            int i = DBManager.updateInfoByCity(city, result);
+            if (i <= 0) {
+                //表示更新城市数据失败，则应该添加此城市的数据信息
+                DBManager.addCityInfo(city,result);
+            }
 
+        }
     }
 
     @Override
@@ -175,64 +186,105 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
+        TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
+        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
+        Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        //content.setText("确定退出吗？");
         switch (v.getId()) {
             case R.id.cityFrag_tv_cloth:
-                builder.setTitle("穿衣指数");
+                title.setText("穿衣指数");
                 String msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getChuanyi().getV() + "\n" + life.getChuanyi().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
             case R.id.cityFrag_tv_washCar:
-                builder.setTitle("洗车指数");
+                title.setText("洗车指数");
                 msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getXiche().getV() + "\n" + life.getXiche().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
             case R.id.cityFrag_tv_cold:
-                builder.setTitle("感冒指数");
+                title.setText("感冒指数");
                 msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getGanmao().getV() + "\n" + life.getGanmao().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
             case R.id.cityFrag_tv_sport:
-                builder.setTitle("运动指数");
+                title.setText("运动指数");
                 msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getYundong().getV() + "\n" + life.getYundong().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
             case R.id.cityFrag_tv_rays:
-                builder.setTitle("紫外线指数");
+                title.setText("紫外线指数");
                 msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getZiwaixian().getV() + "\n" + life.getZiwaixian().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
-
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
             case R.id.cityFrag_tv_air:
-                builder.setTitle("空调指数");
+                title.setText("空调指数");
                 msg = "暂无信息！";
                 if (life != null) {
                     msg = life.getKongtiao().getV() + "\n" + life.getKongtiao().getDes();
                 }
-                builder.setMessage(msg);
-                builder.setPositiveButton("确定", null);
+                content.setText(msg);
+                btn_sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
         }
-        builder.create().show();
     }
 
     //换壁纸的方法

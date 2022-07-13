@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 
@@ -56,7 +58,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private CheckBox mRemenber,mAutoLogin;
     private boolean mPasswordFlag = false;//记住密码标志
     private boolean mAutoLoginFlag = false;//自动登录标志
-
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected int initLayout() {
@@ -122,8 +125,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 case R.id.btnLogin_login:
                     String user = edUser.getText().toString().trim();
                     String pwd = edPwd.getText().toString().trim();
-                    SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
+                    editor = sharedPreferences.edit();
                     //2  创建Editor对象，写入值
                     editor.putString("username", user);
                     if (mRemenber.isChecked()) {
@@ -187,10 +190,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Looper.prepare();
-                Log.e("TAG", "onFailure: " + e.getMessage().toString());
-                showToast("登录失败！服务器连接超时！");
-                Looper.loop();
+                try {
+                    Looper.prepare();
+                    Log.e("TAG", "onFailure: " + e.getMessage().toString());
+                    showToast("登录失败！服务器连接超时！");
+                    editor.clear();
+                    editor.commit();
+                    Looper.loop();
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
             }
 
             @Override
@@ -200,23 +209,26 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void run() {
                         try {
-                            if (resultStr.equals("error")){
-                                showToast("登录失败！账号或密码不正确！");
-                                return;
-                            }else{
-                                List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
-                                }.getType());
-                                Log.e("TAG", "run: "+dataEntity.toString() );
-                                data = dataEntity;
-                                if (data.size() > 0 && data != null) {
-                                    //拿到Username
-                                    String user = data.get(0).getUserName();
-                                    mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
-                                    mDialog.setCancelable(false);//设置不能通过后退键取消
-                                    mDialog.show();
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
+                            mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
+                            mDialog.setCancelable(false);//设置不能通过后退键取消
+                            mDialog.show();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (resultStr.equals("error")){
+                                        showToast("登录失败！账号或密码不正确！");
+                                        editor.clear();
+                                        editor.commit();
+                                        mDialog.cancel();
+                                        return;
+                                    }else{
+                                        List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
+                                        }.getType());
+                                        Log.e("TAG", "run: "+dataEntity.toString() );
+                                        data = dataEntity;
+                                        if (data.size() > 0 && data != null) {
+                                            //拿到Username
+                                            String user = data.get(0).getUserName();
                                             intentJump(MainActivity.class);
                                             finish();
                                             showToast("您已登录成功！");
@@ -228,13 +240,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                             // 存入数据
                                             editor.commit();
                                             mDialog.cancel();
+                                        } else {
+                                            showToast("登录失败！服务器连接超时！");
+                                            return;
                                         }
-                                    },2000);
-                                } else {
-                                    showToast("登录失败！服务器连接超时！");
-                                    return;
+                                    }
                                 }
-                            }
+                            },2000);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -255,5 +267,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (editor != null){
+                editor.clear();
+                editor.commit();
+                finish();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

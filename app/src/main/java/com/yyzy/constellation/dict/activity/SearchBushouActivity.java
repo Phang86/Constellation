@@ -36,8 +36,6 @@ public class SearchBushouActivity extends BaseSearchActivity {
         loadData(url);
         loadNetDataResult(this,url);
         setGVListener(CommonUtils.TYPE_BUSHOU);
-
-
     }
 
 

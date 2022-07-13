@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,8 @@ public class HomeActivity extends BaseActivity {
     private SharedPreferences firstSpf,userNameSpf;
     private String username;
     private String password;
+    private boolean auto;
+    private boolean remenber,isFirst;
 
     @Override
     protected int initLayout() {
@@ -40,14 +43,26 @@ public class HomeActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 //如账号、密码未注销，则直接跳到应用主界面
-                if (!username.trim().isEmpty() || !password.trim().isEmpty()){
-                    intent.setClass(HomeActivity.this,MainActivity.class);
-                }else{  //如账号、密码已注销，则跳到应用登录界面
-                    intent.setClass(HomeActivity.this, LoginActivity.class);
+                isFirst = firstSpf.getBoolean("isFirst", true);
+                if (isFirst){
+                    intent.setClass(HomeActivity.this,WelcomeActivity.class);
+                    //为了下一次不进行跳转引导界面，把状态设置为false
+                    SharedPreferences.Editor edit = firstSpf.edit();
+                    edit.putBoolean("isFirst",false);
+                    edit.commit();
+                    handler.removeCallbacksAndMessages(null);
+                }else {
+                    if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
+                        intent.setClass(HomeActivity.this, MainActivity.class);
+                        handler.removeCallbacksAndMessages(null);
+                    } else {
+                        //不是第一次进入  直接跳过引导页面进入
+                        intent.setClass(HomeActivity.this, LoginActivity.class);
+                        handler.removeCallbacksAndMessages(null);
+                    }
                 }
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                handler.removeCallbacksAndMessages(null);
+                finish();
             }
         });
     }
@@ -65,7 +80,7 @@ public class HomeActivity extends BaseActivity {
                     time--;
                     if (time == -1) {
                         //判断是否第一次进入
-                        boolean isFirst = firstSpf.getBoolean("isFirst", true);
+                        isFirst = firstSpf.getBoolean("isFirst", true);
                         Intent intent = new Intent();
                         if (isFirst){
                             intent.setClass(HomeActivity.this,WelcomeActivity.class);
@@ -90,4 +105,14 @@ public class HomeActivity extends BaseActivity {
                 }
         }
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && keyCode == KeyEvent.KEYCODE_HOME) {
+            handler.removeCallbacksAndMessages(null);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

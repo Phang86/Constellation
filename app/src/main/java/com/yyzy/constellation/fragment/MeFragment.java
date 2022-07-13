@@ -1,12 +1,12 @@
 package com.yyzy.constellation.fragment;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,15 +14,20 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.AppInfoActivity;
 import com.yyzy.constellation.activity.LoginActivity;
@@ -46,6 +51,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class MeFragment extends Fragment implements View.OnClickListener {
     private int flag = Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK;
     private StarInfoEntity starInfoEntity;
+    private Button btnConfirm,btnFinsh;
     private List<StarInfoEntity.StarinfoDTO> mDatas;
     private Map<String, Bitmap> imgMap;
     private CircleImageView cv;
@@ -56,12 +62,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //获取上个界面传过来的数据
         Bundle bundle = getArguments();
         starInfoEntity = (StarInfoEntity) bundle.getSerializable("info");
         mDatas = starInfoEntity.getStarinfo();
         //把星座图片和名称保存
-        spf = getContext().getSharedPreferences("star_spf", Context.MODE_PRIVATE);
+        spf = getContext().getSharedPreferences("star_spf", MODE_PRIVATE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override
@@ -120,12 +128,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 showDialog();
                 break;
             case R.id.meFrag_tv_jieshao:
-                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-                alertDialog.setTitle("功能介绍");
-                alertDialog.setMessage(StringUtils.setContent());
-                alertDialog.setCancelable(true);
-                alertDialog.setCanceledOnTouchOutside(true);
-                alertDialog.show();
+                showDialogSure(getContext(),"功能介绍",StringUtils.setContent());
+//                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+//                alertDialog.setTitle("功能介绍");
+//                alertDialog.setMessage(StringUtils.setContent());
+//                alertDialog.setCancelable(true);
+//                alertDialog.setCanceledOnTouchOutside(true);
+//                alertDialog.show();
                 break;
             case R.id.meFrag_tv_huanfu:
                 String skin = findByKey("skin");
@@ -139,44 +148,46 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.meFrag_tv_tuichu:
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext())
-                        .setTitle("温馨提示！")
-                        .setMessage("你确定退出吗？")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //获取存储在sp里面的用户名和密码以及两个复选框状态
-                                SharedPreferences sharedPreferences = getContext().getSharedPreferences("busApp", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                //清空所有
-                                editor.clear();
-                                //editor.remove("username");
-                                //editor.remove("password");
-                                //提交
-                                editor.commit();
-                                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
-                                dialog1.setCancelable(false);//设置不能通过后退键取消
-                                dialog1.show();
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Intent intent = new Intent(getContext(), LoginActivity.class);
-                                        intent.setFlags(flag);
-                                        startActivity(intent);
-                                        dialog1.cancel();
-                                        Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
-                                    }
-                                },3000);
+                dialogShow();
+//                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext())
+//                        .setTitle("温馨提示！")
+//                        .setMessage("你确定退出吗？")
+//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                //获取存储在sp里面的用户名和密码以及两个复选框状态
+//                                SharedPreferences sharedPreferences = getContext().getSharedPreferences("busApp", MODE_PRIVATE);
+//                                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                //清空所有
+//                                editor.clear();
+//                                //editor.remove("username");
+//                                //editor.remove("password");
+//                                //提交
+//                                editor.commit();
+//                                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
+//                                dialog1.setCancelable(false);//设置不能通过后退键取消
+//                                dialog1.show();
+//                                new Handler().postDelayed(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                        intent.setFlags(flag);
+//                                        startActivity(intent);
+//                                        dialog1.cancel();
+//                                        Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                },3000);
+//
+//                            }
+//                        })
+//                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                //取消按钮
+//                            }
+//                        });
+//                dialog.create().show();
 
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //取消按钮
-                            }
-                        });
-                dialog.create().show();
                 break;
             case R.id.meFrag_tv_weather:
                 intent.setClass(getContext(),WeatherActivity.class);
@@ -194,6 +205,30 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
         }
+    }
+
+    public static void showDialogSure(Context context,String titMsg,String contentMsg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
+        TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
+        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
+        Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        title.setText(titMsg);
+        content.setText(contentMsg);
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     private void showDialog() {
@@ -239,5 +274,60 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         edit.putString("name",name);
         edit.putString("logoname",logoname);
         edit.commit();
+    }
+
+    private void dialogShow() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
+        TextView content = (TextView) v.findViewById(R.id.dialog_content);
+        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
+        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+        //设置隐藏dialog默认的背景
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        content.setText("确定退出吗？");
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                //获取存储在sp里面的用户名和密码以及两个复选框状态
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("busApp", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                //清空所有
+                editor.clear();
+                //editor.remove("username");
+                //editor.remove("password");
+                //提交
+                editor.commit();
+                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
+                dialog1.setCancelable(false);//设置不能通过后退键取消
+                dialog1.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        intent.setFlags(flag);
+                        startActivity(intent);
+                        dialog1.cancel();
+                        Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
+                    }
+                },3000);
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+
+            }
+        });
     }
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_200"
+    tools:context=".dict.activity.CollectActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/collect_iv_back"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
+            android:src="@mipmap/icon_back"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            style="@style/titleTvStyle"
+            android:text="@string/collect"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/collect_tab"
+        android:layout_width="match_parent"
+        android:background="#e2e2e0"
+        android:layout_height="@dimen/dimen_30dp"
+        app:tabSelectedTextColor="@color/blue"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="@dimen/dimen_2dp"
+        app:tabIndicatorColor="@color/blue"
+        app:tabTextColor="@color/black"
+        app:tabMode="fixed"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/collect_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

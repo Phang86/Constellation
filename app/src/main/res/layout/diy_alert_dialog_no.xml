@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="@dimen/dimen_100dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/diy_alert_dialog_bg" >
+
+        <TextView
+            android:id="@+id/dialog_no_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="应用版本"
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/dialog_no_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_below="@+id/dialog_no_title"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_gravity="center_vertical"
+                android:text="当前应用版本为：1.0"
+                android:textSize="@dimen/size_16sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

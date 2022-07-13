@@ -6,13 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.fragment.MeFragment;
 
 public class AppInfoActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView titleTv,userNameTv,createTimeTv,versionTv,phoneTv;
+    private RelativeLayout versionLayout;
     private ImageView backImg;
 
     @Override
@@ -28,6 +31,8 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         createTimeTv = findViewById(R.id.appInfo_tv_createTime);
         versionTv = findViewById(R.id.appInfo_tv_version);
         phoneTv = findViewById(R.id.appInfo_tv_phone);
+        versionLayout = findViewById(R.id.appInfo_layout_version);
+        versionLayout.setOnClickListener(this);
         backImg.setOnClickListener(this);
     }
 
@@ -59,6 +64,11 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             case R.id.details_back:
                 finish();
                 break;
+            case R.id.appInfo_layout_version:
+                MeFragment.showDialogSure(this,"应用版本","当前应用版本为\t"+getVersion());
+                break;
+
+
         }
     }
 }

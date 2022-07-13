@@ -1,13 +1,17 @@
 package com.yyzy.constellation.weather.activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -137,18 +141,40 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 enjoyApp("星座缘下载网址");
                 break;
             case R.id.more_layout_version:
-                AlertDialog dialog = new AlertDialog.Builder(this).create();
-                dialog.setTitle("应用版本");
-                dialog.setMessage("当前应用版本号为:\t"+versionName);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.setCancelable(true);
-                dialog.show();
+                showAlertDialog();
+//                AlertDialog dialog = new AlertDialog.Builder(this).create();
+//
+//                dialog.setTitle("应用版本");
+//                dialog.setMessage("当前应用版本为:\t"+versionName);
+//                dialog.setCanceledOnTouchOutside(true);
+//                dialog.setCancelable(true);
+//                dialog.show();
                 break;
             default:
 
         }
     }
 
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View v = inflater.inflate(R.layout.diy_alert_dialog_no, null);
+        TextView content = (TextView) v.findViewById(R.id.dialog_no_content);
+        TextView title = (TextView) v.findViewById(R.id.dialog_no_title);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+        //设置隐藏dialog默认的背景
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        title.setText("应用版本");
+        content.setText("当前应用版本为\t"+getVersion());
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+    }
 
 
     private void enjoyApp(String msg) {

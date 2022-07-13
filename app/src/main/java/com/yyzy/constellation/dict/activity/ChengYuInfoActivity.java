@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyGridView;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -41,6 +43,11 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
     private String chuzi;
     private String shili;
     private String yufa;
+    private DiyProgressDialog dialog;
+    //设置标志是否被收藏
+    private boolean isCollect = false;
+    //判断这个汉字是否在数据库已经存在
+    private boolean isExist = false;
 
     @Override
     protected int initLayout() {
@@ -77,6 +84,19 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         String chengyuUrl = URLContent.getChengyuurl(chengyu);
         loadDatas(chengyuUrl);
         setGvListener();
+        isExist = DBmanager.isExistCyuInCollCyutb(chengyu);
+        isCollect = isExist;
+        //设置收藏按钮的颜色
+        setCollectBtnColor();
+    }
+
+    //根据收藏状态改变收藏星星的背景
+    private void setCollectBtnColor() {
+        if (isCollect) {
+            collectImg.setImageResource(R.mipmap.ic_collection_fs);
+        }else {
+            collectImg.setImageResource(R.mipmap.ic_collection);
+        }
     }
 
     //给GridView的item设置监听
@@ -101,22 +121,35 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onSuccess(String result) {
-        ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
-        ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
-        //String s = beanResult.toString();
-        //Log.e("TAG", "onSuccess: "+s);
-        try {
-            if (beanResult != null){
-                DBmanager.insertCyToCyutb(beanResult);
-                showDatasView(beanResult);
-            }else if (bean.getError_code() == 10012){
-                Toast.makeText(this, "今日接口访问次数已上限！", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "无法查询此成语，请更换需查询的成语！", Toast.LENGTH_SHORT).show();
+        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
+                ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
+                try {
+                    if (beanResult != null) {
+                        DBmanager.insertCyToCyutb(beanResult);
+                        showDatasView(beanResult);
+                        dialog.cancel();
+                        //return;
+                    } else if (bean.getError_code() == 10012) {
+                        dialog.cancel();
+                        Toast.makeText(ChengYuInfoActivity.this, "今日接口访问次数已上限！", Toast.LENGTH_SHORT).show();
+                        //return;
+                    } else {
+                        Toast.makeText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                        //return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        },1500);
     }
 
     @Override
@@ -158,12 +191,10 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
             shili = xxsy.get(2);
             yufa = xxsy.get(3);
         }else if (xxsy.size() == 1){
-
             biaoyu = xxsy.toString();
             chuzi = xxsy.toString();
             shili = xxsy.toString();
             yufa = xxsy.toString();
-
         }
         String strbiaoyu = biaoyu.replace("[", "").replace("]", "");
         chuTv.setText(chuchu);
@@ -190,6 +221,10 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
             case R.id.chengyuInfo_iv_back:
                 finish();
                 break;
+            case R.id.chengyuInfo_iv_collect:
+                isCollect = !isCollect;
+                setCollectBtnColor();
+                break;
         }
     }
 
@@ -201,5 +236,17 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         finish();
     }
 
-
+    //当Activity销毁时，将收藏的汉字插入或删除
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isExist && !isCollect) {
+            //原来数据已收藏，现在取消又收藏，则从收藏中进行移除
+            DBmanager.deleteCyuToCollCyutb(chengyu);
+        }
+        if (!isExist && isCollect) {
+            //原来数据未收藏，现在想收藏，则添加到收藏
+            DBmanager.insertCyuToCollCyutb(chengyu);
+        }
+    }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -110,17 +112,27 @@ public class RegisterActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (resultStr.equals("success")) {
-                            showToast("恭喜，您已注册成功！赶紧前往登录吧！");
-                            edRegisterUser.setText("");
-                            edRegisterPwd.setText("");
-                        } else if (resultStr.equals("error")) {
-                            showToast("此用户名已存在！");
-                            return;
-                        } else {
-                            showToast("注册失败！服务器连接超时！");
-                            return;
-                        }
+                        DiyProgressDialog mDialog = new DiyProgressDialog(RegisterActivity.this,"正在加载中...");
+                        mDialog.setCancelable(false);//设置不能通过后退键取消
+                        mDialog.setCanceledOnTouchOutside(false);
+                        mDialog.show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (resultStr.equals("success")) {
+                                    showToast("恭喜，您已注册成功！赶紧前往登录吧！");
+                                    edRegisterUser.setText("");
+                                    edRegisterPwd.setText("");
+                                } else if (resultStr.equals("error")) {
+                                    showToast("此用户名已存在！请更换用户名！");
+                                    //return;
+                                } else {
+                                    showToast("注册失败！服务器连接超时！");
+                                    //return;
+                                }
+                                mDialog.cancel();
+                            }
+                        }, 1500);
                     }
                 });
             }

@@ -6,4 +6,6 @@ public class CommonUtils {
     public static final String TABLE_PYWORDTB = "pywordtb";
     public static final String TABLE_WORDTB = "wordtb";
     public static final String TABLE_CYUTB = "cyutb";
+    public static final String TABLE_COLLECT_CYUTB = "collcyutb";
+    public static final String TABLE_COLLECT_WORDTB = "collwordtb";
 }

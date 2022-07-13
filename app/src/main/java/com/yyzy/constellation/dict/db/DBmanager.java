@@ -220,4 +220,74 @@ public class DBmanager {
         }
         return list;
     }
+
+    //向收藏文字表插入数据
+    public static void insertZiToCollwordtb(String zi){
+        ContentValues values = new ContentValues();
+        values.put("zi",zi);
+        database.insert("collwordtb",null,values);
+    }
+    //删除收藏文字表的数据
+    public static void deleteZiToCollwordtb(String zi){
+        String sql = "delete from collwordtb where zi = ?";
+        database.execSQL(sql,new String[]{zi});
+    }
+
+    //查找收藏文字表中的所有数据
+    public static List<String> queryAllInCollwordtb(){
+        String sql = "select * from collwordtb";
+        Cursor cursor = database.rawQuery(sql, null);
+        List<String> list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            String zi = cursor.getString(cursor.getColumnIndex("zi"));
+            list.add(zi);
+        }
+        return list;
+    }
+
+    //判断文字是否已经收藏
+    public static boolean isExistZiInCollwordtb(String zi){
+        String sql = "select * from collwordtb where zi=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{zi});
+        if (cursor.getCount() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    //向收藏成语表插入数据
+    public static void insertCyuToCollCyutb(String chengyu){
+        ContentValues values = new ContentValues();
+        values.put("chengyu",chengyu);
+        database.insert(CommonUtils.TABLE_COLLECT_CYUTB,null,values);
+    }
+
+    //查找收藏成语表中的所有数据
+    public static List<String> queryAllInCollCyutb(){
+        String sql = "select * from collcyutb";
+        Cursor cursor = database.rawQuery(sql, null);
+        List<String> list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            String chengyu = cursor.getString(cursor.getColumnIndex("chengyu"));
+            list.add(chengyu);
+        }
+        return list;
+    }
+
+    //删除收藏成语表的数据
+    public static void deleteCyuToCollCyutb(String chengyu){
+        String sql = "delete from collcyutb where chengyu = ?";
+        database.execSQL(sql,new String[]{chengyu});
+    }
+    //判断成语是否已经收藏
+    public static boolean isExistCyuInCollCyutb(String chengyu){
+        String sql = "select * from collcyutb where chengyu=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{chengyu});
+        if (cursor.getCount() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

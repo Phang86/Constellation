@@ -81,7 +81,7 @@
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_tongyici"
-                android:text="同义词：null"
+                android:text="同义词："
                 style="@style/chengyuInfoMin"/>
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_tongyici"
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_fanyici"
-                android:text="反义词：null"
+                android:text="反义词："
                 style="@style/chengyuInfoMin"/>
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_fanyici"

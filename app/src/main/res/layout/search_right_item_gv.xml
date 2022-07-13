@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="为"
         android:gravity="center"
-        android:textSize="@dimen/size_25sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:textColor="#FF9800"
         android:background="@drawable/search_tv_bg"/>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="170dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/diy_alert_dialog_bg" >
+
+        <TextView
+            android:id="@+id/dialog_two_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="温馨提示"
+            android:layout_marginBottom="@dimen/dimen_5dp"
+            android:textSize="@dimen/size_18sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:fadeScrollbars="false"
+            android:layout_below="@+id/dialog_two_title"
+            android:layout_above="@+id/view">
+
+            <TextView
+                android:id="@+id/dialog_two_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:text="当前此应用版本号为：1.0"
+                android:textSize="@dimen/size_16sp" />
+        </ScrollView>
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E2E2E2"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:layout_above="@+id/layout"/>
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/dialog_two_btn_sure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@+id/view"
+                android:textColor="#1965db"
+                android:background="@null"
+                android:text="确定"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_15sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
