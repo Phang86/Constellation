@@ -224,7 +224,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                     }else{
                                         List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
                                         }.getType());
-                                        Log.e("TAG", "run: "+dataEntity.toString() );
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
                                             //拿到Username
@@ -280,5 +279,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public void onSuccess(String result) {
+        super.onSuccess(result);
+        User user = new Gson().fromJson(result, User.class);
+        Log.e("TAG", "onSuccess: "+user.toString());
     }
 }

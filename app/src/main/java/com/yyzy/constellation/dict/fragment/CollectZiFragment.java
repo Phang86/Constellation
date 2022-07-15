@@ -35,6 +35,7 @@ public class CollectZiFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -77,18 +78,12 @@ public class CollectZiFragment extends Fragment {
                         loadData();
                         //停止刷新,圆圈消失
                         refreshLayout.setRefreshing(false);
-
                     }
                 },2000);
             }
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData();
-    }
 
     public void loadData() {
         mData.clear();
@@ -125,4 +120,17 @@ public class CollectZiFragment extends Fragment {
     }
 
 
+    //当页面启动时，自动刷新加载数据
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadData();
+                refreshLayout.setRefreshing(false);
+            }
+        }, 2000);
+    }
 }

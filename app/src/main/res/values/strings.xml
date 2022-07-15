@@ -23,7 +23,7 @@
     <string name="register" translatable="false">注册</string>
     <string name="eduser" translatable="false">请输入用户名</string>
     <string name="edpwd" translatable="false">请输入密码</string>
-    <string name="auto_login" translatable="false">自动登录</string>
+    <string name="auto_login" translatable="false">免登录</string>
     <string name="remember_pwd" translatable="false">记住密码</string>
     <string name="no_register" translatable="false">没有账号？前往注册</string>
     <string name="youzhanghao" translatable="false">我已有账号，快速登录</string>
