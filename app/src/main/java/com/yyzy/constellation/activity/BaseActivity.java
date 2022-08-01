@@ -110,6 +110,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         return matcher.matches();
     }
 
+    // 验证手机号码是否匹配
+    /*"[1]"代表第1位为数字1，
+    * "[3456789]"代表第二位可以为3、4、5、6、7、8、9中的一个
+    * "\\d{9}"代表后面是可以是0～9的数字，有9位。
+    */
+    public static boolean checkPhone(String phone){
+        String regexp = "[1][3456789]\\d{9}";
+        Pattern pattern = Pattern.compile(regexp);
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
+    }
+
     public String getVersion() {
         //获取应用的版本名称
         PackageManager packageManager = getPackageManager();

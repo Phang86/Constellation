@@ -99,9 +99,9 @@
 
 
             <ImageView
-                android:layout_width="@dimen/dimen_25dp"
-                android:layout_height="@dimen/dimen_15dp"
-                android:background="@mipmap/pwd" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_update_pwd" />
 
             <com.yyzy.constellation.utils.MyPasswordEditText
                 android:id="@+id/new_pwd"
@@ -133,9 +133,9 @@
 
 
             <ImageView
-                android:layout_width="@dimen/dimen_25dp"
-                android:layout_height="@dimen/dimen_15dp"
-                android:background="@mipmap/pwd" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_update_pwd" />
 
             <com.yyzy.constellation.utils.MyPasswordEditText
                 android:id="@+id/new_pwd_config"

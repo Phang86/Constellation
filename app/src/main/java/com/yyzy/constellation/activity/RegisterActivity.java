@@ -33,9 +33,10 @@ import okhttp3.Response;
 
 
 public class RegisterActivity extends BaseActivity {
-    private EditText edRegisterUser, edRegisterPwd;
+    private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private Button mbtnRegister;
     private TextView tv;
+    private DiyProgressDialog mDialog;
 
     @Override
     protected int initLayout() {
@@ -47,6 +48,7 @@ public class RegisterActivity extends BaseActivity {
         tv = findViewById(R.id.btnRegister_tv_login);
         edRegisterUser = findViewById(R.id.edRegister_user);
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
+        edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
     }
 
@@ -65,32 +67,44 @@ public class RegisterActivity extends BaseActivity {
             public void onClick(View v) {
                 String user = edRegisterUser.getText().toString().trim();
                 String pwd = edRegisterPwd.getText().toString().trim();
-                register(user, pwd);
+                String phone = edRegisterPhone.getText().toString().trim();
+                register(user, pwd, phone);
             }
         });
     }
 
-    private void register(String user, String pwd) {
-        //判断用户输入的密码和账号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
+    private void register(String user, String pwd, String phone) {
+        //判断用户输入的密码、账号、手机号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
         if (TextUtils.isEmpty(user)) {
             showToast("注册账号不能为空哦！");
             return;
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("注册密码不能为空哦！");
             return;
-        } else if (!checkUsername(user)) {
+        }else if (TextUtils.isEmpty(phone)) {
+            showToast("手机号不能为空哦！");
+            return;
+        }else if (!checkUsername(user)) {
             showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
         } else if (!checkPassword(pwd)) {
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
+        }else if (!checkPhone(phone)){
+            showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            return;
         }
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
+        mDialog = new DiyProgressDialog(RegisterActivity.this,"正在加载中...");
+        mDialog.setCancelable(false);//设置不能通过后退键取消
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
         formbody.add("pwd", pwd);
+        formbody.add("mobile",phone);
         RequestBody requestBody = formbody.build();
         Request request = new Request.Builder()
                 .url(URLContent.BASE_URL + "/user/register")
@@ -103,6 +117,7 @@ public class RegisterActivity extends BaseActivity {
                 Log.e("TAG", "onFailureError: " + e.getMessage());
                 Looper.prepare();
                 showToast("注册失败！服务器连接超时！");
+                mDialog.cancel();
                 Looper.loop();
             }
 
@@ -112,10 +127,6 @@ public class RegisterActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        DiyProgressDialog mDialog = new DiyProgressDialog(RegisterActivity.this,"正在加载中...");
-                        mDialog.setCancelable(false);//设置不能通过后退键取消
-                        mDialog.setCanceledOnTouchOutside(false);
-                        mDialog.show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -123,12 +134,11 @@ public class RegisterActivity extends BaseActivity {
                                     showToast("恭喜，您已注册成功！赶紧前往登录吧！");
                                     edRegisterUser.setText("");
                                     edRegisterPwd.setText("");
+                                    edRegisterPhone.setText("");
                                 } else if (resultStr.equals("error")) {
                                     showToast("此用户名已存在！请更换用户名！");
-                                    //return;
                                 } else {
                                     showToast("注册失败！服务器连接超时！");
-                                    //return;
                                 }
                                 mDialog.cancel();
                             }

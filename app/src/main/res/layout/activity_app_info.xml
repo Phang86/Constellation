@@ -193,7 +193,7 @@
             android:id="@+id/appinfo_img_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_update_pwd"
+            android:src="@drawable/ic_update_password"
             android:layout_margin="@dimen/dimen_10dp"/>
 
         <TextView

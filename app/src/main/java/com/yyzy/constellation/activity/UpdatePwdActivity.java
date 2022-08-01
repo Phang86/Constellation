@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -50,6 +51,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     private String newPwd;
     private String configNewPwd;
     private String userName;
+    private DiyProgressDialog mDialog;
 
     @Override
     protected int initLayout() {
@@ -123,6 +125,10 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             return;
         }else{
             if (newPwd.equals(configNewPwd)) {
+                mDialog = new DiyProgressDialog(UpdatePwdActivity.this,"正在加载中...");
+                mDialog.setCancelable(false);//设置不能通过后退键取消
+                mDialog.setCanceledOnTouchOutside(false);
+                mDialog.show();
                 OkHttpClient okHttpClient = new OkHttpClient();
                 FormBody.Builder formbody = new FormBody.Builder();
                 formbody.add("user", userName);
@@ -136,7 +142,10 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
+                        Looper.prepare();
+                        showToast("密码修改失败！服务器连接超时！");
+                        mDialog.cancel();
+                        Looper.loop();
                     }
 
                     @Override
@@ -146,27 +155,29 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                             @Override
                             public void run() {
                                 try {
-                                    DiyProgressDialog mDialog = new DiyProgressDialog(UpdatePwdActivity.this,"正在加载中...");
-                                    mDialog.setCancelable(false);//设置不能通过后退键取消
-                                    mDialog.show();
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            if (result.equals("error")){
-                                                showToast("密码修改失败！原始密码不正确！");
-                                                oldPwdEt.setText("");
-                                                mDialog.cancel();
-                                                return;
-                                            }else{
-                                                List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
-                                                }.getType());
-                                                if (dataEntity.size() > 0 && dataEntity != null) {
+                                            try {
+                                                if (result.equals("error")){
+                                                    showToast("密码修改失败！原始密码不正确！");
+                                                    oldPwdEt.setText("");
                                                     mDialog.cancel();
-                                                    updateRquestNet();
-                                                }else {
-                                                    showToast("登录失败！服务器连接超时！");
                                                     return;
+                                                }else{
+                                                    List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
+                                                    }.getType());
+                                                    if (dataEntity.size() > 0 && dataEntity != null) {
+                                                        mDialog.cancel();
+                                                        updateRquestNet(mDialog);
+                                                    }else {
+                                                        showToast("登录失败！服务器连接超时！");
+                                                        mDialog.cancel();
+                                                        return;
+                                                    }
                                                 }
+                                            }catch (Exception e){
+                                                e.printStackTrace();
                                             }
                                         }
                                     },2000);
@@ -181,7 +192,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private void updateRquestNet(){
+    private void updateRquestNet(DiyProgressDialog mDialog){
             OkHttpClient okHttpClient = new OkHttpClient();
             FormBody.Builder formbody = new FormBody.Builder();
             formbody.add("user", userName);
@@ -195,7 +206,10 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
+                    Looper.prepare();
+                    showToast("密码修改失败！服务器连接超时！");
+                    mDialog.cancel();
+                    Looper.loop();
                 }
 
                 @Override
@@ -213,10 +227,12 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                     @Override
                                     public void run() {
                                         showDiyDialog();
+                                        mDialog.cancel();
                                     }
                                 },1000);
                             } else if (result.equals("error")) {
                                 showToast("密码修改失败！");
+                                mDialog.cancel();
                             }
                         }
                     });

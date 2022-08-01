@@ -48,7 +48,7 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv;
+    private TextView tv, forgetTv;
     private EditText edUser, edPwd;
     private Button btnLogin;
     private List<User> data = new ArrayList<>();
@@ -69,11 +69,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initView() {
         tv = findViewById(R.id.btnLogin_tv_register);
+        forgetTv = findViewById(R.id.btnLogin_tv_forget);
         edUser = findViewById(R.id.edLogin_user);
         edPwd = findViewById(R.id.edLogin_pwd);
         btnLogin = findViewById(R.id.btnLogin_login);
         mRemenber = findViewById(R.id.cbLogin_rememberPwd);
         mAutoLogin = findViewById(R.id.cbLogin_autoLogin);
+        forgetTv.setOnClickListener(this);
         tv.setOnClickListener(this);
     }
 
@@ -177,6 +179,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }
+        mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
+        mDialog.setCancelable(false);//设置不能通过后退键取消
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
@@ -196,6 +202,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     showToast("登录失败！服务器连接超时！");
                     editor.clear();
                     editor.commit();
+                    mDialog.cancel();
                     Looper.loop();
                 }catch (Exception e1){
                     e1.printStackTrace();
@@ -209,9 +216,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void run() {
                         try {
-                            mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
-                            mDialog.setCancelable(false);//设置不能通过后退键取消
-                            mDialog.show();
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -241,6 +245,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                             mDialog.cancel();
                                         } else {
                                             showToast("登录失败！服务器连接超时！");
+                                            mDialog.cancel();
                                             return;
                                         }
                                     }
@@ -263,6 +268,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 tv.setTextColor(getResources().getColor(R.color.red));
                 //跳转注册页面
                 intentJump(RegisterActivity.class);
+                finish();
+                break;
+            case R.id.btnLogin_tv_forget:
+                forgetTv.setTextColor(getResources().getColor(R.color.red));
+                //跳转注册页面
+                intentJump(FindPwdActivity.class);
                 finish();
                 break;
         }

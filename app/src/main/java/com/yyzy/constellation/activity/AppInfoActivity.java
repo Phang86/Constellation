@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,12 +137,12 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 editor.commit();
                 DiyProgressDialog loadDialog = new DiyProgressDialog(AppInfoActivity.this,"账号注销中...");
                 loadDialog.setCancelable(false);//设置不能通过后退键取消
+                loadDialog.setCanceledOnTouchOutside(false);
                 loadDialog.show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         requestNet(loadDialog);
-                        loadDialog.cancel();
                     }
                 },2500);
             }
@@ -168,7 +169,10 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
+                Looper.prepare();
+                showToast("账号注销失败！服务器连接超时！");
+                loadDialog.cancel();
+                Looper.loop();
             }
 
             @Override
