@@ -20,7 +20,8 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".activity.FindPwdActivity"></activity>
+        <activity android:name=".activity.ConfigPwdActivity"></activity>
+        <activity android:name=".activity.FindPwdActivity" />
         <activity android:name=".activity.UpdatePwdActivity" />
         <activity android:name=".dict.activity.CollectActivity" />
         <activity android:name=".dict.activity.SetActivity" />

@@ -27,6 +27,9 @@
     <string name="newPwd" translatable="false">输入新密码（必填）</string>
     <string name="newPwdConfig" translatable="false">再次输入新密码（必填）</string>
     <string name="updateConfig" translatable="false">确认修改</string>
+    <string name="configNewPwd" translatable="false">确认新密码</string>
+    <string name="pwdFindByLogin" translatable="false">密码已找回，前往登录</string>
+    <string name="buyFind" translatable="false">立即找回</string>
     <string name="auto_login" translatable="false">免登录</string>
     <string name="remember_pwd" translatable="false">记住密码</string>
     <string name="no_register" translatable="false">没有账号？前往注册</string>
@@ -80,5 +83,5 @@
     <string name="biHua" translatable="false">笔画：null</string>
     <string name="collect" translatable="false">收藏</string>
     <!-- TODO: Remove or change this placeholder text -->
-<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
 </resources>

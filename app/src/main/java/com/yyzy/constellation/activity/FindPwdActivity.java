@@ -2,6 +2,7 @@ package com.yyzy.constellation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,6 +36,7 @@ import okhttp3.Response;
 
 public class FindPwdActivity extends BaseActivity implements View.OnClickListener {
 
+    TextView tvBack;
     EditText userEt,phoneEt;
     Button findBtn;
     DiyProgressDialog mDialog;
@@ -48,6 +51,8 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         userEt = findViewById(R.id.find_user);
         phoneEt = findViewById(R.id.find_phone);
         findBtn = findViewById(R.id.find_btn);
+        tvBack = findViewById(R.id.find_tv_login);
+        tvBack.setOnClickListener(this);
         findBtn.setOnClickListener(this);
     }
 
@@ -64,6 +69,10 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 String phone = phoneEt.getText().toString().trim();
                 findPwd(user,phone);
                 break;
+            case R.id.find_tv_login:
+                tvBack.setTextColor(getResources().getColor(R.color.red));
+                finish();
+                break;
         }
     }
 
@@ -77,7 +86,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         }else if (!checkUsername(user)) {
             showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
-        }else if (!checkPassword(phone)){
+        }else if (!checkPhone(phone)){
             showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
         }
@@ -124,8 +133,11 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                         List<User> data = new ArrayList<>();
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
-                                            //intentJump(MainActivity.class);
-                                            showToast("密码已找回");
+                                            Intent intent = new Intent(FindPwdActivity.this,ConfigPwdActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            intent.putExtra("findUserName",data.get(0).getUserName());
+                                            intent.putExtra("findUserPhone",data.get(0).getMobile());
+                                            startActivity(intent);
                                             //finish();
                                             mDialog.cancel();
                                         } else {
@@ -139,10 +151,17 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                         }catch (Exception e){
                             e.printStackTrace();
                         }
-
                     }
                 });
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        userEt.setText("");
+        phoneEt.setText("");
+        tvBack.setTextColor(getResources().getColor(R.color.grey));
     }
 }

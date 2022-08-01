@@ -263,20 +263,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.btnLogin_tv_register:
                 tv.setTextColor(getResources().getColor(R.color.red));
                 //跳转注册页面
-                intentJump(RegisterActivity.class);
-                finish();
+                intent.setClass(this,RegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
             case R.id.btnLogin_tv_forget:
                 forgetTv.setTextColor(getResources().getColor(R.color.red));
-                //跳转注册页面
-                intentJump(FindPwdActivity.class);
-                finish();
+                //跳转找回密码页面
+                intent.setClass(this,FindPwdActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
         }
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        forgetTv.setTextColor(getResources().getColor(R.color.grey));
+        tv.setTextColor(getResources().getColor(R.color.grey));
     }
 
     @Override

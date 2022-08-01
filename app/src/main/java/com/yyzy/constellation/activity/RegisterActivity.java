@@ -58,7 +58,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tv.setTextColor(getResources().getColor(R.color.red));
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
             }
         });
@@ -147,5 +147,11 @@ public class RegisterActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        tv.setTextColor(getResources().getColor(R.color.grey));
     }
 }
