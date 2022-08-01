@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <RelativeLayout
-        android:layout_width="260dp"
-        android:layout_height="@dimen/dimen_150dp"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
         android:layout_centerInParent="true"
         android:background="@drawable/diy_alert_dialog_bg" >
 
@@ -25,12 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dialog_title"
-            android:layout_marginTop="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:gravity="center"
             android:textColor="@color/black"
-            android:text="你确定退出吗？"
+            android:text="账号一旦彻底注销，数据无法恢复、且全部清空、且无法找回。确定注销吗？"
             android:textSize="@dimen/size_16sp" />
 
         <View
@@ -75,5 +73,4 @@
                 android:textSize="@dimen/size_15sp" />
         </LinearLayout>
     </RelativeLayout>
-
 </RelativeLayout>

@@ -148,7 +148,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             TextView iTempRangeTv = view.findViewById(R.id.item_center_tv_temp);
             //获取对应的位置的天气情况
             WeatherEntity.ResultDTO.FutureDTO dataEntity = futureList.get(i);
-            iDateTv.setText(dataEntity.getDate());
+            String date = dataEntity.getDate();
+            String replaceDate = date.replace("2022-", "").replace("2023-","");
+            iDateTv.setText(replaceDate);
             iconTv.setText(dataEntity.getWeather());
             iTempRangeTv.setText(dataEntity.getTemperature());
             windTv.setText(dataEntity.getDirect());

@@ -20,7 +20,8 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".dict.activity.CollectActivity"></activity>
+        <activity android:name=".activity.UpdatePwdActivity"></activity>
+        <activity android:name=".dict.activity.CollectActivity" />
         <activity android:name=".dict.activity.SetActivity" />
         <activity android:name=".dict.activity.ChengYuInfoActivity" />
         <activity android:name=".dict.activity.ChengYuActivity" />

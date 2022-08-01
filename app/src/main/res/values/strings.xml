@@ -23,6 +23,10 @@
     <string name="register" translatable="false">注册</string>
     <string name="eduser" translatable="false">请输入用户名</string>
     <string name="edpwd" translatable="false">请输入密码</string>
+    <string name="oldPwd" translatable="false">输入原密码（必填）</string>
+    <string name="newPwd" translatable="false">输入新密码（必填）</string>
+    <string name="newPwdConfig" translatable="false">再次输入新密码（必填）</string>
+    <string name="updateConfig" translatable="false">确认修改</string>
     <string name="auto_login" translatable="false">免登录</string>
     <string name="remember_pwd" translatable="false">记住密码</string>
     <string name="no_register" translatable="false">没有账号？前往注册</string>
@@ -43,9 +47,11 @@
     <string name="updateBg" translatable="false">更换壁纸</string>
     <string name="clear" translatable="false">清理缓存</string>
     <string name="version" translatable="false">应用版本号</string>
+    <string name="updatePwd" translatable="false">修改密码</string>
+    <string name="cancelUser" translatable="false">注销账号</string>
     <string name="phone" translatable="false">手机号</string>
     <string name="userName" translatable="false">用户名</string>
-    <string name="createTime" translatable="false">创建时间</string>
+    <string name="createTime" translatable="false">最近更新时间</string>
     <string name="enjoyApp" translatable="false">分享应用</string>
     <string name="enjoy" translatable="false">分享</string>
     <string name="about" translatable="false">关于我们</string>

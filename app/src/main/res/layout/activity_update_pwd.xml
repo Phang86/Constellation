@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".activity.UpdatePwdActivity">
+
+    <include
+        layout="@layout/star_details_title"/>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_20dp"
+        android:layout_margin="@dimen/dimen_15dp"
+        android:background="@drawable/shape_register_activity"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="@mipmap/account"/>
+
+            <EditText
+                android:id="@+id/update_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:background="@null"
+                android:hint="@string/eduser"
+                android:inputType="text"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500"
+                android:textSize="@dimen/size_18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:background="@color/gray_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_15dp"
+                android:background="@mipmap/pwd" />
+
+            <com.yyzy.constellation.utils.MyPasswordEditText
+                android:id="@+id/old_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:background="@null"
+                android:hint="@string/oldPwd"
+                android:inputType="textPassword"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500"
+                android:textSize="@dimen/size_18sp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:background="@color/gray_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_15dp"
+                android:background="@mipmap/pwd" />
+
+            <com.yyzy.constellation.utils.MyPasswordEditText
+                android:id="@+id/new_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:background="@null"
+                android:hint="@string/newPwd"
+                android:inputType="textPassword"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500"
+                android:textSize="@dimen/size_18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:background="@color/gray_200" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_15dp"
+                android:background="@mipmap/pwd" />
+
+            <com.yyzy.constellation.utils.MyPasswordEditText
+                android:id="@+id/new_pwd_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:background="@null"
+                android:hint="@string/newPwdConfig"
+                android:inputType="textPassword"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_500"
+                android:textSize="@dimen/size_18sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:background="@drawable/update_pwd_btn_bg"
+        android:text="@string/updateConfig"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_18sp"
+        android:textStyle="bold"/>
+</LinearLayout>

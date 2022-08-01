@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".weather.fragment.CityWeatherFragment"
-    android:background="@mipmap/bg3"
-    android:padding="@dimen/dimen_10dp">
+    android:background="@mipmap/bg3">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,22 +73,42 @@
                 android:layout_toRightOf="@+id/cityFrag_tv_fuhao"
                 android:text="15~25℃"/>
         </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_height="wrap_content"
+            android:text="未来4天天气情况如下："
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/gray_600"
+            android:textStyle="bold"/>
         <LinearLayout
             android:id="@+id/cityFrag_center_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_margin="@dimen/dimen_10dp"
             android:background="@drawable/cityfragment_layout_bg"
             android:padding="@dimen/dimen_10dp">
+
         </LinearLayout>
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_height="wrap_content"
+            android:text="各项指数信息如下："
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/gray_600"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:textStyle="bold"/>
         <LinearLayout
             android:id="@+id/cityFrag_index_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_margin="@dimen/dimen_10dp"
             android:background="@drawable/cityfragment_layout_bg"
             android:padding="@dimen/dimen_10dp">
 
