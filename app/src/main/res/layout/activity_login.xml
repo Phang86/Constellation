@@ -54,7 +54,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
 
             <View
@@ -89,7 +89,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
         </LinearLayout>
 

@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_20dp"
-        android:layout_margin="@dimen/dimen_15dp"
+        android:layout_margin="@dimen/dimen_20dp"
         android:background="@drawable/shape_register_activity"
         android:gravity="center"
         android:orientation="vertical">
@@ -40,19 +40,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
-                android:hint="@string/eduser"
+                android:hint="用户名（默认）"
                 android:inputType="text"
                 android:paddingRight="@dimen/dimen_15dp"
                 android:textColor="@color/grey"
+                android:textStyle="italic"
                 android:textColorHint="@color/gray_500"
-                android:textSize="@dimen/size_17sp" />
+                android:textSize="@dimen/size_16sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
             android:background="@color/gray_200" />
 
         <LinearLayout
@@ -79,7 +80,7 @@
                 android:paddingRight="@dimen/dimen_15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/lightred"
-                android:textSize="@dimen/size_17sp" />
+                android:textSize="@dimen/size_16sp" />
 
 
         </LinearLayout>
@@ -87,8 +88,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
             android:background="@color/gray_200" />
 
         <LinearLayout
@@ -115,14 +116,14 @@
                 android:paddingRight="@dimen/dimen_15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/lightred"
-                android:textSize="@dimen/size_17sp" />
+                android:textSize="@dimen/size_16sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
             android:background="@color/gray_200" />
 
         <LinearLayout
@@ -149,7 +150,7 @@
                 android:paddingRight="@dimen/dimen_15dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/lightred"
-                android:textSize="@dimen/size_17sp" />
+                android:textSize="@dimen/size_16sp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -157,8 +158,8 @@
         android:id="@+id/update_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_45dp"
-        android:layout_marginLeft="@dimen/dimen_15dp"
-        android:layout_marginRight="@dimen/dimen_15dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
         android:background="@drawable/update_pwd_btn_bg"
         android:text="@string/updateConfig"
         android:textColor="@color/white"

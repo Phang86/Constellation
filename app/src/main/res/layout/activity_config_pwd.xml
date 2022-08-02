@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_329dp"
+        android:layout_height="@dimen/dimen_330dp"
         android:background="@mipmap/login"
         android:scaleType="fitXY"/>
 
@@ -50,12 +50,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
-                    android:hint="输入用户名（默认）"
+                    android:hint="用户名（默认）"
                     android:inputType="text"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/grey"
+                    android:textStyle="italic"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
 
             <View
@@ -85,13 +86,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
-                    android:hint="输入电话号码（默认）"
+                    android:hint="手机号（默认）"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/grey"
+                    android:textStyle="italic"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
 
             <View
@@ -126,7 +128,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -159,7 +161,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_17sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
         </LinearLayout>
 

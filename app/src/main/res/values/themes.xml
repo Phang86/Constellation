@@ -112,7 +112,8 @@
         <item name="android:background">@color/gray_200</item>
     </style>
     <!--自定义ProgressDialog样式-->
-    <style name="MyDialogStyle">
+    <style name="MyDialogStyle" parent="Theme.Constellation">
+        <!--  背景透明  -->
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
@@ -120,6 +121,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!-- 实现背景笼罩效果 -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 </resources>
