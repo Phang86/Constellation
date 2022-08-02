@@ -25,7 +25,7 @@
     <string name="edpwd" translatable="false">请输入密码</string>
     <string name="oldPwd" translatable="false">输入原密码（必填）</string>
     <string name="newPwd" translatable="false">输入新密码（必填）</string>
-    <string name="newPwdConfig" translatable="false">再次输入新密码（必填）</string>
+    <string name="newPwdConfig" translatable="false">再次确认新密码（必填）</string>
     <string name="updateConfig" translatable="false">确认修改</string>
     <string name="configNewPwd" translatable="false">确认新密码</string>
     <string name="pwdFindByLogin" translatable="false">密码已找回，前往登录</string>

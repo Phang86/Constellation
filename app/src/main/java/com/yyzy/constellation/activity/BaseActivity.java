@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.textclassifier.TextLinks;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -116,7 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     * "\\d{9}"代表后面是可以是0～9的数字，有9位。
     */
     public static boolean checkPhone(String phone){
-        String regexp = "[1][3456789]\\d{9}";
+        String regexp = "[1][3456789]\\d{1}\\s\\d{4}\\s\\d{4}";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(phone);
         return matcher.matches();

@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,49 @@ public class RegisterActivity extends BaseActivity {
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
         edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
+        edRegisterPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                if (charSequence == null || charSequence.length() == 0) return;
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < charSequence.length(); i++) {
+                    if (i != 3 && i != 8 && charSequence.charAt(i) == ' ') {
+                        continue;
+                    } else {
+                        sb.append(charSequence.charAt(i));
+                        if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
+                            sb.insert(sb.length() - 1, ' ');
+                        }
+                    }
+                }
+                if (!sb.toString().equals(charSequence.toString())) {
+                    int index = start + 1;
+                    if (sb.charAt(start) == ' ') {
+                        if (before == 0) {
+                            index++;
+                        } else {
+                            index--;
+                        }
+                    } else {
+                        if (before == 1) {
+                            index--;
+                        }
+                    }
+                    edRegisterPhone.setText(sb.toString());
+                    edRegisterPhone.setSelection(index);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -58,7 +103,6 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tv.setTextColor(getResources().getColor(R.color.red));
-                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 finish();
             }
         });
@@ -131,7 +175,7 @@ public class RegisterActivity extends BaseActivity {
                             @Override
                             public void run() {
                                 if (resultStr.equals("success")) {
-                                    showToast("恭喜，您已注册成功！赶紧前往登录吧！");
+                                    showToast("恭喜"+edRegisterUser.getText().toString().trim()+"！您已注册成功，赶紧前往登录吧！");
                                     edRegisterUser.setText("");
                                     edRegisterPwd.setText("");
                                     edRegisterPhone.setText("");

@@ -54,7 +54,7 @@
                     android:hint="@string/eduser"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
             <View
@@ -89,7 +89,7 @@
                     android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
             <View
@@ -122,10 +122,10 @@
                     android:background="@null"
                     android:hint="请输入手机号"
                     android:inputType="phone"
-                    android:maxLength="11"
+                    android:maxLength="13"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -139,8 +139,8 @@
             android:background="@drawable/shape_register_activity_btn"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_18sp"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/size_16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnRegister_tv_login"

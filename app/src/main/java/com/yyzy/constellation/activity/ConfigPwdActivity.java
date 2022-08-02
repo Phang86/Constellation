@@ -97,10 +97,10 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             showToast("必填项不能为空哦！");
             return;
         }else if (TextUtils.isEmpty(user)){
-            showToast("必填项不能为空哦！");
+            showToast("密码已找回，且自动清空默认项。");
             return;
         }else if (TextUtils.isEmpty(phone)){
-            showToast("必填项不能为空哦！");
+            showToast("密码已找回，且自动清空默认项。");
             return;
         }else if (!newPwd.equals(configNewPwd)){
             showToast("两次输入的密码不一致！");

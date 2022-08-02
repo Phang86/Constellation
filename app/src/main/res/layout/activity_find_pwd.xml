@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_329dp"
+        android:layout_height="@dimen/dimen_330dp"
         android:background="@mipmap/login"
         android:scaleType="fitXY"/>
 
@@ -54,7 +54,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
             <View
@@ -84,13 +84,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
-                    android:hint="请输入电话号码"
+                    android:hint="请输入手机号"
                     android:inputType="phone"
-                    android:maxLength="11"
+                    android:maxLength="13"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -105,7 +105,7 @@
             android:background="@drawable/update_pwd_btn_bg"
             android:text="@string/buyFind"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_18sp"
+            android:textSize="@dimen/size_16sp"
             android:textStyle="bold" />
 
         <TextView

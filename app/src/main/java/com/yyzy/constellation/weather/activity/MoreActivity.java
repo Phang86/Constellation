@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,9 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.activity.LoginActivity;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.weather.db.DBManager;
 
 
@@ -142,13 +146,6 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.more_layout_version:
                 showAlertDialog();
-//                AlertDialog dialog = new AlertDialog.Builder(this).create();
-//
-//                dialog.setTitle("应用版本");
-//                dialog.setMessage("当前应用版本为:\t"+versionName);
-//                dialog.setCanceledOnTouchOutside(true);
-//                dialog.setCancelable(true);
-//                dialog.show();
                 break;
             default:
 
@@ -186,17 +183,49 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
 
     private void clearData() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("温馨提示！")
-                .setMessage("您确定清理缓存数据？数据清理后不可找回哦！")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DBManager.deleteAllInfo();
-                        showToast("缓存数据清理完毕！");
-                    }
-                })
-                .setNegativeButton("取消",null);
-        builder.create().show();
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
+        TextView content = (TextView) v.findViewById(R.id.dialog_content);
+        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
+        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+        //设置隐藏dialog默认的背景
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        content.setText("您确定清理缓存数据？数据清理后不可找回哦！");
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLoadingDialog();
+                dialog.cancel();
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void showLoadingDialog() {
+        DiyProgressDialog dialog1 = new DiyProgressDialog(this,"数据清理中...");
+        dialog1.setCancelable(false);//设置不能通过后退键取消
+        dialog1.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog1.cancel();
+                DBManager.deleteAllInfo();
+                showToast("缓存数据清理完毕！");
+
+            }
+        },1500);
     }
 
     @Override

@@ -50,12 +50,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
-                    android:hint="@string/eduser"
+                    android:hint="输入用户名（默认）"
                     android:inputType="text"
                     android:paddingRight="@dimen/dimen_15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
             <View
@@ -85,13 +85,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
-                    android:hint="请输入电话号码"
+                    android:hint="输入电话号码（默认）"
                     android:inputType="phone"
-                    android:maxLength="11"
+                    android:maxLength="13"
                     android:paddingRight="@dimen/dimen_15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey"
                     android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
 
             <View
@@ -125,8 +125,8 @@
                     android:inputType="textPassword"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textColorHint="@color/lightred"
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -158,8 +158,8 @@
                     android:hint="@string/newPwdConfig"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray_500"
-                    android:textSize="@dimen/size_18sp" />
+                    android:textColorHint="@color/lightred"
+                    android:textSize="@dimen/size_17sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -173,7 +173,7 @@
             android:background="@drawable/update_pwd_btn_bg"
             android:text="@string/configNewPwd"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_18sp"
+            android:textSize="@dimen/size_16sp"
             android:textStyle="bold" />
 
         <TextView

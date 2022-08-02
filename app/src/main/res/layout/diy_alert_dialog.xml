@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/maxLayout"
         android:layout_width="260dp"
         android:layout_height="@dimen/dimen_150dp"
         android:layout_centerInParent="true"
@@ -25,10 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dialog_title"
-            android:layout_marginTop="@dimen/dimen_30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
+            android:layout_margin="@dimen/dimen_25dp"
+            android:gravity="center_horizontal"
             android:textColor="@color/black"
             android:text="你确定退出吗？"
             android:textSize="@dimen/size_16sp" />
@@ -36,7 +35,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
             android:background="#E2E2E2"
             android:layout_above="@+id/layout"/>
 
