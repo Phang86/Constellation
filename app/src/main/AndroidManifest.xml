@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--前台服务开启权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!--弹出横幅通知的权限-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".utils.Constellation"
@@ -20,7 +24,7 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".activity.ConfigPwdActivity"></activity>
+        <activity android:name=".activity.ConfigPwdActivity" />
         <activity android:name=".activity.FindPwdActivity" />
         <activity android:name=".activity.UpdatePwdActivity" />
         <activity android:name=".dict.activity.CollectActivity" />

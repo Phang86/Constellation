@@ -172,7 +172,7 @@
             android:layout_marginLeft="@dimen/dimen_18dp"
             android:layout_marginTop="@dimen/dimen_70dp"
             android:layout_marginRight="@dimen/dimen_18dp"
-            android:background="@drawable/update_pwd_btn_bg"
+            android:background="@drawable/selector_update_btn"
             android:text="@string/configNewPwd"
             android:textColor="@color/white"
             android:textSize="@dimen/size_16sp"

@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +36,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ConfigPwdActivity extends BaseActivity implements View.OnClickListener {
+public class ConfigPwdActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     EditText edUser,edPhone,edPwd,edConfigNewPwd;
     Button btnConfigPwd;
@@ -56,6 +58,8 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         tvBack = findViewById(R.id.config_tv_login);
         edPwd = findViewById(R.id.config_ed_pwd);
         edConfigNewPwd = findViewById(R.id.config_ed_pwd_two);
+        edPwd.addTextChangedListener(this);
+        edConfigNewPwd.addTextChangedListener(this);
         tvBack.setOnClickListener(this);
         btnConfigPwd.setOnClickListener(this);
         Intent intent = getIntent();
@@ -65,6 +69,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         edPhone.setText(findUserPhone);
         edUser.setEnabled(false);
         edPhone.setEnabled(false);
+        btnConfigPwd.setEnabled(false);
     }
 
     @Override
@@ -222,5 +227,24 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     protected void onRestart() {
         super.onRestart();
         tvBack.setTextColor(getResources().getColor(R.color.grey));
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        btnConfigPwd.setEnabled(false);
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edConfigNewPwd.getText())){
+            btnConfigPwd.setEnabled(true);
+        }else {
+            btnConfigPwd.setEnabled(false);
+        }
     }
 }

@@ -9,7 +9,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -67,8 +69,12 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
         oldPwdEt  = findViewById(R.id.old_pwd);
         newPwdEt  = findViewById(R.id.new_pwd);
         configNewPwdEt  = findViewById(R.id.new_pwd_config);
+        oldPwdEt.addTextChangedListener(textWatcher);
+        newPwdEt.addTextChangedListener(textWatcher);
+        configNewPwdEt.addTextChangedListener(textWatcher);
         updateBtn.setOnClickListener(this);
         userEt.setEnabled(false);
+        updateBtn.setEnabled(false);
         backImg.setOnClickListener(this);
         pwdTv.setText("修改密码");
     }
@@ -80,11 +86,32 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
         userEt.setText(userName);
     }
 
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            updateBtn.setEnabled(false);
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!TextUtils.isEmpty(oldPwdEt.getText()) && !TextUtils.isEmpty(configNewPwdEt.getText()) && !TextUtils.isEmpty(newPwdEt.getText())){
+                updateBtn.setEnabled(true);
+            }else {
+                updateBtn.setEnabled(false);
+            }
+        }
+    };
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.details_back:
-                    finish();
+                finish();
                 break;
             case R.id.update_btn:
                 oldPwd = oldPwdEt.getText().toString().trim();

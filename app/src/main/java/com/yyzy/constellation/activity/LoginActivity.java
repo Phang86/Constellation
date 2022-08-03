@@ -2,17 +2,28 @@ package com.yyzy.constellation.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.Settings;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,7 +57,7 @@ import okhttp3.Response;
 
 import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private TextView tv, forgetTv;
     private EditText edUser, edPwd;
@@ -55,11 +66,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String userPassword;
     private DiyProgressDialog mDialog;
 
-    private CheckBox mRemenber,mAutoLogin;
+    private CheckBox mRemenber, mAutoLogin;
     private boolean mPasswordFlag = false;//记住密码标志
     private boolean mAutoLoginFlag = false;//自动登录标志
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
+    private NotificationManager manager;
+    private Notification note;
 
     @Override
     protected int initLayout() {
@@ -75,6 +89,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         btnLogin = findViewById(R.id.btnLogin_login);
         mRemenber = findViewById(R.id.cbLogin_rememberPwd);
         mAutoLogin = findViewById(R.id.cbLogin_autoLogin);
+        edUser.addTextChangedListener(this);
+        edPwd.addTextChangedListener(this);
+        btnLogin.setEnabled(false);
         forgetTv.setOnClickListener(this);
         tv.setOnClickListener(this);
     }
@@ -97,11 +114,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             edPwd.setText(userPassword);
         }
         //选择了自动登录后直接登录
-        if (mAutoLoginFlag){
+        if (mAutoLoginFlag) {
             mAutoLogin.setChecked(true);
             String username = edUser.getText().toString();
             String password = edPwd.getText().toString();
-            login(username,password);
+            login(username, password);
         }
 
         mRemenber.setOnClickListener(mListener);
@@ -109,7 +126,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //如果是选中记住密码，取消记住密码、自动登录
-                if (!isChecked){
+                if (!isChecked) {
                     mAutoLogin.setChecked(false);
                     //清空密码输入框
                     edPwd.setText("");
@@ -172,14 +189,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("密码不能为空哦！");
             return;
-        }else if (!checkUsername(user)){
+        } else if (!checkUsername(user)) {
             showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
-        }else if (!checkPassword(pwd)){
+        } else if (!checkPassword(pwd)) {
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }
-        mDialog = new DiyProgressDialog(LoginActivity.this,"正在登录中...");
+        mDialog = new DiyProgressDialog(LoginActivity.this, "正在登录中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
@@ -204,7 +221,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     editor.commit();
                     mDialog.cancel();
                     Looper.loop();
-                }catch (Exception e1){
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
@@ -219,27 +236,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (resultStr.equals("error")){
+                                    if (resultStr.equals("error")) {
                                         showToast("登录失败！账号或密码不正确！");
                                         editor.clear();
                                         editor.commit();
                                         mDialog.cancel();
                                         return;
-                                    }else{
+                                    } else {
                                         List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
                                         }.getType());
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
-                                            //拿到Username
-                                            String user = data.get(0).getUserName();
+                                            //弹出通知
+                                            showNotification(getApplicationContext(),edUser.getText().toString().trim());
+                                            //跳转页面
                                             intentJump(MainActivity.class);
                                             finish();
-                                            showToast("您已登录成功！");
-                                            SharedPreferences sp = getSharedPreferences("sp_ttit",MODE_PRIVATE);
+                                            SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
-                                            editor.putString("name",edUser.getText().toString().trim());
-                                            editor.putString("createTime",data.get(0).getCreateTime());
-                                            editor.putString("phone",data.get(0).getMobile());
+                                            editor.putString("name", edUser.getText().toString().trim());
+                                            editor.putString("createTime", data.get(0).getCreateTime());
+                                            editor.putString("phone", data.get(0).getMobile());
                                             // 存入数据
                                             editor.commit();
                                             mDialog.cancel();
@@ -250,8 +267,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                         }
                                     }
                                 }
-                            },2000);
-                        }catch (Exception e){
+                            }, 2000);
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
@@ -261,6 +278,80 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
+    private static void showNotification(Context context,String userName) {
+        boolean isVibrate = true;//是否震动
+        //1.获取消息服务
+        NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        //默认通道是default
+        String channelId = "default";
+        //2.如果是android8.0以上的系统，则新建一个消息通道
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channelId = "chat";
+            /*
+             通道优先级别：
+             * IMPORTANCE_NONE 关闭通知
+             * IMPORTANCE_MIN 开启通知，不会弹出，但没有提示音，状态栏中无显示
+             * IMPORTANCE_LOW 开启通知，不会弹出，不发出提示音，状态栏中显示
+             * IMPORTANCE_DEFAULT 开启通知，不会弹出，发出提示音，状态栏中显示
+             * IMPORTANCE_HIGH 开启通知，会弹出，发出提示音，状态栏中显示
+             */
+            NotificationChannel channel = new NotificationChannel(channelId, "消息提醒", NotificationManager.IMPORTANCE_HIGH);
+            //设置该通道的描述（可以不写）
+            //channel.setDescription("重要消息，请不要关闭这个通知。");
+            //是否绕过勿打扰模式
+            channel.setBypassDnd(true);
+            //是否允许呼吸灯闪烁
+            channel.enableLights(true);
+            //闪关灯的灯光颜色
+            channel.setLightColor(Color.RED);
+            //桌面launcher的消息角标
+            channel.canShowBadge();
+            //设置是否应在锁定屏幕上显示此频道的通知
+            //channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            if (isVibrate) {
+                //是否允许震动
+                channel.enableVibration(true);
+                //先震动1秒，然后停止0.5秒，再震动2秒则可设置数组为：new long[]{1000, 500, 2000}
+                channel.setVibrationPattern(new long[]{1000, 500, 2000});
+            } else {
+                channel.enableVibration(false);
+                channel.setVibrationPattern(new long[]{0});
+            }
+            //创建消息通道
+            manager.createNotificationChannel(channel);
+        }
+        //3.实例化通知
+        NotificationCompat.Builder nc = new NotificationCompat.Builder(context, channelId);
+        //通知默认的声音 震动 呼吸灯
+        nc.setDefaults(NotificationCompat.DEFAULT_ALL);
+        //通知标题
+        nc.setContentTitle("服务通知");
+        //通知内容
+        nc.setContentText("尊敬的"+userName+"先生，您已成功登录星梦缘！");
+        //设置通知的小图标
+        nc.setSmallIcon(R.mipmap.account);
+        //设置通知的大图标
+        nc.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_icon));
+        //设定通知显示的时间
+        nc.setWhen(System.currentTimeMillis());
+        //设置通知的优先级
+        nc.setPriority(NotificationCompat.PRIORITY_MAX);
+        //设置点击通知之后通知是否消失
+        nc.setAutoCancel(true);
+        //点击通知打开软件
+        Context application = context.getApplicationContext();
+        Intent resultIntent = new Intent(application, MainActivity.class);
+        resultIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(application, 0, resultIntent, 0);
+        nc.setContentIntent(pendingIntent);
+        //4.创建通知，得到build
+        Notification notification = nc.build();
+        //5.发送通知
+        manager.notify(1, notification);
+    }
+
+
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
@@ -268,13 +359,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.btnLogin_tv_register:
                 tv.setTextColor(getResources().getColor(R.color.red));
                 //跳转注册页面
-                intent.setClass(this,RegisterActivity.class);
+                intent.setClass(this, RegisterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
             case R.id.btnLogin_tv_forget:
                 forgetTv.setTextColor(getResources().getColor(R.color.red));
                 //跳转找回密码页面
-                intent.setClass(this,FindPwdActivity.class);
+                intent.setClass(this, FindPwdActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
         }
@@ -291,9 +382,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (editor != null){
+            if (editor != null) {
                 editor.clear();
-                editor.commit();
                 finish();
                 return true;
             }
@@ -306,6 +396,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onSuccess(String result) {
         super.onSuccess(result);
         User user = new Gson().fromJson(result, User.class);
-        Log.e("TAG", "onSuccess: "+user.toString());
+        Log.e("TAG", "onSuccess: " + user.toString());
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        btnLogin.setEnabled(false);
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (!TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edPwd.getText())){
+            btnLogin.setEnabled(true);
+        }else{
+            btnLogin.setEnabled(false);
+        }
     }
 }

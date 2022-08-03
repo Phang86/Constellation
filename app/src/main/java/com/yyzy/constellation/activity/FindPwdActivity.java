@@ -56,10 +56,12 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         tvBack = findViewById(R.id.find_tv_login);
         tvBack.setOnClickListener(this);
         findBtn.setOnClickListener(this);
+        findBtn.setEnabled(false);
+        userEt.addTextChangedListener(we);
         phoneEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                findBtn.setEnabled(false);
             }
 
             @Override
@@ -96,7 +98,11 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (!TextUtils.isEmpty(phoneEt.getText()) && !TextUtils.isEmpty(userEt.getText())){
+                    findBtn.setEnabled(true);
+                }else{
+                    findBtn.setEnabled(false);
+                }
             }
         });
     }
@@ -105,6 +111,28 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
     protected void initData() {
 
     }
+
+    private TextWatcher we = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            findBtn.setEnabled(false);
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())){
+                findBtn.setEnabled(true);
+            }else{
+                findBtn.setEnabled(false);
+            }
+        }
+
+    };
 
     @Override
     public void onClick(View v) {

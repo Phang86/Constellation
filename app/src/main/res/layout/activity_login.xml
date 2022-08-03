@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_329dp"
+        android:layout_height="@dimen/dimen_330dp"
         android:background="@mipmap/login"
         android:scaleType="fitXY"/>
 
@@ -132,7 +132,7 @@
             android:layout_marginLeft="@dimen/dimen_18dp"
             android:layout_marginTop="@dimen/dimen_70dp"
             android:layout_marginRight="@dimen/dimen_18dp"
-            android:background="@drawable/shape_login_activity_btn2"
+            android:background="@drawable/selector_login_btn_bg"
             android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="@dimen/size_16sp"

@@ -34,7 +34,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements TextWatcher{
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private Button mbtnRegister;
     private TextView tv;
@@ -52,10 +52,13 @@ public class RegisterActivity extends BaseActivity {
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
         edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
+        mbtnRegister.setEnabled(false);
+        edRegisterUser.addTextChangedListener(this);
+        edRegisterPwd.addTextChangedListener(this);
         edRegisterPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                mbtnRegister.setEnabled(false);
             }
 
             @Override
@@ -92,7 +95,11 @@ public class RegisterActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())){
+                    mbtnRegister.setEnabled(true);
+                }else{
+                    mbtnRegister.setEnabled(false);
+                }
             }
         });
     }
@@ -197,5 +204,24 @@ public class RegisterActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
         tv.setTextColor(getResources().getColor(R.color.grey));
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mbtnRegister.setEnabled(false);
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())){
+            mbtnRegister.setEnabled(true);
+        }else{
+            mbtnRegister.setEnabled(false);
+        }
     }
 }

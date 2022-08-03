@@ -2,6 +2,7 @@ package com.yyzy.constellation.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,6 +48,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import skin.support.SkinCompatManager;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
     private int flag = Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK;
@@ -58,6 +60,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private TextView tvName,tvJie,tvTui,tvHuan,tvWeather,tvNameLookup,tvInfo;
     private SharedPreferences spf;
     private int selectPos = 0;
+    private NotificationManager manager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -312,9 +315,18 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getContext(), LoginActivity.class);
-                        intent.setFlags(flag);
+//                        Intent intent = new Intent(getContext(), LoginActivity.class);
+//                        intent.setFlags(flag);
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_MAIN);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        getActivity().finish();
                         startActivity(intent);
+                        //取消登录通知
+                        manager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
+                        manager.cancel(1);
+                        //取消加载
                         dialog1.cancel();
                         Toast.makeText(getContext(), "您已成功退出！", Toast.LENGTH_SHORT).show();
                     }
