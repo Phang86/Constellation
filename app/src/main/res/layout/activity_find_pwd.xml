@@ -21,9 +21,10 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_204dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_278dp"
+            android:layout_marginTop="@dimen/dimen_230dp"
+            android:padding="@dimen/dimen_20dp"
             android:layout_marginRight="@dimen/dimen_18dp"
             android:background="@drawable/shape_register_activity"
             android:gravity="center"
@@ -50,10 +51,11 @@
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:hint="@string/eduser"
+                    android:lines="1"
                     android:inputType="text"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray_500"
+                    android:textColorHint="@color/grey"
                     android:textSize="@dimen/size_16sp" />
             </LinearLayout>
 
@@ -85,28 +87,15 @@
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:hint="请输入手机号"
+                    android:lines="1"
                     android:inputType="phone"
                     android:maxLength="13"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/gray_500"
+                    android:textColorHint="@color/grey"
                     android:textSize="@dimen/size_16sp" />
             </LinearLayout>
-
         </LinearLayout>
-
-        <Button
-            android:id="@+id/find_btn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_45dp"
-            android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_70dp"
-            android:layout_marginRight="@dimen/dimen_18dp"
-            android:background="@drawable/selector_update_btn"
-            android:text="@string/buyFind"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/find_tv_login"
@@ -115,7 +104,48 @@
             android:textColor="@color/grey"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_gravity="right"
+            android:textSize="@dimen/size_15sp"
             android:layout_marginRight="@dimen/dimen_20dp"
             android:text="@string/pwdFindByLogin"/>
+
+        <LinearLayout
+            android:id="@+id/find_btn"
+            android:layout_width="@dimen/dimen_70dp"
+            android:layout_height="@dimen/dimen_70dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dimen_18dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_18dp"
+            android:background="@drawable/selector_find_pwd_btn"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_iv_right"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+<!--        <Button-->
+<!--            -->
+<!--            android:layout_width="@dimen/dimen_60dp"-->
+<!--            android:layout_height="@dimen/dimen_60dp"-->
+<!--            -->
+<!--            -->
+<!--            android:text=""-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="@dimen/size_16sp"-->
+<!--            android:textStyle="bold" >-->
+
+<!--        </Button>-->
+
+
+
+
+
+
+
     </LinearLayout>
 </RelativeLayout>

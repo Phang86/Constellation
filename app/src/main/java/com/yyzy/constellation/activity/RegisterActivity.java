@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,7 +35,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class RegisterActivity extends BaseActivity implements TextWatcher{
+public class RegisterActivity extends BaseActivity implements TextWatcher {
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private Button mbtnRegister;
     private TextView tv;
@@ -55,6 +56,10 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
         mbtnRegister.setEnabled(false);
         edRegisterUser.addTextChangedListener(this);
         edRegisterPwd.addTextChangedListener(this);
+        //设置下划线
+        tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        //下划线抗锯齿
+        tv.getPaint().setAntiAlias(true);
         edRegisterPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -95,9 +100,9 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())){
+                if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
                     mbtnRegister.setEnabled(true);
-                }else{
+                } else {
                     mbtnRegister.setEnabled(false);
                 }
             }
@@ -132,30 +137,31 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("注册密码不能为空哦！");
             return;
-        }else if (TextUtils.isEmpty(phone)) {
+        } else if (TextUtils.isEmpty(phone)) {
             showToast("手机号不能为空哦！");
             return;
-        }else if (!checkUsername(user)) {
+        } else if (!checkUsername(user)) {
             showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
         } else if (!checkPassword(pwd)) {
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
-        }else if (!checkPhone(phone)){
+        } else if (!checkPhone(phone)) {
             showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
         }
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
-        mDialog = new DiyProgressDialog(RegisterActivity.this,"正在加载中...");
+        mDialog = new DiyProgressDialog(RegisterActivity.this, "正在加载中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+        mbtnRegister.setEnabled(false);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
         formbody.add("pwd", pwd);
-        formbody.add("mobile",phone);
+        formbody.add("mobile", phone);
         RequestBody requestBody = formbody.build();
         Request request = new Request.Builder()
                 .url(URLContent.BASE_URL + "/user/register")
@@ -169,6 +175,17 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
                 Looper.prepare();
                 showToast("注册失败！服务器连接超时！");
                 mDialog.cancel();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
+                            mbtnRegister.setEnabled(true);
+                        } else {
+                            mbtnRegister.setEnabled(false);
+                        }
+                    }
+                });
+
                 Looper.loop();
             }
 
@@ -182,14 +199,17 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
                             @Override
                             public void run() {
                                 if (resultStr.equals("success")) {
-                                    showToast("恭喜"+edRegisterUser.getText().toString().trim()+"！您已注册成功，赶紧前往登录吧！");
+                                    showToast("恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
                                     edRegisterUser.setText("");
                                     edRegisterPwd.setText("");
                                     edRegisterPhone.setText("");
+                                    //mbtnRegister.setEnabled(false);
                                 } else if (resultStr.equals("error")) {
                                     showToast("此用户名已存在！请更换用户名！");
+                                    mbtnRegister.setEnabled(true);
                                 } else {
                                     showToast("注册失败！服务器连接超时！");
+                                    mbtnRegister.setEnabled(true);
                                 }
                                 mDialog.cancel();
                             }
@@ -218,9 +238,9 @@ public class RegisterActivity extends BaseActivity implements TextWatcher{
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())){
+        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
             mbtnRegister.setEnabled(true);
-        }else{
+        } else {
             mbtnRegister.setEnabled(false);
         }
     }

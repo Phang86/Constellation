@@ -2,6 +2,7 @@ package com.yyzy.constellation.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -38,6 +39,10 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout versionLayout,updatePwdLayout,cancelUserLayout;
     private ImageView backImg;
     private String name;
+    private NotificationManager manager;
+    private SharedPreferences sharedPreferences,sp;
+    private SharedPreferences.Editor editor,ed;
+
     @Override
     protected int initLayout() {
         return R.layout.activity_app_info;
@@ -127,14 +132,19 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             public void onClick(View v) {
                 dialog.dismiss();
                 //获取存储在sp里面的用户名和密码以及两个复选框状态
-                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+
+                //从后台获取到的用户信息
+                sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+                ed = sp.edit();
+
                 //清空所有
-                editor.clear();
+                //editor.clear();
                 //editor.remove("username");
                 //editor.remove("password");
                 //提交
-                editor.commit();
+                //editor.commit();
                 DiyProgressDialog loadDialog = new DiyProgressDialog(AppInfoActivity.this,"账号注销中...");
                 loadDialog.setCancelable(false);//设置不能通过后退键取消
                 loadDialog.setCanceledOnTouchOutside(false);
@@ -173,6 +183,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 showToast("账号注销失败！服务器连接超时！");
                 loadDialog.cancel();
                 Looper.loop();
+                return;
             }
 
             @Override
@@ -187,9 +198,17 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             showToast("账号注销成功！");
-                        } else if (result.equals("error")) {
+                            editor.clear();
+                            editor.commit();
+                            ed.clear();
+                            ed.commit();
+                            manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                            manager.cancel(1);
+                        }
+                        if (result.equals("error")) {
                             loadDialog.cancel();
                             showToast("账号注销失败！");
+                            return;
                         }
                     }
                 });

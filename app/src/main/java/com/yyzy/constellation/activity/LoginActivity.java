@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -69,8 +70,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private CheckBox mRemenber, mAutoLogin;
     private boolean mPasswordFlag = false;//记住密码标志
     private boolean mAutoLoginFlag = false;//自动登录标志
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    private SharedPreferences sharedPreferences,spf;
+    private SharedPreferences.Editor editor,ed;
 
     private NotificationManager manager;
     private Notification note;
@@ -94,6 +95,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnLogin.setEnabled(false);
         forgetTv.setOnClickListener(this);
         tv.setOnClickListener(this);
+
+        tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        tv.getPaint().setAntiAlias(true);//抗锯齿
+
+        forgetTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        forgetTv.getPaint().setAntiAlias(true);//抗锯齿
     }
 
     @Override
@@ -182,24 +189,42 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     };
 
+    private void clearEditor(){
+        if (editor != null){
+            editor.clear();
+            editor.commit();
+        }
+        spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+        ed = spf.edit();
+        if ( ed != null){
+            ed.clear();
+            ed.commit();
+        }
+    }
+
     private void login(String user, String pwd) {
         if (TextUtils.isEmpty(user)) {
             showToast("账号不能为空哦！");
+            clearEditor();
             return;
         } else if (TextUtils.isEmpty(pwd)) {
             showToast("密码不能为空哦！");
+            clearEditor();
             return;
         } else if (!checkUsername(user)) {
             showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            clearEditor();
             return;
         } else if (!checkPassword(pwd)) {
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            clearEditor();
             return;
         }
         mDialog = new DiyProgressDialog(LoginActivity.this, "正在登录中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+        btnLogin.setEnabled(false);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
@@ -216,10 +241,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 try {
                     Looper.prepare();
                     Log.e("TAG", "onFailure: " + e.getMessage().toString());
+                    clearEditor();
                     showToast("登录失败！服务器连接超时！");
-                    editor.clear();
-                    editor.commit();
-                    mDialog.cancel();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDialog.cancel();
+                            if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edUser.getText())) {
+                                btnLogin.setEnabled(true);
+                            } else {
+                                btnLogin.setEnabled(false);
+                            }
+                        }
+                    });
                     Looper.loop();
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -236,19 +270,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (resultStr.equals("error")) {
-                                        showToast("登录失败！账号或密码不正确！");
-                                        editor.clear();
-                                        editor.commit();
+                                    if (resultStr.equals("su_error")) {
+                                        showToast("此用户不存在！");
+                                        clearEditor();
                                         mDialog.cancel();
+                                        btnLogin.setEnabled(true);
                                         return;
-                                    } else {
+                                    }else if (resultStr.equals("success")){
+                                        showToast("你输入的密码有误，请重新输入！");
+                                        clearEditor();
+                                        mDialog.cancel();
+                                        btnLogin.setEnabled(true);
+                                        return;
+                                    }else {
                                         List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
                                         }.getType());
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
                                             //弹出通知
-                                            showNotification(getApplicationContext(),edUser.getText().toString().trim());
+                                            showNotification(getApplicationContext(), edUser.getText().toString().trim());
                                             //跳转页面
                                             intentJump(MainActivity.class);
                                             finish();
@@ -260,9 +300,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                             // 存入数据
                                             editor.commit();
                                             mDialog.cancel();
+                                            btnLogin.setEnabled(true);
                                         } else {
                                             showToast("登录失败！服务器连接超时！");
+
                                             mDialog.cancel();
+                                            clearEditor();
+                                            btnLogin.setEnabled(true);
                                             return;
                                         }
                                     }
@@ -278,7 +322,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         });
     }
 
-    private static void showNotification(Context context,String userName) {
+    private static void showNotification(Context context, String userName) {
         boolean isVibrate = true;//是否震动
         //1.获取消息服务
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
@@ -327,7 +371,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         //通知标题
         nc.setContentTitle("服务通知");
         //通知内容
-        nc.setContentText("尊敬的"+userName+"先生，您已成功登录星梦缘！");
+        nc.setContentText("尊敬的" + userName + "先生，您已成功登录星梦缘！");
         //设置通知的小图标
         nc.setSmallIcon(R.mipmap.account);
         //设置通知的大图标
@@ -411,10 +455,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edPwd.getText())){
+        if (!TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edPwd.getText())) {
             btnLogin.setEnabled(true);
-        }else{
+        } else {
             btnLogin.setEnabled(false);
         }
     }
+
+
+
 }

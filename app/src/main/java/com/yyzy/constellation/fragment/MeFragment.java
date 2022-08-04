@@ -303,12 +303,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 //获取存储在sp里面的用户名和密码以及两个复选框状态
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences("busApp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                SharedPreferences sp = getContext().getSharedPreferences("sp_ttit", MODE_PRIVATE);
+                SharedPreferences.Editor ed = sp.edit();
                 //清空所有
-                editor.clear();
                 //editor.remove("username");
                 //editor.remove("password");
                 //提交
-                editor.commit();
                 DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
                 dialog1.setCancelable(false);//设置不能通过后退键取消
                 dialog1.show();
@@ -321,6 +322,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         intent.setAction(Intent.ACTION_MAIN);
                         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addCategory(Intent.CATEGORY_HOME);
+                        editor.clear();
+                        ed.clear();
+                        editor.commit();
+                        ed.commit();
                         getActivity().finish();
                         startActivity(intent);
                         //取消登录通知
@@ -338,7 +343,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View arg0) {
                 dialog.dismiss();
-
             }
         });
     }

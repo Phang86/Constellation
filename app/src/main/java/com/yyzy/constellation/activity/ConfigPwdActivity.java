@@ -3,6 +3,7 @@ package com.yyzy.constellation.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -70,6 +71,9 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         edUser.setEnabled(false);
         edPhone.setEnabled(false);
         btnConfigPwd.setEnabled(false);
+
+        tvBack.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        tvBack.getPaint().setAntiAlias(true);//抗锯齿
     }
 
     @Override
@@ -115,6 +119,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
+        btnConfigPwd.setEnabled(false);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", edUser.getText().toString().trim());
@@ -130,7 +135,18 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Looper.prepare();
                 showToast("找回失败！服务器连接超时！");
-                mDialog.cancel();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mDialog.cancel();
+                        if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edConfigNewPwd.getText())){
+                            btnConfigPwd.setEnabled(true);
+                        }else {
+                            btnConfigPwd.setEnabled(false);
+                        }
+                    }
+                });
+
                 Looper.loop();
             }
 
@@ -144,20 +160,28 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (result.equals("error")){
-                                        showToast("密码找回失败！用户名或手机号不正确！");
+                                    if (result.equals("success")) {
+                                        showToast("密码找回失败！手机号有误！");
                                         mDialog.cancel();
+                                        btnConfigPwd.setEnabled(true);
                                         return;
-                                    }else{
+                                    } else if (result.equals("su_error")) {
+                                        showToast("此账号不存在！");
+                                        mDialog.cancel();
+                                        btnConfigPwd.setEnabled(true);
+                                        return;
+                                    } else{
                                         List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
                                         }.getType());
                                         List<User> data = new ArrayList<>();
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
                                             requestPassPwd(mDialog,configNewPwd);
+                                            btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                         } else {
                                             showToast("密码找回失败！服务器连接超时！");
+                                            btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                             return;
                                         }

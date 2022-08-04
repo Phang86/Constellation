@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     private String configNewPwd;
     private String userName;
     private DiyProgressDialog mDialog;
+    private NotificationManager manager;
 
     @Override
     protected int initLayout() {
@@ -156,6 +158,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 mDialog.setCancelable(false);//设置不能通过后退键取消
                 mDialog.setCanceledOnTouchOutside(false);
                 mDialog.show();
+                updateBtn.setEnabled(false);
                 OkHttpClient okHttpClient = new OkHttpClient();
                 FormBody.Builder formbody = new FormBody.Builder();
                 formbody.add("user", userName);
@@ -171,7 +174,17 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
                         Looper.prepare();
                         showToast("密码修改失败！服务器连接超时！");
-                        mDialog.cancel();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!TextUtils.isEmpty(oldPwdEt.getText()) && !TextUtils.isEmpty(configNewPwdEt.getText()) && !TextUtils.isEmpty(newPwdEt.getText())){
+                                    updateBtn.setEnabled(true);
+                                }else {
+                                    updateBtn.setEnabled(false);
+                                }
+                                mDialog.cancel();
+                            }
+                        });
                         Looper.loop();
                     }
 
@@ -186,10 +199,11 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                         @Override
                                         public void run() {
                                             try {
-                                                if (result.equals("error")){
+                                                if (result.equals("success")){
                                                     showToast("密码修改失败！原始密码不正确！");
                                                     oldPwdEt.setText("");
                                                     mDialog.cancel();
+                                                    updateBtn.setEnabled(false);
                                                     return;
                                                 }else{
                                                     List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
@@ -198,8 +212,9 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                                         mDialog.cancel();
                                                         updateRquestNet(mDialog);
                                                     }else {
-                                                        showToast("登录失败！服务器连接超时！");
+                                                        showToast("修改失败！服务器连接超时！");
                                                         mDialog.cancel();
+                                                        updateBtn.setEnabled(true);
                                                         return;
                                                     }
                                                 }
@@ -250,6 +265,8 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                 oldPwdEt.setText("");
                                 newPwdEt.setText("");
                                 configNewPwdEt.setText("");
+                                manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                manager.cancel(1);
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -289,6 +306,10 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                SharedPreferences spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+                SharedPreferences.Editor edit = spf.edit();
+                edit.clear();
+                edit.commit();
                 editor.clear();
                 editor.commit();
                 Intent intent = new Intent(UpdatePwdActivity.this, LoginActivity.class);

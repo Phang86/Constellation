@@ -18,11 +18,12 @@ import com.yyzy.constellation.R;
 public class HomeActivity extends BaseActivity {
     private TextView tv;
     private int time = 5;
-    private SharedPreferences firstSpf,userNameSpf;
+    private SharedPreferences firstSpf,userNameSpf, spf;
     private String username;
     private String password;
     private boolean auto;
     private boolean remenber,isFirst;
+
 
     @Override
     protected int initLayout() {
@@ -35,6 +36,7 @@ public class HomeActivity extends BaseActivity {
         handler.sendEmptyMessageDelayed(1,1000);
         firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
         userNameSpf = getSharedPreferences("busApp", MODE_PRIVATE);
+        spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
         username = userNameSpf.getString("username", "");
         password = userNameSpf.getString("password", "");
         //点击定时装置进行相应的逻辑判断    判断密码和账号是否注销
@@ -52,7 +54,10 @@ public class HomeActivity extends BaseActivity {
                     edit.commit();
                     handler.removeCallbacksAndMessages(null);
                 }else {
-                    if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
+                    String name = spf.getString("name", "");
+                    String phone = spf.getString("phone", "");
+                    String createTime = spf.getString("createTime", "");
+                    if (!name.isEmpty() || !phone.isEmpty() || !createTime.isEmpty()){
                         intent.setClass(HomeActivity.this, MainActivity.class);
                         handler.removeCallbacksAndMessages(null);
                     } else {
@@ -89,11 +94,22 @@ public class HomeActivity extends BaseActivity {
                             edit.putBoolean("isFirst",false);
                             edit.commit();
                         }else {
-                            if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
-                                intent.setClass(HomeActivity.this, MainActivity.class);
-                            } else {
-                                //不是第一次进入  直接跳过引导页面进入
-                                intent.setClass(HomeActivity.this, LoginActivity.class);
+                            try {
+                                String name = spf.getString("name", "");
+                                String phone = spf.getString("phone", "");
+                                String createTime = spf.getString("createTime", "");
+//                            if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
+//                                intent.setClass(HomeActivity.this, MainActivity.class);
+//                            }
+                                if (!name.isEmpty() || !phone.isEmpty() || !createTime.isEmpty()){
+                                    intent.setClass(HomeActivity.this, MainActivity.class);
+                                }
+                                else {
+                                    //不是第一次进入  直接跳过引导页面进入
+                                    intent.setClass(HomeActivity.this, LoginActivity.class);
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
                             }
                         }
                         startActivity(intent);
