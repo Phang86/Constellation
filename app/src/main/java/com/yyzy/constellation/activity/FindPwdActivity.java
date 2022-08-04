@@ -1,22 +1,18 @@
 package com.yyzy.constellation.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Paint;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +37,7 @@ import okhttp3.Response;
 
 public class FindPwdActivity extends BaseActivity implements View.OnClickListener {
 
+    ImageView ivBack;
     TextView tvBack;
     EditText userEt, phoneEt;
     LinearLayout findBtn;
@@ -57,8 +54,10 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         phoneEt = findViewById(R.id.find_phone);
         findBtn = findViewById(R.id.find_btn);
         tvBack = findViewById(R.id.find_tv_login);
+        ivBack = findViewById(R.id.find_iv_back);
         tvBack.setOnClickListener(this);
         findBtn.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
         findBtn.setEnabled(false);
         tvBack.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tvBack.getPaint().setAntiAlias(true);//抗锯齿
@@ -151,6 +150,9 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 break;
+            case R.id.find_iv_back:
+                finish();
+                break;
         }
     }
 
@@ -188,7 +190,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 try {
                     Looper.prepare();
-                    showToast("找回失败！服务器连接超时！");
+                    showDiyDialog(FindPwdActivity.this,"找回失败！服务器连接超时！");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -217,12 +219,12 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                 @Override
                                 public void run() {
                                     if (result.equals("success")) {
-                                        showToast("密码找回失败！你输入手机号有误！");
+                                        showDiyDialog(FindPwdActivity.this,"密码找回失败！你输入手机号有误！");
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);
                                         return;
                                     } else if (result.equals("su_error")) {
-                                        showToast("此账号不存在！");
+                                        showDiyDialog(FindPwdActivity.this,"此账号不存在！");
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);
                                         return;
@@ -241,7 +243,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                             mDialog.cancel();
                                             findBtn.setEnabled(true);
                                         } else {
-                                            showToast("密码找回失败！服务器连接超时！");
+                                            showDiyDialog(FindPwdActivity.this,"密码找回失败！服务器连接超时！");
                                             mDialog.cancel();
                                             findBtn.setEnabled(true);
                                             return;

@@ -1,12 +1,20 @@
 package com.yyzy.constellation.activity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.textclassifier.TextLinks;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -136,5 +144,30 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
             e.printStackTrace();
         }
         return versionName;
+    }
+
+    protected static void showDiyDialog(Context context, String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
+        TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
+        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
+        Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        title.setText("温馨提示");
+        content.setText(msg);
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }

@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_204dp"
             android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_278dp"
+            android:layout_marginTop="@dimen/dimen_230dp"
             android:layout_marginRight="@dimen/dimen_18dp"
             android:background="@drawable/shape_register_activity"
             android:gravity="center"

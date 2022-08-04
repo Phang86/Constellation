@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -45,6 +46,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     private String findUserName;
     private String findUserPhone;
     DiyProgressDialog mDialog;
+    ImageView ivBack;
 
     @Override
     protected int initLayout() {
@@ -59,10 +61,12 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         tvBack = findViewById(R.id.config_tv_login);
         edPwd = findViewById(R.id.config_ed_pwd);
         edConfigNewPwd = findViewById(R.id.config_ed_pwd_two);
+        ivBack = findViewById(R.id.config_iv_back);
         edPwd.addTextChangedListener(this);
         edConfigNewPwd.addTextChangedListener(this);
         tvBack.setOnClickListener(this);
         btnConfigPwd.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
         Intent intent = getIntent();
         findUserName = intent.getStringExtra("findUserName");
         findUserPhone = intent.getStringExtra("findUserPhone");
@@ -95,6 +99,9 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 String configNewPwd = edConfigNewPwd.getText().toString().trim();
                 requestNet(user,phone,newPwd,configNewPwd);
                 break;
+            case R.id.config_iv_back:
+                finish();
+                break;
         }
     }
 
@@ -106,7 +113,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             showToast("必填项不能为空哦！");
             return;
         }else if (TextUtils.isEmpty(user)){
-            showToast("密码已找回，且自动清空默认项。");
+            showDiyDialog(ConfigPwdActivity.this,"密码已找回，且自动清空默认项。");
             return;
         }else if (TextUtils.isEmpty(phone)){
             showToast("密码已找回，且自动清空默认项。");
@@ -134,11 +141,11 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Looper.prepare();
-                showToast("找回失败！服务器连接超时！");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mDialog.cancel();
+                        showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
                         if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edConfigNewPwd.getText())){
                             btnConfigPwd.setEnabled(true);
                         }else {
@@ -146,7 +153,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                         }
                     }
                 });
-
                 Looper.loop();
             }
 
@@ -161,12 +167,12 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                 @Override
                                 public void run() {
                                     if (result.equals("success")) {
-                                        showToast("密码找回失败！手机号有误！");
+                                        showDiyDialog(ConfigPwdActivity.this,"密码找回失败！手机号有误！");
                                         mDialog.cancel();
                                         btnConfigPwd.setEnabled(true);
                                         return;
                                     } else if (result.equals("su_error")) {
-                                        showToast("此账号不存在！");
+                                        showDiyDialog(ConfigPwdActivity.this,"此账号不存在！");
                                         mDialog.cancel();
                                         btnConfigPwd.setEnabled(true);
                                         return;
@@ -180,7 +186,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                             btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                         } else {
-                                            showToast("密码找回失败！服务器连接超时！");
+                                            showDiyDialog(ConfigPwdActivity.this,"密码找回失败！服务器连接超时！");
                                             btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                             return;
@@ -214,7 +220,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Looper.prepare();
-                showToast("找回失败！服务器连接超时！");
+                showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
                 mDialog.cancel();
                 Looper.loop();
             }
@@ -226,7 +232,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         if (result.equals("success")) {
-                            showToast("账号找回成功！");
+                            showDiyDialog(ConfigPwdActivity.this,"账号找回成功！");
                             edPwd.setText("");
                             edConfigNewPwd.setText("");
                             edUser.setText("");
@@ -238,7 +244,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                 }
                             },1000);
                         } else if (result.equals("error")) {
-                            showToast("账号找回失败！");
+                            showDiyDialog(ConfigPwdActivity.this,"账号找回失败！");
                             mDialog.cancel();
                         }
                     }

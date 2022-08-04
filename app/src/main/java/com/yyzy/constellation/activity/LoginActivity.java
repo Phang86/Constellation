@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -26,7 +28,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -242,7 +246,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     Looper.prepare();
                     Log.e("TAG", "onFailure: " + e.getMessage().toString());
                     clearEditor();
-                    showToast("登录失败！服务器连接超时！");
+                    //showToast("登录失败！服务器连接超时！");
+                    showDiyDialog(LoginActivity.this,"登录失败！服务器连接超时！");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -271,13 +276,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 @Override
                                 public void run() {
                                     if (resultStr.equals("su_error")) {
-                                        showToast("此用户不存在！");
+                                        //showToast("此用户不存在！");
+                                        showDiyDialog(LoginActivity.this,"此用户不存在！");
                                         clearEditor();
                                         mDialog.cancel();
                                         btnLogin.setEnabled(true);
                                         return;
                                     }else if (resultStr.equals("success")){
-                                        showToast("你输入的密码有误，请重新输入！");
+                                        showDiyDialog(LoginActivity.this,"你输入的密码有误，请重新输入！");
+                                        //showToast();
                                         clearEditor();
                                         mDialog.cancel();
                                         btnLogin.setEnabled(true);
@@ -288,7 +295,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         data = dataEntity;
                                         if (data.size() > 0 && data != null) {
                                             //弹出通知
-                                            showNotification(getApplicationContext(), edUser.getText().toString().trim());
+                                            showNotification(getBaseContext(), edUser.getText().toString().trim());
                                             //跳转页面
                                             intentJump(MainActivity.class);
                                             finish();
@@ -302,8 +309,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                             mDialog.cancel();
                                             btnLogin.setEnabled(true);
                                         } else {
-                                            showToast("登录失败！服务器连接超时！");
-
+                                            showDiyDialog(LoginActivity.this,"登录失败！服务器连接超时！");
+                                            //showToast();
                                             mDialog.cancel();
                                             clearEditor();
                                             btnLogin.setEnabled(true);

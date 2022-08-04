@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,11 +36,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class RegisterActivity extends BaseActivity implements TextWatcher {
+public class RegisterActivity extends BaseActivity implements TextWatcher,View.OnClickListener{
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private Button mbtnRegister;
     private TextView tv;
     private DiyProgressDialog mDialog;
+    private ImageView ivBack;
 
     @Override
     protected int initLayout() {
@@ -53,9 +55,11 @@ public class RegisterActivity extends BaseActivity implements TextWatcher {
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
         edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
+        ivBack = findViewById(R.id.register_iv_back);
         mbtnRegister.setEnabled(false);
         edRegisterUser.addTextChangedListener(this);
         edRegisterPwd.addTextChangedListener(this);
+        ivBack.setOnClickListener(this);
         //设置下划线
         tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         //下划线抗锯齿
@@ -173,7 +177,8 @@ public class RegisterActivity extends BaseActivity implements TextWatcher {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e("TAG", "onFailureError: " + e.getMessage());
                 Looper.prepare();
-                showToast("注册失败！服务器连接超时！");
+                //showToast("注册失败！服务器连接超时！");
+                showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
                 mDialog.cancel();
                 runOnUiThread(new Runnable() {
                     @Override
@@ -199,16 +204,16 @@ public class RegisterActivity extends BaseActivity implements TextWatcher {
                             @Override
                             public void run() {
                                 if (resultStr.equals("success")) {
-                                    showToast("恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
+                                    showDiyDialog(RegisterActivity.this,"恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
                                     edRegisterUser.setText("");
                                     edRegisterPwd.setText("");
                                     edRegisterPhone.setText("");
                                     //mbtnRegister.setEnabled(false);
                                 } else if (resultStr.equals("error")) {
-                                    showToast("此用户名已存在！请更换用户名！");
+                                    showDiyDialog(RegisterActivity.this,"此用户名已存在！请更换用户名！");
                                     mbtnRegister.setEnabled(true);
                                 } else {
-                                    showToast("注册失败！服务器连接超时！");
+                                    showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
                                     mbtnRegister.setEnabled(true);
                                 }
                                 mDialog.cancel();
@@ -243,5 +248,10 @@ public class RegisterActivity extends BaseActivity implements TextWatcher {
         } else {
             mbtnRegister.setEnabled(false);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        finish();
     }
 }

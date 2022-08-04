@@ -304,6 +304,8 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_sure.setBackgroundColor(getResources().getColor(R.color.gray_600));
+                btn_sure.setBackgroundColor(getResources().getColor(R.color.white));
                 SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 SharedPreferences spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
