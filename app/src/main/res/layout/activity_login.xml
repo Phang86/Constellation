@@ -21,10 +21,12 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_204dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_230dp"
+            android:layout_marginTop="@dimen/dimen_220dp"
             android:layout_marginRight="@dimen/dimen_18dp"
+            android:paddingBottom="@dimen/dimen_20dp"
+            android:paddingTop="@dimen/dimen_20dp"
             android:background="@drawable/shape_register_activity"
             android:gravity="center"
             android:orientation="vertical">
@@ -93,6 +95,56 @@
                     android:textColorHint="@color/grey"
                     android:textSize="@dimen/size_16sp" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_23dp"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:background="@color/gray_200" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_ver_code" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.yyzy.constellation.utils.MyEditText
+                        android:id="@+id/login_et_varCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_15dp"
+                        android:layout_marginRight="@dimen/dimen_70dp"
+                        android:hint="请输入验证码"
+                        android:lines="1"
+                        android:background="@null"
+                        android:singleLine="true"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_16sp"
+                        android:layout_centerVertical="true"/>
+
+                    <ImageView
+                        android:id="@+id/login_iv_code"
+                        android:layout_width="@dimen/dimen_60dp"
+                        android:layout_height="@dimen/dimen_35dp"
+                        android:layout_margin="@dimen/dimen_5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"/>
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -138,7 +190,7 @@
             android:background="@drawable/selector_login_btn_bg"
             android:text="@string/login"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
+            android:textSize="@dimen/size_18sp"
             android:textStyle="bold"/>
 
         <RelativeLayout
@@ -154,7 +206,7 @@
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:text="@string/forgetPwd"
                 android:textSize="@dimen/size_15sp"
-                android:textColor="@color/grey" />
+                android:textColor="@drawable/selector_login_activity_tv_bg" />
 
             <TextView
                 android:id="@+id/btnLogin_tv_register"
@@ -165,7 +217,7 @@
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:text="@string/no_register"
                 android:textSize="@dimen/size_15sp"
-                android:textColor="@color/grey" />
+                android:textColor="@drawable/selector_login_activity_tv_bg" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

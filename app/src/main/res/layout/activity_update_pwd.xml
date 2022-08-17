@@ -167,6 +167,6 @@
         android:background="@drawable/selector_update_btn"
         android:text="@string/updateConfig"
         android:textColor="@color/white"
-        android:textSize="@dimen/size_16sp"
+        android:textSize="@dimen/size_18sp"
         android:textStyle="bold"/>
 </LinearLayout>

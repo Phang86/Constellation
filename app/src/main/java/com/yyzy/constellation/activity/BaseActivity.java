@@ -127,6 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     * "\\d{9}"代表后面是可以是0～9的数字，有9位。
     */
     public static boolean checkPhone(String phone){
+        //^[1][3,4,5,6,7,8,9][0-9]{9}$
         String regexp = "[1][3456789]\\d{1}\\s\\d{4}\\s\\d{4}";
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(phone);

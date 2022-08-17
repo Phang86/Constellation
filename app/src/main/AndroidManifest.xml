@@ -3,15 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yyzy.constellation">
 
+    <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 读写文件权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--前台服务开启权限-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <!--弹出横幅通知的权限-->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!--相机权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 前台服务开启权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 弹出横幅通知的权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许访问WiFi网络状态信息（必须） -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许读取手机状态（必须） -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" /> <!-- GUI自动填充验证码功能（非必须） -->
+    <uses-permission android:name="android.permission.READ_SMS" /> <!-- 从短信中读取验证码接口（非必须） -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".utils.Constellation"
@@ -21,9 +31,11 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
+        <activity android:name=".activity.PlayGameActivity" />
         <activity android:name=".activity.ConfigPwdActivity" />
         <activity android:name=".activity.FindPwdActivity" />
         <activity android:name=".activity.UpdatePwdActivity" />

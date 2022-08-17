@@ -4,7 +4,7 @@
     <style name="Theme.Constellation" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlActivated">@color/green_200</item>
+        <item name="colorControlActivated">#C759D662</item>
     </style>
     <!--MainActivity控件样式-->
     <style name="main_rb">

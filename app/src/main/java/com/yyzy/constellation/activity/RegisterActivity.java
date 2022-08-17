@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
@@ -20,13 +21,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mob.MobSDK;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -43,6 +50,11 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     private DiyProgressDialog mDialog;
     private ImageView ivBack;
 
+    private Button validateNum_btn;
+    private EditText validateNum;
+    public EventHandler eh; //事件接收器
+    private TimeCount mTimeCount;//计时器
+
     @Override
     protected int initLayout() {
         return R.layout.activity_register;
@@ -50,16 +62,22 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     protected void initView() {
+        MobSDK.submitPolicyGrantResult(true);
         tv = findViewById(R.id.btnRegister_tv_login);
         edRegisterUser = findViewById(R.id.edRegister_user);
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
         edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
         ivBack = findViewById(R.id.register_iv_back);
+        validateNum_btn = findViewById(R.id.validateNum_btn);
+        validateNum = findViewById(R.id.validateNum);
         mbtnRegister.setEnabled(false);
         edRegisterUser.addTextChangedListener(this);
         edRegisterPwd.addTextChangedListener(this);
+        validateNum.addTextChangedListener(this);
         ivBack.setOnClickListener(this);
+        validateNum_btn.setOnClickListener(this);
+        mTimeCount = new TimeCount(60000, 1000);
         //设置下划线
         tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         //下划线抗锯齿
@@ -104,13 +122,14 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
+                if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText()) && !TextUtils.isEmpty(validateNum.getText())) {
                     mbtnRegister.setEnabled(true);
                 } else {
                     mbtnRegister.setEnabled(false);
                 }
             }
         });
+
     }
 
     @Override
@@ -118,7 +137,6 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv.setTextColor(getResources().getColor(R.color.red));
                 finish();
             }
         });
@@ -128,12 +146,14 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 String user = edRegisterUser.getText().toString().trim();
                 String pwd = edRegisterPwd.getText().toString().trim();
                 String phone = edRegisterPhone.getText().toString().trim();
-                register(user, pwd, phone);
+                String valNum = validateNum.getText().toString().trim();
+                register(user, pwd, phone, valNum);
             }
         });
+
     }
 
-    private void register(String user, String pwd, String phone) {
+    private void register(String user, String pwd, String phone, String varNum) {
         //判断用户输入的密码、账号、手机号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
         if (TextUtils.isEmpty(user)) {
             showToast("注册账号不能为空哦！");
@@ -153,11 +173,79 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         } else if (!checkPhone(phone)) {
             showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
+        }else if (!TextUtils.isEmpty(phone)){
+            if (checkPhone(phone)){
+                if (!TextUtils.isEmpty(varNum)){
+                    SMSSDK.submitVerificationCode("+86",phone,varNum);//提交验证
+                }else{
+                    showToast("请输入验证码!");
+                    return;
+                }
+            }else{
+                showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+                return;
+            }
         }
+        eh = new EventHandler(){
+            @Override
+            public void afterEvent(int event, int result, Object data) {
+                if (result == SMSSDK.RESULT_COMPLETE) { //回调完成
+                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadNetData(user,pwd,phone);
+                                eh.notifyAll();
+                            }
+                        });
+                    }else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(RegisterActivity.this, "语音验证发送！", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        //获取验证码成功
+                        Toast.makeText(RegisterActivity.this, "获取验证码成功！", Toast.LENGTH_SHORT).show();
+                    }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                        //获取验证码成功
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(RegisterActivity.this,"验证码已发送",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }else{
+                    ((Throwable)data).printStackTrace();
+                    Throwable throwable = (Throwable) data;
+                    throwable.printStackTrace();
+                    Log.i("1234",throwable.toString());
+                    try {
+                        JSONObject obj = new JSONObject(throwable.getMessage());
+                        final String des = obj.optString("detail");
+                        if (!TextUtils.isEmpty(des)){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        SMSSDK.registerEventHandler(eh); //注册短信回调
+    }
+
+    private void loadNetData(String user,String pwd, String phone) {
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
         mDialog = new DiyProgressDialog(RegisterActivity.this, "正在加载中...");
-        mDialog.setCancelable(false);//设置不能通过后退键取消
+        mDialog.setCancelable(true);//设置能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
         mbtnRegister.setEnabled(false);
@@ -180,17 +268,16 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 //showToast("注册失败！服务器连接超时！");
                 showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
                 mDialog.cancel();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+                        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText()) && !TextUtils.isEmpty(validateNum.getText())) {
                             mbtnRegister.setEnabled(true);
                         } else {
                             mbtnRegister.setEnabled(false);
                         }
-                    }
-                });
-
+//                    }
+//                });
                 Looper.loop();
             }
 
@@ -208,6 +295,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                                     edRegisterUser.setText("");
                                     edRegisterPwd.setText("");
                                     edRegisterPhone.setText("");
+                                    validateNum.setText("");
                                     //mbtnRegister.setEnabled(false);
                                 } else if (resultStr.equals("error")) {
                                     showDiyDialog(RegisterActivity.this,"此用户名已存在！请更换用户名！");
@@ -228,7 +316,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     @Override
     protected void onRestart() {
         super.onRestart();
-        tv.setTextColor(getResources().getColor(R.color.grey));
+        //tv.setTextColor(getResources().getColor(R.color.grey));
     }
 
     @Override
@@ -243,7 +331,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText())) {
+        if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText()) && !TextUtils.isEmpty(validateNum.getText())) {
             mbtnRegister.setEnabled(true);
         } else {
             mbtnRegister.setEnabled(false);
@@ -252,6 +340,51 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     public void onClick(View v) {
-        finish();
+        switch (v.getId()) {
+            case R.id.validateNum_btn:
+                String phone = edRegisterPhone.getText().toString().trim();
+                if(!TextUtils.isEmpty(phone)){
+                    if (checkPhone(phone)) {
+                        String replacePhone = phone.replace(" ", "").replace(" ", "");
+                        SMSSDK.getVerificationCode("+86",replacePhone);//获取验证码
+                        mTimeCount.start();
+                    }else{
+                        Toast.makeText(RegisterActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.register_iv_back:
+                finish();
+                break;
+        }
+    }
+
+    /**
+     * 计时器
+     */
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long l) {
+            validateNum_btn.setClickable(false);
+            validateNum_btn.setText(l/1000 + "(s)重新获取");
+        }
+
+        @Override
+        public void onFinish() {
+            validateNum_btn.setClickable(true);
+            validateNum_btn.setText("重新获取");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SMSSDK.unregisterEventHandler(eh);
     }
 }

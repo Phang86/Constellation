@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.SPUtils;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -134,7 +135,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 //获取存储在sp里面的用户名和密码以及两个复选框状态
                 sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
                 editor = sharedPreferences.edit();
-
+                SPUtils.remove("imageUrl",AppInfoActivity.this);
                 //从后台获取到的用户信息
                 sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
                 ed = sp.edit();

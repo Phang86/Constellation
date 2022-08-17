@@ -189,14 +189,14 @@
             android:background="@drawable/selector_update_btn"
             android:text="@string/buyFind"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
+            android:textSize="@dimen/size_18sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/config_tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey"
+            android:textColor="@drawable/selector_login_activity_tv_bg"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_gravity="right"
             android:textSize="@dimen/size_15sp"

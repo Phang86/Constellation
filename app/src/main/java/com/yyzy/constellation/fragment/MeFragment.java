@@ -62,6 +62,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private int selectPos = 0;
     private NotificationManager manager;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +116,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         return sp.getString(key, "");
     }
 
-    protected void insertVal(String key, String val) {
+    protected void insertVal( String key, String val) {
         SharedPreferences sp = getActivity().getSharedPreferences("sp_ttit", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, val);
@@ -132,12 +133,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.meFrag_tv_jieshao:
                 showDialogSure(getContext(),"功能介绍",StringUtils.setContent());
-//                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-//                alertDialog.setTitle("功能介绍");
-//                alertDialog.setMessage(StringUtils.setContent());
-//                alertDialog.setCancelable(true);
-//                alertDialog.setCanceledOnTouchOutside(true);
-//                alertDialog.show();
                 break;
             case R.id.meFrag_tv_huanfu:
                 String skin = findByKey("skin");
@@ -279,7 +274,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         edit.commit();
     }
 
-    private void dialogShow() {
+    public void dialogShow() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View v = inflater.inflate(R.layout.diy_alert_dialog, null);

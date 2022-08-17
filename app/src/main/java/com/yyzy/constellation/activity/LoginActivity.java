@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.FourFiguresNumberCode;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -65,7 +67,7 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private TextView tv, forgetTv;
-    private EditText edUser, edPwd;
+    private EditText edUser, edPwd, edValCode;
     private Button btnLogin;
     private List<User> data = new ArrayList<>();
     private String userPassword;
@@ -77,6 +79,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private SharedPreferences sharedPreferences,spf;
     private SharedPreferences.Editor editor,ed;
 
+    private ImageView imgValCode;
     private NotificationManager manager;
     private Notification note;
 
@@ -94,12 +97,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnLogin = findViewById(R.id.btnLogin_login);
         mRemenber = findViewById(R.id.cbLogin_rememberPwd);
         mAutoLogin = findViewById(R.id.cbLogin_autoLogin);
+        imgValCode = findViewById(R.id.login_iv_code);
+        edValCode = findViewById(R.id.login_et_varCode);
         edUser.addTextChangedListener(this);
         edPwd.addTextChangedListener(this);
+        edValCode.addTextChangedListener(this);
         btnLogin.setEnabled(false);
         forgetTv.setOnClickListener(this);
         tv.setOnClickListener(this);
-
+        imgValCode.setOnClickListener(this);
+        imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
         tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv.getPaint().setAntiAlias(true);//抗锯齿
 
@@ -129,7 +136,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             mAutoLogin.setChecked(true);
             String username = edUser.getText().toString();
             String password = edPwd.getText().toString();
-            login(username, password);
+            login(username, password,"");
         }
 
         mRemenber.setOnClickListener(mListener);
@@ -141,6 +148,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     mAutoLogin.setChecked(false);
                     //清空密码输入框
                     edPwd.setText("");
+                    imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                 }
             }
         });
@@ -187,10 +195,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     }
                     editor.commit();
                     //登陆
-                    login(user, pwd);
+                    String varCode = FourFiguresNumberCode.getInstance().getCode();
+                    login(user, pwd, varCode);
             }
         }
-
     };
 
     private void clearEditor(){
@@ -206,7 +214,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
-    private void login(String user, String pwd) {
+    private void login(String user, String pwd, String valCode) {
+        String code = edValCode.getText().toString().trim();
         if (TextUtils.isEmpty(user)) {
             showToast("账号不能为空哦！");
             clearEditor();
@@ -221,6 +230,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         } else if (!checkPassword(pwd)) {
             showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            clearEditor();
+            return;
+        }else if (TextUtils.isEmpty(valCode)){
+            showToast("验证码不能为空！");
+            clearEditor();
+            return;
+        }else if (!code.equals(valCode)){
+            showToast("验证码有误！");
+            imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
             clearEditor();
             return;
         }
@@ -252,8 +270,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         @Override
                         public void run() {
                             mDialog.cancel();
-                            if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edUser.getText())) {
+                            if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edValCode.getText())) {
                                 btnLogin.setEnabled(true);
+                                imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                             } else {
                                 btnLogin.setEnabled(false);
                             }
@@ -281,6 +300,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         clearEditor();
                                         mDialog.cancel();
                                         btnLogin.setEnabled(true);
+                                        imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         return;
                                     }else if (resultStr.equals("success")){
                                         showDiyDialog(LoginActivity.this,"你输入的密码有误，请重新输入！");
@@ -288,6 +308,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         clearEditor();
                                         mDialog.cancel();
                                         btnLogin.setEnabled(true);
+                                        imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         return;
                                     }else {
                                         List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
@@ -314,6 +335,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                             mDialog.cancel();
                                             clearEditor();
                                             btnLogin.setEnabled(true);
+                                            imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                             return;
                                         }
                                     }
@@ -408,26 +430,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.btnLogin_tv_register:
-                tv.setTextColor(getResources().getColor(R.color.red));
+                //tv.setTextColor(getResources().getColor(R.color.red));
                 //跳转注册页面
                 intent.setClass(this, RegisterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             case R.id.btnLogin_tv_forget:
-                forgetTv.setTextColor(getResources().getColor(R.color.red));
+                //forgetTv.setTextColor(getResources().getColor(R.color.red));
                 //跳转找回密码页面
                 intent.setClass(this, FindPwdActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+            case R.id.login_iv_code:
+                imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                 break;
         }
-        startActivity(intent);
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        forgetTv.setTextColor(getResources().getColor(R.color.grey));
-        tv.setTextColor(getResources().getColor(R.color.grey));
+        imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
     }
 
     @Override
@@ -462,7 +488,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (!TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edPwd.getText())) {
+        if (!TextUtils.isEmpty(edUser.getText()) && !TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edValCode.getText())) {
             btnLogin.setEnabled(true);
         } else {
             btnLogin.setEnabled(false);

@@ -30,7 +30,6 @@
         android:textColor="@color/gray_600"
         android:layout_marginBottom="@dimen/dimen_20dp"/>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

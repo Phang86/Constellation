@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,11 +38,12 @@ import okhttp3.Response;
 
 public class FindPwdActivity extends BaseActivity implements View.OnClickListener {
 
-    ImageView ivBack;
-    TextView tvBack;
-    EditText userEt, phoneEt;
-    LinearLayout findBtn;
-    DiyProgressDialog mDialog;
+    private ImageView ivBack;
+    private TextView tvBack;
+    private EditText userEt, phoneEt, verCodeEt;
+    private LinearLayout findBtn;
+    private DiyProgressDialog mDialog;
+    private ImageView ivCode;
 
     @Override
     protected int initLayout() {
@@ -55,13 +57,17 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         findBtn = findViewById(R.id.find_btn);
         tvBack = findViewById(R.id.find_tv_login);
         ivBack = findViewById(R.id.find_iv_back);
+        ivCode = findViewById(R.id.find_iv_code);
+        verCodeEt = findViewById(R.id.find_et_verCode);
         tvBack.setOnClickListener(this);
         findBtn.setOnClickListener(this);
         ivBack.setOnClickListener(this);
+        ivCode.setOnClickListener(this);
         findBtn.setEnabled(false);
         tvBack.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tvBack.getPaint().setAntiAlias(true);//抗锯齿
         userEt.addTextChangedListener(we);
+        verCodeEt.addTextChangedListener(we);
         phoneEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -102,7 +108,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(phoneEt.getText()) && !TextUtils.isEmpty(userEt.getText())) {
+                if (!TextUtils.isEmpty(phoneEt.getText()) && !TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(verCodeEt.getText())) {
                     findBtn.setEnabled(true);
                 } else {
                     findBtn.setEnabled(false);
@@ -113,7 +119,8 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
-
+        //重置验证码
+        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
     }
 
     private TextWatcher we = new TextWatcher() {
@@ -129,7 +136,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())) {
+            if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText()) && !TextUtils.isEmpty(verCodeEt.getText())) {
                 findBtn.setEnabled(true);
             } else {
                 findBtn.setEnabled(false);
@@ -144,19 +151,25 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
             case R.id.find_btn:
                 String user = userEt.getText().toString().trim();
                 String phone = phoneEt.getText().toString().trim();
-                findPwd(user, phone);
+                String verCode = verCodeEt.getText().toString().trim();
+                String code = FourFiguresNumberCode.getInstance().getCode();
+                findPwd(user, phone, verCode, code);
                 break;
             case R.id.find_tv_login:
-                tvBack.setTextColor(getResources().getColor(R.color.red));
+                //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 break;
             case R.id.find_iv_back:
                 finish();
                 break;
+            case R.id.find_iv_code:
+                //重置验证码
+                ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+                break;
         }
     }
 
-    private void findPwd(String user, String phone) {
+    private void findPwd(String user, String phone, String verCode, String code) {
         if (TextUtils.isEmpty(user)) {
             showToast("用户名不能空哦！");
             return;
@@ -168,6 +181,14 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
             return;
         } else if (!checkPhone(phone)) {
             showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            return;
+        }else if (verCode.isEmpty()){
+            showToast("验证码不能为空！");
+            return;
+        }else if (!verCode.equals(code)){
+            //重置验证码
+            ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+            showToast("验证码有误！");
             return;
         }
         mDialog = new DiyProgressDialog(FindPwdActivity.this, "正在加载中...");
@@ -195,6 +216,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                         @Override
                         public void run() {
                             if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())) {
+                                ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                 findBtn.setEnabled(true);
                             } else {
                                 findBtn.setEnabled(false);
@@ -220,11 +242,13 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                 public void run() {
                                     if (result.equals("success")) {
                                         showDiyDialog(FindPwdActivity.this,"密码找回失败！你输入手机号有误！");
+                                        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);
                                         return;
                                     } else if (result.equals("su_error")) {
                                         showDiyDialog(FindPwdActivity.this,"此账号不存在！");
+                                        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);
                                         return;
@@ -246,6 +270,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                             showDiyDialog(FindPwdActivity.this,"密码找回失败！服务器连接超时！");
                                             mDialog.cancel();
                                             findBtn.setEnabled(true);
+                                            ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                             return;
                                         }
                                     }
@@ -273,4 +298,9 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+    }
 }

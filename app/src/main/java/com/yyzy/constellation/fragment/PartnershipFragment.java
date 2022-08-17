@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.LocalMusicActivity;
+import com.yyzy.constellation.activity.PlayGameActivity;
 import com.yyzy.constellation.activity.StarStartActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
@@ -28,9 +29,9 @@ import java.util.Map;
 
 public class PartnershipFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    private ImageView imgWoman,imgMan;
-    private Spinner snWoman,snMan;
-    private Button btnLucky,btnStart;
+    private ImageView imgWoman, imgMan;
+    private Spinner snWoman, snMan;
+    private Button btnLucky, btnStart, btnGame;
     private StarInfoEntity info;
     private List<StarInfoEntity.StarinfoDTO> dtoList;
     private Map<String, Bitmap> logoImgMap;
@@ -43,10 +44,13 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_partnership, container, false);
+
         initView(view);
         getActivityData();
+
         return view;
     }
+
 
     //获取Activity传来的数据
     private void getActivityData() {
@@ -80,29 +84,34 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
         snMan = view.findViewById(R.id.partnershipFrag_sn_man);
         btnLucky = view.findViewById(R.id.partnershipFrag_btn_lucky);
         btnStart = view.findViewById(R.id.partnershipFrag_btn_start);
+        btnGame = view.findViewById(R.id.partnershipFrag_btn_game);
 
         btnLucky.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         snWoman.setOnItemSelectedListener(this);
         snMan.setOnItemSelectedListener(this);
+        btnGame.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.partnershipFrag_btn_lucky:
-                startActivity(new Intent(getContext(),LocalMusicActivity.class));
+                startActivity(new Intent(getContext(), LocalMusicActivity.class));
                 break;
             case R.id.partnershipFrag_btn_start:
                 //获取当前图片位置
                 int womanPos = snWoman.getSelectedItemPosition();
                 int manPos = snMan.getSelectedItemPosition();
                 Intent intent = new Intent(getContext(), StarStartActivity.class);
-                intent.putExtra("woman_name",dtoList.get(womanPos).getName());
-                intent.putExtra("woman_logo",dtoList.get(womanPos).getLogoname());
-                intent.putExtra("man_name",dtoList.get(manPos).getName());
-                intent.putExtra("man_logo",dtoList.get(manPos).getLogoname());
+                intent.putExtra("woman_name", dtoList.get(womanPos).getName());
+                intent.putExtra("woman_logo", dtoList.get(womanPos).getLogoname());
+                intent.putExtra("man_name", dtoList.get(manPos).getName());
+                intent.putExtra("man_logo", dtoList.get(manPos).getLogoname());
                 startActivity(intent);
+                break;
+            case R.id.partnershipFrag_btn_game:
+                startActivity(new Intent(getContext(), PlayGameActivity.class));
                 break;
 
         }
@@ -123,7 +132,6 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
                 imgMan.setImageBitmap(bitmap);
                 break;
         }
-
 
 
     }

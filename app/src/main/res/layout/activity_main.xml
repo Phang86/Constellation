@@ -1,62 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    xmlns:qpp="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.MainActivity">
 
-    <TextView
-        android:id="@+id/main_tv_title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
-        android:text="@string/app_name"
-        android:textColor="@color/pink"
-        android:textStyle="bold"
-        android:textSize="@dimen/size_20sp"
-        android:gravity="center"
-        android:background="@drawable/bg_two"/>
+        android:layout_height="match_parent">
 
-    <RadioGroup
-        android:id="@+id/main_rb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_two"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="@dimen/dimen_5dp">
+        <RelativeLayout
+            android:id="@+id/main_layout_top"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_two"
+            android:layout_height="@dimen/dimen_50dp">
 
-        <RadioButton
-            android:id="@+id/main_rb_star"
-            style="@style/main_rb"
-            android:text="@string/label_star"
-            android:drawableTop="@drawable/main_rb_star"
-            android:checked="true"/>
+            <ImageView
+                android:id="@+id/main_img_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_iv_more"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10dp"/>
 
-        <RadioButton
-            android:id="@+id/main_rb_partnership"
-            style="@style/main_rb"
-            android:text="@string/label_partnership"
-            android:drawableTop="@drawable/main_rb_partnership"/>
+            <TextView
+                android:id="@+id/main_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50dp"
+                android:text="@string/app_name"
+                android:gravity="center"
+                android:textColor="@color/pink"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_18sp"/>
+        </RelativeLayout>
 
-        <RadioButton
-            android:id="@+id/main_rb_luck"
-            style="@style/main_rb"
-            android:text="@string/label_luck"
-            android:drawableTop="@drawable/main_rb_luck"/>
 
-        <RadioButton
-            android:id="@+id/main_rb_me"
-            style="@style/main_rb"
-            android:text="@string/label_me"
-            android:drawableTop="@drawable/main_rb_me"/>
-    </RadioGroup>
 
-    <LinearLayout
-        android:id="@+id/main_layout_linear"
+
+        <RadioGroup
+            android:id="@+id/main_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_two"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="@dimen/dimen_5dp">
+
+            <RadioButton
+                android:id="@+id/main_rb_star"
+                style="@style/main_rb"
+                android:text="@string/label_star"
+                android:drawableTop="@drawable/main_rb_star"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/main_rb_partnership"
+                style="@style/main_rb"
+                android:text="@string/label_partnership"
+                android:drawableTop="@drawable/main_rb_partnership"/>
+
+            <RadioButton
+                android:id="@+id/main_rb_luck"
+                style="@style/main_rb"
+                android:text="@string/label_luck"
+                android:drawableTop="@drawable/main_rb_luck"/>
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/main_rb_me"-->
+<!--                style="@style/main_rb"-->
+<!--                android:text="@string/label_me"-->
+<!--                android:drawableTop="@drawable/main_rb_me"/>-->
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/main_layout_linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/main_rb"
+            android:layout_below="@id/main_layout_top"
+            android:orientation="vertical"/>
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/main_rb"
-        android:layout_below="@id/main_tv_title"
-        android:orientation="vertical"/>
-</RelativeLayout>
+        android:layout_marginRight="@dimen/dimen_60dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        qpp:headerLayout="@layout/header_layout"
+        android:background="@drawable/bg"
+        qpp:menu="@menu/stumenu" />
+</androidx.drawerlayout.widget.DrawerLayout>

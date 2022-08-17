@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,6 +24,8 @@ import com.yyzy.constellation.activity.StarDetailsActivity;
 import com.yyzy.constellation.adapter.StarItemAdapter;
 import com.yyzy.constellation.adapter.StarPagerAdapter;
 import com.yyzy.constellation.entity.StarInfoEntity;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +67,7 @@ public class StarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_star, container, false);
         initView(view);
         getStarData();

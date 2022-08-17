@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_190dp"
+            android:layout_marginTop="@dimen/dimen_150dp"
             android:layout_marginRight="@dimen/dimen_18dp"
             android:paddingBottom="@dimen/dimen_20dp"
             android:paddingTop="@dimen/dimen_20dp"
@@ -141,6 +141,49 @@
                     android:textColorHint="@color/grey"
                     android:textSize="@dimen/size_16sp" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:layout_marginTop="@dimen/dimen_23dp"
+                android:layout_marginBottom="@dimen/dimen_23dp"
+                android:background="@color/gray_200" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.yyzy.constellation.utils.MyEditText
+                    android:id="@+id/validateNum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:inputType="number"
+                    android:hint="请输入验证码"
+                    android:background="@drawable/ver_code_bg"
+                    android:textColorHint="@color/grey"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/validateNum_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:background="@drawable/selector_get_val_code"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="点击获取"/>
+            </LinearLayout>
         </LinearLayout>
 
         <Button
@@ -153,14 +196,14 @@
             android:background="@drawable/selector_register_btn"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
+            android:textSize="@dimen/size_18sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnRegister_tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey"
+            android:textColor="@drawable/selector_login_activity_tv_bg"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_gravity="right"
             android:textSize="@dimen/size_15sp"

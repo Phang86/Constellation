@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/yellow_300">
+
+    <ImageView
+        android:id="@+id/header_close"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:src="@drawable/icon_close"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/header_layout_cirImg"
+            android:layout_width="@dimen/dimen_70dp"
+            android:layout_height="@dimen/dimen_70dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:src="@mipmap/yangtu"/>
+
+        <TextView
+            android:id="@+id/header_layout_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:text="彭行"
+            android:textSize="@dimen/size_18sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

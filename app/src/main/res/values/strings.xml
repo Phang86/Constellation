@@ -12,6 +12,7 @@
     <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
     <string name="start_partnership" translatable="false">开始配对</string>
     <string name="lucky" translatable="false">放松一下</string>
+    <string name="game" translatable="false">拼图游戏</string>
     <string name="jieshao" translatable="false">功能介绍</string>
     <string name="guanyu" translatable="false">用户信息</string>
     <string name="appInfo" translatable="false">用户详情</string>

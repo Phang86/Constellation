@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".activity.PlayGameActivity">
+
+    <include layout="@layout/star_details_title"/>
+
+    <TextView
+        android:id="@+id/game_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间：0s"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/img_btn_00x00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_00x00"/>
+
+        <ImageButton
+            android:id="@+id/img_btn_00x01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_00x01" />
+
+        <ImageButton
+            android:id="@+id/img_btn_00x02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_00x02"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/img_btn_01x00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_01x00"/>
+
+        <ImageButton
+            android:id="@+id/img_btn_01x01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_01x01" />
+
+        <ImageButton
+            android:id="@+id/img_btn_01x02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_01x02"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/img_btn_02x00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_xiaoxiong_02x00"/>
+
+        <ImageButton
+            android:id="@+id/img_btn_02x01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_02x01" />
+
+        <ImageButton
+            android:id="@+id/img_btn_02x02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/img_xiaoxiong_02x02"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@color/white"/>
+
+    <ImageView
+        android:layout_width="@dimen/dimen_115dp"
+        android:layout_height="@dimen/dimen_160dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/yangtu"
+        android:scaleType="fitXY"/>
+</LinearLayout>

@@ -89,7 +89,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.config_tv_login:
-                tvBack.setTextColor(getResources().getColor(R.color.red));
+                //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 break;
             case R.id.config_btn_pwd:
@@ -112,11 +112,11 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         }else if (TextUtils.isEmpty(configNewPwd)){
             showToast("必填项不能为空哦！");
             return;
-        }else if (TextUtils.isEmpty(user)){
-            showDiyDialog(ConfigPwdActivity.this,"密码已找回，且自动清空默认项。");
+        }else if (!checkPassword(newPwd)){
+            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
-        }else if (TextUtils.isEmpty(phone)){
-            showToast("密码已找回，且自动清空默认项。");
+        }else if (TextUtils.isEmpty(user) || TextUtils.isEmpty(phone)){
+            showDiyDialog(ConfigPwdActivity.this,"密码已找回，且自动清空默认项。");
             return;
         }else if (!newPwd.equals(configNewPwd)){
             showToast("两次输入的密码不一致！");
@@ -256,7 +256,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         super.onRestart();
-        tvBack.setTextColor(getResources().getColor(R.color.grey));
+        //tvBack.setTextColor(getResources().getColor(R.color.grey));
     }
 
     @Override
