@@ -20,6 +20,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.SPUtils;
+import com.yyzy.constellation.utils.SwipeCaptchaView;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -100,7 +101,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.appInfo_layout_update:
                 Intent intent = new Intent();
-                intent.setClass(this, UpdatePwdActivity.class);
+                intent.setClass(this, SwipeCheckActivity.class);
                 intent.putExtra("userName",name);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);

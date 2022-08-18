@@ -20,6 +20,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.FourFiguresNumberCode;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -171,24 +172,30 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
     private void findPwd(String user, String phone, String verCode, String code) {
         if (TextUtils.isEmpty(user)) {
-            showToast("用户名不能空哦！");
+            //showToast("用户名不能空哦！");
+            MyToast.showText(FindPwdActivity.this,"用户名不能空哦！");
             return;
         } else if (TextUtils.isEmpty(phone)) {
-            showToast("手机号不能空哦！");
+            //showToast("手机号不能空哦！");
+            MyToast.showText(FindPwdActivity.this,"手机号不能空哦！");
             return;
         } else if (!checkUsername(user)) {
-            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            //showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            MyToast.showText(FindPwdActivity.this,"用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
         } else if (!checkPhone(phone)) {
-            showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            MyToast.showText(FindPwdActivity.this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
         }else if (verCode.isEmpty()){
-            showToast("验证码不能为空！");
+//            showToast("验证码不能为空！");
+            MyToast.showText(FindPwdActivity.this,"验证码不能为空！");
             return;
         }else if (!verCode.equals(code)){
             //重置验证码
             ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-            showToast("验证码有误！");
+            //showToast("验证码有误！");
+            MyToast.showText(FindPwdActivity.this,"验证码错误！",false);
             return;
         }
         mDialog = new DiyProgressDialog(FindPwdActivity.this, "正在加载中...");
@@ -241,7 +248,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                 @Override
                                 public void run() {
                                     if (result.equals("success")) {
-                                        showDiyDialog(FindPwdActivity.this,"密码找回失败！你输入手机号有误！");
+                                        MyToast.showText(FindPwdActivity.this,"找回失败！你输入手机号有误！",false);
                                         ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);

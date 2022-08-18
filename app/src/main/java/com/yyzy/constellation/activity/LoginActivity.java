@@ -47,6 +47,7 @@ import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.FourFiguresNumberCode;
+import com.yyzy.constellation.utils.MyToast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -182,7 +183,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         editor.putBoolean("auto", mAutoLoginFlag);
                     } else {
                         if (!mPasswordFlag) {
-                            showToast("请勾选复选框！");
+                            //showToast("");
+                            MyToast.showText(LoginActivity.this,"请勾选复选框！");
                             Log.e("TAG", "!mPasswordFlag: " + "异常");
                             return;
                         }
@@ -217,27 +219,33 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private void login(String user, String pwd, String valCode) {
         String code = edValCode.getText().toString().trim();
         if (TextUtils.isEmpty(user)) {
-            showToast("账号不能为空哦！");
+            //showToast("账号不能为空哦！");
+            MyToast.showText(LoginActivity.this,"账号不能为空哦！");
             clearEditor();
             return;
         } else if (TextUtils.isEmpty(pwd)) {
-            showToast("密码不能为空哦！");
+            //showToast("密码不能为空哦！");
+            MyToast.showText(LoginActivity.this,"密码不能为空哦！");
             clearEditor();
             return;
         } else if (!checkUsername(user)) {
-            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            //showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            MyToast.showText(LoginActivity.this,"用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             clearEditor();
             return;
         } else if (!checkPassword(pwd)) {
-            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            //showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(LoginActivity.this,"密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             clearEditor();
             return;
         }else if (TextUtils.isEmpty(valCode)){
-            showToast("验证码不能为空！");
+            //showToast("验证码不能为空！");
+            MyToast.showText(LoginActivity.this,"验证码不能为空！");
             clearEditor();
             return;
         }else if (!code.equals(valCode)){
-            showToast("验证码有误！");
+            //showToast("验证码有误！");
+            MyToast.showText(LoginActivity.this,"验证码错误！",false);
             imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
             clearEditor();
             return;
@@ -303,8 +311,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         return;
                                     }else if (resultStr.equals("success")){
-                                        showDiyDialog(LoginActivity.this,"你输入的密码有误，请重新输入！");
+                                        //showDiyDialog(LoginActivity.this,"你输入的密码有误，请重新输入！");
                                         //showToast();
+                                        MyToast.showText(LoginActivity.this,"登录密码错误！",false);
                                         clearEditor();
                                         mDialog.cancel();
                                         btnLogin.setEnabled(true);
@@ -494,7 +503,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             btnLogin.setEnabled(false);
         }
     }
-
-
 
 }

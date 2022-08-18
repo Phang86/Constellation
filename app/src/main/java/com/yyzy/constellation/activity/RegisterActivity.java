@@ -18,12 +18,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mob.MobSDK;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -156,33 +158,41 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     private void register(String user, String pwd, String phone, String varNum) {
         //判断用户输入的密码、账号、手机号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
         if (TextUtils.isEmpty(user)) {
-            showToast("注册账号不能为空哦！");
+            //showToast("");
+            MyToast.showText(this,"注册账号不能为空哦！");
             return;
         } else if (TextUtils.isEmpty(pwd)) {
-            showToast("注册密码不能为空哦！");
+            //showToast("注册密码不能为空哦！");
+            MyToast.showText(this,"注册密码不能为空哦！");
             return;
         } else if (TextUtils.isEmpty(phone)) {
-            showToast("手机号不能为空哦！");
+            //showToast("手机号不能为空哦！");
+            MyToast.showText(this,"手机号不能为空哦！");
             return;
         } else if (!checkUsername(user)) {
-            showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            //showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+            MyToast.showText(this,"用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
         } else if (!checkPassword(pwd)) {
-            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            //showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(this,"密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         } else if (!checkPhone(phone)) {
-            showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+            MyToast.showText(this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
         }else if (!TextUtils.isEmpty(phone)){
             if (checkPhone(phone)){
                 if (!TextUtils.isEmpty(varNum)){
                     SMSSDK.submitVerificationCode("+86",phone,varNum);//提交验证
                 }else{
-                    showToast("请输入验证码!");
+                    //showToast("请输入验证码!");
+                    MyToast.showText(this,"请输入验证码!");
                     return;
                 }
             }else{
-                showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+                //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+                MyToast.showText(this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
                 return;
             }
         }
@@ -195,7 +205,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                             @Override
                             public void run() {
                                 loadNetData(user,pwd,phone);
-                                eh.notifyAll();
+                                //eh.notifyAll();
                             }
                         });
                     }else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
@@ -228,7 +238,8 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
+                                    MyToast.showText(RegisterActivity.this,des);
                                 }
                             });
                         }
@@ -244,11 +255,16 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     private void loadNetData(String user,String pwd, String phone) {
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
-        mDialog = new DiyProgressDialog(RegisterActivity.this, "正在加载中...");
-        mDialog.setCancelable(true);//设置能通过后退键取消
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
-        mbtnRegister.setEnabled(false);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mDialog = new DiyProgressDialog(RegisterActivity.this, "正在加载中...");
+                mDialog.setCancelable(true);//设置能通过后退键取消
+                mDialog.setCanceledOnTouchOutside(false);
+                mDialog.show();
+                mbtnRegister.setEnabled(false);
+            }
+        });
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
@@ -265,19 +281,21 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e("TAG", "onFailureError: " + e.getMessage());
                 Looper.prepare();
-                //showToast("注册失败！服务器连接超时！");
-                showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
-                mDialog.cancel();
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        //showToast("注册失败！服务器连接超时！");
+                        showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
+                        mDialog.cancel();
                         if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText()) && !TextUtils.isEmpty(validateNum.getText())) {
                             mbtnRegister.setEnabled(true);
                         } else {
                             mbtnRegister.setEnabled(false);
                         }
-//                    }
-//                });
+
+                    }
+                });
                 Looper.loop();
             }
 
@@ -297,20 +315,27 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                                     edRegisterPhone.setText("");
                                     validateNum.setText("");
                                     //mbtnRegister.setEnabled(false);
+                                    mDialog.cancel();
+                                    return;
                                 } else if (resultStr.equals("error")) {
                                     showDiyDialog(RegisterActivity.this,"此用户名已存在！请更换用户名！");
                                     mbtnRegister.setEnabled(true);
+                                    mDialog.cancel();
+                                    return;
                                 } else {
                                     showDiyDialog(RegisterActivity.this,"注册失败！服务器连接超时！");
                                     mbtnRegister.setEnabled(true);
+                                    mDialog.cancel();
+                                    return;
                                 }
-                                mDialog.cancel();
                             }
                         }, 1500);
                     }
                 });
             }
         });
+
+
     }
 
     @Override
@@ -349,10 +374,12 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                         SMSSDK.getVerificationCode("+86",replacePhone);//获取验证码
                         mTimeCount.start();
                     }else{
-                        Toast.makeText(RegisterActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(RegisterActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+                        MyToast.showText(RegisterActivity.this,"请输入正确的手机号码",Toast.LENGTH_SHORT);
                     }
                 }else{
-                    Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
+                    MyToast.showText(RegisterActivity.this,"请输入手机号码",Toast.LENGTH_SHORT);
                 }
                 break;
             case R.id.register_iv_back:

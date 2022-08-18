@@ -28,6 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -119,38 +120,42 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 oldPwd = oldPwdEt.getText().toString().trim();
                 newPwd = newPwdEt.getText().toString().trim();
                 configNewPwd = configNewPwdEt.getText().toString().trim();
-                updatePwd(oldPwd,newPwd,configNewPwd);
+                String user = userEt.getText().toString().trim();
+                updatePwd(oldPwd,newPwd,configNewPwd,user);
                 break;
         }
     }
 
-    private void updatePwd(String oldPwd, String newPwd, String configNewPwd) {
+    private void updatePwd(String oldPwd, String newPwd, String configNewPwd,String user) {
         if (TextUtils.isEmpty(oldPwd)){
-            showToast("必填信息不能空哦！");
+            MyToast.showText(this,"必填信息不能空哦！");
+            return;
+        }else if (TextUtils.isEmpty(user)){
+            MyToast.showText(this,"默认项为空！");
             return;
         }else if (TextUtils.isEmpty(newPwd)){
-            showToast("必填信息不能空哦！");
+            MyToast.showText(this,"必填信息不能空哦！");
             return;
         }else if (TextUtils.isEmpty(configNewPwd)){
-            showToast("必填信息不能空哦！");
+            MyToast.showText(this,"必填信息不能空哦！");
             return;
         }else if(oldPwd.equals(newPwd)){
-            showToast("原密码与新密码不能一致！");
+            MyToast.showText(this,"原密码与新密码不能一致！",false);
             return;
         }else if(oldPwd.equals(configNewPwd)){
-            showToast("原密码与新密码不能一致！");
+            MyToast.showText(this,"原密码与新密码不能一致！",false);
             return;
         }else if (!newPwd.equals(configNewPwd)){
-            showToast("两次输入的密码不一致！");
+            MyToast.showText(this,"两次输入的密码不一致！",false);
             return;
         }else if (!checkPassword(oldPwd)){
-            showToast("原密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(this,"原密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }else if (!checkPassword(newPwd)){
-            showToast("新密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(this,"新密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }else if (!checkPassword(configNewPwd)){
-            showToast("新密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(this,"新密码输入的格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }else{
             if (newPwd.equals(configNewPwd)) {
@@ -200,7 +205,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                         public void run() {
                                             try {
                                                 if (result.equals("success")){
-                                                    showToast("密码修改失败！原始密码不正确！");
+                                                    MyToast.showText(UpdatePwdActivity.this,"密码修改失败！原始密码不正确！");
                                                     oldPwdEt.setText("");
                                                     mDialog.cancel();
                                                     updateBtn.setEnabled(false);
@@ -212,7 +217,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                                         mDialog.cancel();
                                                         updateRquestNet(mDialog);
                                                     }else {
-                                                        showToast("修改失败！服务器连接超时！");
+                                                        MyToast.showText(UpdatePwdActivity.this,"修改失败！服务器连接超时！");
                                                         mDialog.cancel();
                                                         updateBtn.setEnabled(true);
                                                         return;
@@ -249,7 +254,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     Looper.prepare();
-                    showToast("密码修改失败！服务器连接超时！");
+                    MyToast.showText(UpdatePwdActivity.this,"密码修改失败！服务器连接超时！");
                     mDialog.cancel();
                     Looper.loop();
                 }
@@ -261,7 +266,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                         @Override
                         public void run() {
                             if (result.equals("success")) {
-                                showToast("密码修改成功！");
+                                MyToast.showText(UpdatePwdActivity.this,"密码修改成功！",true);
                                 oldPwdEt.setText("");
                                 newPwdEt.setText("");
                                 configNewPwdEt.setText("");
@@ -275,7 +280,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                     }
                                 },1000);
                             } else if (result.equals("error")) {
-                                showToast("密码修改失败！");
+                                MyToast.showText(UpdatePwdActivity.this,"密码修改失败！",false);
                                 mDialog.cancel();
                             }
                         }

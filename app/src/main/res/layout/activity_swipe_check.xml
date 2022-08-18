@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".activity.SwipeCheckActivity">
+
+    <include layout="@layout/star_details_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_15dp" >
+
+            <TextView
+                android:id="@+id/swipe_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拖动下方滑块完成验证"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_16sp"/>
+
+            <ImageView
+                android:id="@+id/swipe_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+
+        <com.yyzy.constellation.utils.SwipeCaptchaView
+            android:id="@+id/swipeCaptchaView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            app:captchaHeight="@dimen/dimen_35dp"
+            app:captchaWidth="@dimen/dimen_35dp"
+            android:layout_marginTop="@dimen/dimen_15dp"/>
+
+
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/dragBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/bg_check_dragbg"
+        android:thumb="@drawable/ic_btn"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:splitTrack="false"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:maxHeight="@dimen/dimen_15dp"
+        android:minHeight="@dimen/dimen_15dp"
+        android:paddingTop="@dimen/dimen_5dp"
+        android:paddingBottom="@dimen/dimen_0dp"
+        android:thumbOffset="9dp"/>
+</LinearLayout>

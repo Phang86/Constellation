@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
@@ -107,19 +108,19 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
 
     private void requestNet(String user, String phone, String newPwd, String configNewPwd) {
         if (TextUtils.isEmpty(newPwd)) {
-            showToast("必填项不能为空哦！");
+            MyToast.showText(this,"必填项不能为空哦！");
             return;
         }else if (TextUtils.isEmpty(configNewPwd)){
-            showToast("必填项不能为空哦！");
+            MyToast.showText(this,"必填项不能为空哦！");
             return;
         }else if (!checkPassword(newPwd)){
-            showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+            MyToast.showText(this,"密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
         }else if (TextUtils.isEmpty(user) || TextUtils.isEmpty(phone)){
-            showDiyDialog(ConfigPwdActivity.this,"密码已找回，且自动清空默认项。");
+            MyToast.showText(ConfigPwdActivity.this,"密码已找回，自动清空默认项。",true);
             return;
         }else if (!newPwd.equals(configNewPwd)){
-            showToast("两次输入的密码不一致！");
+            MyToast.showText(this,"两次输入的密码不一致！",false);
             return;
         }
         mDialog = new DiyProgressDialog(ConfigPwdActivity.this,"正在加载中...");
@@ -167,7 +168,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                 @Override
                                 public void run() {
                                     if (result.equals("success")) {
-                                        showDiyDialog(ConfigPwdActivity.this,"密码找回失败！手机号有误！");
+                                        MyToast.showText(ConfigPwdActivity.this,"找回失败！手机号有误！",false);
                                         mDialog.cancel();
                                         btnConfigPwd.setEnabled(true);
                                         return;
@@ -186,7 +187,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                             btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                         } else {
-                                            showDiyDialog(ConfigPwdActivity.this,"密码找回失败！服务器连接超时！");
+                                            showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
                                             btnConfigPwd.setEnabled(true);
                                             mDialog.cancel();
                                             return;
@@ -232,7 +233,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void run() {
                         if (result.equals("success")) {
-                            showDiyDialog(ConfigPwdActivity.this,"账号找回成功！");
+                            MyToast.showText(ConfigPwdActivity.this,"账号找回成功！",true);
                             edPwd.setText("");
                             edConfigNewPwd.setText("");
                             edUser.setText("");
@@ -244,7 +245,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                 }
                             },1000);
                         } else if (result.equals("error")) {
-                            showDiyDialog(ConfigPwdActivity.this,"账号找回失败！");
+                            MyToast.showText(ConfigPwdActivity.this,"账号找回失败！",false);
                             mDialog.cancel();
                         }
                     }

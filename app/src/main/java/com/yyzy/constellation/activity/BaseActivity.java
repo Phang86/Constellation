@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.utils.MyToast;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -63,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     }
 
     public void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        MyToast.showText(this, msg, Toast.LENGTH_SHORT);
     }
 
     @NonNull
