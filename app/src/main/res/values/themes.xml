@@ -6,6 +6,14 @@
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
     </style>
+
+    //全屏显示
+    <style name="MyTheme" parent="Theme.Constellation">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--MainActivity控件样式-->
     <style name="main_rb">
         <item name="android:layout_width">0dp</item>
@@ -92,8 +100,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@drawable/bg</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
     <style name="setImgStyle">
         <item name="android:layout_width">@dimen/dimen_25dp</item>
@@ -104,12 +113,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/gray_600</item>
-        <item name="android:textSize">@dimen/size_16sp</item>
+        <item name="android:textSize">@dimen/size_14sp</item>
     </style>
     <style name="setViewStyle">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/dimen_1dp</item>
-        <item name="android:background">@color/gray_200</item>
+        <item name="android:layout_height">1.5px</item>
+        <item name="android:background">@color/grey</item>
     </style>
     <!--自定义ProgressDialog样式-->
     <style name="MyDialogStyle" parent="Theme.Constellation">
@@ -123,5 +132,24 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
         <!-- 实现背景笼罩效果 -->
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--  weather包：更多设置字体样式  -->
+    <style name="weatherMoreTv">
+        <item name="android:textSize">@dimen/size_14sp</item>
+        <item name="android:textColor">@color/gray_600</item>
+    </style>
+    <!--  weather包：更多设置RadioButton样式 -->
+    <style name="weatherMoreRadioBtn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/dimen_7dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

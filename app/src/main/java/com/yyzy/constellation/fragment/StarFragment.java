@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +19,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.activity.MainActivity;
 import com.yyzy.constellation.activity.StarDetailsActivity;
 import com.yyzy.constellation.adapter.StarItemAdapter;
 import com.yyzy.constellation.adapter.StarPagerAdapter;
 import com.yyzy.constellation.entity.StarInfoEntity;
-
-import org.jetbrains.annotations.NotNull;
+import com.yyzy.constellation.utils.MyToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +110,15 @@ public class StarFragment extends Fragment {
         for (int i = 0; i < imgIds.length; i++) {
             ImageView iv = new ImageView(getContext());
             iv.setImageResource(imgIds[i]);
+            Log.e("TAG", "initPager: "+imgIds[i]);
+            int finalI = i;
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    MyToast.showText(getContext(),"dianjiale"+imgIds[finalI]);
+                }
+            });
             iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             //设置图片的宽高
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -130,6 +137,7 @@ public class StarFragment extends Fragment {
             linearLayout.addView(pointIv);
             //将小圆点view设置到集合中
             pointList.add(pointIv);
+
         }
         //默认第一个小圆点是获取焦点的状态
         pointList.get(0).setImageResource(R.mipmap.point_focus);

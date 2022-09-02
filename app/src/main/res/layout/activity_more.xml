@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:foreground="?android:attr/selectableItemBackground"
         android:background="#f5f5f5"
         android:orientation="horizontal">
 
@@ -58,8 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/updateBg"
-            android:textColor="@color/gray_600"
-            android:textSize="@dimen/size_16sp" />
+            style="@style/weatherMoreTv"/>
     </LinearLayout>
 
     <View
@@ -76,66 +76,33 @@
 
         <RadioButton
             android:id="@+id/more_rg_rbt_default"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
-            android:background="@color/gray_500"
-            android:layout_weight="1"
-            android:button="@null"
             android:text="@string/defaultBg"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:background="@color/gray_500"
+            style="@style/weatherMoreRadioBtn" />
 
         <RadioButton
             android:id="@+id/more_rg_rbt_green"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
-            android:layout_weight="1"
-            android:background="#c5edd1"
-            android:button="@null"
             android:text="@string/green"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:background="#c5edd1"
+            style="@style/weatherMoreRadioBtn"/>
 
         <RadioButton
             android:id="@+id/more_rg_rbt_pink"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
             android:background="#fcafae"
-            android:layout_weight="1"
-            android:button="@null"
             android:text="@string/pink"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            style="@style/weatherMoreRadioBtn"/>
+
         <RadioButton
             android:id="@+id/more_rg_rbt_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
-            android:background="#87ceeb"
-            android:layout_weight="1"
-            android:button="@null"
             android:text="@string/blue"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:background="#87ceeb"
+            style="@style/weatherMoreRadioBtn"/>
+
         <RadioButton
             android:id="@+id/more_rg_rbt_star"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_40dp"
             android:background="#B1CCE1"
-            android:layout_weight="1"
-            android:button="@null"
             android:text="@string/star"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            style="@style/weatherMoreRadioBtn"/>
 
     </RadioGroup>
 
@@ -144,6 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f5f5f5"
+        android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -157,8 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clear"
-            android:textColor="@color/gray_600"
-            android:textSize="@dimen/size_16sp" />
+            style="@style/weatherMoreTv"/>
     </LinearLayout>
 
     <View
@@ -172,6 +139,7 @@
         android:layout_height="wrap_content"
         android:background="#f5f5f5"
         android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical">
 
         <ImageView
@@ -184,40 +152,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enjoyApp"
-            android:textSize="@dimen/size_16sp"
-            android:textColor="@color/gray_600"/>
+            style="@style/weatherMoreTv"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_1dp"
         android:background="@color/gray_500"/>
 
-    <LinearLayout
-        android:id="@+id/more_layout_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:background="#f5f5f5"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/more_layout_version"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:background="#f5f5f5"-->
+<!--        android:foreground="?android:attr/selectableItemBackground"-->
+<!--        android:orientation="horizontal">-->
 
-        <ImageView
-            android:layout_width="@dimen/dimen_25dp"
-            android:layout_height="@dimen/dimen_25dp"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:src="@mipmap/more_version" />
+<!--        <ImageView-->
+<!--            android:layout_width="@dimen/dimen_25dp"-->
+<!--            android:layout_height="@dimen/dimen_25dp"-->
+<!--            android:layout_margin="@dimen/dimen_10dp"-->
+<!--            android:src="@mipmap/more_version" />-->
 
-        <TextView
-            android:id="@+id/more_tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/version"
-            android:textSize="@dimen/size_16sp"
-            android:textColor="@color/gray_600"/>
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/more_tv_version"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            -->
+<!--            android:text="@string/version"-->
+<!--            android:textSize="@dimen/size_16sp"-->
+<!--            android:textColor="@color/gray_600"/>-->
+<!--    </LinearLayout>-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_500"/>
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/dimen_1dp"-->
+<!--        android:background="@color/gray_500"/>-->
 
 </LinearLayout>

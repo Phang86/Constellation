@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/header_layout_max"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mainBg">
+
+    <TextView
+        android:id="@+id/header_tv_gongli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text=""
+        android:layout_marginTop="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:id="@+id/header_tv_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_55sp"
+        android:textStyle="bold"
+        android:textColor="@color/fireRed"
+        android:gravity="center"
+        android:text=""
+        android:layout_marginTop="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:id="@+id/header_tv_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_18sp"
+        android:textStyle="bold"
+        android:textColor="@color/fireRed"
+        android:gravity="center"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/header_tv_nongli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text=""
+        android:layout_marginTop="@dimen/dimen_20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/dimen_20dp"
+        android:id="@+id/header_lin"
+        android:visibility="gone"
+        android:background="@drawable/header_layout_bg">
+
+
+        <TextView
+            android:id="@+id/header_layout_tv_baiji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textIsSelectable="true"
+            android:text=""
+            android:lineHeight="@dimen/dimen_20dp"
+            android:textSize="@dimen/size_15sp" />
+
+        <TextView
+            android:id="@+id/header_layout_tv_wuxing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/black"
+            android:lineHeight="@dimen/dimen_20dp"
+            android:text=""
+            android:textSize="@dimen/size_15sp" />
+
+        <TextView
+            android:id="@+id/header_layout_tv_chongsha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/black"
+            android:lineHeight="@dimen/dimen_20dp"
+            android:text=""
+            android:textSize="@dimen/size_15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/fireRed"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+
+        <TextView
+            android:id="@+id/header_layout_tv_jishen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/black"
+            android:text=""
+            android:lineHeight="@dimen/dimen_20dp"
+            android:textSize="@dimen/size_15sp" />
+
+        <TextView
+            android:id="@+id/header_layout_tv_xiongshen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textIsSelectable="true"
+            android:text=""
+            android:lineHeight="@dimen/dimen_20dp"
+            android:textSize="@dimen/size_15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/fireRed"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/header_layout_tv_ji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/black"
+            android:lineHeight="@dimen/dimen_20dp"
+            android:text=""
+            android:textSize="@dimen/size_15sp" />
+
+        <TextView
+            android:id="@+id/header_layout_tv_yi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/black"
+            android:lineHeight="@dimen/dimen_20dp"
+            android:text=""
+            android:textSize="@dimen/size_15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/header_tv_history_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="@dimen/size_16sp"
+        android:textColor="@color/fireRed"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"/>
+</LinearLayout>

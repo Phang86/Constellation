@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:background="@drawable/selector_partnership_btn_bg"
-        android:text="@string/game"
+        android:text="@string/historyToday"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16sp"
         android:textStyle="bold"

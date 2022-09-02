@@ -9,11 +9,14 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,6 +46,8 @@ import com.yyzy.constellation.fragment.LuckFragment;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.fragment.PartnershipFragment;
 import com.yyzy.constellation.fragment.StarFragment;
+import com.yyzy.constellation.receiver.IntentReceiver;
+import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.BitmapUtils;
 import com.yyzy.constellation.utils.CameraUtils;
@@ -95,7 +100,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             .diskCacheStrategy(DiskCacheStrategy.NONE)  //不做磁盘缓存
             .skipMemoryCache(true);         //不做内存缓存
 
-
+    private BroadcastReceiver receivers = new IntentReceiver();
 
     @Override
     protected int initLayout() {
@@ -145,6 +150,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         if(imageUrl != null){
             Glide.with(this).load(imageUrl).apply(requestOptions).into(cirImg);
         }
+
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        this.registerReceiver(receivers,filter);
     }
 
 
@@ -196,17 +204,71 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         startActivity(intent);
                         break;
                     case R.id.exit:
-                        dialogShow();
+                        //dialogShow();
+                        showDefaultDialog();
+                        drawerLayout.closeDrawers();
                         break;
                     default:
                         //drawerLayout.closeDrawers();
                         break;
                 }
-
                 //item.setCheckable(true);//设置可选项
                 //item.setChecked(true);//设置被选中
                 //drawerLayout.closeDrawers();//关闭菜单栏
                 return false;
+            }
+        });
+    }
+
+    private void showDefaultDialog() {
+        AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
+        AlertDialogUtils.showConfirmDialog(MainActivity.this,"温馨提示","您确定退出吗？","确定","取消");
+        dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {
+                //点击确认按钮要做的事情
+                dialog.dismiss();
+                //获取存储在sp里面的用户名和密码以及两个复选框状态
+                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+                SharedPreferences.Editor ed = sp.edit();
+                //清空所有
+                //editor.remove("username");
+                //editor.remove("password");
+                //提交
+                DiyProgressDialog dialog1 = new DiyProgressDialog(MainActivity.this,"退出登录中...");
+                dialog1.setCancelable(false);//设置不能通过后退键取消
+                dialog1.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_MAIN);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        editor.clear();
+                        ed.clear();
+                        editor.commit();
+                        ed.commit();
+                        SPUtils.remove("imageUrl",MainActivity.this);
+                        finish();
+                        startActivity(intent);
+                        //取消登录通知
+                        NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        NotiManager.cancel(1);
+                        //取消加载
+                        dialog1.cancel();
+                        Toast.makeText(MainActivity.this, "您已成功退出星座缘！", Toast.LENGTH_SHORT).show();
+                    }
+                },1200);
+            }
+
+            @Override
+            public void onNegativeButtonClick(androidx.appcompat.app.AlertDialog dialog) {
+                //点击取消按钮关闭弹框
+                dialog.dismiss();
             }
         });
     }
@@ -228,8 +290,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         //transaction.hide(meFragment);
         //提交事务
         transaction.commit();
-
-
 
     }
 
@@ -289,6 +349,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receivers);
     }
 
     @Override
@@ -456,72 +522,35 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     //退出弹出框
-    public void dialogShow() {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
-        TextView content = (TextView) v.findViewById(R.id.dialog_content);
-        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
-        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
-        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-        final Dialog dialog = builder.create();
-        dialog.show();
-        dialog.setCancelable(false);
-        dialog.getWindow().getDecorView().setBackground(null);
-        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
-        //设置隐藏dialog默认的背景
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-        content.setText("确定退出吗？");
-        btn_sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                //获取存储在sp里面的用户名和密码以及两个复选框状态
-                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-                SharedPreferences.Editor ed = sp.edit();
-                //清空所有
-                //editor.remove("username");
-                //editor.remove("password");
-                //提交
-                DiyProgressDialog dialog1 = new DiyProgressDialog(MainActivity.this,"退出登录中...");
-                dialog1.setCancelable(false);//设置不能通过后退键取消
-                dialog1.show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-//                        Intent intent = new Intent(getContext(), LoginActivity.class);
-//                        intent.setFlags(flag);
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_MAIN);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        editor.clear();
-                        ed.clear();
-                        editor.commit();
-                        ed.commit();
-                        SPUtils.remove("imageUrl",MainActivity.this);
-                        finish();
-                        startActivity(intent);
-                        //取消登录通知
-                        NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                        NotiManager.cancel(1);
-                        //取消加载
-                        dialog1.cancel();
-                        Toast.makeText(MainActivity.this, "您已成功退出！", Toast.LENGTH_SHORT).show();
-                    }
-                },3000);
-            }
-        });
-
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                dialog.dismiss();
-            }
-        });
-    }
+//    public void dialogShow() {
+//        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+//        LayoutInflater inflater = LayoutInflater.from(this);
+//        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
+//        TextView content = (TextView) v.findViewById(R.id.dialog_content);
+//        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
+//        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
+//        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+//        final Dialog dialog = builder.create();
+//        dialog.show();
+//        dialog.setCancelable(false);
+//        dialog.getWindow().getDecorView().setBackground(null);
+//        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+//        //设置隐藏dialog默认的背景
+//        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+//        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+//        content.setText("确定退出吗？");
+//        btn_sure.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+//
+//        btn_cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                dialog.dismiss();
+//            }
+//        });
+//    }
 }

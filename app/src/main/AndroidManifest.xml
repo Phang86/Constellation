@@ -29,8 +29,20 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".activity.SwipeCheckActivity"></activity>
-        <activity android:name=".activity.PlayGameActivity" />
+        <activity android:name=".activity.HistoryInfoActivity" />
+        <activity android:name=".activity.HistoryActivity" />
+        <activity android:name=".activity.MoreHistoryActivity" />
+        <activity android:name=".activity.UpdatePhoneOutActivity" />
+        <activity android:name=".activity.UpdatePhoneActivity" />
+        <activity android:name=".activity.CancelidActivity" />
+        <activity android:name=".activity.CancelActivity" />
+
+        <receiver
+            android:name=".receiver.IntentReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.SwipeCheckActivity" />
         <activity android:name=".activity.ConfigPwdActivity" />
         <activity android:name=".activity.FindPwdActivity" />
         <activity android:name=".activity.UpdatePwdActivity" />
@@ -53,7 +65,9 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.WelcomeActivity" />
-        <activity android:name=".activity.HomeActivity">
+        <activity
+            android:name=".activity.HomeActivity"
+            android:theme="@style/MyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

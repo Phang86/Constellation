@@ -72,4 +72,7 @@ dependencies {
 
     //底部tab栏
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+//    implementation 'com.ycjiang:ImagePreview:2.3.5' //图片预览工具库
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }

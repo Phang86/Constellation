@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +43,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
     private ImageView ivBack;
     private TextView tvBack;
     private EditText userEt, phoneEt, verCodeEt;
-    private LinearLayout findBtn;
+    private Button findBtn;
     private DiyProgressDialog mDialog;
     private ImageView ivCode;
 
@@ -77,34 +78,39 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                if (charSequence == null || charSequence.length() == 0) return;
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < charSequence.length(); i++) {
-                    if (i != 3 && i != 8 && charSequence.charAt(i) == ' ') {
-                        continue;
-                    } else {
-                        sb.append(charSequence.charAt(i));
-                        if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
-                            sb.insert(sb.length() - 1, ' ');
-                        }
-                    }
-                }
-                if (!sb.toString().equals(charSequence.toString())) {
-                    int index = start + 1;
-                    if (sb.charAt(start) == ' ') {
-                        if (before == 0) {
-                            index++;
+                try {
+                    if (charSequence == null || charSequence.length() == 0) return;
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < charSequence.length(); i++) {
+                        if (i != 3 && i != 8 && charSequence.charAt(i) == ' ') {
+                            continue;
                         } else {
-                            index--;
-                        }
-                    } else {
-                        if (before == 1) {
-                            index--;
+                            sb.append(charSequence.charAt(i));
+                            if ((sb.length() == 4 || sb.length() == 9) && sb.charAt(sb.length() - 1) != ' ') {
+                                sb.insert(sb.length() - 1, ' ');
+                            }
                         }
                     }
-                    phoneEt.setText(sb.toString());
-                    phoneEt.setSelection(index);
+                    if (!sb.toString().equals(charSequence.toString())) {
+                        int index = start + 1;
+                        if (sb.charAt(start) == ' ') {
+                            if (before == 0) {
+                                index++;
+                            } else {
+                                index--;
+                            }
+                        } else {
+                            if (before == 1) {
+                                index--;
+                            }
+                        }
+                        phoneEt.setText(sb.toString());
+                        phoneEt.setSelection(index);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
+
             }
 
             @Override
@@ -198,7 +204,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
             MyToast.showText(FindPwdActivity.this,"验证码错误！",false);
             return;
         }
-        mDialog = new DiyProgressDialog(FindPwdActivity.this, "正在加载中...");
+        DiyProgressDialog mDialog = new DiyProgressDialog(FindPwdActivity.this, "正在加载中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
@@ -216,25 +222,19 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                try {
-                    Looper.prepare();
-                    showDiyDialog(FindPwdActivity.this,"找回失败！服务器连接超时！");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())) {
+                FindPwdActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showDiyDialog(FindPwdActivity.this,"找回失败！服务器连接超时！");
+                        if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())) {
                                 ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                 findBtn.setEnabled(true);
                             } else {
                                 findBtn.setEnabled(false);
                             }
-                            mDialog.cancel();
-                        }
-                    });
-                    Looper.loop();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                        mDialog.dismiss();
+                    }
+                });
             }
 
             @Override
@@ -248,7 +248,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                 @Override
                                 public void run() {
                                     if (result.equals("success")) {
-                                        MyToast.showText(FindPwdActivity.this,"找回失败！你输入手机号有误！",false);
+                                        MyToast.showText(FindPwdActivity.this,"找回失败！你输入的手机号有误！",false);
                                         ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         mDialog.cancel();
                                         findBtn.setEnabled(true);
@@ -273,6 +273,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                             //finish();
                                             mDialog.cancel();
                                             findBtn.setEnabled(true);
+                                            finish();
                                         } else {
                                             showDiyDialog(FindPwdActivity.this,"密码找回失败！服务器连接超时！");
                                             mDialog.cancel();
@@ -282,7 +283,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                         }
                                     }
                                 }
-                            }, 2000);
+                            }, 1000);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

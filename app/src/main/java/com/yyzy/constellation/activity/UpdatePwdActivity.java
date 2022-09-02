@@ -55,7 +55,6 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     private String newPwd;
     private String configNewPwd;
     private String userName;
-    private DiyProgressDialog mDialog;
     private NotificationManager manager;
 
     @Override
@@ -159,7 +158,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             return;
         }else{
             if (newPwd.equals(configNewPwd)) {
-                mDialog = new DiyProgressDialog(UpdatePwdActivity.this,"正在加载中...");
+                DiyProgressDialog mDialog = new DiyProgressDialog(UpdatePwdActivity.this,"正在加载中...");
                 mDialog.setCancelable(false);//设置不能通过后退键取消
                 mDialog.setCanceledOnTouchOutside(false);
                 mDialog.show();
@@ -177,11 +176,10 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        Looper.prepare();
-                        showToast("密码修改失败！服务器连接超时！");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                MyToast.showText(UpdatePwdActivity.this,"修改失败！服务器连接超时！",false);
                                 if (!TextUtils.isEmpty(oldPwdEt.getText()) && !TextUtils.isEmpty(configNewPwdEt.getText()) && !TextUtils.isEmpty(newPwdEt.getText())){
                                     updateBtn.setEnabled(true);
                                 }else {
@@ -190,7 +188,6 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                 mDialog.cancel();
                             }
                         });
-                        Looper.loop();
                     }
 
                     @Override
@@ -205,8 +202,9 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                         public void run() {
                                             try {
                                                 if (result.equals("success")){
-                                                    MyToast.showText(UpdatePwdActivity.this,"密码修改失败！原始密码不正确！");
+                                                    MyToast.showText(UpdatePwdActivity.this,"原始密码不正确！");
                                                     oldPwdEt.setText("");
+                                                    oldPwdEt.setHint("请重新输入旧密码");
                                                     mDialog.cancel();
                                                     updateBtn.setEnabled(false);
                                                     return;
@@ -227,7 +225,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                                 e.printStackTrace();
                                             }
                                         }
-                                    },2000);
+                                    },1500);
                                 }catch (Exception e){
                                     e.printStackTrace();
                                 }
@@ -253,10 +251,13 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                    Looper.prepare();
-                    MyToast.showText(UpdatePwdActivity.this,"密码修改失败！服务器连接超时！");
-                    mDialog.cancel();
-                    Looper.loop();
+                    UpdatePwdActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            MyToast.showText(UpdatePwdActivity.this,"修改失败！服务器连接超时！",false);
+                            mDialog.cancel();
+                        }
+                    });
                 }
 
                 @Override
@@ -268,8 +269,19 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                             if (result.equals("success")) {
                                 MyToast.showText(UpdatePwdActivity.this,"密码修改成功！",true);
                                 oldPwdEt.setText("");
+                                oldPwdEt.setHint("");
                                 newPwdEt.setText("");
+                                newPwdEt.setHint("");
                                 configNewPwdEt.setText("");
+                                configNewPwdEt.setHint("");
+                                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                SharedPreferences spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
+                                SharedPreferences.Editor edit = spf.edit();
+                                edit.clear();
+                                edit.commit();
+                                editor.clear();
+                                editor.commit();
                                 manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                 manager.cancel(1);
                                 new Handler().postDelayed(new Runnable() {
@@ -280,7 +292,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                     }
                                 },1000);
                             } else if (result.equals("error")) {
-                                MyToast.showText(UpdatePwdActivity.this,"密码修改失败！",false);
+                                MyToast.showText(UpdatePwdActivity.this,"修改失败！",false);
                                 mDialog.cancel();
                             }
                         }
@@ -290,8 +302,8 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void showDiyDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = LayoutInflater.from(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdatePwdActivity.this);
+        LayoutInflater inflater = LayoutInflater.from(UpdatePwdActivity.this);
         View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
         TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
         TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
@@ -311,14 +323,6 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
             public void onClick(View v) {
                 btn_sure.setBackgroundColor(getResources().getColor(R.color.gray_600));
                 btn_sure.setBackgroundColor(getResources().getColor(R.color.white));
-                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                SharedPreferences spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-                SharedPreferences.Editor edit = spf.edit();
-                edit.clear();
-                edit.commit();
-                editor.clear();
-                editor.commit();
                 Intent intent = new Intent(UpdatePwdActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 dialog.cancel();

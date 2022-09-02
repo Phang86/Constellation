@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/footer_tv_load_more"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/mainBg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击加载更多..."
+        android:textColor="@color/yaBlack"
+        android:textSize="@dimen/size_15sp"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+</LinearLayout>

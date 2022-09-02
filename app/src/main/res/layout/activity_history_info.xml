@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBg"
+    android:orientation="vertical"
+    tools:context=".activity.HistoryInfoActivity">
+
+    <include android:id="@+id/layout_top" layout="@layout/star_details_title"/>
+
+    <ScrollView
+        android:id="@+id/history_info_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:layout_below="@+id/layout_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_10dp">
+
+            <TextView
+                android:id="@+id/history_info_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/size_17sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/history_info_carView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_220dp"
+                app:cardCornerRadius="@dimen/dimen_10dp"
+                app:cardBackgroundColor="@color/mainBg"
+                android:layout_marginBottom="@dimen/dimen_10dp">
+
+                <ImageView
+                    android:id="@+id/history_info_imgTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/history_info_tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_15sp"
+                android:textIsSelectable="true"
+                android:lineHeight="@dimen/dimen_20dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/history_info_tv_wu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/fireRed"
+        android:textSize="@dimen/size_25sp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>

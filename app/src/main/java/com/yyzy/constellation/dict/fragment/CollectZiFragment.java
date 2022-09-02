@@ -79,7 +79,7 @@ public class CollectZiFragment extends Fragment {
                         //停止刷新,圆圈消失
                         refreshLayout.setRefreshing(false);
                     }
-                },2000);
+                },500);
             }
         });
     }
@@ -131,6 +131,6 @@ public class CollectZiFragment extends Fragment {
                 loadData();
                 refreshLayout.setRefreshing(false);
             }
-        }, 2000);
+        }, 500);
     }
 }

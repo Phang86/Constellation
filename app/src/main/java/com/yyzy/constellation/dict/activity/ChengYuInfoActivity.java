@@ -21,6 +21,7 @@ import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyGridView;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
 import java.util.ArrayList;
@@ -43,7 +44,6 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
     private String chuzi;
     private String shili;
     private String yufa;
-    private DiyProgressDialog dialog;
     //设置标志是否被收藏
     private boolean isCollect = false;
     //判断这个汉字是否在数据库已经存在
@@ -121,35 +121,30 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onSuccess(String result) {
-        dialog = new DiyProgressDialog(this, "加载中...");
+        DiyProgressDialog dialog = new DiyProgressDialog(this, "加载中...");
         dialog.show();
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(false);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
-                ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
-                try {
-                    if (beanResult != null) {
-                        DBmanager.insertCyToCyutb(beanResult);
-                        showDatasView(beanResult);
-                        dialog.cancel();
-                        //return;
-                    } else if (bean.getError_code() == 10012) {
-                        dialog.cancel();
-                        Toast.makeText(ChengYuInfoActivity.this, "今日接口访问次数已上限！", Toast.LENGTH_SHORT).show();
-                        //return;
-                    } else {
-                        Toast.makeText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！", Toast.LENGTH_SHORT).show();
-                        dialog.cancel();
-                        //return;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
+        ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
+        try {
+            if (beanResult != null) {
+                DBmanager.insertCyToCyutb(beanResult);
+                showDatasView(beanResult);
+                dialog.cancel();
+                //return;
+            } else if (bean.getError_code() == 10012) {
+                dialog.cancel();
+                MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！");
+                //return;
+            } else {
+                MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！");
+                dialog.cancel();
+                //return;
             }
-        },1500);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -163,7 +158,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
                 //List<String> xxsy = bean.getXxsy();
                 showDatasView(bean);
             }else {
-                showToast("今日接口访问次数已上限！");
+                MyToast.showText(this,"今日接口访问次数已上限！");
                 return;
             }
         }catch (Exception e){
@@ -228,13 +223,13 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-    private void startPage(String chengyu){
-        Intent intent = new Intent(this, ChengYuInfoActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("chengyu",chengyu);
-        startActivity(intent);
-        finish();
-    }
+//    private void startPage(String chengyu){
+//        Intent intent = new Intent(this, ChengYuInfoActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.putExtra("chengyu",chengyu);
+//        startActivity(intent);
+//        finish();
+//    }
 
     //当Activity销毁时，将收藏的汉字插入或删除
     @Override

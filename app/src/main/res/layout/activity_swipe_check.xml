@@ -13,59 +13,74 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_40dp"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_15dp" >
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_5dp">
 
             <TextView
                 android:id="@+id/swipe_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拖动下方滑块完成验证"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_16sp"/>
+                android:textColor="@color/yaBlack"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/size_15sp"/>
 
             <ImageView
                 android:id="@+id/swipe_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_refresh"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/ic_refresh"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
-
-        <com.yyzy.constellation.utils.SwipeCaptchaView
-            android:id="@+id/swipeCaptchaView"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitXY"
-            app:captchaHeight="@dimen/dimen_35dp"
-            app:captchaWidth="@dimen/dimen_35dp"
-            android:layout_marginTop="@dimen/dimen_15dp"/>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dimen_8dp"
+            app:cardBackgroundColor="@color/bgyellow"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp">
+
+            <com.yyzy.constellation.utils.SwipeCaptchaView
+                android:id="@+id/swipeCaptchaView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                app:captchaHeight="@dimen/dimen_35dp"
+                app:captchaWidth="@dimen/dimen_35dp"/>
+        </androidx.cardview.widget.CardView>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp">
+
+            <SeekBar
+                android:id="@+id/dragBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/bg_check_dragbg"
+                android:thumb="@drawable/ic_btn"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:splitTrack="false"
+                android:maxHeight="@dimen/dimen_15dp"
+                android:minHeight="@dimen/dimen_15dp"
+                android:paddingTop="@dimen/dimen_5dp"
+                android:paddingBottom="@dimen/dimen_0dp"
+                android:thumbOffset="9dp"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/dragBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:progressDrawable="@drawable/bg_check_dragbg"
-        android:thumb="@drawable/ic_btn"
-        android:layout_marginTop="@dimen/dimen_15dp"
-        android:splitTrack="false"
-        android:layout_marginLeft="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_10dp"
-        android:maxHeight="@dimen/dimen_15dp"
-        android:minHeight="@dimen/dimen_15dp"
-        android:paddingTop="@dimen/dimen_5dp"
-        android:paddingBottom="@dimen/dimen_0dp"
-        android:thumbOffset="9dp"/>
 </LinearLayout>

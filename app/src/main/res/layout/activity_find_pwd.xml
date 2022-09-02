@@ -57,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:background="@null"
                     android:hint="@string/eduser"
                     android:lines="1"
@@ -94,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:hint="请输入手机号"
                     android:lines="1"
                     android:inputType="phone"
@@ -135,6 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dimen_20dp"
                         android:layout_marginRight="@dimen/dimen_70dp"
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:hint="请输入验证码"
                         android:lines="1"
                         android:background="@null"
@@ -169,38 +172,40 @@
             android:layout_marginRight="@dimen/dimen_20dp"
             android:text="@string/pwdFindByLogin"/>
 
-        <LinearLayout
+<!--        <LinearLayout-->
+<!--            -->
+<!--            android:layout_width="@dimen/dimen_70dp"-->
+<!--            android:layout_height="@dimen/dimen_70dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginLeft="@dimen/dimen_18dp"-->
+<!--            android:layout_marginTop="@dimen/dimen_10dp"-->
+<!--            android:layout_marginRight="@dimen/dimen_18dp"-->
+<!--            android:background="@drawable/selector_find_pwd_btn"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_gravity="center">-->
+
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/icon_iv_right"-->
+<!--                android:layout_gravity="center_vertical"/>-->
+<!--        </LinearLayout>-->
+
+        <Button
             android:id="@+id/find_btn"
-            android:layout_width="@dimen/dimen_70dp"
-            android:layout_height="@dimen/dimen_70dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_18dp"
-            android:background="@drawable/selector_find_pwd_btn"
-            android:gravity="center"
-            android:layout_gravity="center">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下一步"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:background="@drawable/selector_update_btn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16sp"
+            android:textStyle="bold" >
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_iv_right"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-
-<!--        <Button-->
-<!--            -->
-<!--            android:layout_width="@dimen/dimen_60dp"-->
-<!--            android:layout_height="@dimen/dimen_60dp"-->
-<!--            -->
-<!--            -->
-<!--            android:text=""-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="@dimen/size_16sp"-->
-<!--            android:textStyle="bold" >-->
-
-<!--        </Button>-->
+        </Button>
 
 
 

@@ -58,6 +58,7 @@
                     android:id="@+id/edRegister_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textCursorDrawable="@drawable/color_cursor_red"
                     android:layout_marginLeft="@dimen/dimen_20dp"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:lines="1"
@@ -95,6 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_20dp"
+                    android:textCursorDrawable="@drawable/color_cursor_red"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:background="@null"
                     android:lines="1"
@@ -134,6 +136,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:background="@null"
                     android:hint="请输入手机号"
+                    android:textCursorDrawable="@drawable/color_cursor_red"
                     android:lines="1"
                     android:inputType="phone"
                     android:maxLength="13"
@@ -165,6 +168,7 @@
                     android:layout_weight="2"
                     android:inputType="number"
                     android:hint="请输入验证码"
+                    android:textCursorDrawable="@drawable/color_cursor_red"
                     android:background="@drawable/ver_code_bg"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
@@ -180,8 +184,9 @@
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:background="@drawable/selector_get_val_code"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_13sp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:text="点击获取"/>
             </LinearLayout>
         </LinearLayout>

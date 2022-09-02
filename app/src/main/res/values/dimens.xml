@@ -66,4 +66,5 @@
     <dimen name="size_28sp">28sp</dimen>
     <dimen name="size_40sp">40sp</dimen>
     <dimen name="size_50sp">50sp</dimen>
+    <dimen name="size_55sp">55sp</dimen>
 </resources>

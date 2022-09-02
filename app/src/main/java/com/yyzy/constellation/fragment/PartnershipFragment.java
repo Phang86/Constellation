@@ -16,9 +16,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.HistoryActivity;
 import com.yyzy.constellation.activity.LocalMusicActivity;
-import com.yyzy.constellation.activity.PlayGameActivity;
 import com.yyzy.constellation.activity.StarStartActivity;
+import com.yyzy.constellation.entity.HistoryEntity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 
@@ -111,7 +112,7 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
                 startActivity(intent);
                 break;
             case R.id.partnershipFrag_btn_game:
-                startActivity(new Intent(getContext(), PlayGameActivity.class));
+                startActivity(new Intent(getContext(), HistoryActivity.class));
                 break;
 
         }

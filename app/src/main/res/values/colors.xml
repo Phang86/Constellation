@@ -15,6 +15,7 @@
     <color name="pink">#d4237a</color>
     <color name="grey">#8a8a8a</color>
     <color name="white">#FFFFFF</color>
+    <color name="zhuBlue">#29B6F6</color>
 
     <color name="lightpink">#EB749C</color>
     <color name="orange">#EEAD0E</color>
@@ -43,4 +44,9 @@
     <color name="bg">#CCFF99</color>
     <color name="colorPink">#33FFC0Cb</color>
     <color name="Blue">#6495ED</color>
+    <color name="yaBlack">#CC1B1A1A</color>
+
+    <color name="mainBg">#FDF5E6</color>
+    <color name="fireRed">#B22222</color>
+    <color name="mainRed">#D5F3DDD7</color>
 </resources>

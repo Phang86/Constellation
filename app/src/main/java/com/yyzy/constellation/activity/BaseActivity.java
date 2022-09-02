@@ -172,4 +172,5 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
             }
         });
     }
+
 }

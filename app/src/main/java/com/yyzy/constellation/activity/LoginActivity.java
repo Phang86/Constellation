@@ -11,13 +11,16 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +48,7 @@ import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.entity.User;
+import com.yyzy.constellation.receiver.IntentReceiver;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
@@ -72,7 +76,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button btnLogin;
     private List<User> data = new ArrayList<>();
     private String userPassword;
-    private DiyProgressDialog mDialog;
 
     private CheckBox mRemenber, mAutoLogin;
     private boolean mPasswordFlag = false;//记住密码标志
@@ -83,6 +86,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private ImageView imgValCode;
     private NotificationManager manager;
     private Notification note;
+
+    private BroadcastReceiver receivers = new IntentReceiver();
 
     @Override
     protected int initLayout() {
@@ -113,7 +118,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         forgetTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         forgetTv.getPaint().setAntiAlias(true);//抗锯齿
+
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        this.registerReceiver(receivers,filter);
     }
+
 
     @Override
     protected void initData() {
@@ -245,12 +254,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         }else if (!code.equals(valCode)){
             //showToast("验证码有误！");
-            MyToast.showText(LoginActivity.this,"验证码错误！",false);
+            MyToast.showText(LoginActivity.this,"验证码错误！");
             imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
             clearEditor();
             return;
         }
-        mDialog = new DiyProgressDialog(LoginActivity.this, "正在登录中...");
+        DiyProgressDialog mDialog = new DiyProgressDialog(LoginActivity.this, "正在登录中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
@@ -303,7 +312,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 @Override
                                 public void run() {
                                     if (resultStr.equals("su_error")) {
-                                        //showToast("此用户不存在！");
                                         showDiyDialog(LoginActivity.this,"此用户不存在！");
                                         clearEditor();
                                         mDialog.cancel();
@@ -311,8 +319,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                         return;
                                     }else if (resultStr.equals("success")){
-                                        //showDiyDialog(LoginActivity.this,"你输入的密码有误，请重新输入！");
-                                        //showToast();
                                         MyToast.showText(LoginActivity.this,"登录密码错误！",false);
                                         clearEditor();
                                         mDialog.cancel();
@@ -332,14 +338,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                             SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
                                             editor.putString("name", edUser.getText().toString().trim());
-                                            editor.putString("createTime", data.get(0).getCreateTime());
+                                            editor.putString("createTime", data.get(0).getUpdateTime());
                                             editor.putString("phone", data.get(0).getMobile());
+                                            editor.putString("passWord",edPwd.getText().toString().trim());
+                                            Log.e("TAG", "登录密码为:"+edPwd.getText().toString().trim());
                                             // 存入数据
                                             editor.commit();
                                             mDialog.cancel();
                                             btnLogin.setEnabled(true);
                                         } else {
-                                            showDiyDialog(LoginActivity.this,"登录失败！服务器连接超时！");
+                                            MyToast.showText(LoginActivity.this,"登录失败！服务器连接超时！");
                                             //showToast();
                                             mDialog.cancel();
                                             clearEditor();
@@ -349,7 +357,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         }
                                     }
                                 }
-                            }, 2000);
+                            }, 1200);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -463,6 +471,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onRestart() {
         super.onRestart();
         imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receivers);
     }
 
     @Override

@@ -4,6 +4,7 @@
     android:id="@+id/cityFrag_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     tools:context=".weather.fragment.CityWeatherFragment"
     android:background="@mipmap/bg3">
 

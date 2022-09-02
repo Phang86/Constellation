@@ -7,6 +7,6 @@
         android:top="@dimen/dimen_2dp"
         android:bottom="@dimen/dimen_2dp"/>
 
-    <solid android:color="#65C6F3"/>
+    <solid android:color="#DDDADA"/>
     <corners android:radius="@dimen/dimen_5dp"/>
 </shape>

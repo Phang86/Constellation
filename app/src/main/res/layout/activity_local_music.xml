@@ -18,6 +18,7 @@
         android:layout_height="@dimen/dimen_0dp"
         android:layout_below="@+id/shang"
         android:layout_above="@+id/bottom"
+        android:overScrollMode="never"
         android:background="@mipmap/bg2"/>
 
    <RelativeLayout

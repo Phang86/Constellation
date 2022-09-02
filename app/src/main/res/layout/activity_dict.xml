@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dict.activity.DictActivity"
-    android:background="@color/gray_200">
+    android:background="@drawable/bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="@color/white"
-        android:layout_marginBottom="@dimen/dimen_20dp">
+        android:background="@color/lightyellow">
 
         <ImageView
             android:id="@+id/dict_iv_back"
@@ -38,6 +37,13 @@
             android:layout_margin="@dimen/dimen_10dp"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/grey"
+        android:layout_marginBottom="@dimen/dimen_20dp"/>
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
             android:layout_margin="@dimen/dimen_10dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/dict_ed_bg"
             android:singleLine="true"
             android:layout_centerVertical="true"
@@ -80,22 +87,28 @@
         android:padding="@dimen/dimen_15dp"
         android:weightSum="4">
 
+
+
         <TextView
             android:id="@+id/dict_tv_pinyin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@mipmap/m_pinyin"
+            android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/pinyinQuery"
             android:textStyle="bold"
             android:textColor="@color/black" />
+
+
 
         <TextView
             android:id="@+id/dict_tv_bushou"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:drawableTop="@mipmap/m_bushou"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/bushouQuery"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -109,6 +122,7 @@
             android:layout_marginTop="@dimen/dimen_8dp"
             android:layout_weight="1"
             android:drawableTop="@mipmap/m_chengyu"
+            android:foreground="?android:attr/selectableItemBackground"
             android:drawablePadding="@dimen/dimen_5dp"
             android:gravity="center"
             android:text="@string/chengyuQuery"
@@ -121,6 +135,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dimen_5dp"
             android:drawableTop="@mipmap/m_xiangji"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/xiangji"
             android:textStyle="bold"
             android:textColor="@color/black"

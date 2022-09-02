@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_50dp"
+    android:id="@+id/title_layout"
     android:background="@drawable/bg_two">
 
     <TextView
@@ -9,15 +10,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_star_details"
-        android:textSize="@dimen/size_18sp"
+        android:textSize="@dimen/size_16sp"
         android:textColor="@color/pink"
         android:textStyle="bold"
         android:layout_centerInParent="true"/>
 
     <ImageView
         android:id="@+id/details_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dimen_20dp"
+        android:layout_height="@dimen/dimen_20dp"
+        android:foreground="?android:attr/selectableItemBackground"
         android:src="@mipmap/back"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_10dp"/>

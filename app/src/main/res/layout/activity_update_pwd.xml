@@ -77,6 +77,7 @@
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:hint="@string/oldPwd"
+                android:textCursorDrawable="@drawable/color_cursor"
                 android:lines="1"
                 android:inputType="textPassword"
                 android:paddingRight="@dimen/dimen_15dp"
@@ -114,6 +115,7 @@
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:hint="@string/newPwd"
+                android:textCursorDrawable="@drawable/color_cursor"
                 android:lines="1"
                 android:inputType="textPassword"
                 android:paddingRight="@dimen/dimen_15dp"
@@ -148,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
+                android:textCursorDrawable="@drawable/color_cursor"
                 android:hint="@string/newPwdConfig"
                 android:inputType="textPassword"
                 android:paddingRight="@dimen/dimen_15dp"
@@ -167,6 +170,6 @@
         android:background="@drawable/selector_update_btn"
         android:text="@string/updateConfig"
         android:textColor="@color/white"
-        android:textSize="@dimen/size_18sp"
+        android:textSize="@dimen/size_16sp"
         android:textStyle="bold"/>
 </LinearLayout>

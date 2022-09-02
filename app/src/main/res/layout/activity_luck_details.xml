@@ -36,5 +36,6 @@
         android:scrollbars="none"
         android:paddingRight="@dimen/dimen_20dp"
         android:paddingLeft="@dimen/dimen_20dp"
-        android:paddingBottom="@dimen/dimen_20dp"/>
+        android:paddingBottom="@dimen/dimen_20dp"
+        android:overScrollMode="never"/>
 </LinearLayout>

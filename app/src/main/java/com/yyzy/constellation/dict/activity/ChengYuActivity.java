@@ -19,6 +19,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
+import com.yyzy.constellation.utils.MyToast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,7 +92,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
             case EditorInfo.IME_ACTION_SEARCH:
                 String text = searchEt.getText().toString().trim();
                 if (text.isEmpty()){
-                    Toast.makeText(context, "搜索框不能为空哦！", Toast.LENGTH_SHORT).show();
+                    MyToast.showText(context, "搜索框不能为空哦！");
                     return;
                 }else{
                     //把文本输入的信息添加到集合

@@ -23,13 +23,13 @@ import android.widget.Toast;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.activity.LoginActivity;
+import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.weather.db.DBManager;
 
 
 public class MoreActivity extends BaseActivity implements View.OnClickListener {
-    private LinearLayout layoutUpdate,layoutClear,layoutEnjoy,layoutVersion;
-    private TextView versionTv;
+    private LinearLayout layoutUpdate,layoutClear,layoutEnjoy;
     private RadioGroup radioGroup;
     private ImageView back;
     private SharedPreferences bgPref;
@@ -46,22 +46,18 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
         layoutUpdate = findViewById(R.id.more_layout_updateBg);
         layoutClear = findViewById(R.id.more_layout_clear);
         layoutEnjoy = findViewById(R.id.more_layout_enjoy);
-        layoutVersion = findViewById(R.id.more_layout_version);
         radioGroup = findViewById(R.id.more_rg);
-        versionTv = findViewById(R.id.more_tv_version);
 
         back.setOnClickListener(this);
         layoutUpdate.setOnClickListener(this);
         layoutClear.setOnClickListener(this);
         layoutEnjoy.setOnClickListener(this);
-        layoutVersion.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         bgPref = getSharedPreferences("bg_pref", MODE_PRIVATE);
         versionName = getVersion();
-        versionTv.setText("当前版本号："+versionName);
         setRGListener();
     }
 
@@ -144,10 +140,11 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
             case R.id.more_layout_enjoy:
                 enjoyApp("星座缘下载网址");
                 break;
-            case R.id.more_layout_version:
-                showAlertDialog();
-                break;
+//            case R.id.more_layout_version:
+//                //showAlertDialog();
+//                break;
             default:
+                break;
 
         }
     }
@@ -182,32 +179,18 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void clearData() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
-        TextView content = (TextView) v.findViewById(R.id.dialog_content);
-        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
-        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
-        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-        final Dialog dialog = builder.create();
-        dialog.show();
-        dialog.setCancelable(false);
-        dialog.getWindow().getDecorView().setBackground(null);
-        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
-        //设置隐藏dialog默认的背景
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-        content.setText("您确定清理缓存数据？数据清理后不可找回哦！");
-        btn_sure.setOnClickListener(new View.OnClickListener() {
+        AlertDialogUtils alertDialogUtils = AlertDialogUtils.getInstance();
+        AlertDialogUtils.showConfirmDialog(this,"温馨提示","您确定清理缓存数据？数据清理后不可找回哦！","确定","取消");
+        alertDialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {
+                //确定
                 showLoadingDialog();
-                dialog.cancel();
+                dialog.dismiss();
             }
-        });
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
+            public void onNegativeButtonClick(androidx.appcompat.app.AlertDialog dialog) {
                 dialog.dismiss();
             }
         });
@@ -225,7 +208,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 showToast("缓存数据清理完毕！");
 
             }
-        },1500);
+        },1000);
     }
 
     @Override

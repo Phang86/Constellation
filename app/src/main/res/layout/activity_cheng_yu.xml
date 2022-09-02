@@ -40,6 +40,7 @@
             android:layout_height="@dimen/dimen_50dp"
             android:background="@drawable/dict_ed_bg"
             android:layout_margin="@dimen/dimen_10dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:hint="@string/findChengyu"
             android:textColorHint="@color/grey"
             android:textColor="@color/black"

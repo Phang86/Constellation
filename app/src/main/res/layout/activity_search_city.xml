@@ -53,10 +53,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/search_iv_confirm"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:hint="@string/searchCity"
                     android:background="@drawable/search_bg"
                     android:paddingLeft="@dimen/dimen_15dp"
-                    android:paddingTop="@dimen/dimen_5dp"
+                    android:paddingTop="@dimen/dimen_10dp"
                     android:paddingRight="@dimen/dimen_10dp"
                     android:drawableRight="@drawable/ic_delete"
                     android:textStyle="bold"
@@ -65,7 +66,7 @@
                     android:imeOptions="actionSearch"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
-                    android:paddingBottom="@dimen/dimen_5dp"
+                    android:paddingBottom="@dimen/dimen_10dp"
                     android:textSize="@dimen/size_16sp" />
 
                 <ImageView

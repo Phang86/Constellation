@@ -2,14 +2,22 @@ package com.yyzy.constellation.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -22,6 +30,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.receiver.IntentReceiver;
+import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SwipeCaptchaView;
 
@@ -33,6 +43,9 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
     private ImageView imgBack;
     private TextView tvTitle;
     private ImageView imgRefresh;
+
+
+    //private static final List<String> URLS = Arrays.asList("http://juheimg.oss-cn-hangzhou.aliyuncs.com/toh/201108/3/6717173923.jpg");
 
     //随便给一个必应的吧
     private static final List<String> URLS = Arrays.asList(
@@ -55,6 +68,8 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
     private SwipeCaptchaView mSwipeCaptchaView;
     private SeekBar mSeekBar;
 
+    private Animation animation;
+
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -74,6 +89,13 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
         imgBack.setOnClickListener(this);
         imgRefresh.setOnClickListener(this);
         tvTitle.setText("图片验证");
+
+        //创建旋转动画
+        animation =  AnimationUtils.loadAnimation(this, R.anim.img_animation);;
+        animation.setDuration(500);
+        animation.setRepeatCount(1);//动画的重复次数
+        animation.setFillAfter(true);//设置为true，动画转化结束后被应用
+
     }
 
     private void initData(){
@@ -85,20 +107,17 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
                 setResult(RESULT_OK);
                 //隐藏刷新图片功能
                 imgRefresh.setVisibility(View.GONE);
+                //清除动画
+                imgRefresh.clearAnimation();
                 MyToast.showText(SwipeCheckActivity.this,"验证成功！",true);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //跳转到密码修改页面
-                        Intent intent = new Intent();
-                        intent.setClass(SwipeCheckActivity.this, UpdatePwdActivity.class);
-                        String userName = getIntent().getStringExtra("userName");
-                        intent.putExtra("userName",userName);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                    }
-                },2000);
+                //跳转到密码修改页面
+                Intent intent = new Intent();
+                intent.setClass(SwipeCheckActivity.this, UpdatePwdActivity.class);
+                String userName = getIntent().getStringExtra("userName");
+                intent.putExtra("userName",userName);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
 
             @Override
@@ -129,7 +148,6 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
         Log.e("SwipeCaptchaView", " System: density:" + getResources().getDisplayMetrics().densityDpi);
         //加载图片
         showNetImg();
-
     }
 
     private void showNetImg() {
@@ -166,8 +184,11 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 break;
             case R.id.swipe_refresh:
+                imgRefresh.startAnimation(animation);//开始动画
                 showNetImg();
                 break;
         }
     }
+
+
 }

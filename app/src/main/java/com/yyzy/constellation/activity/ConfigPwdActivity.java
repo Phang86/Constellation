@@ -41,13 +41,12 @@ import okhttp3.Response;
 
 public class ConfigPwdActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
-    EditText edUser,edPhone,edPwd,edConfigNewPwd;
-    Button btnConfigPwd;
-    TextView tvBack;
+    private EditText edUser,edPhone,edPwd,edConfigNewPwd;
+    private Button btnConfigPwd;
+    private TextView tvBack;
     private String findUserName;
     private String findUserPhone;
-    DiyProgressDialog mDialog;
-    ImageView ivBack;
+    private ImageView ivBack;
 
     @Override
     protected int initLayout() {
@@ -123,7 +122,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             MyToast.showText(this,"两次输入的密码不一致！",false);
             return;
         }
-        mDialog = new DiyProgressDialog(ConfigPwdActivity.this,"正在加载中...");
+        DiyProgressDialog mDialog = new DiyProgressDialog(ConfigPwdActivity.this,"正在加载中...");
         mDialog.setCancelable(false);//设置不能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();
@@ -141,7 +140,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Looper.prepare();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -154,7 +152,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                         }
                     }
                 });
-                Looper.loop();
             }
 
             @Override
@@ -196,7 +193,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                                 }
 
 
-                            },2000);
+                            },1000);
                         }catch (Exception e){
                             e.printStackTrace();
                         }
@@ -220,10 +217,13 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Looper.prepare();
-                showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
-                mDialog.cancel();
-                Looper.loop();
+                ConfigPwdActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
+                        mDialog.cancel();
+                    }
+                });
             }
 
             @Override
@@ -234,14 +234,18 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                     public void run() {
                         if (result.equals("success")) {
                             MyToast.showText(ConfigPwdActivity.this,"账号找回成功！",true);
-                            edPwd.setText("");
-                            edConfigNewPwd.setText("");
-                            edUser.setText("");
-                            edPhone.setText("");
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     mDialog.cancel();
+                                    edPwd.setText("");
+                                    edPwd.setHint("");
+                                    edConfigNewPwd.setText("");
+                                    edConfigNewPwd.setHint("");
+                                    edUser.setText("");
+                                    edUser.setHint("");
+                                    edPhone.setText("");
+                                    edPhone.setHint("");
                                 }
                             },1000);
                         } else if (result.equals("error")) {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".activity.CancelidActivity">
+
+    <include layout="@layout/star_details_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/dimen_20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码将发送到手机"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/size_14sp"/>
+
+            <TextView
+                android:id="@+id/zhuxiao_tv_num_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_15sp"/>
+
+<!--            <TextView-->
+<!--                android:id="@+id/zhuxiao_tv_num"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text=""-->
+<!--                android:textSize="@dimen/size_15sp" />-->
+        </LinearLayout>
+
+
+        <com.yyzy.constellation.utils.SplitEditText
+            android:id="@+id/zhuxiao_et"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="number"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            app:setMaxLength="6"
+            app:setBorderStyle="line"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            app:setInputBorderColor="@color/zhuBlue"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cancelid_send_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="发送验证码"
+                android:textColor="@color/zhuBlue"
+                android:textSize="@dimen/size_14sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dimen_20dp"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+    <!--手机号码栏-->
+
+
+    <!--下一步按钮-->
+    <Button
+        android:id="@+id/zhuxiao_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/selector_update_btn"
+        android:text="确定注销"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16sp"/>
+</LinearLayout>

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray_200"
+    android:background="@drawable/bg"
     tools:context=".dict.activity.SetActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="@color/white"
-        android:layout_marginBottom="@dimen/dimen_10dp">
+        android:background="@color/lightyellow">
 
         <ImageView
             android:id="@+id/set_iv_back"
@@ -28,6 +27,12 @@
             android:text="@string/set"
             android:layout_centerInParent="true" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        android:background="@color/grey"
+        android:layout_marginBottom="@dimen/dimen_10dp"/>
 
     <ScrollView
         android:layout_width="match_parent"

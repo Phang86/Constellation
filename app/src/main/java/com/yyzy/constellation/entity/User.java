@@ -6,6 +6,15 @@ public class User {
     private String mobile;
     private String passWord;
     private String createTime;
+    private String updateTime;
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -55,6 +64,7 @@ public class User {
                 ", mobile='" + mobile + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
                 '}';
     }
 }

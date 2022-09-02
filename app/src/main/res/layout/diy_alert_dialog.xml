@@ -41,13 +41,14 @@
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_35dp"
+            android:layout_height="@dimen/dimen_40dp"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/dialog_btn_cancel"
                 android:layout_width="0dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
@@ -68,6 +69,7 @@
                 android:layout_weight="1"
                 android:textColor="#1965db"
                 android:background="@null"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="确定"
                 android:textStyle="bold"
                 android:textSize="@dimen/size_15sp" />

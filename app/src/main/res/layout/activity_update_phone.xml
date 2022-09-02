@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".activity.UpdatePhoneActivity">
+
+    <include
+        layout="@layout/star_details_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_20dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码将发送到手机"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/size_14sp" />
+
+            <TextView
+                android:id="@+id/updatePhone_send_tv_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_40dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <com.yyzy.constellation.utils.MyEditText
+                android:id="@+id/updatePhone_et_valNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="请输入验证码"
+                android:maxLength="6"
+                android:singleLine="true"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="@dimen/size_15sp" />
+
+            <TextView
+                android:id="@+id/updatePhone_tv_send_valNum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:lines="1"
+                android:text="发送验证码"
+                android:textColor="@color/zhuBlue"
+                android:textSize="@dimen/size_14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/zhuBlue" />
+
+        <Button
+            android:id="@+id/updatePhone_btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:background="@drawable/selector_update_btn"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16sp" />
+    </LinearLayout>
+</LinearLayout>

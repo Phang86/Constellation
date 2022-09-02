@@ -22,6 +22,7 @@
                 android:id="@+id/main_img_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:src="@drawable/icon_iv_more"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dimen_10dp"/>
@@ -34,7 +35,7 @@
                 android:gravity="center"
                 android:textColor="@color/pink"
                 android:textStyle="bold"
-                android:textSize="@dimen/size_18sp"/>
+                android:textSize="@dimen/size_16sp"/>
         </RelativeLayout>
 
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HomeActivity"
-    android:background="@mipmap/welcome">
+    android:id="@+id/home_layout_relative"
+    tools:context=".activity.HomeActivity">
 
     <TextView
         android:id="@+id/home_tv"
@@ -16,6 +16,6 @@
         android:textColor="@color/white"
         android:background="@drawable/home_tv_bg"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
         android:layout_marginRight="@dimen/dimen_10dp"/>
 </RelativeLayout>
