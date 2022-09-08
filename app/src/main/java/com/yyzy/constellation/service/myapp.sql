@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 02/08/2022 15:24:24
+ Date: 07/09/2022 10:35:27
 */
 
 SET NAMES utf8mb4;
@@ -223,18 +223,17 @@ CREATE TABLE `tb_user`  (
   `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '手机号',
   `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '密码',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '最近更新时间',
   PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE INDEX `userid`(`user_id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 135 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 311 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES (43, 'penghang', '166 7094 0313', '7C89273267E137BFDABD2F8524A7DC8E', '2022-08-02 14:46:14');
-INSERT INTO `tb_user` VALUES (47, 'testAdmin', '191 1870 7857', '7C89273267E137BFDABD2F8524A7DC8E', '2022-08-01 18:55:17');
-INSERT INTO `tb_user` VALUES (139, 'pengqian', '166 7094 0313', 'DF1B3F5C412874E3C04897279B0B2F93', '2022-08-02 14:21:37');
-INSERT INTO `tb_user` VALUES (141, 'pengyong', '185 2012 7270', '28BD3EF011657C10DF496DCDB465AF67', '2022-08-02 14:26:00');
-INSERT INTO `tb_user` VALUES (143, 'penghaining', '151 1687 2027', '2078D35EB4E1F462E5FC5F0ADA47AA9F', '2022-08-02 14:31:23');
+INSERT INTO `tb_user` VALUES (43, 'penghang', '166 7094 0313', '7C89273267E137BFDABD2F8524A7DC8E', '2022-04-21 23:22:50', '2022-09-07 10:17:36');
+INSERT INTO `tb_user` VALUES (47, 'testadmin', '191 1870 5521', '7C89273267E137BFDABD2F8524A7DC8E', '2022-04-21 23:01:27', '2022-08-25 22:35:47');
 
 -- ----------------------------
 -- Table structure for video_category

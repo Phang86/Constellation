@@ -46,6 +46,7 @@ import com.yyzy.constellation.fragment.LuckFragment;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.fragment.PartnershipFragment;
 import com.yyzy.constellation.fragment.StarFragment;
+import com.yyzy.constellation.news.NewsActivity;
 import com.yyzy.constellation.receiver.IntentReceiver;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.AssetsUtils;
@@ -207,6 +208,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         //dialogShow();
                         showDefaultDialog();
                         drawerLayout.closeDrawers();
+                        break;
+                    case R.id.news:
+                        intent.setClass(MainActivity.this, NewsActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         //drawerLayout.closeDrawers();

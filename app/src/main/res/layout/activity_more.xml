@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray_200"
+    android:background="@drawable/bg"
     tools:context=".weather.activity.MoreActivity">
 
     <RelativeLayout
         android:id="@+id/more_top_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="#f5f5f5">
+        android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/more_iv_back"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:foreground="?android:attr/selectableItemBackground"
-        android:background="#f5f5f5"
+        android:background="@color/yellow_100"
         android:orientation="horizontal">
 
         <ImageView
@@ -110,7 +110,7 @@
         android:id="@+id/more_layout_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f5f5f5"
+        android:background="@color/yellow_100"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -137,7 +137,7 @@
         android:id="@+id/more_layout_enjoy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f5f5f5"
+        android:background="@color/yellow_100"
         android:orientation="horizontal"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center_vertical">

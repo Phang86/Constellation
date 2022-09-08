@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_200"
+    android:background="@drawable/bg"
     tools:context=".weather.activity.CityManagerActivity">
 
     <RelativeLayout
         android:id="@+id/city_top_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="#f5f5f5">
+        android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/city_iv_back"

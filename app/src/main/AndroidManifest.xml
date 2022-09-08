@@ -29,6 +29,14 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
+        <activity android:name=".news.NewsInfoActivity"></activity>
+        <activity android:name=".news.AddItemActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".news.NewsActivity" />
         <activity android:name=".activity.HistoryInfoActivity" />
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.MoreHistoryActivity" />
@@ -43,8 +51,12 @@
             android:exported="true" />
 
         <activity android:name=".activity.SwipeCheckActivity" />
-        <activity android:name=".activity.ConfigPwdActivity" />
-        <activity android:name=".activity.FindPwdActivity" />
+        <activity
+            android:name=".activity.ConfigPwdActivity"
+            android:theme="@style/Login" />
+        <activity
+            android:name=".activity.FindPwdActivity"
+            android:theme="@style/Login" />
         <activity android:name=".activity.UpdatePwdActivity" />
         <activity android:name=".dict.activity.CollectActivity" />
         <activity android:name=".dict.activity.SetActivity" />
@@ -60,11 +72,19 @@
         <activity android:name=".weather.activity.SearchCityActivity" />
         <activity android:name=".weather.activity.DeleteCityActivity" />
         <activity android:name=".weather.activity.CityManagerActivity" />
-        <activity android:name=".weather.activity.WeatherActivity" />
+        <activity
+            android:name=".weather.activity.WeatherActivity"
+            android:theme="@style/Login" />
         <activity android:name=".activity.LocalMusicActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.WelcomeActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:theme="@style/Login" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/Login" />
+        <activity
+            android:name=".activity.WelcomeActivity"
+            android:theme="@style/MyTheme" />
         <activity
             android:name=".activity.HomeActivity"
             android:theme="@style/MyTheme">

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/gray_200"
+    android:background="@drawable/bg"
     tools:context=".dict.activity.ChengYuActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="@color/white"
+        android:background="@drawable/bg_two"
         android:layout_marginBottom="@dimen/dimen_10dp">
 
         <ImageView

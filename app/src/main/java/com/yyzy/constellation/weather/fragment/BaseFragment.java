@@ -1,18 +1,33 @@
 package com.yyzy.constellation.weather.fragment;
 
+import android.media.MediaSync;
 import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.yyzy.constellation.utils.Constellation;
+import com.yyzy.constellation.utils.MyToast;
+
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class BaseFragment extends Fragment implements Callback.CommonCallback<String> {
+public class BaseFragment extends Fragment implements Callback.CommonCallback<String>, Response.Listener<String>, Response.ErrorListener {
     public void loadData(String path){
         RequestParams params = new RequestParams(path);
         x.http().get(params,this);
+    }
+
+    public void volleyLoadData(String url){
+        //创建Volley网络请求框架
+        StringRequest request = new StringRequest(url, this, this);
+        //添加到网络请求队列当中
+        Constellation.getHttpQueue().add(request);
+
     }
 
     //请求数据获取成功时，调用的接口
@@ -42,11 +57,21 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
     public void showToast(String msg) {
         try {
             Looper.prepare();
-            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            MyToast.showText(getContext(), msg);
             Looper.loop();
         }catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        //获取网络请求失败的方法
+    }
+
+    @Override
+    public void onResponse(String response) {
+        //获取网络请求成功的方法
     }
 }

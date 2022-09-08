@@ -19,7 +19,6 @@
         android:id="@+id/details_back"
         android:layout_width="@dimen/dimen_20dp"
         android:layout_height="@dimen/dimen_20dp"
-        android:foreground="?android:attr/selectableItemBackground"
         android:src="@mipmap/back"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_10dp"/>

@@ -252,7 +252,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                     public void run() {
                         requestNet(loadDialog);
                     }
-                },1500);
+                },1000);
             }
 
             @Override
@@ -354,6 +354,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                             manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                             manager.cancel(1);
                             finish();
+                            overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
                         }
                         if (result.equals("error")) {
                             loadDialog.cancel();

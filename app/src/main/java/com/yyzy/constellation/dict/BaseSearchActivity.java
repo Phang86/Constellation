@@ -173,6 +173,7 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
                 intent.setClass(getBaseContext(), WordInfoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
             }
         });
 

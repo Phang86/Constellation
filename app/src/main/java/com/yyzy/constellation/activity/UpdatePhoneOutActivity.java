@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -87,12 +88,16 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
         Log.e("TAG", "用户名为：" + userName);
 
         btnConfirm.setEnabled(false);
+        tvSendValNum.setClickable(false);
+        tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
         mTimeCount = new TimeCount(60000, 1000);
 
         etPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 btnConfirm.setEnabled(false);
+                tvSendValNum.setClickable(false);
+                tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
             }
 
             @Override
@@ -139,6 +144,13 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                     btnConfirm.setEnabled(true);
                 } else {
                     btnConfirm.setEnabled(false);
+                }
+                if (etPhone.getText().length() == 13){
+                    tvSendValNum.setClickable(true);
+                    tvSendValNum.setTextColor(getResources().getColor(R.color.zhuBlue));
+                }else{
+                    tvSendValNum.setClickable(false);
+                    tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
                 }
             }
         });
@@ -303,9 +315,15 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
 
         @Override
         public void onFinish() {
-            tvSendValNum.setClickable(true);
+            if (!TextUtils.isEmpty(etPhone.getText()) && etPhone.getText().length() == 13){
+                tvSendValNum.setClickable(true);
+                tvSendValNum.setTextColor(getResources().getColor(R.color.zhuBlue));
+            }else{
+                tvSendValNum.setEnabled(false);
+                tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
+            }
             tvSendValNum.setText("重新获取");
-            tvSendValNum.setTextColor(getResources().getColor(R.color.zhuBlue));
+
         }
     }
 
@@ -343,30 +361,38 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            if (resultStr.equals("error")) {
-                                showDiyDialog(UpdatePhoneOutActivity.this,"修改失败！");
-                                mDialog.cancel();
-                                return;
-                            }else if (resultStr.equals("success")){
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (resultStr.equals("error")) {
+                                        showDiyDialog(UpdatePhoneOutActivity.this,"修改失败！");
+                                        mDialog.cancel();
+                                        return;
+                                    }else if (resultStr.equals("success")){
 //                                List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
 //                                }.getType());
 //                                //User data = new Gson().fromJson(resultStr, User.class);
 //                                List<User> data = new ArrayList<>();
 //                                data = dataEntity;
-                                if (!TextUtils.isEmpty(resultStr)) {
-                                    MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
-                                    finish();
-                                    mDialog.cancel();
-                                } else {
-                                    MyToast.showText(UpdatePhoneOutActivity.this,"修改失败！服务器连接超时！");
-                                    mDialog.cancel();
-                                    return;
+                                        if (!TextUtils.isEmpty(resultStr)) {
+                                            MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
+                                            //finish();
+                                            etPhone.setEnabled(false);
+                                            etValNum.setEnabled(false);
+                                            mDialog.cancel();
+                                        } else {
+                                            MyToast.showText(UpdatePhoneOutActivity.this,"修改失败！服务器连接超时！");
+                                            mDialog.cancel();
+                                            return;
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        }, 1000);
+
 
                     }
                 });

@@ -30,9 +30,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/grey"
-        android:layout_marginBottom="@dimen/dimen_10dp"/>
+        android:layout_height="@dimen/dimen_10dp"
+        android:background="@color/gray_200"/>
 
     <ScrollView
         android:layout_width="match_parent"

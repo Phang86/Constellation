@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,6 +92,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
             case R.id.config_tv_login:
                 //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.config_btn_pwd:
                 String user = edUser.getText().toString().trim();
@@ -101,6 +103,7 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.config_iv_back:
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
@@ -281,5 +284,14 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         }else {
             btnConfigPwd.setEnabled(false);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

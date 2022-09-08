@@ -71,6 +71,7 @@ public class HomeActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+        //overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
     }
 
     @Override
@@ -304,4 +305,5 @@ public class HomeActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

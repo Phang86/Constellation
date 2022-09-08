@@ -38,8 +38,8 @@ public class URLContent {
     //天气预报网络接口
     private static final String temp_url = "http://apis.juhe.cn/simpleWeather/query?";
     //天气预报网络接口键值
-    //private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
-    //private static final String KEY = "864bdd5bfbaa5474078aa98ec94ed947";
+//    private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
+//    private static final String KEY = "864bdd5bfbaa5474078aa98ec94ed947";
     private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
 
 
@@ -74,8 +74,8 @@ public class URLContent {
     public static String bushourul = "http://v.juhe.cn/xhzd/querybs?key=";
 
     //字典key
-    //public static final String DICTKEY = "3022583457067131a719f84d10efd275";
-    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
+    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
+//    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
 
     public static String wordurl = "http://v.juhe.cn/xhzd/query?key=";
 
@@ -122,4 +122,28 @@ public class URLContent {
         String url = "http://api.juheapi.com/japi/tohdet?key=6a877b186ccd134296d131183b74c9f4&v="+version+"&id="+id;
         return url;
     }
+
+    //    公共的key   http://v.juhe.cn/toutiao/index?key=0af60a86bfa3575d53c1491d1be310ca&type=top
+    public static String key = "0af60a86bfa3575d53c1491d1be310ca";
+    public static String info_url = "http://v.juhe.cn/toutiao/index?key="+key+"&type=";
+    //     头条
+    public static String headline_url = info_url +"top";
+    //    社会
+    public static String society_url = info_url +"shehui";
+    //    国内
+    public static String home_url = info_url +"guonei";
+    //    国际
+    public static String internation_url = info_url+"guoji";
+    //    娱乐
+    public static String entertainment_url = info_url+"yule";
+    //    体育
+    public static String sport_url = info_url+"tiyu";
+    //    军事
+    public static String military_url = info_url+"junshi";
+    //    科技
+    public static String science_url = info_url+"keji";
+    //    财经
+    public static String finance_url = info_url+"caijing";
+    //    时尚
+    public static String fashion_url = info_url+"shishang";
 }

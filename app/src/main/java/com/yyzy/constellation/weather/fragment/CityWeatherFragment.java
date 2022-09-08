@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 import com.yyzy.constellation.weather.db.DBManager;
 import com.yyzy.constellation.weather.entity.WeatherEntity;
@@ -79,7 +80,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 WeatherIndexEntity fromJson = new Gson().fromJson(json, WeatherIndexEntity.class);
                 try {
                     if (fromJson.getReason().equals("超过每日可允许请求次数!") || fromJson.getError_code() == error_code || fromJson.getResult() == null){
-                        showToast("超过每日可允许请求次数!");
+                        MyToast.showText(getActivity(),"超过每日可允许请求次数!");
                         return;
                     }
                     life = fromJson.getResult().getLife();

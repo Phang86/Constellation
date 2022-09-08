@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/yellow_300">
+    android:background="#F0E68C">
 
     <ImageView
         android:id="@+id/header_close"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginBottom="@dimen/dimen_10dp"
-            android:text="彭行"
+            android:text=""
             android:textSize="@dimen/size_18sp"
             android:textColor="@color/black"/>
     </LinearLayout>

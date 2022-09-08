@@ -8,5 +8,5 @@
         android:top="@dimen/dimen_5dp"
         android:bottom="@dimen/dimen_5dp"/>
 
-    <solid android:color="#D5F3DDD7"/>
+    <solid android:color="@color/white"/>
 </shape>

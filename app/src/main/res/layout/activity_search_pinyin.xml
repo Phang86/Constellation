@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dict.activity.SearchPinyinActivity"
-    android:background="@color/gray_200">
+    android:background="@drawable/bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="@color/white">
+        android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/search_pinyin_iv_back"
@@ -41,7 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scrollbars="none"/>
+            android:scrollbars="none"
+            android:background="@drawable/bg"/>
 
         <com.handmark.pulltorefresh.library.PullToRefreshGridView
             android:id="@+id/search_pinyin_gv"

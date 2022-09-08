@@ -125,6 +125,7 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.wordInfo_iv_back:
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.wordInfo_iv_collect:
                 //如果状态发生改变则进行取反

@@ -77,6 +77,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.chengyu_iv_back:
                 finish();
+                //overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
@@ -111,5 +112,6 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         intent = new Intent(this, ChengYuInfoActivity.class);
         intent.putExtra("chengyu",name);
         startActivity(intent);
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
     }
 }

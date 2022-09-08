@@ -4,6 +4,14 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
-<!--        <item name="colorAccent">@color/red</item>-->
+        <item name="android:statusBarColor" tools:targetApi="l">#F0E68C</item>
     </style>
+
+
+<!--    <style name="Login" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--        <item name="colorControlActivated">#C759D662</item>-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>-->
+<!--    </style>-->
 </resources>

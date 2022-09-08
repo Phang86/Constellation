@@ -17,6 +17,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -158,6 +159,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
             }
         });
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
@@ -338,12 +340,12 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
                                     //mbtnRegister.setEnabled(false);
                                     mDialog.cancel();
-                                    //return;
+                                    return;
                                 }else if (resultStr.equals("error")) {
                                     MyToast.showText(RegisterActivity.this,"此用户名已存在！请更换用户名！");
                                     mbtnRegister.setEnabled(true);
                                     mDialog.cancel();
-                                    //return;
+                                    return;
                                 } else {
                                     MyToast.showText(RegisterActivity.this,"注册失败！服务器连接超时！");
                                     mbtnRegister.setEnabled(true);
@@ -400,6 +402,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 break;
             case R.id.register_iv_back:
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
@@ -433,5 +436,14 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     protected void onDestroy() {
         super.onDestroy();
         SMSSDK.unregisterEventHandler(eh);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

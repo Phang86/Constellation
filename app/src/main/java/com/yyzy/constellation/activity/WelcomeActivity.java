@@ -54,6 +54,7 @@ public class WelcomeActivity extends BaseActivity {
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
                 finish();
+                overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
             }
         });
     }

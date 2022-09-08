@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -72,9 +73,9 @@ public class HistoryAdapter extends BaseAdapter {
         holder.titleTv.setText(resultBean.getTitle());
         String picURL = resultBean.getPic();
         if (TextUtils.isEmpty(picURL)) {
-            holder.picIv.setVisibility(View.GONE);
+            holder.car.setVisibility(View.GONE);
         } else {
-            holder.picIv.setVisibility(View.VISIBLE);
+            holder.car.setVisibility(View.VISIBLE);
             Glide.with(context).load(picURL).into(holder.picIv);
         }
         return convertView;
@@ -85,11 +86,13 @@ class ViewHolder{
     TextView timeTv,titleTv;
     ImageView picIv;
     LinearLayout timeLayout;
+    CardView car;
     public ViewHolder(View itemView){
         timeTv = itemView.findViewById(R.id.item_main_time);
         titleTv = itemView.findViewById(R.id.item_main_title);
         picIv = itemView.findViewById(R.id.item_main_pic);
         timeLayout = itemView.findViewById(R.id.item_main_ll);
+        car = itemView.findViewById(R.id.item_main_car);
     }
 
 }

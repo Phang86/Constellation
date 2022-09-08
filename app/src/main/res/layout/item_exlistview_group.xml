@@ -3,7 +3,8 @@
     android:id="@+id/item_group_layout"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/yellow_100">
 
     <TextView
         android:id="@+id/item_group_tv"

@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -165,9 +166,11 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
             case R.id.find_tv_login:
                 //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.find_iv_back:
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_in);
                 break;
             case R.id.find_iv_code:
                 //重置验证码
@@ -274,6 +277,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                                             mDialog.cancel();
                                             findBtn.setEnabled(true);
                                             finish();
+                                            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                                         } else {
                                             showDiyDialog(FindPwdActivity.this,"密码找回失败！服务器连接超时！");
                                             mDialog.cancel();
@@ -310,5 +314,14 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
     protected void onRestart() {
         super.onRestart();
         ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

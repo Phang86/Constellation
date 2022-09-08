@@ -49,4 +49,7 @@
     <color name="mainBg">#FDF5E6</color>
     <color name="fireRed">#B22222</color>
     <color name="mainRed">#D5F3DDD7</color>
+
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="tab_textColor">#d4237a</color>
 </resources>

@@ -143,14 +143,14 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
             case R.id.weather_iv_more:
                 //intentJump(MoreActivity.class);
                 intent.setClass(this,MoreActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 //finish();
                 break;
             case R.id.weather_iv_add:
                 //intentJump(CityManagerActivity.class);
                 intent.setClass(this,CityManagerActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 //finish();
                 break;

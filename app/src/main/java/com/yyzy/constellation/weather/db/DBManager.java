@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.yyzy.constellation.news.bean.TypeBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,4 +87,6 @@ public class DBManager {
         String sql = "delete from info";
         database.execSQL(sql);
     }
+
+
 }

@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".activity.HistoryActivity">
 
+    <include
+        android:id="@+id/history_title"
+        layout="@layout/star_details_title"/>
+
     <ListView
         android:id="@+id/history_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        android:layout_below="@+id/history_title"/>
 
     <ImageButton
         android:id="@+id/history_imgBtn"
@@ -19,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:layout_marginBottom="@dimen/dimen_25dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:background="@drawable/imgbtn_cire_bg"
         android:src="@drawable/icon_rili"/>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".news.NewsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_two"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/news_img_back"
+            android:layout_width="@dimen/dimen_18dp"
+            android:layout_height="@dimen/dimen_18dp"
+            android:src="@mipmap/back"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"/>
+
+        <com.yyzy.constellation.news.view.PagerSlidingTabStrip
+            android:id="@+id/news_pagerStrip"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:pstsTabBackground="@drawable/bg_two"
+            android:layout_weight="1"
+            app:pstsTabPaddingLeftRight="@dimen/dimen_10dp"
+            android:overScrollMode="never">
+
+
+        </com.yyzy.constellation.news.view.PagerSlidingTabStrip>
+
+
+        <ImageView
+            android:id="@+id/news_img_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_news_add"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"/>
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/news_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+    </androidx.viewpager.widget.ViewPager>
+</LinearLayout>

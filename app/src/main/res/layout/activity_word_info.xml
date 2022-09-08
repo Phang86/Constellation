@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dict.activity.WordInfoActivity"
-    android:background="@color/gray_200">
+    android:background="@drawable/bg">
 
     <RelativeLayout
         android:id="@+id/wordInfo_layout_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50dp"
-        android:background="@color/white"
+        android:background="@drawable/bg_two"
         android:layout_marginBottom="@dimen/dimen_10dp">
 
         <ImageView
@@ -126,6 +126,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/wordInfo_layout_bottom"
-        android:divider="@color/gray_200"
-        android:dividerHeight="@dimen/dimen_5dp" ></ListView>
+        android:divider="@color/yellow_100"
+        android:dividerHeight="@dimen/dimen_3dp" ></ListView>
 </RelativeLayout>

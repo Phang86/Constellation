@@ -5,13 +5,25 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#F0E68C</item>
     </style>
+
+
+    <style name="Login" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlActivated">#C759D662</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+    </style>
+
+
 
     //全屏显示
     <style name="MyTheme" parent="Theme.Constellation">
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
         <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <!--MainActivity控件样式-->

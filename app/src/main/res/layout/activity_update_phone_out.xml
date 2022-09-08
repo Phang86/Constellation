@@ -23,7 +23,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/dimen_10dp">
 
             <com.yyzy.constellation.utils.MyEditText
                 android:id="@+id/updateOut_et_phone"
@@ -40,6 +41,11 @@
                 android:background="@null"/>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/zhuBlue" />
 
         <LinearLayout
             android:layout_width="match_parent"

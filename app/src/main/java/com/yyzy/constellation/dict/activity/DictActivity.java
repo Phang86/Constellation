@@ -247,6 +247,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("zi",text);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                     editText.setText("");
                 }
                 break;

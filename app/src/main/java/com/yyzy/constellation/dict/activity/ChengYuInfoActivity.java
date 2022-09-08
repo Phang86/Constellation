@@ -215,6 +215,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.chengyuInfo_iv_back:
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.chengyuInfo_iv_collect:
                 isCollect = !isCollect;

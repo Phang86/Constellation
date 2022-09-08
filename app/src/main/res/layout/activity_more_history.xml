@@ -8,12 +8,17 @@
     android:background="@color/mainBg"
     tools:context=".activity.MoreHistoryActivity">
 
+    <include
+        android:id="@+id/more_title"
+        layout="@layout/star_details_title"/>
+
     <ListView
         android:id="@+id/more_history_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:layout_below="@+id/more_title"/>
 
     <TextView
         android:id="@+id/more_history_tv"

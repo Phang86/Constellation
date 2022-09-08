@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -45,6 +46,8 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
     private TextView tvGongli, tvToday, tvWeek, tvNongli, tvBaiji, tvWuxing, tvChongsha, tvJishen, tvXiongshen, tvJi, tvYi, tvHistoryToday;
     private LinearLayout lin;
     private HistoryEntity entity;
+    private ImageView imgBack;
+    private TextView tvTitle;
 
     //listView尾布局控件
     private LinearLayout tvLoadMore;
@@ -58,7 +61,10 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
     protected void initView() {
         lv = findViewById(R.id.history_lv);
         imgBtn = findViewById(R.id.history_imgBtn);
+        imgBack = findViewById(R.id.details_back);
+        tvTitle = findViewById(R.id.details_title);
         imgBtn.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +126,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                     intent.putExtras(bundle);
                 }
                 startActivity(intent);
+                overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
             }
         });
     }
@@ -144,6 +151,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         String time = sdf.format(date);
         String laohuangliURL = URLContent.getLaohuangliURL(time);
         loadLaoHuangliData(laohuangliURL);
+        tvTitle.setText(time);
     }
 
     private void loadLaoHuangliData(String laohuangliURL) {
@@ -213,7 +221,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
             mData.clear();
             entity = new Gson().fromJson(result, HistoryEntity.class);
             List<HistoryEntity.ResultBean> li = entity.getResult();
-            if (entity != null && entity.getError_code() == 0) {
+            if (entity != null || entity.getError_code() == 0) {
                 for (int i = 0; i < 15; i++) {
                     mData.add(li.get(i));
                 }
@@ -233,6 +241,9 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
             case R.id.history_imgBtn:
                 showCalendarDialog();
                 break;
+            case R.id.details_back:
+                finish();
+                break;
         }
     }
 
@@ -243,6 +254,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String time = year + "-" + (month + 1) + "-" + dayOfMonth;
                 String laohuangliURL = URLContent.getLaohuangliURL(time);
+                tvTitle.setText(time);
                 loadLaoHuangliData(laohuangliURL);
 
                 String url = URLContent.getTodayHistoryURL("1.0", (month + 1), dayOfMonth);

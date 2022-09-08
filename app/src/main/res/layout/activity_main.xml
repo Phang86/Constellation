@@ -90,11 +90,14 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="@dimen/dimen_60dp"
+        android:layout_marginRight="@dimen/dimen_25dp"
         android:layout_marginLeft="@dimen/dimen_20dp"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         qpp:headerLayout="@layout/header_layout"
         android:background="@drawable/bg"
-        qpp:menu="@menu/stumenu" />
+        qpp:menu="@menu/stumenu"
+        qpp:itemTextColor="@color/black"
+        android:overScrollMode="never"
+        qpp:itemHorizontalPadding="@dimen/dimen_50dp"/>
 </androidx.drawerlayout.widget.DrawerLayout>

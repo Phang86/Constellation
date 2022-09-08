@@ -335,6 +335,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                             //跳转页面
                                             intentJump(MainActivity.class);
                                             finish();
+                                            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                                             SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
                                             editor.putString("name", edUser.getText().toString().trim());
@@ -452,6 +453,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 intent.setClass(this, RegisterActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.btnLogin_tv_forget:
                 //forgetTv.setTextColor(getResources().getColor(R.color.red));
@@ -459,6 +461,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 intent.setClass(this, FindPwdActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
             case R.id.login_iv_code:
                 imgValCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
@@ -517,5 +520,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             btnLogin.setEnabled(false);
         }
     }
+
 
 }

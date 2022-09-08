@@ -96,6 +96,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
             intent.putExtra("city",city);
             startActivity(intent);
             finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
         }else if (entity.getError_code() == 207301){
             MyToast.showText(this,"暂时未收入此城市信息！");
         }else {

@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/weather_iv_back"
-        android:layout_above="@+id/weather_layout_relative">
+        android:layout_above="@+id/weather_layout_relative"
+        android:overScrollMode="never">
     </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

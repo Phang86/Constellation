@@ -327,6 +327,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 dialog.cancel();
                 startActivity(intent);
+                overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
             }
         });
     }
