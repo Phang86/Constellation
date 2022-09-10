@@ -37,9 +37,8 @@
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:textColor="@color/black"
             android:gravity="center"
-            android:lineHeight="@dimen/dimen_24dp"
+            android:lineHeight="@dimen/dimen_18dp"
             android:layout_gravity="center_vertical"
-            android:text="当前此应用版本号为：1."
             android:textSize="@dimen/size_15sp" />
 
 
@@ -63,6 +62,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@null"
                 android:text="确定"
+                android:textStyle="bold"
                 android:textSize="@dimen/size_15sp" />
         </LinearLayout>
     </LinearLayout>

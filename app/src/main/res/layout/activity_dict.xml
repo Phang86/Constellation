@@ -151,18 +151,37 @@
         android:orientation="vertical"
         android:padding="@dimen/dimen_10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/everyDay"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/everyDay"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_alignParentLeft="true"/>
+
+
+            <ImageView
+                android:id="@+id/dict_img_update"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="@dimen/dimen_20dp"
+                android:layout_height="@dimen/dimen_20dp"
+                android:src="@drawable/ic_refresh"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/fireRed"/>
+        </RelativeLayout>
+
+
 
         <TextView
             android:id="@+id/dict_tv_everyDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/dimen_5dp"/>
+            android:lineHeight="@dimen/dimen_18dp"
+            android:layout_marginTop="@dimen/dimen_10dp"/>
     </LinearLayout>
 </LinearLayout>

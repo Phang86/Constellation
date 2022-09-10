@@ -96,5 +96,7 @@
             android:layout_below="@+id/search_tv_hotCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="6"/>
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:numColumns="5"/>
 </RelativeLayout>

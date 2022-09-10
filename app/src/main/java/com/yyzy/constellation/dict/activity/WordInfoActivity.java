@@ -198,9 +198,11 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         WordEntity.ResultBean bean = DBmanager.queryWordFromWordtb(zi);
         if (bean != null){
             notifyView(bean);
+            ivCollect.setVisibility(View.VISIBLE);
             //dialog.cancel();
         }else {
             showToast("今日接口访问次数已上限！");
+            ivCollect.setVisibility(View.GONE);
             //dialog.cancel();
             return;
         }

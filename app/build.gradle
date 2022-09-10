@@ -46,24 +46,24 @@ dependencies {
     implementation project(path: ':refresh_library')
     implementation project(path: ':ocr_ui')
     implementation files('libs\\ocr-sdk.jar')
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.squareup.okhttp3:okhttp:+'
-    implementation 'com.squareup.picasso:picasso:+'
-    implementation 'com.google.code.gson:gson:+'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.code.gson:gson:2.9.1'
 
     implementation 'skin.support:skin-support:+'                   // skin-support
     implementation 'skin.support:skin-support-appcompat:+'         // skin-support 基础控件支持
-    implementation 'org.xutils:xutils:+'
+    implementation 'org.xutils:xutils:3.8.12'
 
     //Google Material控件,以及迁移到AndroidX下一些控件的依赖
     implementation 'com.google.android.material:material:1.0.0'
 
     //网络图片加载框架
-    implementation 'com.github.bumptech.glide:glide:+'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
     //圆形图片加载框架
-    implementation 'de.hdodenhof:circleimageview:+'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //权限请求框架
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
@@ -77,4 +77,7 @@ dependencies {
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-11'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-11'
 }

@@ -9,16 +9,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10dp"
         app:cardCornerRadius="@dimen/dimen_15dp"
-        app:contentPadding="@dimen/dimen_20dp">
+        app:contentPadding="@dimen/dimen_25dp"
+        app:cardBackgroundColor="@color/yellow_100">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/item_deleteCity_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
                 android:src="@mipmap/icon_laji"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"/>
 
             <TextView
@@ -27,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="北京"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/size_25sp"
+                android:textSize="22sp"
                 android:layout_marginLeft="@dimen/dimen_20dp"/>
         </RelativeLayout>
 

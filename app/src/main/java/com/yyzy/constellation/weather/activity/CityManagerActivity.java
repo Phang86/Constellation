@@ -1,11 +1,10 @@
 package com.yyzy.constellation.weather.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -33,18 +32,29 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initView() {
         backImg = findViewById(R.id.city_iv_back);
-        deleteImg = findViewById(R.id.city_iv_delete);
+//        deleteImg = findViewById(R.id.city_iv_delete);
         addImg = findViewById(R.id.city_iv_add);
         listView = findViewById(R.id.city_lv);
         mData = new ArrayList<>();
 
         backImg.setOnClickListener(this);
-        deleteImg.setOnClickListener(this);
+//        deleteImg.setOnClickListener(this);
         addImg.setOnClickListener(this);
 
         //设置适配器
         adapter = new CityManagerAdapter(this, mData);
         listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(CityManagerActivity.this,DeleteCityActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                return true;
+            }
+        });
     }
 
     //获取数据库真实的数据源，添加到原有数据源中，并提示适配器更新
@@ -72,12 +82,13 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
                 startActivity(intent);
                 //finish();
                 break;
-            case R.id.city_iv_delete:
-                //intentJump(DeleteCityActivity.class);
-                intent.setClass(this,DeleteCityActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                break;
+//            case R.id.city_iv_delete:
+//                //intentJump(DeleteCityActivity.class);
+//                intent.setClass(this,DeleteCityActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+//                break;
             case R.id.city_iv_add:
                 int cityCount = DBManager.getCityCount();
                 if (cityCount < 5) {

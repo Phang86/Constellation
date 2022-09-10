@@ -12,10 +12,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="#F0E68C">
+
+            <ImageView
+                android:id="@+id/news_info_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10dp"/>
+
+            <TextView
+                android:id="@+id/news_info_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="中间飞机第三及反思豆浆粉警方第四就覅收到飓风桑迪将发生警方第四哦积分的加法计算的"
+                android:textColor="@color/pink"
+                android:textSize="@dimen/size_16sp"
+                android:layout_marginLeft="@dimen/dimen_70dp"
+                android:layout_marginRight="@dimen/dimen_70dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
         <WebView
             android:id="@+id/news_info_webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
 </ScrollView>

@@ -27,6 +27,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.fragment.MeFragment;
@@ -61,7 +64,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
     private ImageView backImg;
     private String name,version;
-    private SwipeRefreshLayout swipeRefresh;
+    private SmartRefreshLayout swipeRefresh;
     private String passWord;
     private List<User> data;
     private NotificationManager NotiManager;
@@ -164,37 +167,20 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
 
 
     private void refreshData(){
-        //设置下拉出现小圆圈是否是缩放出现,出现的位置,最大的下拉位置
-        swipeRefresh.setProgressViewOffset(true,0,200);
-        //设置下拉圆圈的大小,两个值 LARGE大,DEFAULT默认
-        swipeRefresh.setSize(SwipeRefreshLayout.DEFAULT);
-        //设置下拉圆圈上的颜色:蓝色、绿色、橙色、红色
-        swipeRefresh.setColorSchemeResources(R.color.lightyellow);
-        //通过setEnabled设置禁用下拉刷新
-        swipeRefresh.setEnabled(true);
-        //设置下拉圆圈的背景
-        swipeRefresh.setProgressBackgroundColor(R.color.white);
-        //设置手势下拉刷新的监听,一般这里重新请求一下接口
-        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        //下拉刷新
+        swipeRefresh.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onRefresh() {
-                //刷新动画开始后回调到此方法
-                //Toast.makeText(RefreshActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
-                //swipeRefresh.setRefreshing(true);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadData();
-                        //停止刷新,圆圈消失
-                        swipeRefresh.setRefreshing(false);
-                    }
-                },1200);
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                //Toast.makeText(MainActivity.this, "顶部", Toast.LENGTH_SHORT).show();
+                loadData();
+                refreshLayout.finishRefresh(200);
             }
         });
+
     }
 
     private void loadData() {
-        DiyProgressDialog mDialog = new DiyProgressDialog(AppInfoActivity.this, "信息加载中...");
+        DiyProgressDialog mDialog = new DiyProgressDialog(AppInfoActivity.this, "加载中...");
         try {
             mDialog.setCancelable(false);//设置能通过后退键取消
             mDialog.setCanceledOnTouchOutside(false);
@@ -224,6 +210,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                         cancelUserLayout.setEnabled(false);
                         userPhoneLayout.setEnabled(false);
                         mDialog.cancel();
+                        swipeRefresh.setEnableRefresh(false);
                         return;
                     }
                 });
@@ -258,6 +245,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                 updatePwdLayout.setEnabled(false);
                                 versionLayout.setEnabled(false);
                                 mDialog.cancel();
+                                swipeRefresh.setEnableRefresh(false);
                                 return;
                             }else if (resultStr.equals("success")){
                                 if (ed != null && editor != null){
@@ -275,6 +263,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                 updatePwdLayout.setEnabled(false);
                                 versionLayout.setEnabled(false);
                                 mDialog.cancel();
+                                swipeRefresh.setEnableRefresh(false);
                                 return;
                             }else {
                                 List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
@@ -295,6 +284,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                     userPhoneLayout.setEnabled(true);
                                     updatePwdLayout.setEnabled(true);
                                     versionLayout.setEnabled(true);
+                                    swipeRefresh.setEnableRefresh(true);
                                     mDialog.cancel();
                                 } else {
                                     if (ed != null && editor != null){
@@ -308,6 +298,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                     NotiManager.cancel(1);
                                     showSureDialog(AppInfoActivity.this,"登录失败！服务器连接超时！");
                                     mDialog.cancel();
+                                    swipeRefresh.setEnableRefresh(false);
                                     return;
                                 }
                             }
@@ -324,9 +315,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onStart() {
         super.onStart();
-        swipeRefresh.setRefreshing(true);
+        //swipeRefresh.setRefreshing(true);
         loadData();
-        swipeRefresh.setRefreshing(false);
+        //swipeRefresh.setRefreshing(false);
     }
 
 
@@ -354,6 +345,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 intent.setClass(AppInfoActivity.this,LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 startActivity(intent);
                 dialog.dismiss();
             }

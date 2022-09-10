@@ -3,12 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".news.fragment.NewsInfoFragment">
+    tools:context=".news.fragment.NewsInfoFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListView
-        android:id="@+id/news_fragment_lv"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smr_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#ECE8E8"/>
+        app:srlAccentColor="@color/black"
+        app:srlPrimaryColor="#F8F4CF">
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+            <!--这里是中间 可以放你想要放的东西 比如RecyclerView,ListView-->
+        <ListView
+            android:id="@+id/news_fragment_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#ECE8E8"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </FrameLayout>

@@ -123,8 +123,8 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
     public void onSuccess(String result) {
         DiyProgressDialog dialog = new DiyProgressDialog(this, "加载中...");
         dialog.show();
-        dialog.setCancelable(true);
-        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
         ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
         ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
         try {
@@ -132,14 +132,17 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
                 DBmanager.insertCyToCyutb(beanResult);
                 showDatasView(beanResult);
                 dialog.cancel();
+                collectImg.setVisibility(View.VISIBLE);
                 //return;
             } else if (bean.getError_code() == 10012) {
                 dialog.cancel();
                 MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！");
+                collectImg.setVisibility(View.GONE);
                 //return;
             } else {
                 MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！");
                 dialog.cancel();
+                collectImg.setVisibility(View.GONE);
                 //return;
             }
         } catch (Exception e) {

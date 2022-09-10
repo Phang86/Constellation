@@ -275,7 +275,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
 
-        DiyProgressDialog mDialog = new DiyProgressDialog(RegisterActivity.this, "正在加载中...");
+        DiyProgressDialog mDialog = new DiyProgressDialog(RegisterActivity.this, "正在注册中...");
         mDialog.setCancelable(true);//设置能通过后退键取消
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.show();

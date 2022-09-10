@@ -2,7 +2,9 @@ package com.yyzy.constellation.news;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,7 +57,10 @@ public class AddItemActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.details_back:
+                Intent intent = new Intent(AddItemActivity.this, NewsActivity.class);
+                startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
@@ -64,5 +69,16 @@ public class AddItemActivity extends BaseActivity implements View.OnClickListene
     protected void onPause() {
         NewsDBManger.updateTypeList(mData);
         super.onPause();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Intent intent = new Intent(AddItemActivity.this, NewsActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

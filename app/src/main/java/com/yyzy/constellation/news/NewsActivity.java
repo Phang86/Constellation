@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -82,6 +83,8 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
             case R.id.news_img_add:
                 Intent intent = new Intent(NewsActivity.this, AddItemActivity.class);
                 startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
@@ -94,5 +97,13 @@ public class NewsActivity extends BaseActivity implements View.OnClickListener {
         initPager();
         newsInfoAdapter.notifyDataSetChanged();
         pagerStrip.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

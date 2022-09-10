@@ -8,10 +8,16 @@
         android:id="@+id/item_chengyu_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/size_15sp"
+        android:textSize="@dimen/size_14sp"
         android:gravity="center"
+        android:singleLine="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:text="@string/chengyuInfo"
         android:background="@drawable/item_chengyu_gv_bg"
         android:layout_margin="@dimen/dimen_5dp"
+        android:paddingTop="@dimen/dimen_5dp"
+        android:paddingBottom="@dimen/dimen_5dp"
+        android:paddingLeft="@dimen/dimen_7dp"
+        android:paddingRight="@dimen/dimen_7dp"
         android:textColor="@color/black"/>
 </LinearLayout>

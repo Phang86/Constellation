@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,7 @@ import com.yyzy.constellation.weather.db.DBManager;
 
 
 public class MoreActivity extends BaseActivity implements View.OnClickListener {
-    private LinearLayout layoutUpdate,layoutClear,layoutEnjoy;
+    private RelativeLayout layoutUpdate,layoutClear,layoutEnjoy;
     private RadioGroup radioGroup;
     private ImageView back;
     private SharedPreferences bgPref;

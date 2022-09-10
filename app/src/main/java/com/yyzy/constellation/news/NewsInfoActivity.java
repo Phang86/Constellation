@@ -4,19 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.AppInfoActivity;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 
-public class NewsInfoActivity extends BaseActivity {
+public class NewsInfoActivity extends BaseActivity implements View.OnClickListener {
 
     private WebView webView;
     private String url;
+    private DiyProgressDialog mDialog;
+    private String title;
+    private TextView tvTitle;
+    private ImageView imgBack;
 
     @Override
     protected int initLayout() {
@@ -25,9 +37,15 @@ public class NewsInfoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        tvTitle = findViewById(R.id.news_info_tv);
         webView = findViewById(R.id.news_info_webView);
+        imgBack = findViewById(R.id.news_info_img);
+        imgBack.setOnClickListener(this);
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
+        title = intent.getStringExtra("title");
+        //Log.e("TAG", "initView: "+url);
+        tvTitle.setText(title);
     }
 
     @Override
@@ -49,6 +67,10 @@ public class NewsInfoActivity extends BaseActivity {
         webSet.setLoadsImagesAutomatically(true);
         //设置默认编码格式
         webSet.setDefaultTextEncodingName("utf-8");
+        //使页面具有缩放功能，在缩放的同时显示缩放按钮
+        webSet.setBuiltInZoomControls(true);
+        //多方功能开始时，隐藏缩放按钮（按钮看起来很丑）
+        webSet.setDisplayZoomControls(false);
         //配置完基本信息，加载网址
         webView.loadUrl(url);
         //一般情况下手机会使用默认浏览器打开网址，为了防止此操作，设置以下：
@@ -60,8 +82,39 @@ public class NewsInfoActivity extends BaseActivity {
                 return true;
             }
         });
+
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                //加载完成
+                if (newProgress == 100){
+                    closeDialog(newProgress);
+                //正在加载中
+                }else{
+                    loadProgress(newProgress);
+                }
+                super.onProgressChanged(view, newProgress);
+            }
+        });
     }
 
+    public void loadProgress(int newProgress){
+        if (mDialog == null) {
+            mDialog = new DiyProgressDialog(NewsInfoActivity.this, "加载中...");
+            mDialog.setCancelable(true);//设置能通过后退键取消
+            mDialog.setCanceledOnTouchOutside(false);
+            mDialog.show();
+        }else{
+            mDialog.dismiss();
+        }
+    }
+
+    private void closeDialog(int newProgress) {
+        if (mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -69,5 +122,24 @@ public class NewsInfoActivity extends BaseActivity {
             webView.canGoBack();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        //避免内存泄露
+        if (webView != null) {
+            webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            webView.clearHistory();
+
+            ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.destroy();
+            webView = null;
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        finish();
     }
 }

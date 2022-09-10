@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10dp"
-        android:padding="@dimen/dimen_5dp"
-        app:cardCornerRadius="@dimen/dimen_15dp">
+        app:contentPadding="@dimen/dimen_5dp"
+        app:cardCornerRadius="@dimen/dimen_15dp"
+        app:cardBackgroundColor="@color/yellow_100">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dimen_10dp"
-            android:background="@color/white">
+            android:padding="@dimen/dimen_10dp">
 
             <TextView
                 android:id="@+id/item_city_tv_city"
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="北京"
                 android:textColor="@color/gray_600"
-                android:textSize="@dimen/size_25sp"/>
+                android:textSize="22sp"/>
 
             <TextView
                 android:id="@+id/item_city_tv_temp"
@@ -32,7 +32,7 @@
                 android:layout_alignParentRight="true"
                 android:text="12℃"
                 android:textColor="@color/gray_600"
-                android:textSize="@dimen/size_25sp"/>
+                android:textSize="22sp"/>
 
             <View
                 android:id="@+id/item_city_view_line"
@@ -50,7 +50,7 @@
                 android:layout_below="@+id/item_city_view_line"
                 android:text="天气:晴"
                 android:textColor="@color/gray_600"
-                android:textSize="@dimen/size_16sp"/>
+                android:textSize="@dimen/size_15sp"/>
 
             <TextView
                 android:id="@+id/item_city_tv_line"
@@ -62,7 +62,7 @@
                 android:layout_marginLeft="@dimen/dimen_5dp"
                 android:layout_marginRight="@dimen/dimen_5dp"
                 android:layout_toRightOf="@id/item_city_tv_condition"
-                android:textSize="@dimen/size_16sp"/>
+                android:textSize="@dimen/size_15sp"/>
 
             <TextView
                 android:id="@+id/item_city_tv_wind"
@@ -72,7 +72,7 @@
                 android:layout_toRightOf="@id/item_city_tv_line"
                 android:text="西南风2级"
                 android:textColor="@color/gray_600"
-                android:textSize="@dimen/size_16sp"/>
+                android:textSize="@dimen/size_15sp"/>
 
             <TextView
                 android:id="@+id/item_city_tv_tempRange"
@@ -82,7 +82,7 @@
                 android:layout_alignParentRight="true"
                 android:text="6~14℃"
                 android:textColor="@color/gray_600"
-                android:textSize="@dimen/size_16sp" />
+                android:textSize="@dimen/size_15sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

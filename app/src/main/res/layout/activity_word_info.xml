@@ -127,5 +127,5 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/wordInfo_layout_bottom"
         android:divider="@color/yellow_100"
-        android:dividerHeight="@dimen/dimen_3dp" ></ListView>
+        android:overScrollMode="never"></ListView>
 </RelativeLayout>

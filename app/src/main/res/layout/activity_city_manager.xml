@@ -22,14 +22,14 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"/>
 
-        <ImageView
-            android:id="@+id/city_iv_delete"
-            android:layout_width="@dimen/dimen_25dp"
-            android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/icon_write"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/city_iv_delete"-->
+<!--            android:layout_width="@dimen/dimen_25dp"-->
+<!--            android:layout_height="@dimen/dimen_25dp"-->
+<!--            android:src="@mipmap/icon_write"-->
+<!--            android:layout_margin="@dimen/dimen_10dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"/>-->
 
         <TextView
             android:layout_width="wrap_content"

@@ -28,8 +28,8 @@ import java.util.List;
 public class CollectZiFragment extends Fragment {
     private SwipeRefreshLayout refreshLayout;
     private GridView gv;
-    private  String type;
-    private  List<String> mData;
+    private String type;
+    private List<String> mData;
     private ArrayAdapter<String> adapter;
 
     @Override
@@ -57,7 +57,7 @@ public class CollectZiFragment extends Fragment {
 
     private void initData() {
         //设置下拉出现小圆圈是否是缩放出现,出现的位置,最大的下拉位置
-        refreshLayout.setProgressViewOffset(true,50,200);
+        refreshLayout.setProgressViewOffset(true,-120,200);
         //设置下拉圆圈的大小,两个值 LARGE大,DEFAULT默认
         refreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
         //设置下拉圆圈上的颜色:蓝色、绿色、橙色、红色

@@ -31,7 +31,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/collect_tab"
         android:layout_width="match_parent"
-        android:background="#e2e2e0"
+        android:background="#DCD4A1"
         android:layout_height="@dimen/dimen_30dp"
         app:tabSelectedTextColor="@color/blue"
         app:tabGravity="fill"

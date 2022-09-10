@@ -53,6 +53,8 @@
                 <TextView
                     android:text="@string/collect"
                     style="@style/setTvStyle"/>
+
+
             </LinearLayout>
 
             <View
@@ -73,21 +75,21 @@
 
             <View
                 style="@style/setViewStyle"/>
-            <LinearLayout
-                android:id="@+id/set_layout_about"
-                style="@style/setLayoutStyle">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/set_layout_about"-->
+<!--                style="@style/setLayoutStyle">-->
 
-                <ImageView
-                    style="@style/setImgStyle"
-                    android:src="@mipmap/mine_about_us"/>
+<!--                <ImageView-->
+<!--                    style="@style/setImgStyle"-->
+<!--                    android:src="@mipmap/mine_about_us"/>-->
 
-                <TextView
-                    android:text="@string/about"
-                    style="@style/setTvStyle"/>
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:text="@string/about"-->
+<!--                    style="@style/setTvStyle"/>-->
+<!--            </LinearLayout>-->
 
-            <View
-                style="@style/setViewStyle"/>
+<!--            <View-->
+<!--                style="@style/setViewStyle"/>-->
 
         </LinearLayout>
     </ScrollView>

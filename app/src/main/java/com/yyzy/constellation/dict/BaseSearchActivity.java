@@ -32,6 +32,7 @@ import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.CommonUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
 import org.xutils.common.Callback;
@@ -156,7 +157,7 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
                 }else {
                     //否则不用加载数据   提示用户
                     gridView.onRefreshComplete();
-                    Toast.makeText(BaseSearchActivity.this, "没有更多数据了哦！", Toast.LENGTH_SHORT).show();
+                    MyToast.showText(BaseSearchActivity.this, "没有更多数据了哦！");
                 }
             }
         });
@@ -308,7 +309,7 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
                 try {
                     if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == 10012) {
                         Looper.prepare();
-                        Toast.makeText(context, "请求接口次数今日已上限！", Toast.LENGTH_SHORT).show();
+                        MyToast.showText(context, "请求接口次数今日已上限！");
                         Looper.loop();
                         return;
                     }else {

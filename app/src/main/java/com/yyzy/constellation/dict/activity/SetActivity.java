@@ -26,11 +26,11 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
         backImg = findViewById(R.id.set_iv_back);
         collectLayout = findViewById(R.id.set_layout_collect);
         enjoyLayout = findViewById(R.id.set_layout_enjoy);
-        aboutLayout = findViewById(R.id.set_layout_about);
+//        aboutLayout = findViewById(R.id.set_layout_about);
         backImg.setOnClickListener(this);
         collectLayout.setOnClickListener(this);
         enjoyLayout.setOnClickListener(this);
-        aboutLayout.setOnClickListener(this);
+//        aboutLayout.setOnClickListener(this);
     }
 
     @Override
@@ -55,9 +55,9 @@ public class SetActivity extends BaseActivity implements View.OnClickListener {
                 intent.putExtra(Intent.EXTRA_TEXT,"应用下载地址");
                 startActivity(Intent.createChooser(intent,"分享到"));
                 break;
-            case R.id.set_layout_about:
-
-                break;
+//            case R.id.set_layout_about:
+//
+//                break;
         }
     }
 }

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteCityActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView imgError,imgRight;
+    private TextView imgError,imgRight;
     private ListView listView;
     private DeleteCityAdapter adapter;
     private List<String> mData = DBManager.queryAllCityName();    //数据源
@@ -92,6 +93,7 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void onClick(View v) {
                        finish();
+                        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                     }
                 });
 
@@ -110,8 +112,18 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                 }
                 //intentJump(CityManagerActivity.class);
                 finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
