@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">星座缘</string>
+    <string name="app_name" translatable="false">星缘</string>
     <string name="label_star" translatable="false">星座</string>
     <string name="label_star_details" translatable="false">星座详情</string>
     <string name="label_partnership" translatable="false">配对</string>
@@ -74,6 +74,8 @@
     <string name="chengyuInfo" translatable="false">成语详情</string>
     <string name="xiangji" translatable="false">图文识字</string>
     <string name="everyDay" translatable="false">每日金句</string>
+    <string name="tongyici" translatable="false">同义词</string>
+    <string name="fanyici" translatable="false">反义词</string>
     <string name="loading" translatable="false">加载中...</string>
     <string name="wordInfo" translatable="false">文字详情</string>
     <string name="JiBenJieS" translatable="false">基本解释</string>
@@ -85,6 +87,10 @@
     <string name="collect" translatable="false">收藏</string>
     <string name="more" translatable="false">更多</string>
     <string name="channel" translatable="false">频道订阅</string>
+    <string name="lifeTally" translatable="false">生活记账</string>
+    <string name="beizhu" translatable="false">备注</string>
+    <string name="addBeizhu" translatable="false">添加备注</string>
+    <string name="inputHintBiezhu" translatable="false">请输入备注（限50字以内）</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->

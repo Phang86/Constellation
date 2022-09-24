@@ -7,20 +7,17 @@
     android:background="@drawable/bg"
     tools:context=".weather.activity.CityManagerActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/city_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/city_iv_back"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/icon_back"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
+            android:src="@mipmap/icon_back"/>
 
 <!--        <ImageView-->
 <!--            android:id="@+id/city_iv_delete"-->
@@ -34,25 +31,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="@string/cityManager"
             android:textSize="@dimen/size_16sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
-    </RelativeLayout>
-    <View
-        android:id="@+id/city_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1dp"
-        android:layout_below="@id/city_top_layout"
-        android:background="#dcdcdc"/>
+    </androidx.appcompat.widget.Toolbar>
+
 
     <ListView
         android:id="@+id/city_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/city_view"
-        android:divider="@null"/>
+        android:layout_below="@id/city_top_layout"
+        android:divider="@null"
+        android:overScrollMode="never"
+        android:listSelector="@android:color/transparent" />
 
     <ImageView
         android:id="@+id/city_iv_add"

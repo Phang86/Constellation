@@ -95,9 +95,14 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                 if (text.isEmpty()){
                     MyToast.showText(context, "搜索框不能为空哦！");
                     return;
+                }else if (!checkHanZi(text)){
+                    MyToast.showText(context, "请输入中文汉字！");
+                    return;
+                }else if (text.length() != 4){
+                    MyToast.showText(context, "请输入四字成语！");
+                    return;
                 }else{
                     //把文本输入的信息添加到集合
-
                     //跳转页面
                     startPage(text);
                     //清空文本框

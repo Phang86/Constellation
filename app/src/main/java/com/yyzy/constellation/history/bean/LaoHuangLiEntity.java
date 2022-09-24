@@ -1,4 +1,4 @@
-package com.yyzy.constellation.entity;
+package com.yyzy.constellation.history.bean;
 
 public class LaoHuangLiEntity {
 

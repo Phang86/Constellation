@@ -1,30 +1,35 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.history;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.adapter.HistoryAdapter;
-import com.yyzy.constellation.entity.HistoryEntity;
-import com.yyzy.constellation.entity.LaoHuangLiEntity;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.activity.MoreHistoryActivity;
+import com.yyzy.constellation.history.adapter.HistoryAdapter;
+import com.yyzy.constellation.history.bean.HistoryEntity;
+import com.yyzy.constellation.history.bean.LaoHuangLiEntity;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
+import org.jetbrains.annotations.NotNull;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -36,8 +41,10 @@ import java.util.List;
 
 public class HistoryActivity extends BaseActivity implements View.OnClickListener {
 
+    private SmartRefreshLayout refreshLayout;
+    private LinearLayout linLayout;
+    private TextView tv;
     private ListView lv;
-    private ImageButton imgBtn;
     private List<HistoryEntity.ResultBean> mData;
     private HistoryAdapter adapter;
     private Calendar calendar;
@@ -51,6 +58,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
 
     //listView尾布局控件
     private LinearLayout tvLoadMore;
+    private DiyProgressDialog dialog;
 
     @Override
     protected int initLayout() {
@@ -60,11 +68,19 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initView() {
         lv = findViewById(R.id.history_lv);
-        imgBtn = findViewById(R.id.history_imgBtn);
         imgBack = findViewById(R.id.details_back);
         tvTitle = findViewById(R.id.details_title);
-        imgBtn.setOnClickListener(this);
+        linLayout = findViewById(R.id.history_layout);
+        tv = findViewById(R.id.history_tv);
+        refreshLayout = findViewById(R.id.smr_refreshLayout);
         imgBack.setOnClickListener(this);
+
+        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
+        lv.setVisibility(View.GONE);
+        refreshLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -77,10 +93,26 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         date = new Date();
         calendar.setTime(date);
         int month = calendar.get(Calendar.MONTH) + 1;
+
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         String url = URLContent.getTodayHistoryURL("1.0", month, day);
         loadDatas(url);
         addHeaderAndFooterView();
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
+                String todayUrl = URLContent.getTodayHistoryURL("1.0", month, day);
+                loadDatas(todayUrl);
+                Date date = new Date();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String time = format.format(date);
+                Log.e("TAG", "onRefresh: "+time);
+                String laohuangliURL = URLContent.getLaohuangliURL(time);
+                loadLaoHuangliData(laohuangliURL);
+                tvTitle.setText(time);
+                refreshLayout.finishRefresh(500);
+            }
+        });
     }
 
     private void addHeaderAndFooterView() {
@@ -100,6 +132,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                     }
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                    dialog.dismiss();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -118,7 +151,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         tvLoadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HistoryActivity.this,MoreHistoryActivity.class);
+                Intent intent = new Intent(HistoryActivity.this, MoreHistoryActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();
                 if (entity != null){
@@ -127,6 +160,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                 }
                 startActivity(intent);
                 overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
+                dialog.dismiss();
             }
         });
     }
@@ -152,6 +186,13 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         String laohuangliURL = URLContent.getLaohuangliURL(time);
         loadLaoHuangliData(laohuangliURL);
         tvTitle.setText(time);
+        tvToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCalendarDialog();
+                dialog.dismiss();
+            }
+        });
     }
 
     private void loadLaoHuangliData(String laohuangliURL) {
@@ -162,9 +203,6 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                 LaoHuangLiEntity huangLiEntity = new Gson().fromJson(result, LaoHuangLiEntity.class);
                 LaoHuangLiEntity.ResultBean resultBean = huangLiEntity.getResult();
                 if (resultBean != null) {
-                    lin.setVisibility(View.VISIBLE);
-                    //lv.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-
                     tvHistoryToday.setText("历史上的这一天");
                     tvNongli.setText("农历" + resultBean.getYinli() + "（阴历）");
                     String[] arr = resultBean.getYangli().split("-");
@@ -172,6 +210,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                     tvGongli.setText("公历" + arr[0] + "年" + arr[1] + "月" + arr[2] + "日" + week + "（阳历）");
                     tvToday.setText(arr[2]);
                     tvWeek.setText(week);
+                    //Log.e("TAG", "onSuccess: "+resultBean.getYi()+resultBean.getXiongshen());
                     tvBaiji.setText("彭祖百忌：" + resultBean.getBaiji());
                     tvWuxing.setText("五行：" + resultBean.getWuxing());
                     tvChongsha.setText("冲煞：" + resultBean.getChongsha());
@@ -179,27 +218,49 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                     tvXiongshen.setText("凶神宜忌：" + resultBean.getXiongshen());
                     tvJi.setText("忌：" + resultBean.getJi());
                     tvYi.setText("宜：" + resultBean.getYi());
-                    return;
+                    showOrHide(true);
                 } else {
-                    lin.setVisibility(View.GONE);
-                    //lv.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
                     MyToast.showText(HistoryActivity.this, "老黄历今日访问次数上限！", false);
-                    tvWeek.setText("暂无数据！");
+                    showOrHide(false);
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("TAG", "onError: "+isOnCallback);
+                if (!isOnCallback){
+                    showOrHide(false);
+                    MyToast.showText(HistoryActivity.this,"网络暂未开启！"+isOnCallback);
+                }else{
+                    showOrHide(false);
+                    MyToast.showText(HistoryActivity.this,"接口访问次数受限！");
+                }
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
+                dialog.dismiss();
             }
 
             @Override
             public void onFinished() {
+                dialog.dismiss();
             }
         });
+    }
+
+    public void showOrHide(boolean isShow){
+        if (isShow) {
+            lv.setVisibility(View.VISIBLE);
+            linLayout.setVisibility(View.GONE);
+            refreshLayout.setVisibility(View.VISIBLE);
+        }else{
+            lv.setVisibility(View.GONE);
+            linLayout.setVisibility(View.VISIBLE);
+            refreshLayout.setVisibility(View.GONE);
+            tv.setText("抱歉，暂无数据！");
+        }
+        dialog.dismiss();
     }
 
     //根据年月日获取星期几
@@ -220,8 +281,8 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         try {
             mData.clear();
             entity = new Gson().fromJson(result, HistoryEntity.class);
-            List<HistoryEntity.ResultBean> li = entity.getResult();
             if (entity != null || entity.getError_code() == 0) {
+                List<HistoryEntity.ResultBean> li = entity.getResult();
                 for (int i = 0; i < 15; i++) {
                     mData.add(li.get(i));
                 }
@@ -237,14 +298,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.history_imgBtn:
-                showCalendarDialog();
-                break;
-            case R.id.details_back:
-                finish();
-                break;
-        }
+        finish();
     }
 
     private void showCalendarDialog() {

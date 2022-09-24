@@ -35,6 +35,7 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
     private DeleteCityAdapter adapter;
     private List<String> mData = DBManager.queryAllCityName();    //数据源
     private List<String> deleteCity = new ArrayList<>();
+    private AlertDialog dialog;
 
     @Override
     protected int initLayout() {
@@ -61,48 +62,7 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.delete_iv_error:
-//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setTitle("温馨提示！")
-//                        .setMessage("确定退出删除界面吗？")
-//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                //intentJump(CityManagerActivity.class);
-//                                finish();
-//                            }
-//                        })
-//                        .setNegativeButton("取消",null);
-//                builder.create().show();
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                LayoutInflater inflater = LayoutInflater.from(this);
-                View view = inflater.inflate(R.layout.diy_alert_dialog, null);
-                TextView content = (TextView) view.findViewById(R.id.dialog_content);
-                Button btn_sure = (Button) view.findViewById(R.id.dialog_btn_sure);
-                Button btn_cancel = (Button) view.findViewById(R.id.dialog_btn_cancel);
-                //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-                final Dialog dialog = builder.create();
-                dialog.show();
-                dialog.setCancelable(false);
-                dialog.getWindow().getDecorView().setBackground(null);
-                dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
-                //设置隐藏dialog默认的背景
-                //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-                dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-                content.setText("确定退出删除界面吗？");
-                btn_sure.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                       finish();
-                        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                    }
-                });
-
-                btn_cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        dialog.dismiss();
-                    }
-                });
+                showDialog();
                 break;
             case R.id.delete_iv_right:
                 for (int i = 0; i < deleteCity.size(); i++) {
@@ -115,6 +75,40 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DeleteCityActivity.this);
+        LayoutInflater inflater = LayoutInflater.from(DeleteCityActivity.this);
+        View view = inflater.inflate(R.layout.diy_alert_dialog, null);
+        TextView content = (TextView) view.findViewById(R.id.dialog_content);
+        Button btn_sure = (Button) view.findViewById(R.id.dialog_btn_sure);
+        Button btn_cancel = (Button) view.findViewById(R.id.dialog_btn_cancel);
+        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        dialog = builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.getWindow().getDecorView().setBackground(null);
+        dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
+        //设置隐藏dialog默认的背景
+        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        content.setText("确定退出删除界面吗？");
+        btn_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+            }
+        });
     }
 
 

@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg"
     tools:context=".dict.activity.ChengYuInfoActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/chengyu_info_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/chengyuInfo_iv_back"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/icon_back"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
+            android:src="@mipmap/icon_back"/>
 
         <TextView
             android:id="@+id/chengyuInfo_title"
             style="@style/titleTvStyle"
             android:text="@string/chengyuInfo"
-            android:layout_centerInParent="true" />
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/chengyuInfo_iv_collect"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:src="@mipmap/ic_collection"
-            android:layout_margin="@dimen/dimen_10dp"/>
-    </RelativeLayout>
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dimen_15dp"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
+        android:id="@+id/chengyu_info_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:layout_below="@+id/chengyu_info_top">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,33 +56,29 @@
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_one"
-                    style="@style/chengyuInfoTvMax"
-                    android:text="空"/>
+                    style="@style/chengyuInfoTvMax"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_two"
-                    style="@style/chengyuInfoTvMax"
-                    android:text="空"/>
+                    style="@style/chengyuInfoTvMax"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_three"
-                    style="@style/chengyuInfoTvMax"
-                    android:text="空"/>
+                    style="@style/chengyuInfoTvMax"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_four"
-                    style="@style/chengyuInfoTvMax"
-                    android:text="空"/>
+                    style="@style/chengyuInfoTvMax"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/chengyuInfo_tv_pinyin"
-                android:text="拼音：null"
                 style="@style/chengyuInfoMin"/>
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_tongyici"
-                android:text="同义词："
-                style="@style/chengyuInfoMin"/>
+                style="@style/chengyuInfoMin"
+                android:text="@string/tongyici"/>
+
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_tongyici"
                 android:layout_width="match_parent"
@@ -92,8 +87,9 @@
 
             <TextView
                 android:id="@+id/chengyuInfo_tv_fanyici"
-                android:text="反义词："
-                style="@style/chengyuInfoMin"/>
+                style="@style/chengyuInfoMin"
+                android:text="@string/fanyici"/>
+
             <com.yyzy.constellation.utils.MyGridView
                 android:id="@+id/chengyuInfo_gv_fanyici"
                 android:layout_width="match_parent"
@@ -130,7 +126,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:text="null"
                     android:layout_below="@+id/chengyuInfo_view"
                     android:gravity="center"
                     android:textColor="@color/black"
@@ -146,7 +141,6 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_chuchu_js"
                     android:layout_below="@+id/chengyuInfo_tv_biaoyu"
-                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_chuchu"
                     style="@style/chengyuInfoTvright"/>
 
@@ -159,7 +153,6 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_liju_js"
                     android:layout_below="@+id/chengyuinfo_tv_chuchu_js"
-                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_liju"
                     style="@style/chengyuInfoTvright"/>
 
@@ -172,7 +165,6 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_yufa_js"
                     android:layout_below="@+id/chengyuinfo_tv_liju_js"
-                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_yufa"
                     style="@style/chengyuInfoTvright"/>
 
@@ -185,7 +177,6 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_yinzheng_js"
                     android:layout_below="@+id/chengyuinfo_tv_yufa_js"
-                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_yinzheng"
                     style="@style/chengyuInfoTvright"/>
 
@@ -198,7 +189,6 @@
                 <TextView
                     android:id="@+id/chengyuinfo_tv_shili_js"
                     android:layout_below="@+id/chengyuinfo_tv_yinzheng_js"
-                    android:text="null"
                     android:layout_toRightOf="@+id/chengyuInfo_tv_shili"
                     style="@style/chengyuInfoTvright"/>
             </RelativeLayout>
@@ -230,7 +220,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dimen_10dp"
-                    android:text="null"
                     android:layout_below="@+id/chengyuInfo_viewT"
                     android:gravity="center"
                     android:textColor="@color/black"
@@ -239,4 +228,25 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/chengyu_info_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_null_top"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/chengyu_info_tv"
+        android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:id="@+id/chengyu_info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_18sp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:drawableRight="@drawable/icon_null"/>
+</RelativeLayout>

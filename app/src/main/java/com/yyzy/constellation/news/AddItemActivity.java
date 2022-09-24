@@ -43,7 +43,6 @@ public class AddItemActivity extends BaseActivity implements View.OnClickListene
         tvTitle.setText(getResources().getString(R.string.channel));
         imgBack.setOnClickListener(this);
 
-
     }
 
     @Override

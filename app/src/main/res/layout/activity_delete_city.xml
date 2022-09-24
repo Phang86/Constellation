@@ -8,10 +8,10 @@
     android:background="@drawable/bg"
     tools:context=".weather.activity.DeleteCityActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/delete_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_two">
 
         <TextView
@@ -20,12 +20,9 @@
             android:layout_height="wrap_content"
             android:text="@string/smssdk_back"
             android:textColor="@color/black"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/size_14sp"
-            android:layout_centerVertical="true"
+            android:textSize="@dimen/size_15sp"
             android:foreground="?android:attr/selectableItemBackground"
-            android:drawableLeft="@drawable/icon_delete_city_back"
-            android:layout_margin="@dimen/dimen_10dp"/>
+            android:drawableLeft="@drawable/icon_delete_city_back" />
 
         <TextView
             android:id="@+id/delete_iv_right"
@@ -33,29 +30,26 @@
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="完成"
-            android:textSize="@dimen/size_14sp"
+            android:textSize="@dimen/size_15sp"
             android:textColor="@color/black"
-            android:layout_margin="@dimen/dimen_15dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_gravity="right"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="@string/deleteCity"
             android:textSize="@dimen/size_16sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1dp"
-        android:background="@color/gray_200"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <ListView
         android:id="@+id/delete_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"/>
 </LinearLayout>

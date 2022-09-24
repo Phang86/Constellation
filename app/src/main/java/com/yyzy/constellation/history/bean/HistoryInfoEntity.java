@@ -1,9 +1,10 @@
-package com.yyzy.constellation.entity;
+package com.yyzy.constellation.history.bean;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class HistoryEntity implements Serializable{
+public class HistoryInfoEntity implements Serializable {
+
 
     private List<ResultBean> result;
     private String reason;
@@ -33,7 +34,7 @@ public class HistoryEntity implements Serializable{
         this.error_code = error_code;
     }
 
-    public static class ResultBean implements Serializable {
+    public static class ResultBean {
         private String _id;
         private String title;
         private String pic;
@@ -41,6 +42,7 @@ public class HistoryEntity implements Serializable{
         private int month;
         private int day;
         private String des;
+        private String content;
         private String lunar;
 
         public String get_id() {
@@ -97,6 +99,14 @@ public class HistoryEntity implements Serializable{
 
         public void setDes(String des) {
             this.des = des;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
         }
 
         public String getLunar() {

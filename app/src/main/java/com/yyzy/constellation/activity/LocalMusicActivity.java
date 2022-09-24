@@ -11,14 +11,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.telephony.emergency.EmergencyNumber;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.adapter.LocalMusicAdapter;
 import com.yyzy.constellation.entity.LocalMusicEntity;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -29,6 +32,8 @@ import java.util.logging.SimpleFormatter;
 
 public class LocalMusicActivity extends BaseActivity implements View.OnClickListener{
 
+    private LinearLayout linLayout;
+    private TextView tv;
     private TextView title, tvGeShou, tvGeMing;
     private ImageView iv, ivLast, ivPlay, ivNext;
     private RecyclerView musicRv;
@@ -37,6 +42,7 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
     private int currentPos = -1;   //记录播放状态
     private MediaPlayer mediaPlayer = new MediaPlayer();
     private int currentPausePos = 0;   //记录暂停时音乐的状态位置
+    private DiyProgressDialog dialog;
 
     @Override
     protected int initLayout() {
@@ -53,6 +59,8 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
         ivPlay = findViewById(R.id.ivPlay);
         ivNext = findViewById(R.id.ivNext);
         musicRv = findViewById(R.id.music_recycler);
+        linLayout = findViewById(R.id.local_music_layout);
+        tv = findViewById(R.id.local_music_tv);
     }
 
     @Override
@@ -63,6 +71,10 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
         ivPlay.setOnClickListener(this);
         ivNext.setOnClickListener(this);
         musicRv.setOnClickListener(this);
+        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
         //创建适配器
         adapter = new LocalMusicAdapter(this, mDatas);
         musicRv.setAdapter(adapter);
@@ -163,6 +175,7 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
         Cursor cursor = resolver.query(uri, null, null, null, null);
         //4.遍历cursor
         int id = 0;
+        LocalMusicEntity musicEntity;
         while (cursor.moveToNext()) {
             String geMing = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
             String geShou = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
@@ -173,11 +186,27 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
             long duration = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
             SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
             String time = sdf.format(new Date(duration));
-            LocalMusicEntity musicEntity = new LocalMusicEntity(idNum, geShou, geMing, time, dvd, path);
+            musicEntity = new LocalMusicEntity(idNum, geShou, geMing, time, dvd, path);
             mDatas.add(musicEntity);
+        }
+        if (id > 0){
+            showOrHide(true);
+        }else{
+            showOrHide(false);
         }
         //数据源发生变化，提示适配器更新
         adapter.notifyDataSetChanged();
+
+    }
+
+    private void showOrHide(boolean isShow){
+        if (isShow){
+            musicRv.setVisibility(View.VISIBLE);
+        }else{
+            linLayout.setVisibility(View.VISIBLE);
+            tv.setText("本地暂无音乐！");
+        }
+        dialog.dismiss();
     }
 
     @Override

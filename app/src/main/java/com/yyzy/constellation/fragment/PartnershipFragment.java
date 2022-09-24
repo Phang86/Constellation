@@ -16,14 +16,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.activity.HistoryActivity;
+import com.yyzy.constellation.history.HistoryActivity;
 import com.yyzy.constellation.activity.LocalMusicActivity;
 import com.yyzy.constellation.activity.StarStartActivity;
-import com.yyzy.constellation.entity.HistoryEntity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -4,29 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HistoryActivity">
+    android:background="@color/mainBg"
+    tools:context=".history.HistoryActivity">
 
     <include
         android:id="@+id/history_title"
         layout="@layout/star_details_title"/>
 
-    <ListView
-        android:id="@+id/history_lv"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smr_refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:overScrollMode="never"
-        android:layout_below="@+id/history_title"/>
+        android:layout_height="match_parent"
+        app:srlAccentColor="@color/black"
+        app:srlPrimaryColor="#F8F4CF"
+        android:layout_below="@+id/history_title">
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/history_imgBtn"
+
+        <ListView
+            android:id="@+id/history_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:layout_below="@+id/history_title"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <LinearLayout
+        android:id="@+id/history_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/dimen_15dp"
-        android:layout_marginBottom="@dimen/dimen_25dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:background="@drawable/imgbtn_cire_bg"
-        android:src="@drawable/icon_rili"/>
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/history_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_null_top"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/history_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/icon_null"/>
+    </LinearLayout>
 </RelativeLayout>

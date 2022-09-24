@@ -66,7 +66,7 @@ public class NewsInfoFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
-                //volleyLoadData(url);
+                volleyLoadData(url);
                 refreshLayout.finishRefresh(500);
             }
         });
@@ -106,12 +106,5 @@ public class NewsInfoFragment extends BaseFragment {
             mData.addAll(data);
             adapter.notifyDataSetChanged();
         }
-    }
-
-    @Override
-    public void onStart() {
-        volleyLoadData(url);
-        Log.e("TAG", "onStart: "+"进来了");
-        super.onStart();
     }
 }

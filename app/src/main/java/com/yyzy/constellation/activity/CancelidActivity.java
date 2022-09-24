@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +32,7 @@ import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SPUtils;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -111,6 +114,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                                 //MyToast.showText(CancelidActivity.this,"验证成功",true);
                                 //showAlertDialog();
                                 showDefaultDialog();
+                                return;
                             }
                         });
                     }else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
@@ -118,6 +122,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void run() {
                                 MyToast.showText(CancelidActivity.this, "语音验证发送！", Toast.LENGTH_SHORT);
+                                return;
                             }
                         });
                         //获取验证码成功
@@ -128,6 +133,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void run() {
                                 MyToast.showText(CancelidActivity.this,"验证码已发送",Toast.LENGTH_SHORT);
+                                return;
                             }
                         });
                     }
@@ -145,6 +151,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
                                 public void run() {
                                     //Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
                                     MyToast.showText(CancelidActivity.this,des);
+                                    return;
                                 }
                             });
                         }
@@ -196,6 +203,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
         String num = etNum.getText().toString().trim();
         if (num.length() == 6){
             btnZhuxiao.setEnabled(true);
+            ViewUtil.hideOneInputMethod(CancelidActivity.this, etNum);
         }else {
             btnZhuxiao.setEnabled(false);
         }
@@ -206,6 +214,7 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.details_back:
                 finish();
+                SMSSDK.unregisterEventHandler(eh);
                 break;
             case R.id.zhuxiao_next:
                 String valNum = etNum.getText().toString().trim();

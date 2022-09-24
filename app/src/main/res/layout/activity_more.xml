@@ -8,37 +8,29 @@
     android:background="@drawable/bg"
     tools:context=".weather.activity.MoreActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/more_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_10dp"
         android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/more_iv_back"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/icon_back"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
+            android:src="@mipmap/icon_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="@string/moreSet"
+            android:textColor="@color/black"
             android:textSize="@dimen/size_16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-    </RelativeLayout>
-    <View
-        android:id="@+id/more_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1dp"
-        android:layout_below="@id/city_top_layout"
-        android:background="#dcdcdc"
-        android:layout_marginBottom="@dimen/dimen_10dp"/>
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
 
     <RelativeLayout
         android:id="@+id/more_layout_updateBg"

@@ -45,7 +45,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
     private TextView tvPinYin,tvBuShou,tvChengYu,tvXiangJi,tvString;
     private EditText editText;
     private ImageView imgUpdate;
-    private String text;
+//    private String text;
     private boolean hasGotToken = false;
     private static final int REQUEST_CODE_GENERAL_BASIC = 106;
     private AlertDialog.Builder alertDialog;
@@ -87,7 +87,6 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
 
     @Override
     public void onClick(View v) {
-        text = editText.getText().toString().trim();
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.dict_iv_back:
@@ -225,13 +224,16 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
     }
 
     private void downOptions(int actionId) {
-        text = editText.getText().toString().trim();
+        String text = editText.getText().toString().trim();
         switch (actionId){
             case EditorInfo.IME_ACTION_SEARCH:
                 if (TextUtils.isEmpty(text)) {
                     showToast("输入框不能空！");
                     return;
-                }else if (!TextUtils.isEmpty(text)){
+                }else if (!checkHanZi(text)){
+                    showToast("请输入汉字！");
+                    return;
+                }else{
                     Intent intent = new Intent();
                     intent.setClass(this, WordInfoActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

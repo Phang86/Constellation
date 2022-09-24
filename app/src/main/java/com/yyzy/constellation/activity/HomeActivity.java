@@ -34,6 +34,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.receiver.IntentReceiver;
+import com.yyzy.constellation.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,17 +56,6 @@ public class HomeActivity extends BaseActivity {
 
     private AlertDialog dialog;
 
-    private static final List<String> URLS = Arrays.asList(
-            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-090916%2Ferppivcyduverppivcyduv.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389041&t=3110820cc7477a9c7626021f4a127c2d"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-090811%2Fo2zgduf2fwjo2zgduf2fwj.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389221&t=3e1653bd2a673a03e863dbeb71c6e848"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091022%2Fmkdvml00qvemkdvml00qve.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389575&t=652337c33b8594fbe3575149aeb0dd89"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091121%2Fl34jh3xolcvl34jh3xolcv.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389607&t=04dc7cfd3898e602472bd7973b4a30d9"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091204%2Fhmjyps3tscnhmjyps3tscn.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389637&t=f326e31e0bebf2ceb97be3774d7b1165"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091106%2Fpa4nutbu2mkpa4nutbu2mk.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389650&t=782833b3aa738e84c3c91b80822a2cf1"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091401%2Fkc0gyhfl4itkc0gyhfl4it.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389707&t=ee9309df8b22f55056003a59cd246444"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091322%2Fnxgeou3z5s1nxgeou3z5s1.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389963&t=9b15aa0b3403f12c2bf947ad10051cc8"
-            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.jj20.com%2Fup%2Fallimg%2F1011%2F112G6002358%2F16112F02358-7.jpg&refer=http%3A%2F%2Fpic.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663390140&t=44e9621984c732826a5e97cf8d5ac32c");
-
 
     @Override
     protected void onDestroy() {
@@ -83,7 +73,7 @@ public class HomeActivity extends BaseActivity {
     protected void initView() {
         reBg = findViewById(R.id.home_layout_relative);
         try {
-            Glide.with(this).load(URLS.get((int) (Math.random() * URLS.size()))).into(new SimpleTarget<Drawable>() {
+            Glide.with(this).load(StringUtils.URLS.get((int) (Math.random() * StringUtils.URLS.size()))).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

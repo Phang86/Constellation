@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,9 @@ import java.util.List;
 
 public class WordInfoActivity extends BaseActivity implements View.OnClickListener {
 
+    private RelativeLayout layoutBottom;
+    private ImageView imgNull;
+    private TextView tv;
     private ImageView ivBack,ivCollect;
     private TextView tvMax,tvduyin,tvBushou,tvBihua,tvWubi,tvJs,tvXxjs;
     private ListView lvJs;
@@ -43,11 +47,12 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
     private List<String> jijie;
     private List<String> xiangjie;
     private ArrayAdapter<String> adapter;
-    private DiyProgressDialog dialog;
     //设置标志是否被收藏
     private boolean isCollect = false;
     //判断这个汉字是否在数据库已经存在
     private boolean isExist = false;
+    private String url;
+    private DiyProgressDialog dialog;
 
     @Override
     protected int initLayout() {
@@ -60,7 +65,7 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         Intent intent = getIntent();
         zi = intent.getStringExtra("zi");
         //把要查询的汉字拼接到网络地址中
-        String url = URLContent.getWordurl(zi);
+        url = URLContent.getWordurl(zi);
 
         ivBack = findViewById(R.id.wordInfo_iv_back);
         ivCollect = findViewById(R.id.wordInfo_iv_collect);
@@ -72,23 +77,22 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         tvJs = findViewById(R.id.wordInfo_tv_js);
         tvXxjs = findViewById(R.id.wordInfo_tv_xxjs);
         lvJs = findViewById(R.id.wordInfo_listView);
+        layoutBottom = findViewById(R.id.word_info_layout_bottom);
+        imgNull = findViewById(R.id.word_info_img);
+        tv = findViewById(R.id.word_info_tv);
 
         ivBack.setOnClickListener(this);
         ivCollect.setOnClickListener(this);
         tvXxjs.setOnClickListener(this);
         tvJs.setOnClickListener(this);
 
-        //设置适配器
-        //String s = mDatas.toString();
-        adapter = new ArrayAdapter<String>(this, R.layout.item_word_jslv,R.id.item_word_tv, mDatas);
-        lvJs.setAdapter(adapter);
-        //加载网络数据
-        loadDatas(url);
-        //判断此文字是否被收藏
-        isExist = DBmanager.isExistZiInCollwordtb(zi);
-        isCollect = isExist;
-        //设置收藏按钮的颜色
-        setCollectBtnColor();
+        layoutBottom.setVisibility(View.GONE);
+        ivCollect.setVisibility(View.GONE);
+
+        dialog = new DiyProgressDialog(this, "Loading");
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
     }
 
     //根据收藏状态改变收藏星星的背景
@@ -104,7 +108,6 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (isExist && !isCollect) {
             //原来数据收藏，现在取消删除
             DBmanager.deleteZiToCollwordtb(zi);
@@ -117,7 +120,17 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-
+        //设置适配器
+        //String s = mDatas.toString();
+        adapter = new ArrayAdapter<String>(this, R.layout.item_word_jslv,R.id.item_word_tv, mDatas);
+        lvJs.setAdapter(adapter);
+        //加载网络数据
+        loadDatas(url);
+        //判断此文字是否被收藏
+        isExist = DBmanager.isExistZiInCollwordtb(zi);
+        isCollect = isExist;
+        //设置收藏按钮的颜色
+        setCollectBtnColor();
     }
 
     @Override
@@ -161,7 +174,6 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onSuccess(String result) {
-
         if (!result.isEmpty()) {
             WordEntity json = new Gson().fromJson(result, WordEntity.class);
             WordEntity.ResultBean bean = json.getResult();
@@ -169,11 +181,10 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
             DBmanager.insertWordToWordtb(bean);
             //将数据显示在View控件上
             notifyView(bean);
+            showOrHide(true,"");
         }else{
             return;
         }
-
-
     }
 
     private void notifyView(WordEntity.ResultBean bean) {
@@ -195,16 +206,34 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         super.onError(ex, isOnCallback);
         //Log.e("TAG", "onError: "+"失败");
         //联网失败，获取数据库里面的数据
-        WordEntity.ResultBean bean = DBmanager.queryWordFromWordtb(zi);
-        if (bean != null){
+        if (DBmanager.queryWordFromWordtb(zi) != null){
+            WordEntity.ResultBean bean = DBmanager.queryWordFromWordtb(zi);
             notifyView(bean);
-            ivCollect.setVisibility(View.VISIBLE);
-            //dialog.cancel();
-        }else {
-            showToast("今日接口访问次数已上限！");
-            ivCollect.setVisibility(View.GONE);
+            showOrHide(true,"");
+        }else if (!isOnCallback){
+            Log.e("TAG", "onError: "+isOnCallback);
+            showToast("网络错误！请查看网络是否连接！");
+            showOrHide(false,"网络错误！请查看网络是否连接！");
             //dialog.cancel();
             return;
+        }else {
+            showToast("接口访问次数上限！");
+            showOrHide(false,"接口访问次数上限！");
         }
+    }
+
+    public void showOrHide(boolean show, String msg){
+        if (show) {
+            layoutBottom.setVisibility(View.VISIBLE);
+            ivCollect.setVisibility(View.VISIBLE);
+            tv.setText("抱歉，暂无数据！"+msg);
+        }else{
+            ivCollect.setVisibility(View.GONE);
+            layoutBottom.setVisibility(View.GONE);
+            imgNull.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(msg);
+        }
+        dialog.dismiss();
     }
 }

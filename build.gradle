@@ -9,7 +9,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.2" // 注册MobSDK
+        classpath "com.android.tools.build:gradle:4.2.2"
+        // 注册MobSDK
         classpath "com.mob.sdk:MobSDK:2018.0319.1724"
         // in the individual module build.gradle files
     }

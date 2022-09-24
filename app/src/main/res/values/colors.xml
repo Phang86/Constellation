@@ -42,9 +42,9 @@
     <color name="yellow_300">#fdf299</color>
     <color name="white_text">#FFFFFFFF</color>
     <color name="bg">#CCFF99</color>
-    <color name="colorPink">#33FFC0Cb</color>
+    <color name="colorPink">#F1BFC8</color>
     <color name="Blue">#6495ED</color>
-    <color name="yaBlack">#CC1B1A1A</color>
+    <color name="yaBlack">#CC1B1A1a</color>
 
     <color name="mainBg">#FDF5E6</color>
     <color name="fireRed">#B22222</color>

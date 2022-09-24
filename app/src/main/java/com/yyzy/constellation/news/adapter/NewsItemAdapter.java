@@ -81,27 +81,30 @@ public class NewsItemAdapter extends BaseAdapter {
         String pic1 = bean.getThumbnail_pic_s();
         String pic2 = bean.getThumbnail_pic_s02();
         String pic3 = bean.getThumbnail_pic_s03();
-        if (TextUtils.isEmpty(pic1)){
-            holder.carOne.setVisibility(View.GONE);
-        }else{
-            holder.carOne.setVisibility(View.VISIBLE);
-            imageLoader.displayImage(pic1,holder.imgOne,options);
-        }
+        try {
+            if (TextUtils.isEmpty(pic1)){
+                holder.carOne.setVisibility(View.GONE);
+            }else{
+                holder.carOne.setVisibility(View.VISIBLE);
+                imageLoader.displayImage(pic1,holder.imgOne,options);
+            }
 
-        if (TextUtils.isEmpty(pic2)){
-            holder.carTwo.setVisibility(View.GONE);
-        }else{
-            holder.carTwo.setVisibility(View.VISIBLE);
-            imageLoader.displayImage(pic2,holder.imgTwo,options);
-        }
+            if (TextUtils.isEmpty(pic2)){
+                holder.carTwo.setVisibility(View.GONE);
+            }else{
+                holder.carTwo.setVisibility(View.VISIBLE);
+                imageLoader.displayImage(pic2,holder.imgTwo,options);
+            }
 
-        if (TextUtils.isEmpty(pic3)){
-            holder.carThree.setVisibility(View.GONE);
-        }else{
-            holder.carThree.setVisibility(View.VISIBLE);
-            imageLoader.displayImage(pic3,holder.imgThree,options);
+            if (TextUtils.isEmpty(pic3)){
+                holder.carThree.setVisibility(View.GONE);
+            }else{
+                holder.carThree.setVisibility(View.VISIBLE);
+                imageLoader.displayImage(pic3,holder.imgThree,options);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
         return convertView;
     }
 

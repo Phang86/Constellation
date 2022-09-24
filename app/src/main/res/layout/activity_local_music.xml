@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.LocalMusicActivity"
     android:orientation="vertical"
-    android:background="@drawable/bg">
+    android:background="@mipmap/bg2">
 
     <include
         android:id="@+id/shang"
@@ -92,4 +92,30 @@
            android:layout_marginRight="@dimen/dimen_5dp"
            android:layout_marginBottom="@dimen/dimen_10dp"/>
    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/local_music_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/local_music_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_null_top"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/local_music_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/icon_null"/>
+    </LinearLayout>
 </RelativeLayout>

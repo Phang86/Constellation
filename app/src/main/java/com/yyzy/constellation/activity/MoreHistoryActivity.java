@@ -10,10 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.adapter.HistoryAdapter;
-import com.yyzy.constellation.entity.HistoryEntity;
+import com.yyzy.constellation.history.adapter.HistoryAdapter;
+import com.yyzy.constellation.history.bean.HistoryEntity;
+import com.yyzy.constellation.history.HistoryInfoActivity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +49,6 @@ public class MoreHistoryActivity extends BaseActivity{
         mData = new ArrayList<>();
         adapter = new HistoryAdapter(this, mData);
         lv.setAdapter(adapter);
-
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();

@@ -1,6 +1,5 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.history;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
@@ -12,14 +11,12 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +25,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.entity.HistoryInfoEntity;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.history.bean.HistoryInfoEntity;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -41,6 +39,7 @@ import java.net.URL;
 import java.util.List;
 
 public class HistoryInfoActivity extends BaseActivity implements View.OnClickListener{
+
 
     private TextView tvTitle,tvContent,tvInfoTitle,tvWu;
     private ImageView imgBack,imgTitle;

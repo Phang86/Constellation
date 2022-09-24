@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,9 @@ import javax.security.auth.login.LoginException;
 
 public class ChengYuInfoActivity extends BaseActivity implements View.OnClickListener {
 
+    private ImageView nullImg;
+    private ScrollView scroll;
+    private TextView tv;
     private ImageView backImg,collectImg;
     private TextView oneTv,twoTv,threeTv,fourTv,pinyinTv,chuTv,lijuTv,yufaTv,yinzhengTv,shiliTv,biaoyuTv,jbyyTv;
     private MyGridView tyGv,fyGv;
@@ -44,6 +48,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
     private String chuzi;
     private String shili;
     private String yufa;
+    private DiyProgressDialog dialog;
     //设置标志是否被收藏
     private boolean isCollect = false;
     //判断这个汉字是否在数据库已经存在
@@ -72,18 +77,25 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         tyGv = findViewById(R.id.chengyuInfo_gv_tongyici);
         fyGv = findViewById(R.id.chengyuInfo_gv_fanyici);
         jbyyTv = findViewById(R.id.chengyuInfo_tv_jbyy_content);
+        scroll = findViewById(R.id.chengyu_info_scroll);
+        tv = findViewById(R.id.chengyu_info_tv);
+        nullImg = findViewById(R.id.chengyu_info_img);
         collectImg.setOnClickListener(this);
         backImg.setOnClickListener(this);
-
+        scroll.setVisibility(View.GONE);
+        collectImg.setVisibility(View.GONE);
         Intent intent = getIntent();
         chengyu = intent.getStringExtra("chengyu");
+        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
     }
 
     @Override
     protected void initData() {
         String chengyuUrl = URLContent.getChengyuurl(chengyu);
         loadDatas(chengyuUrl);
-        setGvListener();
         isExist = DBmanager.isExistCyuInCollCyutb(chengyu);
         isCollect = isExist;
         //设置收藏按钮的颜色
@@ -99,52 +111,38 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-    //给GridView的item设置监听
-    private void setGvListener() {
-        tyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String jinyi = jycData.get(position);
-//                startPage(jinyi);
-//                loadDatas(jinyi);
-            }
-        });
-        fyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String fanyi = fycData.get(position);
-//                startPage(fanyi);
-//                loadDatas(fanyi);
-            }
-        });
-    }
-
     @Override
     public void onSuccess(String result) {
-        DiyProgressDialog dialog = new DiyProgressDialog(this, "加载中...");
-        dialog.show();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(true);
         ChengyuInfoEntity bean = new Gson().fromJson(result, ChengyuInfoEntity.class);
         ChengyuInfoEntity.ResultBean beanResult = bean.getResult();
         try {
-            if (beanResult != null) {
+            if (bean.getError_code() == 0 ) {
                 DBmanager.insertCyToCyutb(beanResult);
                 showDatasView(beanResult);
-                dialog.cancel();
-                collectImg.setVisibility(View.VISIBLE);
-                //return;
+                showOrHide(true);
             } else if (bean.getError_code() == 10012) {
-                dialog.cancel();
-                MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！");
-                collectImg.setVisibility(View.GONE);
-                //return;
+                if (DBmanager.queryCyFromCyutb(chengyu) != null){
+                    ChengyuInfoEntity.ResultBean entity = DBmanager.queryCyFromCyutb(chengyu);
+                    showDatasView(entity);
+                    showOrHide(true);
+                }else{
+                    MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！");
+                    Log.e("TAG", "onSuccess: 000000");
+                    showOrHide(false);
+                    tv.setText("抱歉，暂无数据！");
+                }
             } else {
-                MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！");
-                dialog.cancel();
-                collectImg.setVisibility(View.GONE);
-                //return;
+                if (DBmanager.queryCyFromCyutb(chengyu) != null){
+                    ChengyuInfoEntity.ResultBean entity = DBmanager.queryCyFromCyutb(chengyu);
+                    showDatasView(entity);
+                    showOrHide(true);
+                }else{
+                    MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！");
+                    showOrHide(false);
+                    tv.setText("抱歉，无法查询此成语！");
+                }
             }
+            return;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,22 +150,49 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onError(Throwable ex, boolean isOnCallback) {
-        //当网络获取数据失败时，到数据库去查找
-        ChengyuInfoEntity.ResultBean bean = DBmanager.queryCyFromCyutb(chengyu);
-        List<String> xxsy = bean.getXxsy();
-        try {
-            if (bean != null){
-                Log.e("TAG", "onError: "+xxsy.size());
-                //List<String> xxsy = bean.getXxsy();
+            //当网络获取数据失败时，到数据库去查找
+            if (DBmanager.queryCyFromCyutb(chengyu) != null){
+                ChengyuInfoEntity.ResultBean bean = DBmanager.queryCyFromCyutb(chengyu);
                 showDatasView(bean);
-            }else {
+                showOrHide(true);
+            }else if (!isOnCallback){
+                MyToast.showText(this,"网络连接失败，请检查WLAN是否开启！");
+                showOrHide(false);
+                tv.setText("网络未开启"+isOnCallback);
+            }else{
                 MyToast.showText(this,"今日接口访问次数已上限！");
-                return;
+                showOrHide(false);
+                tv.setText("非常抱歉，接口今日访问次数受限！");
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
+
+    public void showOrHide(boolean show){
+        if (show) {
+            collectImg.setVisibility(View.VISIBLE);
+            scroll.setVisibility(View.VISIBLE);
+        }else{
+            collectImg.setVisibility(View.GONE);
+            scroll.setVisibility(View.GONE);
+            tv.setVisibility(View.VISIBLE);
+            tv.setText("抱歉，暂无数据！");
+            nullImg.setVisibility(View.VISIBLE);
+        }
+        dialog.dismiss();
+    }
+
+//    @Override
+//    public void onFinished() {
+//            if (DBmanager.queryCyFromCyutb(chengyu) != null){
+//                ChengyuInfoEntity.ResultBean bean = DBmanager.queryCyFromCyutb(chengyu);
+//                showDatasView(bean);
+//                showOrHide(true);
+//            }else{
+//                MyToast.showText(this,"网络连接失败！");
+//                Log.e("TAG", "onFinished: "+"网络连接失败！");
+//                showOrHide(false);
+//            }
+//            return;
+//    }
 
     //将网络获取到的数据显示在控件上
     private void showDatasView(ChengyuInfoEntity.ResultBean beanResult) {
@@ -182,7 +207,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         jycData = beanResult.getJyc();
         fycData = beanResult.getFyc();
         List<String> xxsy = beanResult.getXxsy();
-        Log.e("TAG", "showDatasView: "+xxsy.size());
+        //Log.e("TAG", "showDatasView: "+xxsy.size());
         if (xxsy.size() > 1) {
             biaoyu = xxsy.get(0);
             chuzi = xxsy.get(1);

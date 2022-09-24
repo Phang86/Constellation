@@ -135,6 +135,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         return matcher.matches();
     }
 
+    public static boolean checkHanZi(String hanzi){
+        String regexp = "^[\u4e00-\u9fa5]*$";
+        Pattern pattern = Pattern.compile(regexp);
+        Matcher matcher = pattern.matcher(hanzi);
+        return matcher.matches();
+    }
+
     public String getVersion() {
         //获取应用的版本名称
         PackageManager packageManager = getPackageManager();

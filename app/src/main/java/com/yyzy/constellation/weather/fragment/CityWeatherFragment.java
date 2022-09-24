@@ -56,6 +56,10 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_city_weather, container, false);
         initView(view);
         getActivityData();
+        dialog = new DiyProgressDialog(getContext(), "加载中...");
+        dialog.show();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
         return view;
     }
 
@@ -64,31 +68,12 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         Bundle bundle = getArguments();
         city = bundle.getString("city");
         String url = URLContent.getTemp_url(city);
-
         //获取父类加载数据的方法
         loadData(url);
         //获取网络天气指数信息
         String indexUrl = URLContent.getIndex_url(city);
-        loadNetIndexData(indexUrl);
-    }
-
-    private void loadNetIndexData(final String indexUrl) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String json = HttpUtils.getJSONFromNet(indexUrl);
-                WeatherIndexEntity fromJson = new Gson().fromJson(json, WeatherIndexEntity.class);
-                try {
-                    if (fromJson.getReason().equals("超过每日可允许请求次数!") || fromJson.getError_code() == error_code || fromJson.getResult() == null){
-                        MyToast.showText(getActivity(),"超过每日可允许请求次数!");
-                        return;
-                    }
-                    life = fromJson.getResult().getLife();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        volleyLoadData(indexUrl);
+        //loadNetIndexData(indexUrl);
     }
 
     @Override
@@ -103,7 +88,23 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 //表示更新城市数据失败，则应该添加此城市的数据信息
                 DBManager.addCityInfo(city,result);
             }
+        }
+        dialog.dismiss();
+    }
 
+    @Override
+    public void onResponse(String response) {
+        try {
+            dialog.dismiss();
+            WeatherIndexEntity entity = new Gson().fromJson(response, WeatherIndexEntity.class);
+            if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == error_code || entity.getResult().toString().isEmpty()){
+                MyToast.showText(getActivity(),"超过每日可允许请求次数!",Toast.LENGTH_SHORT);
+                //return;
+                return;
+            }
+            life = entity.getResult().getLife();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -111,6 +112,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     public void onError(Throwable ex, boolean isOnCallback) {
         super.onError(ex, isOnCallback);
         //去数据库查找上一次信息显示在Fragment中
+        if (dialog != null){
+            dialog.dismiss();
+        }
         String s = DBManager.queryInfoByCity(city);
         if (!TextUtils.isEmpty(s)) {
             parseShowData(s);

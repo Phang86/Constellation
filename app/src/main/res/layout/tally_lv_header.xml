@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentPadding="@dimen/dimen_20dp"
+        app:cardCornerRadius="@dimen/dimen_15dp"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        app:cardBackgroundColor="@color/yellow_100">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本月支出"
+                android:textColor="@color/yaBlack"
+                android:textSize="@dimen/size_16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="@dimen/size_20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="￥807.5"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/tally_lv_header_img_eyes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/icon_eyes"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp">
+
+                <TextView
+                    android:id="@+id/tally_lv_header_tv_shourU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="本月收入:"
+                    android:textSize="@dimen/size_14sp"
+                    android:textColor="@color/yaBlack"/>
+
+                <TextView
+                    android:id="@+id/tally_lv_header_tv_shouru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tally_lv_header_tv_shourU"
+                    android:layout_toLeftOf="@+id/tally_lv_header_tv_yusuaN"
+                    android:singleLine="true"
+                    android:text="￥588871fdsfdfdfdf5111.89"
+                    android:textSize="@dimen/size_16sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tally_lv_header_tv_yusuaN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="剩余:"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_toLeftOf="@+id/tally_lv_header_tv_yusuan"
+                    android:textSize="@dimen/size_14sp"
+                    android:textColor="@color/yaBlack"/>
+
+                <TextView
+                    android:id="@+id/tally_lv_header_tv_yusuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="￥1200.60"
+                    android:singleLine="true"
+                    android:textSize="@dimen/size_16sp"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tally_lv_header_tv_yusuan"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimen_15dp">
+
+                    <TextView
+                        android:id="@+id/tally_lv_header_tv_look"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="查看图表分析"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_15sp"
+                        android:drawablePadding="@dimen/dimen_5dp"
+                        android:drawableLeft="@drawable/icon_tubiao"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tally_lv_header_tv_sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今日支出￥2000.0\t收入￥5630.8"
+        android:textSize="@dimen/size_14sp"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:singleLine="true"
+        android:textColor="@color/yaBlack"
+        android:textStyle="bold"/>
+</LinearLayout>

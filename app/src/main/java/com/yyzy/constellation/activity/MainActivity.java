@@ -48,6 +48,7 @@ import com.yyzy.constellation.fragment.PartnershipFragment;
 import com.yyzy.constellation.fragment.StarFragment;
 import com.yyzy.constellation.news.NewsActivity;
 import com.yyzy.constellation.receiver.IntentReceiver;
+import com.yyzy.constellation.tally.TallyActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.BitmapUtils;
@@ -213,6 +214,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         intent.setClass(MainActivity.this, NewsActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.tally:
+                        intent.setClass(MainActivity.this, TallyActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         //drawerLayout.closeDrawers();
                         break;
@@ -265,7 +270,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         NotiManager.cancel(1);
                         //取消加载
                         dialog1.cancel();
-                        Toast.makeText(MainActivity.this, "您已成功退出星座缘！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "您已成功退出星缘！", Toast.LENGTH_SHORT).show();
                     }
                 },1200);
             }
@@ -316,21 +321,21 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 transaction.hide(luckFragment);
                 transaction.hide(meFragment);
                 transaction.show(starFragment);
-                title.setText("星座缘");
+                title.setText(getResources().getString(R.string.app_name));
                 break;
             case R.id.main_rb_partnership:
                 transaction.hide(starFragment);
                 transaction.hide(luckFragment);
                 transaction.hide(meFragment);
                 transaction.show(partnershipFragment);
-                title.setText("星座配对");
+                title.setText(getResources().getString(R.string.label_star)+""+getResources().getString(R.string.label_partnership));
                 break;
             case R.id.main_rb_luck:
                 transaction.hide(partnershipFragment);
                 transaction.hide(starFragment);
                 transaction.hide(meFragment);
                 transaction.show(luckFragment);
-                title.setText("星座运势");
+                title.setText(getResources().getString(R.string.label_star)+""+getResources().getString(R.string.label_luck));
                 break;
 //            case R.id.main_rb_me:
 //                transaction.hide(partnershipFragment);

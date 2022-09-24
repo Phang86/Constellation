@@ -8,25 +8,22 @@
     android:background="@drawable/bg"
     tools:context=".dict.activity.CollectActivity">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/collect_iv_back"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
-            android:src="@mipmap/icon_back"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"/>
+            android:src="@mipmap/icon_back"/>
 
         <TextView
             style="@style/titleTvStyle"
             android:text="@string/collect"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>
+            android:layout_gravity="center"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/collect_tab"

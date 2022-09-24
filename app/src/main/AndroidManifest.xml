@@ -7,7 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 读写文件权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 相机权限 -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- 前台服务开启权限 --> <!-- 弹出横幅通知的权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 前台服务开启权限 -->
+    <!-- 弹出横幅通知的权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许访问WiFi网络状态信息（必须） -->
@@ -28,7 +29,9 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".news.NewsInfoActivity"></activity>
+        <activity android:name=".tally.RecordActivity"></activity>
+        <activity android:name=".tally.TallyActivity" />
+        <activity android:name=".news.NewsInfoActivity" />
         <activity android:name=".news.AddItemActivity" />
 
         <uses-library
@@ -36,8 +39,8 @@
             android:required="false" />
 
         <activity android:name=".news.NewsActivity" />
-        <activity android:name=".activity.HistoryInfoActivity" />
-        <activity android:name=".activity.HistoryActivity" />
+        <activity android:name=".history.HistoryInfoActivity" />
+        <activity android:name=".history.HistoryActivity" />
         <activity android:name=".activity.MoreHistoryActivity" />
         <activity android:name=".activity.UpdatePhoneOutActivity" />
         <activity android:name=".activity.UpdatePhoneActivity" />

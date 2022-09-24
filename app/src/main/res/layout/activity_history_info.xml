@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/mainBg"
     android:orientation="vertical"
-    tools:context=".activity.HistoryInfoActivity">
+    tools:context=".history.HistoryInfoActivity">
 
     <include android:id="@+id/layout_top" layout="@layout/star_details_title"/>
 

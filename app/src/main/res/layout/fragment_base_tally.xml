@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".tally.fragment.TallyBaseFragment"
+    android:background="@drawable/bg">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/record_layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_15dp"
+        app:cardCornerRadius="@dimen/dimen_10dp"
+        app:cardBackgroundColor="@color/yellow_100"
+        app:contentPaddingTop="@dimen/dimen_15dp"
+        app:contentPaddingBottom="@dimen/dimen_15dp"
+        app:contentPaddingLeft="@dimen/dimen_10dp"
+        app:contentPaddingRight="@dimen/dimen_10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layout_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="@dimen/dimen_10dp">
+
+                <ImageView
+                    android:id="@+id/record_frag_img_title"
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_30dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/dimen_5dp"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/record_frag_tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/size_16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/yaBlack"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/layout_left"
+                android:layout_centerVertical="true">
+
+                <EditText
+                    android:id="@+id/record_frag_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:singleLine="true"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:cursorVisible="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_16sp"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <GridView
+        android:id="@+id/record_frag_gv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="5"
+        android:layout_below="@+id/record_layout_top"
+        android:overScrollMode="never"
+        android:listSelector="@drawable/bg"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_beizhu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow_100"
+        android:layout_above="@+id/record_frag_keyBoard"
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:paddingLeft="@dimen/size_15sp"
+        android:paddingRight="@dimen/dimen_15dp">
+
+        <TextView
+            android:id="@+id/record_frag_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:singleLine="true"
+            android:textSize="@dimen/size_15sp"
+            android:textColor="@color/yaBlack"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/record_frag_tv_beizhu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/record_frag_tv_time"
+            android:hint="@string/addBeizhu"
+            android:textSize="@dimen/size_15sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:textColor="@color/yaBlack"/>
+    </RelativeLayout>
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/record_frag_keyBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#EDEBEB"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@color/white"
+        android:visibility="gone"
+        android:keyTextColor="#F8E54C"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:shadowRadius="0.0"
+        android:foreground="?android:attr/selectableItemBackground"/>
+</RelativeLayout>

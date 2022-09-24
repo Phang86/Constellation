@@ -72,7 +72,7 @@ public class StarFragment extends Fragment {
         initPager();
         setVpListener();
         setGvListener();
-        handler.sendEmptyMessageDelayed(1,2000);
+        //handler.sendEmptyMessageDelayed(1,2000);
         return view;
     }
 
@@ -160,4 +160,21 @@ public class StarFragment extends Fragment {
         linearLayout = view.findViewById(R.id.starFrag_layout);
         viewPager = view.findViewById(R.id.starFrag_vp);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            Log.e("TAG", "onPause: "+"暂停了");
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler.sendEmptyMessageDelayed(1,2000);
+        Log.e("TAG", "onResume: "+"恢复了");
+    }
+
 }

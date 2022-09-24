@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dimen_15dp"
+        app:cardBackgroundColor="@color/yellow_100"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10dp">
+
+            <TextView
+                android:id="@+id/tally_item_lv_tv_outOrIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/size_14sp"
+                android:textColor="@color/grey"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/tally_item_lv_img"
+                    android:layout_width="@dimen/dimen_35dp"
+                    android:layout_height="@dimen/dimen_35dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_centerVertical="true"/>
+
+
+
+                <TextView
+                    android:id="@+id/tally_item_lv_tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tally_item_lv_img"
+                    android:text="购物"
+                    android:singleLine="true"
+                    android:textSize="@dimen/size_16sp"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tally_item_lv_tv_beizhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tally_item_lv_tv_title"
+                    android:layout_alignLeft="@+id/tally_item_lv_tv_title"
+                    android:layout_toLeftOf="@+id/tally_item_lv_tv_time"
+                    android:text="买了一条毛巾、洗发水,买了一条毛巾、洗发水fdsfsd"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/size_15sp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:textColor="@color/yaBlack"/>
+
+
+                <TextView
+                    android:id="@+id/tally_item_lv_tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="￥30.8"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_alignRight="@+id/tally_item_lv_tv_title"
+                    android:layout_toRightOf="@+id/tally_item_lv_tv_title"
+                    android:textSize="@dimen/size_16sp"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:textStyle="bold"
+                    android:textColor="#EC2F21"/>
+
+                <TextView
+                    android:id="@+id/tally_item_lv_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tally_item_lv_tv_money"
+                    android:text="今天09:50"
+                    android:textSize="@dimen/size_16sp"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:textColor="@color/yaBlack"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

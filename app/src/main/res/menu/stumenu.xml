@@ -30,6 +30,11 @@
             android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;姓氏查询"/>
 
         <item
+            android:id="@+id/tally"
+            android:icon="@drawable/icon_jizhang"
+            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;生活记账"/>
+
+        <item
             android:id="@+id/user_info"
             android:icon="@drawable/ic_user_info"
             android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;用户信息"/>
