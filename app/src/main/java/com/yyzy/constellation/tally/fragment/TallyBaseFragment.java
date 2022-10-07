@@ -23,6 +23,8 @@ import com.yyzy.constellation.tally.bean.GvTypeBean;
 import com.yyzy.constellation.tally.bean.TallyLvItemBean;
 import com.yyzy.constellation.tally.db.TallyManger;
 import com.yyzy.constellation.tally.util.BeiZhuDialog;
+import com.yyzy.constellation.tally.util.OnClickSure;
+import com.yyzy.constellation.tally.util.TallyDialogTime;
 import com.yyzy.constellation.utils.KeyBoardUtils;
 import com.yyzy.constellation.utils.MyToast;
 
@@ -44,6 +46,7 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
      List<GvTypeBean> mData;
      TallyLvItemBean itemBean;
      GvTypeAdapter adapter;
+     private String timeHour = "",timeMinute = "";
 
 
     public TallyBaseFragment() {
@@ -80,6 +83,7 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
         tvBeizhu = view.findViewById(R.id.record_frag_tv_beizhu);
         keyboardView = view.findViewById(R.id.record_frag_keyBoard);
         tvBeizhu.setOnClickListener(this);
+        tvTime.setOnClickListener(this);
         loadData();
     }
 
@@ -132,8 +136,11 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
             @Override
             public void onEnSure() {
                 String money = etMoney.getText().toString();
-                if (TextUtils.isEmpty(money) || money.length() < 1 || money.equals("0")){
+                if (TextUtils.isEmpty(money) || money.length() < 1){
                     MyToast.showText(getContext(),"金额不能为空哦！");
+                    return;
+                }else if (money.equals("0") || Float.valueOf(money) == 0){
+                    MyToast.showText(getContext(),"金额不能为零哦！");
                     return;
                 }else if (imgType.getBackground() == null || TextUtils.isEmpty(tvType.getText())){
                     MyToast.showText(getContext(),"请选择以下列表！");
@@ -156,30 +163,63 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
         switch (v.getId()) {
             case R.id.record_frag_tv_beizhu:
                 String tvText = tvBeizhu.getText().toString().trim();
-                BeiZhuDialog dialog = new BeiZhuDialog(getContext());
-                dialog.show();
-                dialog.setEtText(tvText);
-                dialog.setDialogSize();
-                dialog.setClickSure(new BeiZhuDialog.OnClickSure() {
-                    @Override
-                    public void onSure() {
-                        String text = dialog.getEtText();
-                        if (!TextUtils.isEmpty(text)) {
-                            if (text.length() <= 50){
-                                tvBeizhu.setText(text);
-                                itemBean.setBeizhu(text);
-                                dialog.cancel();
-                            }else{
-                                MyToast.showText(getContext(),"备注内容超过50字！您输入的字数长度为"+text.length());
-                            }
-                        }else{
-                            tvBeizhu.setText("");
-                            itemBean.setBeizhu("");
-                            dialog.cancel();
-                        }
-                    }
-                });
+                showBeizhuDialog(tvText);
+                break;
+            case R.id.record_frag_tv_time:
+                showTimeDialog();
                 break;
         }
+    }
+
+    private void showTimeDialog(){
+        TallyDialogTime dialogTime = new TallyDialogTime(getContext());
+        dialogTime.show();
+        dialogTime.setEtMinute(timeMinute);
+        dialogTime.setEtHour(timeHour);
+        dialogTime.setOnEnSure(new TallyDialogTime.OnEnSure() {
+            @Override
+            public void onSure(String time, int year, int month, int day,int hour,int minute) {
+                itemBean.setTime(time);
+                itemBean.setYear(year);
+                itemBean.setMonth(month);
+                itemBean.setDay(day);
+                tvTime.setText(time);
+                timeHour = ""+hour;
+                timeMinute = ""+minute;
+            }
+        });
+    }
+
+    private void showBeizhuDialog(String str){
+        BeiZhuDialog dialog = new BeiZhuDialog(getContext());
+        dialog.show();
+        dialog.setEtText(str);
+        dialog.setDialogSize();
+
+        dialog.setClickSure(new OnClickSure() {
+            @Override
+            public void onSure() {
+                String text = dialog.getEtText();
+                if (!TextUtils.isEmpty(text)) {
+                    if (text.length() <= 50){
+                        tvBeizhu.setText(text);
+                        itemBean.setBeizhu(text);
+                        dialog.cancel();
+                    }else{
+                        MyToast.showText(getContext(),"备注内容超过50字！您输入的字数长度为"+text.length());
+                    }
+                }else{
+                    tvBeizhu.setText("");
+                    itemBean.setBeizhu("");
+                    dialog.cancel();
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                tvBeizhu.setText("");
+                itemBean.setBeizhu("");
+            }
+        });
     }
 }

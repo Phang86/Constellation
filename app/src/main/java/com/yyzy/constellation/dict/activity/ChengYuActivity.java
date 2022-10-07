@@ -1,5 +1,6 @@
 package com.yyzy.constellation.dict.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
 import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
+import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.MyToast;
 
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<String> mData = new ArrayList<>();
     private ArrayAdapter<String> adapter;
     private Intent intent;
+    private RelativeLayout relativeLayout;
+    private TextView tvClear;
 
     @Override
     protected int initLayout() {
@@ -44,8 +49,12 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         backImg = findViewById(R.id.chengyu_iv_back);
         searchEt = findViewById(R.id.chengyu_et);
         gv = findViewById(R.id.chengyu_gv);
+        relativeLayout = findViewById(R.id.chengyu_layout);
+        tvClear = findViewById(R.id.chengyu_tv_clear);
         backImg.setOnClickListener(this);
+        tvClear.setOnClickListener(this);
         searchEt.setOnEditorActionListener(this);
+        relativeLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -60,16 +69,63 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                 startPage(s);
             }
         });
+
+        gv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = mData.get(position);
+                AlertDialogUtils instance = AlertDialogUtils.getInstance();
+                AlertDialogUtils.showConfirmDialog(ChengYuActivity.this,"温馨提示","确定删除（"+name+"）这条记录吗？","确定","算了");
+                instance.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(AlertDialog dialog) {
+                        int del = DBmanager.delWhereCyFromCyutb(name);
+                        if (del > 0){
+                            MyToast.showText(getBaseContext(),"删除成功！");
+                            mData.clear();
+//                            List<String> list = DBmanager.queryAllCyFromCyutb();
+//                            if (list.size() > 0){
+//                                relativeLayout.setVisibility(View.VISIBLE);
+//                            }else{
+//                                relativeLayout.setVisibility(View.GONE);
+//                            }
+//                            mData.addAll(list);
+                            loadData();
+                            adapter.notifyDataSetChanged();
+                        }else{
+                            MyToast.showText(getBaseContext(),"删除失败！");
+                        }
+                        dialog.cancel();
+                    }
+
+                    @Override
+                    public void onNegativeButtonClick(AlertDialog dialog) {
+                        dialog.cancel();
+                    }
+                });
+
+                return true;
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         searchEt.setText("");
+        loadData();
+        adapter.notifyDataSetChanged();
+    }
+
+    private void loadData() {
         mData.clear();
         List<String> list = DBmanager.queryAllCyFromCyutb();
         mData.addAll(list);
-        adapter.notifyDataSetChanged();
+        if (mData.size() > 0){
+            relativeLayout.setVisibility(View.VISIBLE);
+        }else{
+            relativeLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -78,6 +134,33 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
             case R.id.chengyu_iv_back:
                 finish();
                 //overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                break;
+            case R.id.chengyu_tv_clear:
+                AlertDialogUtils instance = AlertDialogUtils.getInstance();
+                AlertDialogUtils.showConfirmDialog(this,"温馨提示","确定清空这（"+mData.size()+"条）查找记录吗？","确定","算了");
+                instance.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(AlertDialog dialog) {
+                        DBmanager.delAllCyFromCyutb();
+                        mData.clear();
+                        List<String> list = DBmanager.queryAllCyFromCyutb();
+                        mData.addAll(list);
+                        adapter.notifyDataSetChanged();
+                        dialog.cancel();
+                        if (mData.size() > 0){
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            MyToast.showText(getBaseContext(),"记录清空失败！",false);
+                        }else{
+                            relativeLayout.setVisibility(View.GONE);
+                            MyToast.showText(getBaseContext(),"记录已全部清空！",true);
+                        }
+                    }
+
+                    @Override
+                    public void onNegativeButtonClick(AlertDialog dialog) {
+                        dialog.cancel();
+                    }
+                });
                 break;
         }
     }

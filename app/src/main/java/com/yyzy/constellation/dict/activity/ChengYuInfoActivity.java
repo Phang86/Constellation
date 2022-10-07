@@ -236,6 +236,22 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         fyAdapter = new ArrayAdapter<>(this, R.layout.item_chengyu_gv, R.id.item_chengyu_tv, fycData);
         tyGv.setAdapter(tyAdapter);
         fyGv.setAdapter(fyAdapter);
+
+        tyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String jyText = jycData.get(position);
+                MyToast.showText(getBaseContext(),""+jyText);
+            }
+        });
+
+        fyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String fyText = fycData.get(position);
+                MyToast.showText(getBaseContext(),""+fyText);
+            }
+        });
     }
 
     @Override

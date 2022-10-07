@@ -88,9 +88,27 @@
     <string name="more" translatable="false">更多</string>
     <string name="channel" translatable="false">频道订阅</string>
     <string name="lifeTally" translatable="false">生活记账</string>
-    <string name="beizhu" translatable="false">备注</string>
+    <string name="setbeizhu" translatable="false">设置备注</string>
     <string name="addBeizhu" translatable="false">添加备注</string>
     <string name="inputHintBiezhu" translatable="false">请输入备注（限50字以内）</string>
+    <string name="inputTimeHint" translatable="false">请输入时间（24小时制）</string>
+    <string name="monthOut" translatable="false">本月支出</string>
+    <string name="monthIn" translatable="false">本月收入:</string>
+    <string name="yusuan" translatable="false">预算余额:</string>
+    <string name="lookProject" translatable="false">查看图表分析</string>
+    <string name="setMoney" translatable="false">设置金额</string>
+    <string name="ok" translatable="false">好的</string>
+    <string name="author" translatable="false">作者</string>
+    <string name="tallyInfo" translatable="false">账单详情</string>
+    <string name="tallyJilu" translatable="false">账单记录</string>
+    <string name="search" translatable="false">查找一下</string>
+    <string name="searchRecord" translatable="false">查找记录</string>
+    <string name="findByBeizhu" translatable="false">请输入需要查找的记录</string>
+    <string name="clearRecord" translatable="false">清空记录</string>
+
+    <string name="out" translatable="false">支出</string>
+    <string name="in" translatable="false">收入</string>
+    <string name="chartAnalyse" translatable="false">图表分析</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -59,7 +59,9 @@
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
                     android:paddingBottom="@dimen/dimen_10dp"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp" >
+                <requestFocus/>
+                </com.yyzy.constellation.utils.MyEditText>
 
                 <ImageView
                     android:id="@+id/search_iv_confirm"

@@ -12,7 +12,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="lightyellow">#F0E68C</color>
     <color name="bgyellow">#eee9bf</color>
-    <color name="pink">#d4237a</color>
+    <color name="pink">#D4237A</color>
     <color name="grey">#8a8a8a</color>
     <color name="white">#FFFFFF</color>
     <color name="zhuBlue">#29B6F6</color>
@@ -49,7 +49,11 @@
     <color name="mainBg">#FDF5E6</color>
     <color name="fireRed">#B22222</color>
     <color name="mainRed">#D5F3DDD7</color>
+    <color name="HW_Blue">#3179EC</color>
 
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="tab_textColor">#d4237a</color>
+
+    <color name="colorAccent1">#00ffffff</color>
+    <color name="colorAccent2">#ffc0c0c0</color>
 </resources>

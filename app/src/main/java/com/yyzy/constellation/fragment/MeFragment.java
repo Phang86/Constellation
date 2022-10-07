@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -217,8 +218,18 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         dialog.show();
         dialog.setCancelable(true);
         dialog.getWindow().getDecorView().setBackground(null);
+        //获取窗口对象
+        Window window = dialog.getWindow();
+        //获取窗口对象参数
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        //获取屏幕尺寸
+        Display d = window.getWindowManager().getDefaultDisplay();
+        wlp.width = d.getWidth();
+        wlp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        window.setAttributes(wlp);
         dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
-        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
         title.setText(titMsg);
         content.setText(contentMsg);
         btn_sure.setOnClickListener(new View.OnClickListener() {

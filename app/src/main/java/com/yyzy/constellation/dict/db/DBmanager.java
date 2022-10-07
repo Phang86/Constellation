@@ -3,6 +3,7 @@ package com.yyzy.constellation.dict.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,15 +28,20 @@ public class DBmanager {
 
     //执行插入数据到Pywordtb表中，插入一个对象的方法
     public static void insertWordToPywordtb(PinBuWordEntity.ResultBean.ListBean entity){
-        ContentValues values = new ContentValues();
-        values.put("id",entity.getId());
-        values.put("zi",entity.getZi());
-        values.put("py",entity.getPy());
-        values.put("wubi",entity.getWubi());
-        values.put("pinyin",entity.getPinyin());
-        values.put("bushou",entity.getBushou());
-        values.put("bihua",entity.getBihua());
-        database.insert(CommonUtils.TABLE_PYWORDTB,null,values);
+        try {
+            ContentValues values = new ContentValues();
+            values.put("id",entity.getId());
+            values.put("zi",entity.getZi());
+            values.put("py",entity.getPy());
+            values.put("wubi",entity.getWubi());
+            values.put("pinyin",entity.getPinyin());
+            values.put("bushou",entity.getBushou());
+            values.put("bihua",entity.getBihua());
+            database.insert(CommonUtils.TABLE_PYWORDTB,null,values);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     //执行插入数据到Pywordtb表中，插入List集合的方法
@@ -103,20 +109,24 @@ public class DBmanager {
 
 
     public static void insertWordToWordtb(WordEntity.ResultBean bean){
-        ContentValues values = new ContentValues();
-        values.put("id",bean.getId());
-        values.put("zi",bean.getZi());
-        values.put("py",bean.getPy());
-        values.put("wubi",bean.getWubi());
-        values.put("pinyin",bean.getPinyin());
-        values.put("bushou",bean.getBushou());
-        values.put("bihua",bean.getBihua());
-        //将集合转换成字符串
-        String jijie = listToString(bean.getJijie());
-        String xiangjie = listToString(bean.getXiangjie());
-        values.put("jijie",jijie);
-        values.put("xiangjie",xiangjie);
-        database.insert(CommonUtils.TABLE_WORDTB,null,values);
+        try {
+            ContentValues values = new ContentValues();
+            values.put("id",bean.getId());
+            values.put("zi",bean.getZi());
+            values.put("py",bean.getPy());
+            values.put("wubi",bean.getWubi());
+            values.put("pinyin",bean.getPinyin());
+            values.put("bushou",bean.getBushou());
+            values.put("bihua",bean.getBihua());
+            //将集合转换成字符串
+            String jijie = listToString(bean.getJijie());
+            String xiangjie = listToString(bean.getXiangjie());
+            values.put("jijie",jijie);
+            values.put("xiangjie",xiangjie);
+            database.insert(CommonUtils.TABLE_WORDTB,null,values);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     //将List集合转换成字符串
@@ -212,13 +222,26 @@ public class DBmanager {
 
     public static List<String> queryAllCyFromCyutb(){
         List<String> list = new ArrayList<>();
-        String sql = "select name from cyutb";
+        String sql = "select name from cyutb order by _id desc";
         Cursor cursor = database.rawQuery(sql, null);
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex("name"));
             list.add(name);
         }
         return list;
+    }
+
+    //删除cyutb表所有信息
+    public static void delAllCyFromCyutb(){
+        String sql = "delete from cyutb";
+        database.execSQL(sql);
+    }
+
+    //根据成语删除信息
+    public static int delWhereCyFromCyutb(String name){
+        int del = database.delete("cyutb","name=?",new String[]{name});
+        //database.close();
+        return del;
     }
 
     //向收藏文字表插入数据
@@ -254,6 +277,7 @@ public class DBmanager {
         }else {
             return false;
         }
+
     }
 
     //向收藏成语表插入数据

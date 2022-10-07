@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    app:cardCornerRadius="@dimen/dimen_20dp"
+    app:cardBackgroundColor="@color/yellow_100">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <DatePicker
+            android:id="@+id/tally_dialog_time_datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarTextColor="@color/gray_600"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inputTimeHint"
+            android:layout_gravity="center"
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/gray_600"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <EditText
+                android:id="@+id/tally_dialog_time_etHour"
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLength="2"
+                android:gravity="center"
+                android:inputType="number">
+                <requestFocus/>
+            </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_20sp"/>
+
+            <EditText
+                android:id="@+id/tally_dialog_time_etMinute"
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_10dp">
+
+            <Button
+                android:id="@+id/tally_dialog_time_btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_register_btn"
+                android:text="@string/smssdk_cancel"
+                android:textSize="@dimen/size_16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp"/>
+
+            <Button
+                android:id="@+id/tally_dialog_time_btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selector_login_btn_bg"
+                android:text="@string/smssdk_confirm"
+                android:textSize="@dimen/size_16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

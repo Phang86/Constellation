@@ -8,10 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -92,7 +95,17 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
         dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
         //设置隐藏dialog默认的背景
         //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        //获取窗口对象
+        Window window = dialog.getWindow();
+        //获取窗口对象参数
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        //获取屏幕尺寸
+        Display d = window.getWindowManager().getDefaultDisplay();
+        wlp.width = d.getWidth();
+        wlp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        window.setAttributes(wlp);
+        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
         content.setText("确定退出删除界面吗？");
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override

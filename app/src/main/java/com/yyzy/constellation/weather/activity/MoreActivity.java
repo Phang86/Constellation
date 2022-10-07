@@ -139,7 +139,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 clearData();
                 break;
             case R.id.more_layout_enjoy:
-                enjoyApp("星座缘下载网址");
+                enjoyApp(getResources().getString(R.string.app_name)+"下载网址");
                 break;
 //            case R.id.more_layout_version:
 //                //showAlertDialog();

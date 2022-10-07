@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tally.TallySearchActivity"
+    android:background="@drawable/bg">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/star_details_title"/>
+
+    <LinearLayout
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_below="@+id/top">
+
+        <com.yyzy.constellation.utils.MyEditText
+            android:id="@+id/tally_search_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dict_ed_bg"
+            android:hint="@string/findByBeizhu"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_16sp"
+            android:textColorHint="@color/grey"
+            android:textStyle="bold"
+            android:imeOptions="actionSearch"
+            android:maxLength="20">
+
+            <requestFocus/>
+        </com.yyzy.constellation.utils.MyEditText>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/tally_search_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:listSelector="@drawable/bg"
+        android:divider="@null"
+        android:layout_below="@+id/et"/>
+
+    <LinearLayout
+        android:id="@+id/tally_search_lin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp">
+
+        <ImageView
+            android:id="@+id/tally_search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_null_top"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/tally_search_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/size_15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="暂无内容！"
+            />
+    </LinearLayout>
+</RelativeLayout>

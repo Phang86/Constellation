@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/diy_alert_dialog_bg"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp">
-
-        <TextView
-            android:id="@+id/dialog_two_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="温馨提示"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:textSize="@dimen/size_16sp" />
-
-
-
-        <TextView
-            android:id="@+id/dialog_two_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_15dp"
-            android:layout_marginBottom="@dimen/dimen_15dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:lineHeight="@dimen/dimen_18dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="@dimen/size_15sp" />
-
-
-        <TextView
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1.5px"
-            android:background="@color/gray_200"/>
+        android:layout_margin="@dimen/dimen_35dp"
+        app:cardCornerRadius="@dimen/dimen_10dp">
 
         <LinearLayout
-            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
-            android:orientation="horizontal" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/dialog_two_btn_sure"
+            <TextView
+                android:id="@+id/dialog_two_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:background="@null"
-                android:text="确定"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:gravity="center"
                 android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="温馨提示"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp" />
+
+
+
+            <TextView
+                android:id="@+id/dialog_two_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_marginBottom="@dimen/dimen_15dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:lineHeight="@dimen/dimen_18dp"
+                android:layout_gravity="center_vertical"
                 android:textSize="@dimen/size_15sp" />
+
+
+            <TextView
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/gray_200"/>
+
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/dialog_two_btn_sure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:foreground="@drawable/view_foreground"
+                    android:background="@null"
+                    android:text="确定"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/size_15sp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

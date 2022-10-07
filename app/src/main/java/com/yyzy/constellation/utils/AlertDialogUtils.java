@@ -1,8 +1,12 @@
 package com.yyzy.constellation.utils;
 
 import android.content.Context;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +38,8 @@ public class AlertDialogUtils {
         alert = builder.create();
         alert.show();
         alert.getWindow().getDecorView().setBackground(null);
+        setWindowSize();
+
 
         //引入布局
         view_custom = LayoutInflater.from(context).inflate(R.layout.alert_dialog_defaut, null, false);
@@ -69,6 +75,18 @@ public class AlertDialogUtils {
         alert.getWindow().setContentView(view_custom);
     }
 
+    public static void setWindowSize(){
+        //获取窗口对象
+        Window window = alert.getWindow();
+        //获取窗口对象参数
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        //获取屏幕尺寸
+        Display d = window.getWindowManager().getDefaultDisplay();
+        wlp.width = d.getWidth();
+        wlp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        window.setAttributes(wlp);
+    }
 
     //todo 按钮点击回调接口
     public static OnDialogButtonClickListener mOnDialogButtonClickListener;

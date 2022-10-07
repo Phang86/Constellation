@@ -28,11 +28,13 @@ import com.yyzy.constellation.BuildConfig;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.activity.MainActivity;
+import com.yyzy.constellation.dict.entity.DictEveryOneBean;
 import com.yyzy.constellation.dict.entity.TuWenEntity;
 import com.yyzy.constellation.utils.FileUtil;
 import com.yyzy.constellation.utils.PatternUtils;
 import com.yyzy.constellation.utils.RecognizeService;
 import com.yyzy.constellation.utils.StringUtils;
+import com.yyzy.constellation.utils.URLContent;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -42,7 +44,7 @@ import java.util.List;
 public class DictActivity extends BaseActivity implements View.OnClickListener,TextView.OnEditorActionListener {
 
     private ImageView imgBack,imgSet;
-    private TextView tvPinYin,tvBuShou,tvChengYu,tvXiangJi,tvString;
+    private TextView tvPinYin,tvBuShou,tvChengYu,tvXiangJi,tvString,tvAuthor;
     private EditText editText;
     private ImageView imgUpdate;
 //    private String text;
@@ -67,6 +69,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         editText = findViewById(R.id.dict_ed);
         tvString = findViewById(R.id.dict_tv_everyDay);
         imgUpdate = findViewById(R.id.dict_img_update);
+        tvAuthor = findViewById(R.id.dict_tv_author);
         imgBack.setOnClickListener(this);
         imgSet.setOnClickListener(this);
         tvPinYin.setOnClickListener(this);
@@ -75,10 +78,25 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         tvXiangJi.setOnClickListener(this);
         imgUpdate.setOnClickListener(this);
         editText.setOnEditorActionListener(this);
-        tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
+        loadDatas(URLContent.DICT_EVERYDAY_URL);
+        //tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
     }
 
-
+    @Override
+    public void onSuccess(String result) {
+        super.onSuccess(result);
+        DictEveryOneBean bean = new Gson().fromJson(result, DictEveryOneBean.class);
+        DictEveryOneBean.DataBean dataBean = bean.getData().get(0);
+        if (bean.getData() != null){
+            tvString.setText(dataBean.getContent());
+        }
+        if (!TextUtils.isEmpty(dataBean.getAuthor())){
+            tvAuthor.setVisibility(View.VISIBLE);
+            tvAuthor.setText(dataBean.getAuthor());
+        }else{
+            tvAuthor.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     protected void initData() {
@@ -94,22 +112,22 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                 break;
             case R.id.dict_iv_set:
                 intent.setClass(this, SetActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.dict_tv_pinyin:
                 intent.setClass(this, SearchPinyinActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.dict_tv_bushou:
                 intent.setClass(this, SearchBushouActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.dict_tv_chengyu:
                 intent.setClass(this,ChengYuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.dict_tv_xiangji:
@@ -124,7 +142,8 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                 startActivityForResult(intent, REQUEST_CODE_GENERAL_BASIC);
                 break;
             case R.id.dict_img_update:
-                tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
+                //tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
+                loadDatas(URLContent.DICT_EVERYDAY_URL);
                 break;
         }
     }

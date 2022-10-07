@@ -11,7 +11,7 @@ public class OutComeFragment extends TallyBaseFragment{
     @Override
     public void loadData() {
         super.loadData();
-        List<GvTypeBean> bean = TallyManger.getAll(0);
+        List<GvTypeBean> bean = TallyManger.getOutOrInTypetbAll(0);
         mData.addAll(bean);
         adapter.notifyDataSetChanged();
         tvType.setText("其他");

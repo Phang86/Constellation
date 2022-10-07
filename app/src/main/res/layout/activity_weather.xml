@@ -8,7 +8,6 @@
     tools:context=".weather.activity.WeatherActivity"
     android:background="@mipmap/bg3">
 
-
     <RelativeLayout
         android:id="@+id/weather_layout_relative"
         android:layout_width="match_parent"

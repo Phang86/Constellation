@@ -45,7 +45,7 @@ public class NewsInfoActivity extends BaseActivity implements View.OnClickListen
         url = intent.getStringExtra("url");
         title = intent.getStringExtra("title");
         //Log.e("TAG", "initView: "+url);
-        tvTitle.setText(title);
+        tvTitle.setText(title+"");
     }
 
     @Override

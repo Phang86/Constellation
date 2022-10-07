@@ -5,8 +5,8 @@
     <corners android:radius="@dimen/dimen_12dp"/>
     <stroke android:width="@dimen/dimen_1dp" android:color="@color/grey"/>
     <padding
-        android:bottom="@dimen/dimen_15dp"
+        android:bottom="@dimen/dimen_13dp"
         android:left="@dimen/dimen_15dp"
         android:right="@dimen/dimen_15dp"
-        android:top="@dimen/dimen_15dp"/>
+        android:top="@dimen/dimen_13dp"/>
 </shape>

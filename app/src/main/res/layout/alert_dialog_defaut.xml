@@ -1,102 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_marginBottom="@dimen/dimen_20dp"
-        android:background="@drawable/content_corner">
+        app:cardCornerRadius="@dimen/dimen_10dp"
+        android:layout_margin="@dimen/dimen_35dp">
 
         <LinearLayout
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dimen_30dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
-
-            <TextView
-                android:id="@+id/title"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_16sp"
-                android:textStyle="bold"
-                android:text="标题"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/content"
-            android:layout_margin="@dimen/dimen_20dp"
-            android:gravity="center"
-            android:textSize="@dimen/size_15sp"
-            android:lineHeight="@dimen/dimen_18dp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="内容"/>
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:background="@color/gray_200"
-            android:layout_width="match_parent"
-            android:layout_height="1.5px"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_45dp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/cancel_layout"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1">
+                android:layout_alignParentTop="true">
 
-                <Button
-                    android:id="@+id/cancel_btn"
-                    android:background="@null"
-                    android:textSize="@dimen/size_15sp"
-                    android:text="取消"
-                    android:foreground="?android:attr/selectableItemBackground"
+                <TextView
+                    android:id="@+id/title"
+                    android:gravity="center"
                     android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-
-            <TextView
-                android:background="@color/gray_200"
-                android:layout_width="2px"
-                android:layout_height="match_parent"/>
-
-            <LinearLayout
-                android:id="@+id/config_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <Button
-                    android:id="@+id/config_btn"
-                    android:background="@null"
-                    android:textSize="@dimen/size_15sp"
-                    android:text="确定"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_16sp"
                     android:textStyle="bold"
-                    android:layout_width="match_parent"
+                    android:text="标题"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_margin="@dimen/dimen_20dp"
+                android:gravity="center"
+                android:textSize="@dimen/size_15sp"
+                android:lineHeight="@dimen/dimen_18dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="内容"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:background="@color/gray_200"
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout
+                    android:id="@+id/cancel_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/cancel_btn"
+                        android:background="@null"
+                        android:textSize="@dimen/size_15sp"
+                        android:text="取消"
+                        android:foreground="@drawable/view_foreground"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:background="@color/gray_200"
+                    android:layout_width="2px"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:id="@+id/config_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/config_btn"
+                        android:background="@null"
+                        android:textSize="@dimen/size_15sp"
+                        android:text="确定"
+                        android:foreground="@drawable/view_foreground"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

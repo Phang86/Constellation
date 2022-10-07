@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/lightyellow"
+    app:cardCornerRadius="@dimen/dimen_20dp"
+    android:layout_margin="@dimen/dimen_15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:text="@string/setMoney"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_17sp"
+                android:textColor="@color/gray_600"/>
+
+            <ImageView
+                android:id="@+id/tally_dialog_money_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_close"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tally_dialog_money_tv_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:textColor="@color/gray_500"
+            android:textSize="@dimen/size_16sp"
+            android:lineHeight="@dimen/dimen_20dp"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_40dp"
+            android:layout_marginLeft="@dimen/dimen_40dp"
+            app:cardCornerRadius="@dimen/dimen_10dp"
+            android:layout_gravity="center">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/dimen_10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tally_dialog_money_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/size_22sp"
+                    android:layout_marginRight="@dimen/dimen_5dp"/>
+
+                <EditText
+                    android:id="@+id/tally_dialog_money_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_toRightOf="@+id/tally_dialog_money_tv"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/size_21sp">
+                    <requestFocus/>
+                </EditText>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/tally_dialog_money_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_marginLeft="@dimen/dimen_40dp"
+            android:layout_marginRight="@dimen/dimen_40dp"
+            android:layout_gravity="center"
+            android:text="@string/smssdk_confirm"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@drawable/selector_login_btn_bg"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dimen_10dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

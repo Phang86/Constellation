@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".tally.ChartActivity"
+    android:background="@drawable/bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@color/lightyellow">
+
+            <ImageView
+                android:id="@+id/chart_img_back"
+                android:layout_width="@dimen/dimen_20dp"
+                android:layout_height="@dimen/dimen_20dp"
+                android:src="@mipmap/back"
+                android:background="@null"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tallyInfo"
+                android:textSize="@dimen/size_16sp"
+                android:textColor="@color/pink"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/chart_img_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar"
+                android:gravity="center_horizontal"
+                android:layout_gravity="right|center_horizontal"
+                android:layout_marginRight="@dimen/dimen_15dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_15dp"
+        android:background="@color/yellow_100"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dimen_20dp">
+
+        <TextView
+            android:id="@+id/chart_tv_monthBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2022年8月账单"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_16sp"/>
+
+        <TextView
+            android:id="@+id/chart_tv_outBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共1笔支出，￥85.9"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_14sp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:layout_marginBottom="@dimen/dimen_5dp"/>
+
+        <TextView
+            android:id="@+id/chart_tv_inBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共1笔收入，￥175.9"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_15dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/chart_btn_out"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_35dp"
+            android:background="@drawable/tally_calendar_dialog_bg_fs"
+            android:text="@string/out"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/chart_btn_in"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_35dp"
+            android:background="@drawable/tally_calendar_dialog_bg"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:text="@string/in"
+            android:textColor="@color/pink"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/chart_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"/>
+</LinearLayout>

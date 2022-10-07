@@ -12,9 +12,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -335,7 +338,17 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         dialog.setCanceledOnTouchOutside(false);
         dialog.getWindow().getDecorView().setBackground(null);
         dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
-        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
+        //获取窗口对象
+        Window window = dialog.getWindow();
+        //获取窗口对象参数
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        //获取屏幕尺寸
+        Display d = window.getWindowManager().getDefaultDisplay();
+        wlp.width = d.getWidth();
+        wlp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        window.setAttributes(wlp);
+        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
         title.setText("温馨提示");
         content.setText(msg);
         btn_sure.setOnClickListener(new View.OnClickListener() {

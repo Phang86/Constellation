@@ -12,15 +12,21 @@ import android.widget.TextView;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.tally.bean.TallyLvItemBean;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class TallyLVAdapter extends BaseAdapter {
     private Context context;
     private List<TallyLvItemBean> mData;
+    private int year,month,day;
 
     public TallyLVAdapter(Context context, List<TallyLvItemBean> mData) {
         this.context = context;
         this.mData = mData;
+        Calendar ca = Calendar.getInstance();
+        year = ca.get(Calendar.YEAR);
+        month = ca.get(Calendar.MONTH)+1;
+        day = ca.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
@@ -62,12 +68,16 @@ public class TallyLVAdapter extends BaseAdapter {
         }else{
             holder.tvOutOrIn.setText("来源：收入");
         }
-        holder.tvTime.setText(bean.getTime());
+        if (bean.getYear() == year && bean.getMonth() == month && bean.getDay() == day){
+            String time = bean.getTime().split(" ")[1];
+            holder.tvTime.setText("今天 "+time);
+        }else{
+            holder.tvTime.setText(bean.getTime());
+        }
         return convertView;
     }
 
     class ViewHolder{
-
         ImageView imgTitle;
         TextView tvTitle,tvBeizhu,tvMoney,tvTime,tvOutOrIn;
 

@@ -115,7 +115,6 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/size_18sp"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/icon_null"/>
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

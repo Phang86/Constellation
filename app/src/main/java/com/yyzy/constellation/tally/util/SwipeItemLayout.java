@@ -430,7 +430,7 @@ public class SwipeItemLayout extends ViewGroup {
 
                 if(!more){
                     setTouchMode(Mode.RESET);
-                    //绝对不会出现这种意外的！！！可以注释掉
+                    //绝对不会出现这种意外的！！！
                     if(mScrollOffset!=0){
                         if(Math.abs(mScrollOffset)>mMaxScrollOffset/2)
                             mScrollOffset = -mMaxScrollOffset;

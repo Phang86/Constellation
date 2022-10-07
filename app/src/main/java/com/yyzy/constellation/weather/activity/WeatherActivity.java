@@ -1,22 +1,39 @@
 package com.yyzy.constellation.weather.activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.activity.MainActivity;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.weather.adapter.CityFragmentPagerAdapter;
 import com.yyzy.constellation.weather.db.DBManager;
 import com.yyzy.constellation.weather.entity.WeatherEntity;
@@ -24,6 +41,7 @@ import com.yyzy.constellation.weather.fragment.CityWeatherFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class WeatherActivity extends BaseActivity implements View.OnClickListener{
     private ImageView imgBack,addCityImg,moreImg;
@@ -59,6 +77,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         changeBg();
     }
 
+
     @Override
     protected void initData() {
         if (cityList.size() == 0){
@@ -82,6 +101,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         //设置ViewPager页面监听
         setPagerListener();
     }
+
 
     private void initPager() {
         for (int i = 0; i < cityList.size(); i++) {
@@ -162,7 +182,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     protected void onRestart() {
         super.onRestart();
         List<String> list = DBManager.queryAllCityName();
-        if (list.size() == 0 || list==null) {
+        if (list.size() == 0 || list == null) {
             list.add("衡阳");
         }
         //清空原来的数据源
@@ -201,4 +221,5 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+
 }

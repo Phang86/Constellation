@@ -54,7 +54,9 @@
             android:imeOptions="actionSearch"
             android:textStyle="bold"
             android:maxLength="1"
-            android:inputType="text"/>
+            android:inputType="text">
+            <requestFocus/>
+        </com.yyzy.constellation.utils.MyEditText>
 
 <!--        <ImageView-->
 <!--            android:id="@+id/dict_iv_search"-->
@@ -75,8 +77,6 @@
         android:background="@drawable/dict_layout_bg"
         android:padding="@dimen/dimen_15dp"
         android:weightSum="4">
-
-
 
         <TextView
             android:id="@+id/dict_tv_pinyin"
@@ -155,7 +155,6 @@
 
             <ImageView
                 android:id="@+id/dict_img_update"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="@dimen/dimen_20dp"
                 android:layout_height="@dimen/dimen_20dp"
                 android:src="@drawable/ic_refresh"
@@ -169,8 +168,21 @@
             android:id="@+id/dict_tv_everyDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/gray_600"
             android:lineHeight="@dimen/dimen_18dp"
+            android:textIsSelectable="true"
             android:layout_marginTop="@dimen/dimen_10dp"/>
+
+        <TextView
+            android:id="@+id/dict_tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_600"
+            android:layout_gravity="right|center_vertical"
+            android:visibility="gone"
+            android:drawableLeft="@drawable/ic_dict_author"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:text="@string/author"
+            android:layout_marginTop="@dimen/dimen_5dp"/>
     </LinearLayout>
 </LinearLayout>

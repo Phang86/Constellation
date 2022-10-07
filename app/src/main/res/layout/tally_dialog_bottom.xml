@@ -1,46 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dimen_10dp"
-    android:background="@drawable/bg">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/beizhu"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_18sp"/>
-
-    <EditText
-        android:id="@+id/tally_dialog_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/inputHintBiezhu"
-        android:layout_marginTop="@dimen/dimen_15dp"
-        android:layout_marginBottom="@dimen/dimen_15dp"
-        android:textSize="15sp">
-        <requestFocus/>
-    </EditText>
+    app:cardCornerRadius="@dimen/dimen_20dp"
+    android:layout_margin="@dimen/dimen_15dp"
+    app:cardBackgroundColor="@color/lightyellow">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen_10dp">
 
-        <Button
-            android:id="@+id/tally_dialog_btn_cancel"
+        <TextView
+            android:id="@+id/tally_dialog_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/smssdk_cancel"/>
+            android:text="@string/setbeizhu"
+            android:textColor="@color/gray_600"
+            android:textSize="@dimen/size_17sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
-        <Button
-            android:id="@+id/tally_dialog_btn_confirm"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/tally_dialog_et"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/smssdk_confirm"/>
+            android:background="@null"
+            android:hint="@string/inputHintBiezhu"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
+            android:textColorHint="@color/gray_500"
+            android:maxLength="60"
+            android:textSize="15sp"
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black">
+            <requestFocus/>
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp">
+
+
+            <Button
+                android:id="@+id/tally_dialog_btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/smssdk_cancel"
+                android:layout_weight="1"
+                android:background="@drawable/selector_register_btn"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_16sp"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:textColor="@color/white"/>
+
+
+            <Button
+                android:id="@+id/tally_dialog_btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/smssdk_confirm"
+                android:layout_weight="1"
+                android:background="@drawable/selector_login_btn_bg"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_16sp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:layout_marginBottom="@dimen/dimen_10dp"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

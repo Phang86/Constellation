@@ -14,7 +14,7 @@
         android:layout_marginBottom="@dimen/dimen_10dp"
         app:cardCornerRadius="@dimen/dimen_10dp"
         app:cardBackgroundColor="#FAD0D8"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="@drawable/view_foreground">
 
         <RelativeLayout
             android:layout_width="match_parent"

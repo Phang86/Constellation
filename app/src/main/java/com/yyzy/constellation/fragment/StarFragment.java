@@ -110,12 +110,10 @@ public class StarFragment extends Fragment {
         for (int i = 0; i < imgIds.length; i++) {
             ImageView iv = new ImageView(getContext());
             iv.setImageResource(imgIds[i]);
-            Log.e("TAG", "initPager: "+imgIds[i]);
             int finalI = i;
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     MyToast.showText(getContext(),"dianjiale"+imgIds[finalI]);
                 }
             });
@@ -166,7 +164,6 @@ public class StarFragment extends Fragment {
         super.onPause();
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
-            Log.e("TAG", "onPause: "+"暂停了");
         }
     }
 
@@ -174,7 +171,6 @@ public class StarFragment extends Fragment {
     public void onResume() {
         super.onResume();
         handler.sendEmptyMessageDelayed(1,2000);
-        Log.e("TAG", "onResume: "+"恢复了");
     }
 
 }

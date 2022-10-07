@@ -101,6 +101,7 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
+                //dialog.show();
                 String todayUrl = URLContent.getTodayHistoryURL("1.0", month, day);
                 loadDatas(todayUrl);
                 Date date = new Date();
@@ -111,6 +112,8 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                 loadLaoHuangliData(laohuangliURL);
                 tvTitle.setText(time);
                 refreshLayout.finishRefresh(500);
+                MyToast.showText(getBaseContext(),"已更新到当前时间！",true);
+                //dialog.cancel();
             }
         });
     }

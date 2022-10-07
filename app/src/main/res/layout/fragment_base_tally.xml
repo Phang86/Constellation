@@ -74,7 +74,7 @@
         android:id="@+id/record_frag_gv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="5"
+        android:numColumns="3"
         android:layout_below="@+id/record_layout_top"
         android:overScrollMode="never"
         android:listSelector="@drawable/bg"/>
@@ -97,7 +97,7 @@
             android:layout_alignParentRight="true"
             android:singleLine="true"
             android:textSize="@dimen/size_15sp"
-            android:textColor="@color/yaBlack"
+            android:textColor="@color/gray_600"
             android:textStyle="bold"/>
 
         <TextView

@@ -9,7 +9,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentPadding="@dimen/dimen_20dp"
+        app:contentPaddingTop="@dimen/dimen_20dp"
+        app:contentPaddingBottom="@dimen/dimen_20dp"
+        app:contentPaddingLeft="@dimen/dimen_10dp"
+        app:contentPaddingRight="@dimen/dimen_10dp"
         app:cardCornerRadius="@dimen/dimen_15dp"
         android:layout_marginLeft="@dimen/dimen_15dp"
         android:layout_marginRight="@dimen/dimen_15dp"
@@ -25,9 +28,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本月支出"
-                android:textColor="@color/yaBlack"
-                android:textSize="@dimen/size_16sp"/>
+                android:text="@string/monthOut"
+                android:textColor="@color/gray_600"
+                android:textSize="@dimen/size_16sp"
+                android:textStyle="bold"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -35,14 +39,17 @@
                 android:layout_marginTop="@dimen/dimen_5dp">
 
                 <TextView
+                    android:id="@+id/tally_lv_header_tv_Out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:textSize="@dimen/size_20sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:text="￥807.5"
-                    android:layout_centerVertical="true"/>
+                    android:singleLine="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tally_lv_header_img_eyes"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
 
                 <ImageView
                     android:id="@+id/tally_lv_header_img_eyes"
@@ -53,70 +60,81 @@
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_5dp">
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
                 <TextView
                     android:id="@+id/tally_lv_header_tv_shourU"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="本月收入:"
+                    android:text="@string/monthIn"
                     android:textSize="@dimen/size_14sp"
-                    android:textColor="@color/yaBlack"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_600"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:singleLine="true"/>
 
                 <TextView
-                    android:id="@+id/tally_lv_header_tv_shouru"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tally_lv_header_tv_In"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/tally_lv_header_tv_shourU"
-                    android:layout_toLeftOf="@+id/tally_lv_header_tv_yusuaN"
-                    android:singleLine="true"
-                    android:text="￥588871fdsfdfdfdf5111.89"
-                    android:textSize="@dimen/size_16sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:id="@+id/tally_lv_header_tv_yusuaN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="剩余:"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_toLeftOf="@+id/tally_lv_header_tv_yusuan"
-                    android:textSize="@dimen/size_14sp"
-                    android:textColor="@color/yaBlack"/>
-
-                <TextView
-                    android:id="@+id/tally_lv_header_tv_yusuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="￥1200.60"
+                    android:layout_toLeftOf="@+id/tally_lv_header_layout"
                     android:singleLine="true"
                     android:textSize="@dimen/size_16sp"
-                    android:textColor="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tally_lv_header_tv_yusuan"
+                    android:textColor="@color/black"
                     android:layout_centerHorizontal="true"
+                    android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tally_lv_header_tv_yusuaN"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yusuan"
+                        android:layout_toLeftOf="@+id/tally_lv_header_tv_yusuan"
+                        android:textSize="@dimen/size_14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gray_600"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tally_lv_header_tv_yusuan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="@dimen/size_16sp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tally_lv_header_layout"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/dimen_15dp">
 
                     <TextView
                         android:id="@+id/tally_lv_header_tv_look"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="查看图表分析"
+                        android:text="@string/lookProject"
                         android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/size_15sp"
+                        android:textStyle="bold"
                         android:drawablePadding="@dimen/dimen_5dp"
                         android:drawableLeft="@drawable/icon_tubiao"/>
-                </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -124,7 +142,6 @@
         android:id="@+id/tally_lv_header_tv_sum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="今日支出￥2000.0\t收入￥5630.8"
         android:textSize="@dimen/size_14sp"
         android:layout_marginLeft="@dimen/dimen_15dp"
         android:layout_marginRight="@dimen/dimen_15dp"

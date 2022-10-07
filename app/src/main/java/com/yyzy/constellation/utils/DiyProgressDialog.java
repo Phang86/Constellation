@@ -18,7 +18,7 @@ public class DiyProgressDialog extends Dialog  {
 
 
     public DiyProgressDialog(Context context) {
-        this(context, R.style.MyDialogStyle, "");
+        this(context, R.style.MyDialogStyle,"");
     }
 
     public DiyProgressDialog(Context context, String string) {
