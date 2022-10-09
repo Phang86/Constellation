@@ -1,12 +1,10 @@
 package com.yyzy.constellation.tally.util;
 
-import android.app.Dialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -57,13 +55,13 @@ public class TallyMoreDialog extends BottomSheetDialog implements View.OnClickLi
         imgClose = findViewById(R.id.tally_more_dialog_img);
         cvSearch = findViewById(R.id.tally_more_dialog_cv_search);
         cvTallyJilu = findViewById(R.id.tally_more_dialog_cv_tallyJilu);
-        cvTallyInfo = findViewById(R.id.tally_more_dialog_cv_tallyInfo);
+//        cvTallyInfo = findViewById(R.id.tally_more_dialog_cv_tallyInfo);
         cvSet = findViewById(R.id.tally_more_dialog_cv_set);
 
         imgClose.setOnClickListener(this);
         cvSearch.setOnClickListener(this);
         cvTallyJilu.setOnClickListener(this);
-        cvTallyInfo.setOnClickListener(this);
+//        cvTallyInfo.setOnClickListener(this);
         cvSet.setOnClickListener(this);
     }
 
@@ -81,10 +79,10 @@ public class TallyMoreDialog extends BottomSheetDialog implements View.OnClickLi
                 startIntent(getContext(), TallyJiluActivity.class);
                 cancel();
                 break;
-            case R.id.tally_more_dialog_cv_tallyInfo:
-                Log.e("TAG", "onClick: tally_more_dialog_cv_tallyInfo");
-                cancel();
-                break;
+//            case R.id.tally_more_dialog_cv_tallyInfo:
+//                Log.e("TAG", "onClick: tally_more_dialog_cv_tallyInfo");
+//                cancel();
+//                break;
             case R.id.tally_more_dialog_cv_set:
                 List<TallyLvItemBean> data = TallyManger.getAll();
                 if (data.size() > 0) {

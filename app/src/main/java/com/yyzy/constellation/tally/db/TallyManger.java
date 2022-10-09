@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.yyzy.constellation.tally.bean.BarCharItemBean;
 import com.yyzy.constellation.tally.bean.ChartLvItemBean;
 import com.yyzy.constellation.tally.bean.GvTypeBean;
 import com.yyzy.constellation.tally.bean.TallyLvItemBean;
@@ -58,7 +59,7 @@ public class TallyManger {
             TallyLvItemBean bean = new TallyLvItemBean(id,typeName,img,beizhu,money,time,year,month,day,outOrIn);
             list.add(bean);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -81,7 +82,7 @@ public class TallyManger {
             TallyLvItemBean bean = new TallyLvItemBean(id,typeName,img,beizhu,money,time,year,month,day,outOrIn);
             list.add(bean);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -104,7 +105,7 @@ public class TallyManger {
             TallyLvItemBean bean = new TallyLvItemBean(id,typeName,img,beizhu,money,time,year,month,day,outOrIn);
             list.add(bean);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -127,7 +128,7 @@ public class TallyManger {
             TallyLvItemBean bean = new TallyLvItemBean(id,typeName,img,beizhu,money,time,year,month,day,outOrIn);
             list.add(bean);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -150,7 +151,7 @@ public class TallyManger {
             TallyLvItemBean bean = new TallyLvItemBean(id,typeName,img,beizhu,money,time,year,month,day,outOrIn);
             list.add(bean);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -188,7 +189,7 @@ public class TallyManger {
             float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
             total = money;
         }
-        cursor.close();
+        //cursor.close();
         return total;
     }
 
@@ -201,7 +202,7 @@ public class TallyManger {
             float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
             total = money;
         }
-        cursor.close();
+        //cursor.close();
         return total;
     }
 
@@ -214,7 +215,7 @@ public class TallyManger {
             float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
             total = money;
         }
-        cursor.close();
+        //cursor.close();
         return total;
     }
 
@@ -227,7 +228,7 @@ public class TallyManger {
             int year = cursor.getInt(cursor.getColumnIndex("year"));
             list.add(year);
         }
-        cursor.close();
+        //cursor.close();
         return list;
     }
 
@@ -247,12 +248,38 @@ public class TallyManger {
             float total = cursor.getFloat(cursor.getColumnIndex("total"));
             String typeName = cursor.getString(cursor.getColumnIndex("typeName"));
             float radio = FloatUtils.div(total, sumMoneyOneMonth);
-            Log.e("TAG", "getChartLvItemListToJilutb: "+radio);
             ChartLvItemBean bean = new ChartLvItemBean(img, typeName, radio, total);
             list.add(bean);
         }
         return list;
     }
 
+
+    //获取这个月当中某一天收入或支出最大的金额是多少
+    public static float getMaxMoneyOneDayInMonth(int year,int month,int outOrIn){
+        String sql = "select sum(money) from jilutb where year=? and month=? and outOrIn=? group by day order by sum(money) desc";
+        Cursor cursor = database.rawQuery(sql, new String[]{year + "", month + "", outOrIn + ""});
+        if (cursor.moveToFirst()) {
+            float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            Log.e("TAG", "getMaxMoneyOneDayInMonth: "+money);
+            return money;
+        }
+        return 0;
+    }
+
+    //根据指定月份，获取每日收入或支出金额的集合
+    public static List<BarCharItemBean> getSumMoneyOneDayInMonth(int year,int month,int outOrIn){
+        List<BarCharItemBean> list = new ArrayList<>();
+        String sql = "select day,sum(money) from jilutb where year=? and month=? and outOrIn=? group by day";
+        Cursor cursor = database.rawQuery(sql, new String[]{year + "", month + "", outOrIn + ""});
+        while (cursor.moveToNext()) {
+            int day = cursor.getInt(cursor.getColumnIndex("day"));
+            float sumMoney = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            BarCharItemBean bean = new BarCharItemBean(year,month,day,sumMoney);
+            list.add(bean);
+
+        }
+        return list;
+    }
 
 }

@@ -3,6 +3,8 @@ package com.yyzy.constellation.tally;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.media.Image;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.yyzy.constellation.BuildConfig;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.tally.adapter.TallyLVAdapter;
@@ -39,6 +42,8 @@ import com.yyzy.constellation.utils.MyToast;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -51,7 +56,6 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     private List<TallyLvItemBean> mData;
     private TallyLVAdapter adapter;
     private SmartRefreshLayout refreshLayout;
-
     private int year,month,day;
 
     private TextView tvOut,tvIn,tvYusuan,tvLook,tvSum;

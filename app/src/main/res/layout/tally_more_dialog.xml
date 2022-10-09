@@ -34,7 +34,8 @@
                 android:id="@+id/tally_more_dialog_cv_tallyJilu"
                 style="@style/tally_morey_dialog_cv_style"
                 app:cardCornerRadius="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp">
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp">
 
                 <TextView
                     android:text="@string/tallyJilu"
@@ -43,25 +44,26 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/tally_more_dialog_cv_tallyInfo"
-                style="@style/tally_morey_dialog_cv_style"
-                app:cardCornerRadius="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/tally_more_dialog_cv_tallyInfo"-->
+<!--                style="@style/tally_morey_dialog_cv_style"-->
+<!--                app:cardCornerRadius="@dimen/dimen_10dp"-->
+<!--                android:layout_marginRight="@dimen/dimen_10dp">-->
 
-                <TextView
-                    android:text="@string/tallyInfo"
-                    android:drawableTop="@drawable/ic_tally_more_info"
-                    style="@style/tally_more_dialog_tv_style"/>
+<!--                <TextView-->
+<!--                    android:text="@string/tallyInfo"-->
+<!--                    android:drawableTop="@drawable/ic_tally_more_info"-->
+<!--                    style="@style/tally_more_dialog_tv_style"/>-->
 
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tally_more_dialog_cv_set"
                 style="@style/tally_morey_dialog_cv_style"
                 app:cardCornerRadius="@dimen/dimen_10dp"
                 android:background="@color/white"
-                android:layout_marginRight="@dimen/dimen_20dp">
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:layout_marginLeft="@dimen/dimen_10dp">
 
                 <TextView
                     android:text="@string/clearRecord"

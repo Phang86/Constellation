@@ -121,6 +121,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         this.registerReceiver(receivers,filter);
+
     }
 
 
