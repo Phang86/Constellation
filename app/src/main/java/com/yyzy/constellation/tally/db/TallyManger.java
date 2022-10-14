@@ -282,4 +282,25 @@ public class TallyManger {
         return list;
     }
 
+
+    public static void updateStatetb(String state){
+        int id = 1;
+        ContentValues values = new ContentValues();
+        values.put("_state",state);
+        database.update("state",values,"_id=?",new String[]{""+id});
+    }
+
+    public static String getStatetb(){
+        int id = 1;
+        String state = "";
+        String sql = "select _state from state where _id="+id;
+        Cursor cursor = database.rawQuery(sql, null);
+        while (cursor.moveToFirst()) {
+            state = cursor.getString(cursor.getColumnIndex("_state"));
+            Log.e("TAG", "getStatetb: "+state);
+            return state;
+
+        }
+        return state;
+    }
 }

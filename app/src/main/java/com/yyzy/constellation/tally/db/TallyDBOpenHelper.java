@@ -19,6 +19,8 @@ public class TallyDBOpenHelper extends SQLiteOpenHelper {
         String sql = "create table typetb(_id Integer primary key autoincrement,typeName varchar(10),selectImg Integer,unSelectImg Integer,outOrIn Integer)";
         db.execSQL(sql);
         String sqlo = "create table jilutb(_id Integer primary key autoincrement,typeName varchar,beizhu varchar,img int,money varchar,time varchar,year int,month int,day int,outOrIn int)";
+        String sqlt = "create table state(_id Integer primary key autoincrement,_state varchar)";
+        db.execSQL(sqlt);
         insertData(db);
         db.execSQL(sqlo);
     }
@@ -50,6 +52,9 @@ public class TallyDBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(add,new Object[]{"投资", R.drawable.icon_touzi_fs,R.drawable.icon_touzi,1});
         db.execSQL(add,new Object[]{"二手交易", R.drawable.icon_ershou_fs,R.drawable.icon_ershou,1});
         db.execSQL(add,new Object[]{"意外所得", R.drawable.icon_yiwai_fs,R.drawable.icon_yiwai,1});
+
+        String sql = "insert into state values(null,?)";
+        db.execSQL(sql,new Object[]{"false"});
     }
 
     @Override

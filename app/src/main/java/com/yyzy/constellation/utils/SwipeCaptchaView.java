@@ -417,8 +417,8 @@ public class SwipeCaptchaView extends AppCompatImageView {
 
             //是否是从上到下
             boolean topToBottom = end.y - start.y > 0;
-            //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
             int flag;//旋转系数
+            //以下是我写出了所有的计算公式后推的，不要问我过程，只可意会。
             if (topToBottom) {
                 flag = 1;
             } else {

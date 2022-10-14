@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.AppInfoActivity;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.news.util.NetJavaScriptInterface;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 
 public class NewsInfoActivity extends BaseActivity implements View.OnClickListener {
@@ -81,6 +82,13 @@ public class NewsInfoActivity extends BaseActivity implements View.OnClickListen
                 view.loadUrl(url);
                 return true;
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //监听webView已经将网页加载完成；给网络图片添加点击事件
+                addImgClickListener(view);
+            }
         });
 
         webView.setWebChromeClient(new WebChromeClient(){
@@ -96,7 +104,27 @@ public class NewsInfoActivity extends BaseActivity implements View.OnClickListen
                 super.onProgressChanged(view, newProgress);
             }
         });
+
+        webView.addJavascriptInterface(new NetJavaScriptInterface(this),"listener");
     }
+
+    //给网页中的图片添加点击事件
+    private void addImgClickListener(WebView view) {
+        view.loadUrl("javascript:(function(){" +
+                "            var objs = document.getElementsByTagName(\"img\");" +
+                "            var arr = [];" +
+                "            for(var i = 1; i < objs.length; i++){" +
+                "                arr[i] = objs[i].getAttribute('src');" +
+                "            }" +
+                "            for(var i = 0; i < objs.length; i++){" +
+                "                objs[i].onclick = function(){" +
+                "                    window.listener.openImage(arr,this.getAttribute('src')" +
+                "                }" +
+                "" +
+                "            }" +
+                "        })()");
+    }
+
 
     public void loadProgress(int newProgress){
         if (mDialog == null) {

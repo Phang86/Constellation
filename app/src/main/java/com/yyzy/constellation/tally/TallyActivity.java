@@ -63,6 +63,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     private float outSumMoneyOneDay;
     private float inSumMoneyOneDay;
     private SharedPreferences spf;
+    private String statetb;
 
     @Override
     protected int initLayout() {
@@ -82,6 +83,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         imgMore.setOnClickListener(this);
         tvTitle.setText(getResources().getString(R.string.lifeTally));
         spf = getSharedPreferences("jilu", Context.MODE_PRIVATE);
+        //toggleShow();
     }
 
     @Override
@@ -195,6 +197,8 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
             float m = money - outMoneyOneMonth;
             tvYusuan.setText("￥"+m);
         }
+        statetb = TallyManger.getStatetb();
+        toggleShow(statetb);
     }
 
     @Override
@@ -220,7 +224,16 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                 });
                 break;
             case R.id.tally_lv_header_img_eyes:
-                toggleShow();
+                statetb = TallyManger.getStatetb();
+                toggleShow(statetb);
+                if (statetb.equals("true")){
+                    TallyManger.updateStatetb("false");
+                    statetb = TallyManger.getStatetb();
+                }else{
+                    TallyManger.updateStatetb("true");
+                    statetb = TallyManger.getStatetb();
+                }
+                toggleShow(statetb);
                 break;
             case R.id.tally_lv_header_tv_look:
                 startIntent(ChartActivity.class);
@@ -239,22 +252,19 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    boolean isShow = true;
-    private void toggleShow() {
-        if (isShow){
+    private void toggleShow(String isShow) {
+        if (isShow.equals("true")){
             PasswordTransformationMethod passwordMethod = PasswordTransformationMethod.getInstance();
             tvOut.setTransformationMethod(passwordMethod);
             tvIn.setTransformationMethod(passwordMethod);
             tvYusuan.setTransformationMethod(passwordMethod);
             imgLookMoney.setImageResource(R.drawable.icon_eyes_hint);
-            isShow = false;
         }else{
             HideReturnsTransformationMethod hideMethod = HideReturnsTransformationMethod.getInstance();
             tvOut.setTransformationMethod(hideMethod);
             tvIn.setTransformationMethod(hideMethod);
             tvYusuan.setTransformationMethod(hideMethod);
             imgLookMoney.setImageResource(R.drawable.icon_eyes);
-            isShow = true;
         }
     }
 
@@ -272,7 +282,6 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                 edit.putFloat("money",money);
                 edit.commit();
                 tvYusuan.setText("￥"+m);
-
             }
         });
     }
@@ -296,5 +305,12 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         lv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         initHeaderViewData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        statetb = TallyManger.getStatetb();
+        toggleShow(statetb);
     }
 }
