@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,13 +75,16 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         tv = findViewById(R.id.history_tv);
         refreshLayout = findViewById(R.id.smr_refreshLayout);
         imgBack.setOnClickListener(this);
-
-        dialog = new DiyProgressDialog(this, "加载中...");
-        dialog.show();
+        showProgress();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
         lv.setVisibility(View.GONE);
         refreshLayout.setVisibility(View.GONE);
+    }
+
+    private void showProgress(){
+        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog.show();
     }
 
     @Override
@@ -101,18 +105,28 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
+                showProgress();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String todayUrl = URLContent.getTodayHistoryURL("1.0", month, day);
+                        loadDatas(todayUrl);
+                        Date date = new Date();
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                        String time = format.format(date);
+                        Log.e("TAG", "onRefresh: "+time);
+                        String laohuangliURL = URLContent.getLaohuangliURL(time);
+                        loadLaoHuangliData(laohuangliURL);
+                        tvTitle.setText(time);
+                        refreshLayout.finishRefresh(500);
+                        MyToast.showText(getBaseContext(),"已刷新到当前时间！",true);
+                        if (dialog != null) {
+                            dialog.cancel();
+                        }
+                    }
+                },200);
                 //dialog.show();
-                String todayUrl = URLContent.getTodayHistoryURL("1.0", month, day);
-                loadDatas(todayUrl);
-                Date date = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                String time = format.format(date);
-                Log.e("TAG", "onRefresh: "+time);
-                String laohuangliURL = URLContent.getLaohuangliURL(time);
-                loadLaoHuangliData(laohuangliURL);
-                tvTitle.setText(time);
-                refreshLayout.finishRefresh(500);
-                MyToast.showText(getBaseContext(),"已更新到当前时间！",true);
+
                 //dialog.cancel();
             }
         });
@@ -309,13 +323,21 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String time = year + "-" + (month + 1) + "-" + dayOfMonth;
-                String laohuangliURL = URLContent.getLaohuangliURL(time);
-                tvTitle.setText(time);
-                loadLaoHuangliData(laohuangliURL);
-
-                String url = URLContent.getTodayHistoryURL("1.0", (month + 1), dayOfMonth);
-                loadDatas(url);
+                showProgress();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String time = year + "-" + (month + 1) + "-" + dayOfMonth;
+                        String laohuangliURL = URLContent.getLaohuangliURL(time);
+                        tvTitle.setText(time);
+                        loadLaoHuangliData(laohuangliURL);
+                        String url = URLContent.getTodayHistoryURL("1.0", (month + 1), dayOfMonth);
+                        loadDatas(url);
+                        if (HistoryActivity.this.dialog != null){
+                            HistoryActivity.this.dialog.cancel();
+                        }
+                    }
+                },200);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         dialog.show();

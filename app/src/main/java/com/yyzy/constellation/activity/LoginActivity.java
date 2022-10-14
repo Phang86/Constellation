@@ -359,7 +359,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                         }
                                     }
                                 }
-                            }, 1200);
+                            }, 1000);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -38,6 +39,7 @@ import com.yyzy.constellation.tally.util.TallyInfoDialog;
 import com.yyzy.constellation.tally.util.TallyMoneyDialog;
 import com.yyzy.constellation.tally.util.TallyMoreDialog;
 import com.yyzy.constellation.utils.AlertDialogUtils;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 
 import org.jetbrains.annotations.NotNull;
@@ -64,6 +66,8 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     private float inSumMoneyOneDay;
     private SharedPreferences spf;
     private String statetb;
+    private DiyProgressDialog dialog;
+    private String msg = "数据加载中...";
 
     @Override
     protected int initLayout() {
@@ -83,11 +87,12 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         imgMore.setOnClickListener(this);
         tvTitle.setText(getResources().getString(R.string.lifeTally));
         spf = getSharedPreferences("jilu", Context.MODE_PRIVATE);
-        //toggleShow();
+        loadProgress();
     }
 
     @Override
     protected void initData() {
+        lv.setVisibility(View.GONE);
         Calendar ca = Calendar.getInstance();
         year = ca.get(Calendar.YEAR);
         month = ca.get(Calendar.MONTH)+1;
@@ -101,9 +106,18 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(500);
+                refreshLayout.finishRefresh(300);
                 //数据源更新
-                TallyActivity.this.onRefresh();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TallyActivity.this.onRefresh();
+                    }
+                },200);
+                lv.setVisibility(View.VISIBLE);
+                if (dialog != null){
+                    dialog.cancel();
+                }
             }
         });
         //上拉加载
@@ -182,23 +196,33 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initHeaderViewData() {
-        outSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 0);
-        inSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 1);
-        String str = "今日支出：￥"+outSumMoneyOneDay+"\t\t\t今日收入：￥"+inSumMoneyOneDay;
-        tvSum.setText(str);
-        float outMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 0);
-        float inMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 1);
-        tvOut.setText("￥"+outMoneyOneMonth);
-        tvIn.setText("￥"+inMoneyOneMonth);
-        float money = spf.getFloat("money", 0);
-        if (money == 0){
-            tvYusuan.setText("￥0.0");
-        }else{
-            float m = money - outMoneyOneMonth;
-            tvYusuan.setText("￥"+m);
-        }
-        statetb = TallyManger.getStatetb();
-        toggleShow(statetb);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog != null) {
+                    dialog.cancel();
+                }
+                lv.setVisibility(View.VISIBLE);
+                outSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 0);
+                inSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 1);
+                String str = "今日支出：￥"+outSumMoneyOneDay+"\t\t\t今日收入：￥"+inSumMoneyOneDay;
+                tvSum.setText(str);
+                float outMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 0);
+                float inMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 1);
+                tvOut.setText("￥"+outMoneyOneMonth);
+                tvIn.setText("￥"+inMoneyOneMonth);
+                float money = spf.getFloat("money", 0);
+                if (money == 0){
+                    tvYusuan.setText("￥0.0");
+                }else{
+                    float m = money - outMoneyOneMonth;
+                    tvYusuan.setText("￥"+m);
+                }
+                statetb = TallyManger.getStatetb();
+                toggleShow(statetb);
+            }
+        },300);
+
     }
 
     @Override
@@ -298,13 +322,21 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void onRefresh(){
-        mData.clear();
-        mData = TallyManger.getItemAll(year,month,day);
+        loadProgress();
+//        lv.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mData.clear();
+                mData = TallyManger.getItemAll(year,month,day);
 //        mData = TallyManger.getAll();
-        adapter = new TallyLVAdapter(this,mData);
-        lv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        initHeaderViewData();
+                adapter = new TallyLVAdapter(getBaseContext(),mData);
+                lv.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                initHeaderViewData();
+            }
+        },100);
+
     }
 
     @Override
@@ -312,5 +344,10 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         super.onStart();
         statetb = TallyManger.getStatetb();
         toggleShow(statetb);
+    }
+
+    private void loadProgress(){
+        dialog = new DiyProgressDialog(this, msg);
+        dialog.show();
     }
 }
