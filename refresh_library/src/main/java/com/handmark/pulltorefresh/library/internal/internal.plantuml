@@ -1,0 +1,188 @@
+@startuml
+
+title __INTERNAL's Class Diagram__\n
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      interface com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor {
+          {abstract} + setEmptyView()
+          {abstract} + setEmptyViewInternal()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.FlipLoadingLayout {
+          {static} ~ FLIP_ANIMATION_DURATION : int
+          - mResetRotateAnimation : Animation
+          - mRotateAnimation : Animation
+          + FlipLoadingLayout()
+          # getDefaultDrawableResId()
+          # onLoadingDrawableSet()
+          # onPullImpl()
+          # pullToRefreshImpl()
+          # refreshingImpl()
+          # releaseToRefreshImpl()
+          # resetImpl()
+          - getDrawableRotationAngle()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.IndicatorLayout {
+          {static} ~ DEFAULT_ROTATION_ANIMATION_DURATION : int
+          - mArrowImageView : ImageView
+          - mInAnim : Animation
+          - mOutAnim : Animation
+          - mResetRotateAnimation : Animation
+          - mRotateAnimation : Animation
+          + IndicatorLayout()
+          + hide()
+          + isVisible()
+          + onAnimationEnd()
+          + onAnimationRepeat()
+          + onAnimationStart()
+          + pullToRefresh()
+          + releaseToRefresh()
+          + show()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      abstract class com.handmark.pulltorefresh.library.internal.LoadingLayout {
+          # mHeaderImage : ImageView
+          # mHeaderProgress : ProgressBar
+          {static} ~ ANIMATION_INTERPOLATOR : Interpolator
+          {static} ~ LOG_TAG : String
+          - mHeaderText : TextView
+          - mInnerLayout : FrameLayout
+          - mPullLabel : CharSequence
+          - mRefreshingLabel : CharSequence
+          - mReleaseLabel : CharSequence
+          - mSubHeaderText : TextView
+          - mUseIntrinsicAnimation : boolean
+          + LoadingLayout()
+          + getContentSize()
+          + hideAllViews()
+          + onPull()
+          + pullToRefresh()
+          + refreshing()
+          + releaseToRefresh()
+          + reset()
+          + setHeight()
+          + setLastUpdatedLabel()
+          + setLoadingDrawable()
+          + setPullLabel()
+          + setRefreshingLabel()
+          + setReleaseLabel()
+          + setTextTypeface()
+          + setWidth()
+          + showInvisibleViews()
+          {abstract} # getDefaultDrawableResId()
+          {abstract} # onLoadingDrawableSet()
+          {abstract} # onPullImpl()
+          {abstract} # pullToRefreshImpl()
+          {abstract} # refreshingImpl()
+          {abstract} # releaseToRefreshImpl()
+          {abstract} # resetImpl()
+          - setSubHeaderText()
+          - setSubTextAppearance()
+          - setSubTextColor()
+          - setTextAppearance()
+          - setTextColor()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.RotateLoadingLayout {
+          {static} ~ ROTATION_ANIMATION_DURATION : int
+          - mHeaderImageMatrix : Matrix
+          - mRotateAnimation : Animation
+          - mRotateDrawableWhilePulling : boolean
+          - mRotationPivotX : float
+          - mRotationPivotY : float
+          + RotateLoadingLayout()
+          + onLoadingDrawableSet()
+          # getDefaultDrawableResId()
+          # onPullImpl()
+          # pullToRefreshImpl()
+          # refreshingImpl()
+          # releaseToRefreshImpl()
+          # resetImpl()
+          - resetImageRotation()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.Utils {
+          {static} ~ LOG_TAG : String
+          {static} + warnDeprecation()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.ViewCompat {
+          {static} + postOnAnimation()
+          {static} + setBackground()
+          {static} + setLayerType()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.ViewCompat.SDK11 {
+          {static} + setLayerType()
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.ViewCompat.SDK16 {
+          {static} + postOnAnimation()
+          {static} + setBackground()
+      }
+    }
+  }
+  
+
+  com.handmark.pulltorefresh.library.internal.FlipLoadingLayout -up-|> com.handmark.pulltorefresh.library.internal.LoadingLayout
+  com.handmark.pulltorefresh.library.internal.IndicatorLayout .up.|> android.view.animation.Animation.AnimationListener
+  com.handmark.pulltorefresh.library.internal.IndicatorLayout -up-|> android.widget.FrameLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout .up.|> com.handmark.pulltorefresh.library.ILoadingLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout -up-|> android.widget.FrameLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mMode
+  com.handmark.pulltorefresh.library.internal.LoadingLayout o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Orientation : mScrollDirection
+  com.handmark.pulltorefresh.library.internal.RotateLoadingLayout -up-|> com.handmark.pulltorefresh.library.internal.LoadingLayout
+  com.handmark.pulltorefresh.library.internal.ViewCompat +-down- com.handmark.pulltorefresh.library.internal.ViewCompat.SDK11
+  com.handmark.pulltorefresh.library.internal.ViewCompat +-down- com.handmark.pulltorefresh.library.internal.ViewCompat.SDK16
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

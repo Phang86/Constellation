@@ -1,0 +1,188 @@
+@startuml
+
+title __BEAN's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryEntity {
+            - error_code : int
+            - reason : String
+            - result : List<ResultBean>
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryEntity.ResultBean {
+            - _id : String
+            - day : int
+            - des : String
+            - lunar : String
+            - month : int
+            - pic : String
+            - title : String
+            - year : int
+            + getDay()
+            + getDes()
+            + getLunar()
+            + getMonth()
+            + getPic()
+            + getTitle()
+            + getYear()
+            + get_id()
+            + setDay()
+            + setDes()
+            + setLunar()
+            + setMonth()
+            + setPic()
+            + setTitle()
+            + setYear()
+            + set_id()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryInfoEntity {
+            - error_code : int
+            - reason : String
+            - result : List<ResultBean>
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryInfoEntity.ResultBean {
+            - _id : String
+            - content : String
+            - day : int
+            - des : String
+            - lunar : String
+            - month : int
+            - pic : String
+            - title : String
+            - year : int
+            + getContent()
+            + getDay()
+            + getDes()
+            + getLunar()
+            + getMonth()
+            + getPic()
+            + getTitle()
+            + getYear()
+            + get_id()
+            + setContent()
+            + setDay()
+            + setDes()
+            + setLunar()
+            + setMonth()
+            + setPic()
+            + setTitle()
+            + setYear()
+            + set_id()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.LaoHuangLiEntity {
+            - error_code : int
+            - reason : String
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.LaoHuangLiEntity.ResultBean {
+            - baiji : String
+            - chongsha : String
+            - id : String
+            - ji : String
+            - jishen : String
+            - wuxing : String
+            - xiongshen : String
+            - yangli : String
+            - yi : String
+            - yinli : String
+            + getBaiji()
+            + getChongsha()
+            + getId()
+            + getJi()
+            + getJishen()
+            + getWuxing()
+            + getXiongshen()
+            + getYangli()
+            + getYi()
+            + getYinli()
+            + setBaiji()
+            + setChongsha()
+            + setId()
+            + setJi()
+            + setJishen()
+            + setWuxing()
+            + setXiongshen()
+            + setYangli()
+            + setYi()
+            + setYinli()
+        }
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.history.bean.HistoryEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.history.bean.HistoryEntity +-down- com.yyzy.constellation.history.bean.HistoryEntity.ResultBean
+  com.yyzy.constellation.history.bean.HistoryEntity.ResultBean .up.|> java.io.Serializable
+  com.yyzy.constellation.history.bean.HistoryInfoEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.history.bean.HistoryInfoEntity +-down- com.yyzy.constellation.history.bean.HistoryInfoEntity.ResultBean
+  com.yyzy.constellation.history.bean.LaoHuangLiEntity o-- com.yyzy.constellation.history.bean.LaoHuangLiEntity.ResultBean : result
+  com.yyzy.constellation.history.bean.LaoHuangLiEntity +-down- com.yyzy.constellation.history.bean.LaoHuangLiEntity.ResultBean
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

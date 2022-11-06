@@ -2,11 +2,13 @@ package com.yyzy.constellation.weather.activity;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
@@ -18,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityManagerActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView backImg,deleteImg,addImg;
+    private ImageView backImg,deleteImg;
+    private TextView tvAddCity;
     private ListView listView;
     //显示列表数据源
     private List<DatabaseEntity> mData;
@@ -33,13 +36,13 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
     protected void initView() {
         backImg = findViewById(R.id.city_iv_back);
 //        deleteImg = findViewById(R.id.city_iv_delete);
-        addImg = findViewById(R.id.city_iv_add);
+        tvAddCity = findViewById(R.id.city_tv_add);
         listView = findViewById(R.id.city_lv);
         mData = new ArrayList<>();
 
         backImg.setOnClickListener(this);
 //        deleteImg.setOnClickListener(this);
-        addImg.setOnClickListener(this);
+        tvAddCity.setOnClickListener(this);
 
         //设置适配器
         adapter = new CityManagerAdapter(this, mData);
@@ -62,6 +65,7 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
     protected void onResume() {
         super.onResume();
         List<DatabaseEntity> entityList = DBManager.queryAllInfo();
+        Log.e("TAG", "onResume: "+entityList.toString());
         mData.clear();
         mData.addAll(entityList);
         adapter.notifyDataSetChanged();
@@ -89,7 +93,7 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
 //                startActivity(intent);
 //                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
 //                break;
-            case R.id.city_iv_add:
+            case R.id.city_tv_add:
                 int cityCount = DBManager.getCityCount();
                 if (cityCount < 5) {
                     //intentJump(SearchCityActivity.class);

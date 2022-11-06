@@ -37,4 +37,13 @@ public class DatabaseEntity {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "DatabaseEntity{" +
+                "_id=" + _id +
+                ", city='" + city + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

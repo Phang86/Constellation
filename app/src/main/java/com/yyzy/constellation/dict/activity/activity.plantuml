@@ -1,0 +1,270 @@
+@startuml
+
+title __ACTIVITY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.ChengYuActivity {
+            - adapter : ArrayAdapter<String>
+            - backImg : ImageView
+            - gv : GridView
+            - intent : Intent
+            - mData : ArrayList<String>
+            - relativeLayout : RelativeLayout
+            - searchEt : EditText
+            - tvClear : TextView
+            + onClick()
+            + onEditorAction()
+            # initData()
+            # initLayout()
+            # initView()
+            # onResume()
+            - downOption()
+            - loadData()
+            - startPage()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.ChengYuInfoActivity {
+            - backImg : ImageView
+            - biaoyu : String
+            - biaoyuTv : TextView
+            - chengyu : String
+            - chuTv : TextView
+            - chuzi : String
+            - collectImg : ImageView
+            - fourTv : TextView
+            - fyAdapter : ArrayAdapter<String>
+            - fycData : List<String>
+            - isCollect : boolean
+            - isExist : boolean
+            - jbsy : List<String>
+            - jbyyTv : TextView
+            - jycData : List<String>
+            - lijuTv : TextView
+            - nullImg : ImageView
+            - oneTv : TextView
+            - pinyinTv : TextView
+            - scroll : ScrollView
+            - shili : String
+            - shiliTv : TextView
+            - threeTv : TextView
+            - tv : TextView
+            - twoTv : TextView
+            - tyAdapter : ArrayAdapter<String>
+            - yinzhengTv : TextView
+            - yufa : String
+            - yufaTv : TextView
+            + onClick()
+            + onError()
+            + onSuccess()
+            + showOrHide()
+            # initData()
+            # initLayout()
+            # initView()
+            # onDestroy()
+            - setCollectBtnColor()
+            - showDatasView()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.CollectActivity {
+            - collectImg : ImageView
+            - mData : List<Fragment>
+            - tab : TabLayout
+            - titles : String[]
+            - vp : ViewPager
+            + onClick()
+            # initData()
+            # initLayout()
+            # initView()
+            - initPager()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.DictActivity {
+            {static} - REQUEST_CODE_GENERAL_BASIC : int
+            - alertDialog : Builder
+            - editText : EditText
+            - hasGotToken : boolean
+            - imgBack : ImageView
+            - imgSet : ImageView
+            - imgUpdate : ImageView
+            - tvAuthor : TextView
+            - tvBuShou : TextView
+            - tvChengYu : TextView
+            - tvPinYin : TextView
+            - tvString : TextView
+            - tvXiangJi : TextView
+            + onClick()
+            + onEditorAction()
+            + onSuccess()
+            # initData()
+            # initLayout()
+            # initView()
+            # onActivityResult()
+            # onDestroy()
+            - alertText()
+            - checkTokenStatus()
+            - downOptions()
+            - initAccessTokenWithAkSk()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.IdentifyImgActivity {
+            - backImg : ImageView
+            - gv : GridView
+            - wordList : ArrayList<String>
+            + onClick()
+            # initData()
+            # initLayout()
+            # initView()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SearchBushouActivity {
+            ~ url : String
+            + onError()
+            # onCreate()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SearchPinyinActivity {
+            ~ url : String
+            + onError()
+            # onCreate()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SetActivity {
+            - aboutLayout : LinearLayout
+            - backImg : ImageView
+            - collectLayout : LinearLayout
+            - enjoyLayout : LinearLayout
+            + onClick()
+            # initData()
+            # initLayout()
+            # initView()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.WordInfoActivity {
+            - adapter : ArrayAdapter<String>
+            - imgNull : ImageView
+            - isCollect : boolean
+            - isExist : boolean
+            - ivBack : ImageView
+            - ivCollect : ImageView
+            - jijie : List<String>
+            - layoutBottom : RelativeLayout
+            - lvJs : ListView
+            - mDatas : List<String>
+            - tv : TextView
+            - tvBihua : TextView
+            - tvBushou : TextView
+            - tvJs : TextView
+            - tvMax : TextView
+            - tvWubi : TextView
+            - tvXxjs : TextView
+            - tvduyin : TextView
+            - url : String
+            - xiangjie : List<String>
+            - zi : String
+            + onClick()
+            + onError()
+            + onSuccess()
+            + showOrHide()
+            # initData()
+            # initLayout()
+            # initView()
+            # onDestroy()
+            - notifyView()
+            - setCollectBtnColor()
+        }
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.dict.activity.ChengYuActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.ChengYuActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.dict.activity.ChengYuActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.MyGridView : fyGv
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.MyGridView : tyGv
+  com.yyzy.constellation.dict.activity.CollectActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.CollectActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.CollectActivity o-- com.yyzy.constellation.dict.adapter.CollectFragmentAdapter : adapter
+  com.yyzy.constellation.dict.activity.DictActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.DictActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.dict.activity.DictActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.IdentifyImgActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.IdentifyImgActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.SearchBushouActivity -up-|> com.yyzy.constellation.dict.BaseSearchActivity
+  com.yyzy.constellation.dict.activity.SearchPinyinActivity -up-|> com.yyzy.constellation.dict.BaseSearchActivity
+  com.yyzy.constellation.dict.activity.SetActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.SetActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.WordInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.WordInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.WordInfoActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

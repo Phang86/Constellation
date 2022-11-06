@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/dimen_20dp"
     android:layout_margin="@dimen/dimen_15dp"
+    app:cardElevation="@dimen/dimen_0dp"
+    app:cardMaxElevation="@dimen/dimen_0dp"
     app:cardBackgroundColor="@color/lightyellow">
 
     <LinearLayout
@@ -13,22 +15,29 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen_10dp">
 
-        <TextView
-            android:id="@+id/tally_dialog_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setbeizhu"
-            android:textColor="@color/gray_600"
-            android:textSize="@dimen/size_17sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tally_dialog_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setbeizhu"
+                android:textColor="@color/gray_600"
+                android:textSize="@dimen/size_17sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tally_dialog_tv_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/grey"
+                android:layout_marginRight="@dimen/dimen_15dp"/>
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/tally_dialog_et"

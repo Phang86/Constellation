@@ -1,0 +1,328 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.ChengyuInfoEntity {
+            - error_code : int
+            - reason : String
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.ChengyuInfoEntity.ResultBean {
+            - chuchu : String
+            - fyc : List<String>
+            - jbsy : List<String>
+            - jyc : List<String>
+            - liju : String
+            - name : String
+            - pinyin : String
+            - xxsy : List<String>
+            + ResultBean()
+            + ResultBean()
+            + getChuchu()
+            + getFyc()
+            + getJbsy()
+            + getJyc()
+            + getLiju()
+            + getName()
+            + getPinyin()
+            + getXxsy()
+            + setChuchu()
+            + setFyc()
+            + setJbsy()
+            + setJyc()
+            + setLiju()
+            + setName()
+            + setPinyin()
+            + setXxsy()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.DictEveryOneBean {
+            - code : int
+            - data : List<DataBean>
+            - msg : String
+            + getCode()
+            + getData()
+            + getMsg()
+            + setCode()
+            + setData()
+            + setMsg()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.DictEveryOneBean.DataBean {
+            - author : String
+            - content : String
+            + getAuthor()
+            + getContent()
+            + setAuthor()
+            + setContent()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuEntity {
+            - error_code : int
+            - reason : String
+            - result : List<ResultDTO>
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuEntity.ResultDTO {
+            - bihua : String
+            - bushou : String
+            - id : String
+            - pinyin : String
+            - pinyin_key : String
+            + getBihua()
+            + getBushou()
+            + getId()
+            + getPinyin()
+            + getPinyin_key()
+            + setBihua()
+            + setBushou()
+            + setId()
+            + setPinyin()
+            + setPinyin_key()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuWordEntity {
+            - error_code : int
+            - reason : String
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean {
+            - list : List<ListBean>
+            - page : int
+            - pagesize : int
+            - totalcount : int
+            - totalpage : int
+            + getList()
+            + getPage()
+            + getPagesize()
+            + getTotalcount()
+            + getTotalpage()
+            + setList()
+            + setPage()
+            + setPagesize()
+            + setTotalcount()
+            + setTotalpage()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean.ListBean {
+            - bihua : String
+            - bushou : String
+            - id : String
+            - pinyin : String
+            - py : String
+            - wubi : String
+            - zi : String
+            + ListBean()
+            + ListBean()
+            + getBihua()
+            + getBushou()
+            + getId()
+            + getPinyin()
+            + getPy()
+            + getWubi()
+            + getZi()
+            + setBihua()
+            + setBushou()
+            + setId()
+            + setPinyin()
+            + setPy()
+            + setWubi()
+            + setZi()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.TuWenEntity {
+            - direction : int
+            - log_id : long
+            - words_result : List<WordsResultBean>
+            - words_result_num : int
+            + getDirection()
+            + getLog_id()
+            + getWords_result()
+            + getWords_result_num()
+            + setDirection()
+            + setLog_id()
+            + setWords_result()
+            + setWords_result_num()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.TuWenEntity.WordsResultBean {
+            - words : String
+            + getWords()
+            + setWords()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.WordEntity {
+            - error_code : int
+            - reason : String
+            + getError_code()
+            + getReason()
+            + getResult()
+            + setError_code()
+            + setReason()
+            + setResult()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.WordEntity.ResultBean {
+            - bihua : String
+            - bushou : String
+            - id : String
+            - jijie : List<String>
+            - pinyin : String
+            - py : String
+            - wubi : String
+            - xiangjie : List<String>
+            - zi : String
+            + ResultBean()
+            + ResultBean()
+            + getBihua()
+            + getBushou()
+            + getId()
+            + getJijie()
+            + getPinyin()
+            + getPy()
+            + getWubi()
+            + getXiangjie()
+            + getZi()
+            + setBihua()
+            + setBushou()
+            + setId()
+            + setJijie()
+            + setPinyin()
+            + setPy()
+            + setWubi()
+            + setXiangjie()
+            + setZi()
+        }
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.dict.entity.ChengyuInfoEntity o-- com.yyzy.constellation.dict.entity.ChengyuInfoEntity.ResultBean : result
+  com.yyzy.constellation.dict.entity.ChengyuInfoEntity +-down- com.yyzy.constellation.dict.entity.ChengyuInfoEntity.ResultBean
+  com.yyzy.constellation.dict.entity.DictEveryOneBean +-down- com.yyzy.constellation.dict.entity.DictEveryOneBean.DataBean
+  com.yyzy.constellation.dict.entity.PinBuEntity +-down- com.yyzy.constellation.dict.entity.PinBuEntity.ResultDTO
+  com.yyzy.constellation.dict.entity.PinBuWordEntity o-- com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean : result
+  com.yyzy.constellation.dict.entity.PinBuWordEntity +-down- com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean
+  com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean +-down- com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean.ListBean
+  com.yyzy.constellation.dict.entity.TuWenEntity +-down- com.yyzy.constellation.dict.entity.TuWenEntity.WordsResultBean
+  com.yyzy.constellation.dict.entity.WordEntity o-- com.yyzy.constellation.dict.entity.WordEntity.ResultBean : result
+  com.yyzy.constellation.dict.entity.WordEntity +-down- com.yyzy.constellation.dict.entity.WordEntity.ResultBean
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

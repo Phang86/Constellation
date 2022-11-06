@@ -78,6 +78,17 @@ public class DBManager {
     }
 
     //根据城市名称，删除城市在数据库当中的数据
+    public static String findCity(String city){
+        String sql = "select * from info where city=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{city});
+        while (cursor.moveToNext()){
+            String you = cursor.getString(cursor.getColumnIndex("city"));
+            return you;
+        }
+        return "";
+    }
+
+    //根据城市名称，删除城市在数据库当中的数据
     public static int deleteInfoCity(String city){
         return database.delete("info","city=?",new String[]{city});
     }

@@ -39,6 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_220dp"
                 app:cardCornerRadius="@dimen/dimen_10dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
                 app:cardBackgroundColor="@color/mainBg"
                 android:layout_marginBottom="@dimen/dimen_10dp">
 

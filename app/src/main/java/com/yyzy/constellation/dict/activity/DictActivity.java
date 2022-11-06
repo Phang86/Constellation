@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.baidu.ocr.ui.camera.CameraActivity;
+import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.google.gson.Gson;
 import com.yyzy.constellation.BuildConfig;
 import com.yyzy.constellation.R;
@@ -51,6 +53,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
     private boolean hasGotToken = false;
     private static final int REQUEST_CODE_GENERAL_BASIC = 106;
     private AlertDialog.Builder alertDialog;
+    private ProgressBar progressBar;
 
     @Override
     protected int initLayout() {
@@ -70,6 +73,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         tvString = findViewById(R.id.dict_tv_everyDay);
         imgUpdate = findViewById(R.id.dict_img_update);
         tvAuthor = findViewById(R.id.dict_tv_author);
+        progressBar = findViewById(R.id.dict_progressBar);
         imgBack.setOnClickListener(this);
         imgSet.setOnClickListener(this);
         tvPinYin.setOnClickListener(this);
@@ -78,13 +82,14 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         tvXiangJi.setOnClickListener(this);
         imgUpdate.setOnClickListener(this);
         editText.setOnEditorActionListener(this);
-        loadDatas(URLContent.DICT_EVERYDAY_URL);
+        refreshData();
         //tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
     }
 
     @Override
     public void onSuccess(String result) {
         super.onSuccess(result);
+        //showDiyProgress(getApplicationContext());
         DictEveryOneBean bean = new Gson().fromJson(result, DictEveryOneBean.class);
         DictEveryOneBean.DataBean dataBean = bean.getData().get(0);
         if (bean.getData() != null){
@@ -96,11 +101,51 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         }else{
             tvAuthor.setVisibility(View.GONE);
         }
+        if (!tvString.getText().toString().isEmpty()){
+            progressBarIsShowOrHide(false);
+        }else{
+            progressBarIsShowOrHide(true);
+        }
+    }
+
+    private void progressBarIsShowOrHide(boolean isShow){
+        if (isShow) {
+            progressBar.setVisibility(View.VISIBLE);
+            imgUpdate.setVisibility(View.GONE);
+            imgUpdate.setClickable(false);
+        }else{
+            progressBar.setVisibility(View.GONE);
+            imgUpdate.setVisibility(View.VISIBLE);
+            imgUpdate.setClickable(true);
+        }
+    }
+
+    @Override
+    public void onError(Throwable ex, boolean isOnCallback) {
+        super.onError(ex, isOnCallback);
+        progressBarIsShowOrHide(false);
+    }
+
+    @Override
+    public void onFinished() {
+        super.onFinished();
+        progressBarIsShowOrHide(false);
+    }
+
+    @Override
+    public void onCancelled(CancelledException cex) {
+        super.onCancelled(cex);
+        progressBarIsShowOrHide(false);
     }
 
     @Override
     protected void initData() {
         initAccessTokenWithAkSk();
+    }
+
+    public void refreshData(){
+        progressBarIsShowOrHide(true);
+        loadDatas(URLContent.DICT_EVERYDAY_URL);
     }
 
     @Override
@@ -143,7 +188,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
                 break;
             case R.id.dict_img_update:
                 //tvString.setText(StringUtils.string.get((int) (Math.random() * StringUtils.string.size())));
-                loadDatas(URLContent.DICT_EVERYDAY_URL);
+                refreshData();
                 break;
         }
     }

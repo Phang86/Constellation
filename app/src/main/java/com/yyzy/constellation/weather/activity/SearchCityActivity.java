@@ -21,6 +21,7 @@ import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.Mydialog;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.weather.db.DBManager;
 import com.yyzy.constellation.weather.entity.WeatherEntity;
 
 public class SearchCityActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
@@ -60,8 +61,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 city = hotCity[position];
-                String url = URLContent.getTemp_url(city);
-                loadDatas(url);
+                checkCityHaveOrNot(city);
             }
         });
     }
@@ -70,17 +70,11 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.search_iv_back:
-                //intentJump(CityManagerActivity.class);
                 finish();
                 break;
             case R.id.search_iv_confirm:
                 city = etSearch.getText().toString();
-                if (!TextUtils.isEmpty(city)) {
-                    String url = URLContent.getTemp_url(city);
-                    loadDatas(url);
-                }else {
-                    MyToast.showText(this,"输入内容不能为空！");
-                }
+                checkCityHaveOrNot(city);
                 break;
         }
     }
@@ -114,13 +108,21 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
                 city = etSearch.getText().toString();
-                if (!TextUtils.isEmpty(city)) {
-                    String url = URLContent.getTemp_url(city);
-                    loadDatas(url);
-                }else {
-                    MyToast.showText(this,"输入内容不能为空！");
-                }
+                checkCityHaveOrNot(city);
                 break;
+        }
+    }
+
+    private void checkCityHaveOrNot(String city){
+        if (!TextUtils.isEmpty(city)) {
+            if (DBManager.findCity(city).equals(city)){
+                MyToast.showText(this,"（"+city+"）相关天气信息已存在！无需重复添加！");
+            }else{
+                String url = URLContent.getTemp_url(city);
+                loadDatas(url);
+            }
+        }else {
+            MyToast.showText(this,"输入内容不能为空！");
         }
     }
 }

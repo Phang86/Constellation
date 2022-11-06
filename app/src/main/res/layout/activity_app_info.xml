@@ -48,6 +48,7 @@
                             android:layout_toRightOf="@+id/appInfo_img_user"
                             android:text="@string/userName"
                             android:textColor="@color/black"
+                            android:textStyle="bold"
                             android:textSize="@dimen/size_14sp" />
 
                         <TextView
@@ -88,12 +89,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/createTime"
+                            android:text="@string/registerTime"
                             android:textSize="@dimen/size_14sp"
                             android:textColor="@color/black"
                             android:layout_centerVertical="true"
+                            android:textStyle="bold"
                             android:layout_toRightOf="@+id/appinfo_img_createTime"/>
-
 
                         <TextView
                             android:id="@+id/appInfo_tv_createTime"
@@ -115,7 +116,7 @@
                         android:layout_marginRight="@dimen/dimen_10dp"/>
 
                     <RelativeLayout
-                        android:id="@+id/appInfo_layout_phone"
+                        android:id="@+id/appInfo_layout_updateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:foreground="@drawable/view_foreground"
@@ -123,24 +124,24 @@
                         android:gravity="center_vertical">
 
                         <ImageView
-                            android:id="@+id/appinfo_img_phone"
+                            android:id="@+id/appinfo_img_updateTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_phone"
+                            android:src="@drawable/ic_create_time"
                             android:layout_margin="@dimen/dimen_10dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:text="@string/phone"
+                            android:text="@string/updateTime"
                             android:textSize="@dimen/size_14sp"
-                            android:layout_toRightOf="@+id/appinfo_img_phone"
-                            android:layout_centerVertical="true"/>
-
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/appinfo_img_updateTime"/>
 
                         <TextView
-                            android:id="@+id/appInfo_tv_phone"
+                            android:id="@+id/appInfo_tv_updateTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -148,7 +149,70 @@
                             android:textSize="@dimen/size_15sp"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dimen_10dp"/>
+
                     </RelativeLayout>
+                    <View
+                        android:id="@+id/updateTime_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_1dp"
+                        android:background="@color/white"
+                        android:layout_marginLeft="@dimen/dimen_45dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"/>
+
+                    <RelativeLayout
+                        android:id="@+id/appInfo_layout_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:foreground="@drawable/view_foreground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/appinfo_img_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_10dp"
+                            android:src="@drawable/ic_phone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/appinfo_img_phone"
+                            android:text="@string/phone"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/size_14sp" />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:id="@+id/appInfo_tv_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/appInfo_img_back"
+                                android:layout_marginRight="@dimen/dimen_10dp"
+                                android:textColor="@color/gray_600"
+                                android:textSize="@dimen/size_15sp" />
+
+                            <ImageView
+                                android:id="@+id/appInfo_img_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/dimen_10dp"
+                                android:src="@drawable/ic_app_info_back" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
                     <View
                         android:id="@+id/phone_view"
                         android:layout_width="match_parent"
@@ -178,19 +242,33 @@
                             android:textColor="@color/black"
                             android:text="@string/version"
                             android:textSize="@dimen/size_14sp"
+                            android:textStyle="bold"
                             android:layout_toRightOf="@+id/appinfo_img_version"
                             android:layout_centerVertical="true"/>
 
 
-                        <TextView
-                            android:id="@+id/appInfo_tv_version"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray_600"
-                            android:textSize="@dimen/size_15sp"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/dimen_10dp"/>
+                            android:gravity="center_vertical"
+                            android:layout_alignParentRight="true">
+
+                            <TextView
+                                android:id="@+id/appInfo_tv_version"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_600"
+                                android:textSize="@dimen/size_15sp"
+                                android:layout_marginRight="@dimen/dimen_10dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_app_info_back"
+                                android:layout_marginRight="@dimen/dimen_10dp"/>
+
+                        </LinearLayout>
                     </RelativeLayout>
                     <View
                         android:id="@+id/version_view"
@@ -222,6 +300,7 @@
                             android:textColor="@color/black"
                             android:text="@string/updatePwd"
                             android:textSize="@dimen/size_14sp"
+                            android:textStyle="bold"
                             android:layout_toRightOf="@+id/appinfo_img_update"
                             android:layout_centerVertical="true"/>
 
@@ -264,6 +343,7 @@
                             android:textColor="@color/black"
                             android:text="@string/cancelUser"
                             android:textSize="@dimen/size_14sp"
+                            android:textStyle="bold"
                             android:layout_toRightOf="@+id/appinfo_img_cancel"
                             android:layout_centerVertical="true"/>
 

@@ -36,6 +36,17 @@
             android:textSize="@dimen/size_16sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/city_tv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:textColor="@color/black"
+            android:text="@string/addCity"
+            android:textSize="@dimen/size_15sp"
+            android:gravity="center_vertical"/>
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -48,12 +59,11 @@
         android:overScrollMode="never"
         android:listSelector="@android:color/transparent" />
 
-    <ImageView
-        android:id="@+id/city_iv_add"
-        android:layout_width="@dimen/dimen_30dp"
-        android:layout_height="@dimen/dimen_30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_iv_add"
-        android:layout_margin="@dimen/dimen_10dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="@dimen/dimen_30dp"-->
+<!--        android:layout_height="@dimen/dimen_30dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:src="@drawable/ic_iv_add"-->
+<!--        android:layout_margin="@dimen/dimen_10dp"/>-->
 </RelativeLayout>

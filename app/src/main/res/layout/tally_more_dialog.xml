@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/dimen_15dp"
+    app:cardElevation="@dimen/dimen_0dp"
+    app:cardMaxElevation="@dimen/dimen_0dp"
     app:cardBackgroundColor="@color/yellow_100">
 
     <LinearLayout
@@ -19,6 +21,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/tally_more_dialog_cv_search"
                 android:layout_marginRight="@dimen/dimen_10dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
                 style="@style/tally_morey_dialog_cv_style"
                 app:cardCornerRadius="@dimen/dimen_10dp"
                 android:layout_marginLeft="@dimen/dimen_20dp">
@@ -34,6 +38,8 @@
                 android:id="@+id/tally_more_dialog_cv_tallyJilu"
                 style="@style/tally_morey_dialog_cv_style"
                 app:cardCornerRadius="@dimen/dimen_10dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
                 android:layout_marginRight="@dimen/dimen_10dp"
                 android:layout_marginLeft="@dimen/dimen_10dp">
 
@@ -61,6 +67,8 @@
                 android:id="@+id/tally_more_dialog_cv_set"
                 style="@style/tally_morey_dialog_cv_style"
                 app:cardCornerRadius="@dimen/dimen_10dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
                 android:background="@color/white"
                 android:layout_marginRight="@dimen/dimen_20dp"
                 android:layout_marginLeft="@dimen/dimen_10dp">

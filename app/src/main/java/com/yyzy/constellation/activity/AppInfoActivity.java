@@ -63,7 +63,7 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 
 public class AppInfoActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView titleTv,userNameTv,createTimeTv,versionTv,phoneTv;
+    private TextView titleTv,userNameTv,updateTimeTv,versionTv,phoneTv,createTimeTv;
     private RelativeLayout versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
     private ImageView backImg;
     private String name,version;
@@ -82,7 +82,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         titleTv = findViewById(R.id.details_title);
         backImg = findViewById(R.id.details_back);
         userNameTv = findViewById(R.id.appInfo_tv_user);
-        createTimeTv = findViewById(R.id.appInfo_tv_createTime);
+        updateTimeTv = findViewById(R.id.appInfo_tv_updateTime);
         versionTv = findViewById(R.id.appInfo_tv_version);
         phoneTv = findViewById(R.id.appInfo_tv_phone);
         versionLayout = findViewById(R.id.appInfo_layout_version);
@@ -90,6 +90,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         cancelUserLayout = findViewById(R.id.appInfo_layout_cancel);
         swipeRefresh = findViewById(R.id.appInfo_refresh);
         userPhoneLayout = findViewById(R.id.appInfo_layout_phone);
+        createTimeTv = findViewById(R.id.appInfo_tv_createTime);
         cancelUserLayout.setOnClickListener(this);
         updatePwdLayout.setOnClickListener(this);
         versionLayout.setOnClickListener(this);
@@ -276,8 +277,10 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                 if (data.size() > 0 && data != null) {
                                     //数据获取成功
                                     versionTv.setText(version);
-                                    createTimeTv.setText(data.get(0).getUpdateTime());
+                                    updateTimeTv.setText(data.get(0).getUpdateTime());
                                     userNameTv.setText(data.get(0).getUserName());
+                                    createTimeTv.setText(data.get(0).getCreateTime());
+                                    Log.e("TAG", "run: ");
                                     String mobile = data.get(0).getMobile();
                                     String replacePhone = mobile.replace(" ", "");
                                     //进行加密
@@ -364,4 +367,5 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             }
         });
     }
+
 }

@@ -1,0 +1,202 @@
+@startuml
+
+title __ADAPTER's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LocalMusicAdapter {
+          - context : Context
+          - mData : List<LocalMusicEntity>
+          + LocalMusicAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+          + setOnItemClickListener()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      interface com.yyzy.constellation.adapter.LocalMusicAdapter.OnItemClickListener {
+          {abstract} + onItemClick()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LocalMusicAdapter.ViewHolder {
+          ~ tvDuration : TextView
+          ~ tvDvd : TextView
+          ~ tvGeMing : TextView
+          ~ tvGeShou : TextView
+          ~ tvNum : TextView
+          + ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemAdapter {
+          - contentLogoImgMap : Map<String, Bitmap>
+          - context : Context
+          - mData : List<StarinfoDTO>
+          + LuckItemAdapter()
+          + getCount()
+          + getItem()
+          + getItemId()
+          + getView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemAdapter.ViewHolder {
+          ~ itemCv : CircleImageView
+          ~ itemTv : TextView
+          + ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemLvAdapter {
+          - context : Context
+          - mData : List<LuckItemEntity>
+          + LuckItemLvAdapter()
+          + getCount()
+          + getItem()
+          + getItemId()
+          + getView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemLvAdapter.ViewHolder {
+          ~ content : TextView
+          ~ title : TextView
+          + ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarDetailsAdapter {
+          - context : Context
+          - mDatas : List<StarDetailsEntity>
+          + StarDetailsAdapter()
+          + getCount()
+          + getItem()
+          + getItemId()
+          + getView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarDetailsAdapter.ViewHolder {
+          ~ content : TextView
+          ~ title : TextView
+          + ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarItemAdapter {
+          - context : Context
+          - logoImg : Map<String, Bitmap>
+          - mDatas : List<StarinfoDTO>
+          + StarItemAdapter()
+          + getCount()
+          + getItem()
+          + getItemId()
+          + getView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarItemAdapter.ViewHolder {
+          - iv : CircleImageView
+          - tv : TextView
+          + ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarPagerAdapter {
+          - context : Context
+          - imgList : List<ImageView>
+          + StarPagerAdapter()
+          + destroyItem()
+          + getCount()
+          + instantiateItem()
+          + isViewFromObject()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.WelcomeAdapter {
+          - mData : List<ImageView>
+          + WelcomeAdapter()
+          + destroyItem()
+          + getCount()
+          + instantiateItem()
+          + isViewFromObject()
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.adapter.LocalMusicAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.yyzy.constellation.adapter.LocalMusicAdapter o-- com.yyzy.constellation.adapter.LocalMusicAdapter.OnItemClickListener : onItemClickListener
+  com.yyzy.constellation.adapter.LocalMusicAdapter +-down- com.yyzy.constellation.adapter.LocalMusicAdapter.OnItemClickListener
+  com.yyzy.constellation.adapter.LocalMusicAdapter +-down- com.yyzy.constellation.adapter.LocalMusicAdapter.ViewHolder
+  com.yyzy.constellation.adapter.LocalMusicAdapter.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.yyzy.constellation.adapter.LuckItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.LuckItemAdapter +-down- com.yyzy.constellation.adapter.LuckItemAdapter.ViewHolder
+  com.yyzy.constellation.adapter.LuckItemLvAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.LuckItemLvAdapter +-down- com.yyzy.constellation.adapter.LuckItemLvAdapter.ViewHolder
+  com.yyzy.constellation.adapter.StarDetailsAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.StarDetailsAdapter +-down- com.yyzy.constellation.adapter.StarDetailsAdapter.ViewHolder
+  com.yyzy.constellation.adapter.StarItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.StarItemAdapter +-down- com.yyzy.constellation.adapter.StarItemAdapter.ViewHolder
+  com.yyzy.constellation.adapter.StarPagerAdapter -up-|> androidx.viewpager.widget.PagerAdapter
+  com.yyzy.constellation.adapter.WelcomeAdapter -up-|> androidx.viewpager.widget.PagerAdapter
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

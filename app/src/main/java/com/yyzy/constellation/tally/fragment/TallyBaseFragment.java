@@ -205,14 +205,14 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
                         tvBeizhu.setText(text);
                         itemBean.setBeizhu(text);
                         dialog.cancel();
-                    }else{
-                        MyToast.showText(getContext(),"备注内容超过50字！您输入的字数长度为"+text.length());
+                        return;
                     }
-                }else{
-                    tvBeizhu.setText("");
-                    itemBean.setBeizhu("");
-                    dialog.cancel();
+                    //MyToast.showText(getContext(),"备注内容超过50字！您输入的字数长度为"+text.length());
+                    return;
                 }
+                tvBeizhu.setText("");
+                itemBean.setBeizhu("");
+                dialog.cancel();
             }
 
             @Override

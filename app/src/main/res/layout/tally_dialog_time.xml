@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     app:cardCornerRadius="@dimen/dimen_20dp"
+    app:cardElevation="@dimen/dimen_0dp"
+    app:cardMaxElevation="@dimen/dimen_0dp"
     app:cardBackgroundColor="@color/yellow_100">
 
     <LinearLayout

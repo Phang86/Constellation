@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     android:background="@drawable/toast_back"
     android:gravity="center"
-    android:padding="@dimen/dimen_15dp"
+    android:padding="@dimen/dimen_10dp"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/toast_img"
-        android:layout_width="@dimen/dimen_25dp"
-        android:layout_height="@dimen/dimen_25dp"
+        android:layout_width="@dimen/dimen_20dp"
+        android:layout_height="@dimen/dimen_20dp"
         android:background="@drawable/toast_y"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/dimen_5dp" />

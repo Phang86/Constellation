@@ -1,0 +1,369 @@
+@startuml
+
+title __UTIL's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.BeiZhuDialog {
+            ~ handler : Handler
+            - btnCancel : Button
+            - btnConfirm : Button
+            - et : EditText
+            - tv : TextView
+            + BeiZhuDialog()
+            + afterTextChanged()
+            + beforeTextChanged()
+            + getEtText()
+            + onClick()
+            + onTextChanged()
+            + setClickSure()
+            + setDialogSize()
+            + setEtText()
+            # onCreate()
+            # onStop()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.FloatUtils {
+            {static} + div()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.OnClickSure {
+            {abstract} + onCancel()
+            {abstract} + onSure()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.SwipeItemLayout {
+            - mInLayout : boolean
+            - mIsLaidOut : boolean
+            - mMainView : ViewGroup
+            - mMaxScrollOffset : int
+            - mScrollOffset : int
+            - mSideView : ViewGroup
+            {static} - sInterpolator : Interpolator
+            + SwipeItemLayout()
+            + SwipeItemLayout()
+            + close()
+            + generateLayoutParams()
+            + isOpen()
+            + onInterceptTouchEvent()
+            + onTouchEvent()
+            + open()
+            + requestLayout()
+            # checkLayoutParams()
+            # generateDefaultLayoutParams()
+            # generateLayoutParams()
+            # onAttachedToWindow()
+            # onDetachedFromWindow()
+            # onLayout()
+            # onMeasure()
+            # onVisibilityChanged()
+            {static} ~ findTopChildUnder()
+            ~ fling()
+            ~ getTouchMode()
+            ~ offsetChildrenLeftAndRight()
+            ~ revise()
+            ~ setTouchMode()
+            ~ trackMotionScroll()
+            - ensureChildren()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        enum Mode {
+          DRAG
+          FLING
+          RESET
+          TAP
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.SwipeItemLayout.ScrollRunnable {
+            {static} - FLING_DURATION : int
+            - mAbort : boolean
+            - mMinVelocity : int
+            - mScrollToLeft : boolean
+            - mScroller : Scroller
+            + run()
+            ~ ScrollRunnable()
+            ~ abort()
+            ~ isScrollToLeft()
+            ~ startFling()
+            ~ startScroll()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.SwipeListView {
+            - mActivePointerId : int
+            - mDragHandleBySuper : boolean
+            - mDragHandleByThis : boolean
+            - mIsCancelEvent : boolean
+            - mLastMotionX : float
+            - mLastMotionY : float
+            - mMaximumVelocity : int
+            - mTouchSlop : int
+            - mVelocityTracker : VelocityTracker
+            + SwipeListView()
+            + SwipeListView()
+            + canScrollVertically()
+            + closeAllItems()
+            + onInterceptTouchEvent()
+            + onTouchEvent()
+            ~ cancel()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyCalendarDialog {
+            - gv : GridView
+            - hsvViewList : List<TextView>
+            - img : ImageView
+            - linHsv : LinearLayout
+            - selMonth : int
+            - selectPos : int
+            - yearList : List<Integer>
+            + TallyCalendarDialog()
+            + onClick()
+            + setRefreshListener()
+            + setWindowSize()
+            # onCreate()
+            - addViewToLayout()
+            - changTvBg()
+            - initGridView()
+            - initView()
+            - setHsvOnClickListener()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.TallyCalendarDialog.RefreshListener {
+            {abstract} + RefreshData()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyDialogTime {
+            - btnCancel : Button
+            - btnConfirm : Button
+            - datePicker : DatePicker
+            - etHour : EditText
+            - etMinute : EditText
+            - handler : Handler
+            + TallyDialogTime()
+            + afterTextChanged()
+            + beforeTextChanged()
+            + onClick()
+            + onTextChanged()
+            + setEtHour()
+            + setEtMinute()
+            + setOnEnSure()
+            # onCreate()
+            # onStop()
+            - hideHeader()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.TallyDialogTime.OnEnSure {
+            {abstract} + onSure()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyInfoDialog {
+            - btnOk : Button
+            - tvBeiZhu : TextView
+            - tvMoney : TextView
+            - tvTime : TextView
+            - tvTitle : TextView
+            - tvType : TextView
+            + TallyInfoDialog()
+            + onClick()
+            # onCreate()
+            - initData()
+            - initView()
+            - setWindowSize()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyMoneyDialog {
+            - btnConfirm : Button
+            - etMoney : EditText
+            - handler : Handler
+            - imgClose : ImageView
+            - money : Float
+            - tvSum : TextView
+            + TallyMoneyDialog()
+            + afterTextChanged()
+            + beforeTextChanged()
+            + onClick()
+            + onTextChanged()
+            + setClickEnSure()
+            + setTvSum()
+            + setWindowSize()
+            # onCreate()
+            # onStart()
+            - initView()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.TallyMoneyDialog.OnClickEnSure {
+            {abstract} + onClickSure()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyMoreDialog {
+            - cvSearch : CardView
+            - cvSet : CardView
+            - cvTallyInfo : CardView
+            - cvTallyJilu : CardView
+            - imgClose : ImageView
+            + TallyMoreDialog()
+            + onClick()
+            + setDialogSize()
+            + setRefresh()
+            # onCreate()
+            - initView()
+            - startIntent()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.TallyMoreDialog.RefreshListener {
+            {abstract} + refreshData()
+        }
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.tally.util.BeiZhuDialog .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.BeiZhuDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.BeiZhuDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.BeiZhuDialog o-- com.yyzy.constellation.tally.util.OnClickSure : clickSure
+  com.yyzy.constellation.tally.util.SwipeItemLayout -up-|> android.view.ViewGroup
+  com.yyzy.constellation.tally.util.SwipeItemLayout o-- com.yyzy.constellation.tally.util.SwipeItemLayout.ScrollRunnable : mScrollRunnable
+  com.yyzy.constellation.tally.util.SwipeItemLayout o-- com.yyzy.constellation.tally.util.SwipeItemLayout.Mode : mTouchMode
+  com.yyzy.constellation.tally.util.SwipeItemLayout +-down- com.yyzy.constellation.tally.util.SwipeItemLayout.Mode
+  com.yyzy.constellation.tally.util.SwipeItemLayout +-down- com.yyzy.constellation.tally.util.SwipeItemLayout.ScrollRunnable
+  com.yyzy.constellation.tally.util.SwipeItemLayout.ScrollRunnable .up.|> java.lang.Runnable
+  com.yyzy.constellation.tally.util.SwipeListView -up-|> android.widget.ListView
+  com.yyzy.constellation.tally.util.SwipeListView o-- com.yyzy.constellation.tally.util.SwipeItemLayout : mCaptureItem
+  com.yyzy.constellation.tally.util.TallyCalendarDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyCalendarDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyCalendarDialog o-- com.yyzy.constellation.tally.adapter.CalendarAdapter : adapter
+  com.yyzy.constellation.tally.util.TallyCalendarDialog o-- com.yyzy.constellation.tally.util.TallyCalendarDialog.RefreshListener : refreshListener
+  com.yyzy.constellation.tally.util.TallyCalendarDialog +-down- com.yyzy.constellation.tally.util.TallyCalendarDialog.RefreshListener
+  com.yyzy.constellation.tally.util.TallyDialogTime .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.TallyDialogTime .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyDialogTime -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyDialogTime o-- com.yyzy.constellation.tally.util.TallyDialogTime.OnEnSure : onEnSure
+  com.yyzy.constellation.tally.util.TallyDialogTime +-down- com.yyzy.constellation.tally.util.TallyDialogTime.OnEnSure
+  com.yyzy.constellation.tally.util.TallyInfoDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyInfoDialog -up-|> com.google.android.material.bottomsheet.BottomSheetDialog
+  com.yyzy.constellation.tally.util.TallyInfoDialog o-- com.yyzy.constellation.tally.bean.TallyLvItemBean : bean
+  com.yyzy.constellation.tally.util.TallyMoneyDialog .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.TallyMoneyDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyMoneyDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyMoneyDialog o-- com.yyzy.constellation.tally.util.TallyMoneyDialog.OnClickEnSure : clickEnSure
+  com.yyzy.constellation.tally.util.TallyMoneyDialog +-down- com.yyzy.constellation.tally.util.TallyMoneyDialog.OnClickEnSure
+  com.yyzy.constellation.tally.util.TallyMoreDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyMoreDialog -up-|> com.google.android.material.bottomsheet.BottomSheetDialog
+  com.yyzy.constellation.tally.util.TallyMoreDialog o-- com.yyzy.constellation.tally.util.TallyMoreDialog.RefreshListener : refresh
+  com.yyzy.constellation.tally.util.TallyMoreDialog +-down- com.yyzy.constellation.tally.util.TallyMoreDialog.RefreshListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

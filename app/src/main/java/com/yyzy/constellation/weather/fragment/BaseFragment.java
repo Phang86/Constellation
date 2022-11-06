@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.yyzy.constellation.utils.Constellation;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 
 import org.xutils.common.Callback;
@@ -17,6 +18,8 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 public class BaseFragment extends Fragment implements Callback.CommonCallback<String>, Response.Listener<String>, Response.ErrorListener {
+
+
     public void loadData(String path){
         RequestParams params = new RequestParams(path);
         x.http().get(params,this);
@@ -67,11 +70,15 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        //dialog.dismiss();
         //获取网络请求失败的方法
     }
 
     @Override
     public void onResponse(String response) {
         //获取网络请求成功的方法
+        //dialog.dismiss();
+
     }
+
 }

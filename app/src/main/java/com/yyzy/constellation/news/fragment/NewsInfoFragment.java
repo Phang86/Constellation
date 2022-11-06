@@ -23,6 +23,7 @@ import com.yyzy.constellation.news.NewsInfoActivity;
 import com.yyzy.constellation.news.adapter.NewsItemAdapter;
 import com.yyzy.constellation.news.bean.NewsBean;
 import com.yyzy.constellation.news.bean.TypeBean;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.weather.fragment.BaseFragment;
 
@@ -39,6 +40,7 @@ public class NewsInfoFragment extends BaseFragment {
     private List<NewsBean.ResultBean.DataBean> mData;
     private NewsItemAdapter adapter;
     private SmartRefreshLayout refreshLayout;
+    private DiyProgressDialog dialog;
 
     public NewsInfoFragment() {
         // Required empty public constructor
@@ -57,6 +59,7 @@ public class NewsInfoFragment extends BaseFragment {
         setRefreshListener();
         adapter = new NewsItemAdapter(getActivity(), mData);
         listView.setAdapter(adapter);
+        showProgress();
         volleyLoadData(url);
         setListener();
         return view;
@@ -66,6 +69,7 @@ public class NewsInfoFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull @NotNull RefreshLayout refreshLayout) {
+                showProgress();
                 volleyLoadData(url);
                 refreshLayout.finishRefresh(500);
             }
@@ -91,20 +95,56 @@ public class NewsInfoFragment extends BaseFragment {
     @Override
     public void onErrorResponse(VolleyError error) {
         super.onErrorResponse(error);
+        closeProgress();
+    }
+
+    @Override
+    public void onFinished() {
+        super.onFinished();
+        closeProgress();
+    }
+
+    @Override
+    public void onCancelled(CancelledException cex) {
+        super.onCancelled(cex);
+        closeProgress();
     }
 
     @Override
     public void onResponse(String response) {
+        closeProgress();
         NewsBean newsBean = new Gson().fromJson(response, NewsBean.class);
         if (newsBean.getError_code() == 10012 || newsBean.getResult() == null || newsBean.getReason().equals("超过每日可允许请求次数!")) {
             MyToast.showText(getActivity(),"今日请求次数上限！");
-            refreshLayout.setVisibility(View.GONE);
+            //refreshLayout.setVisibility(View.GONE);
             return;
-        }else if (newsBean.getResult() != null){
+        }
+        if (newsBean.getResult() != null){
             List<NewsBean.ResultBean.DataBean> data = newsBean.getResult().getData();
-            refreshLayout.setVisibility(View.VISIBLE);
+            //refreshLayout.setVisibility(View.VISIBLE);
             mData.addAll(data);
             adapter.notifyDataSetChanged();
+        }
+
+    }
+
+
+
+    private void showProgress(){
+        if (dialog == null) {
+            dialog = new DiyProgressDialog(getContext(), "加载中...");
+            dialog.setCancelable(true);//设置能通过后退键取消
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }else{
+            dialog.dismiss();
+        }
+    }
+
+    private void closeProgress() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+            dialog = null;
         }
     }
 }

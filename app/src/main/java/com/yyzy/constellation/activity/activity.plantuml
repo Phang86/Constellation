@@ -1,0 +1,687 @@
+@startuml
+
+title __ACTIVITY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.AppInfoActivity {
+          - NotiManager : NotificationManager
+          - backImg : ImageView
+          - cancelUserLayout : RelativeLayout
+          - createTimeTv : TextView
+          - data : List<User>
+          - name : String
+          - passWord : String
+          - phoneTv : TextView
+          - swipeRefresh : SmartRefreshLayout
+          - titleTv : TextView
+          - updatePwdLayout : RelativeLayout
+          - updateTimeTv : TextView
+          - userNameTv : TextView
+          - userPhoneLayout : RelativeLayout
+          - version : String
+          - versionLayout : RelativeLayout
+          - versionTv : TextView
+          + onClick()
+          # findByKey()
+          # initData()
+          # initLayout()
+          # initView()
+          # onStart()
+          - loadData()
+          - refreshData()
+          - showDefaultDialog()
+          - showSureDialog()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      abstract class com.yyzy.constellation.activity.BaseActivity {
+          + context : Context
+          {static} + checkHanZi()
+          {static} + checkPassword()
+          {static} + checkPhone()
+          {static} + checkUsername()
+          + getDelegate()
+          + getVersion()
+          + intentJump()
+          + loadDatas()
+          + onCache()
+          + onCancelled()
+          + onError()
+          + onFinished()
+          + onSuccess()
+          + showToast()
+          {abstract} # initData()
+          {abstract} # initLayout()
+          {abstract} # initView()
+          # onCreate()
+          {static} # showDiyDialog()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.CancelActivity {
+          - btnNext : Button
+          - etPhone : EditText
+          - imgBack : ImageView
+          - myPhone : String
+          - name : String
+          - tvTitle : TextView
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onTextChanged()
+          # onCreate()
+          - initData()
+          - initView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.CancelidActivity {
+          + eh : EventHandler
+          - btnZhuxiao : Button
+          - ed : Editor
+          - editor : Editor
+          - etNum : EditText
+          - imgBack : ImageView
+          - manager : NotificationManager
+          - myphone : String
+          - name : String
+          - sendNum : TextView
+          - sharedPreferences : SharedPreferences
+          - sp : SharedPreferences
+          - tvNum : TextView
+          - tvTitle : TextView
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onTextChanged()
+          # onCreate()
+          # onDestroy()
+          - initData()
+          - initView()
+          - requestNet()
+          - showDefaultDialog()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.CancelidActivity.TimeCount {
+          + TimeCount()
+          + onFinish()
+          + onTick()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.ConfigPwdActivity {
+          - btnConfigPwd : Button
+          - edConfigNewPwd : EditText
+          - edPhone : EditText
+          - edPwd : EditText
+          - edUser : EditText
+          - findUserName : String
+          - findUserPhone : String
+          - ivBack : ImageView
+          - tvBack : TextView
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onKeyDown()
+          + onTextChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onRestart()
+          - requestNet()
+          - requestPassPwd()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.FindPwdActivity {
+          - findBtn : Button
+          - ivBack : ImageView
+          - ivCode : ImageView
+          - phoneEt : EditText
+          - tvBack : TextView
+          - userEt : EditText
+          - verCodeEt : EditText
+          - we : TextWatcher
+          + onClick()
+          + onKeyDown()
+          + onPointerCaptureChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+          # onRestart()
+          - findPwd()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.HomeActivity {
+          ~ handler : Handler
+          - auto : boolean
+          - dialog : AlertDialog
+          - firstSpf : SharedPreferences
+          - isFirst : boolean
+          - password : String
+          - permissions : String[]
+          - reBg : RelativeLayout
+          - remenber : boolean
+          - spf : SharedPreferences
+          - time : int
+          - tv : TextView
+          - userNameSpf : SharedPreferences
+          - username : String
+          + onKeyDown()
+          + onRequestPermissionsResult()
+          # initData()
+          # initLayout()
+          # initView()
+          # onActivityResult()
+          # onDestroy()
+          - goToAppSetting()
+          - showDialogTipUserGoToAppSettting()
+          - startRequestPermission()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LocalMusicActivity {
+          - currentPausePos : int
+          - currentPos : int
+          - iv : ImageView
+          - ivLast : ImageView
+          - ivNext : ImageView
+          - ivPlay : ImageView
+          - linLayout : LinearLayout
+          - mDatas : List<LocalMusicEntity>
+          - mediaPlayer : MediaPlayer
+          - musicRv : RecyclerView
+          - title : TextView
+          - tv : TextView
+          - tvGeMing : TextView
+          - tvGeShou : TextView
+          + onClick()
+          + playMusicInMusicEntity()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+          - loadLocalMusicData()
+          - pauseMusic()
+          - playMusic()
+          - setEventListener()
+          - showOrHide()
+          - stopMusic()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LoginActivity {
+          ~ mListener : OnClickListener
+          - btnLogin : Button
+          - data : List<User>
+          - ed : Editor
+          - edPwd : EditText
+          - edUser : EditText
+          - edValCode : EditText
+          - editor : Editor
+          - forgetTv : TextView
+          - imgValCode : ImageView
+          - mAutoLogin : CheckBox
+          - mAutoLoginFlag : boolean
+          - mPasswordFlag : boolean
+          - mRemenber : CheckBox
+          - manager : NotificationManager
+          - note : Notification
+          - receivers : BroadcastReceiver
+          - sharedPreferences : SharedPreferences
+          - spf : SharedPreferences
+          - tv : TextView
+          - userPassword : String
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onKeyDown()
+          + onSuccess()
+          + onTextChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+          # onRestart()
+          - clearEditor()
+          - login()
+          {static} - showNotification()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LuckDetailsActivity {
+          - cv : CircleImageView
+          - ivBack : ImageView
+          - listView : ListView
+          - mData : List<LuckItemEntity>
+          - starName : String
+          - title : TextView
+          - url : String
+          + onClick()
+          + onSuccess()
+          # initData()
+          # initLayout()
+          # initView()
+          - addDataToList()
+          - loadNetData()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.MainActivity {
+          {static} + SELECT_PHOTO : int
+          {static} + TAKE_PHOTO : int
+          - NotiManager : NotificationManager
+          - base64Pic : String
+          - bottomSheetDialog : BottomSheetDialog
+          - bottomView : View
+          - bundle : Bundle
+          - cirImg : CircleImageView
+          - drawerLayout : DrawerLayout
+          - hasPermissions : boolean
+          - imgClose : ImageView
+          - imgMore : ImageView
+          - luckFragment : Fragment
+          - manager : FragmentManager
+          - meFragment : Fragment
+          - nv : NavigationView
+          - orc_bitmap : Bitmap
+          - outputImagePath : File
+          - partnershipFragment : Fragment
+          - radioGroup : RadioGroup
+          - receivers : BroadcastReceiver
+          - requestOptions : RequestOptions
+          - rxPermissions : RxPermissions
+          - starFragment : Fragment
+          - title : TextView
+          - tvName : TextView
+          + changeAvatar()
+          + onCheckedChanged()
+          + onClick()
+          + onKeyDown()
+          # findByKey()
+          # initData()
+          # initLayout()
+          # initView()
+          # insertVal()
+          # onActivityResult()
+          # onDestroy()
+          - checkVersion()
+          - displayImage()
+          - loadData()
+          - openAlbum()
+          - showDefaultDialog()
+          - showDrawerMenu()
+          - takePhoto()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.MoreHistoryActivity {
+          - imgBack : ImageView
+          - lv : ListView
+          - mData : List<ResultBean>
+          - tv : TextView
+          - tvTitle : TextView
+          + onKeyDown()
+          # initData()
+          # initLayout()
+          # initView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.RegisterActivity {
+          + eh : EventHandler
+          - edRegisterPhone : EditText
+          - edRegisterPwd : EditText
+          - edRegisterUser : EditText
+          - ivBack : ImageView
+          - mbtnRegister : Button
+          - tv : TextView
+          - validateNum : EditText
+          - validateNum_btn : Button
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onKeyDown()
+          + onTextChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+          - loadNetData()
+          - register()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.RegisterActivity.TimeCount {
+          + TimeCount()
+          + onFinish()
+          + onTick()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.StarDetailsActivity {
+          - back : ImageView
+          - cirLogoImgMap : Map<String, Bitmap>
+          - circleImageView : CircleImageView
+          - footerTv : TextView
+          - listView : ListView
+          - mDatas : List<StarDetailsEntity>
+          - starDate : TextView
+          - starName : TextView
+          - title : TextView
+          + onClick()
+          # initData()
+          # initLayout()
+          # initView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.StarStartActivity {
+          - bzTv : TextView
+          - cvMan : CircleImageView
+          - cvWoman : CircleImageView
+          - ivBack : ImageView
+          - jxTv : TextView
+          - manTv : TextView
+          - man_logo : String
+          - man_name : String
+          - pdTv : TextView
+          - pfTv : TextView
+          - titleTv : TextView
+          - url : String
+          - vsTv : TextView
+          - womanTv : TextView
+          - woman_logo : String
+          - woman_name : String
+          - zyTv : TextView
+          + onClick()
+          + onSuccess()
+          # initData()
+          # initLayout()
+          # initView()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.SwipeCheckActivity {
+          {static} - URLS : List<String>
+          - animation : Animation
+          - imgBack : ImageView
+          - imgRefresh : ImageView
+          - mSeekBar : SeekBar
+          - tvTitle : TextView
+          + onClick()
+          # onCreate()
+          - initData()
+          - initView()
+          - showNetImg()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneActivity {
+          + eh : EventHandler
+          - btnNext : Button
+          - etValNum : EditText
+          - imgBack : ImageView
+          - replacePhone : String
+          - tvSendValNum : TextView
+          - tvSendValNumTo : TextView
+          - tvTitle : TextView
+          - userName : String
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onTextChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneActivity.TimeCount {
+          + TimeCount()
+          + onFinish()
+          + onTick()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneOutActivity {
+          + eh : EventHandler
+          - btnConfirm : Button
+          - etPhone : EditText
+          - etValNum : EditText
+          - imgBack : ImageView
+          - tvSendValNum : TextView
+          - tvTitle : TextView
+          - updatePhone : String
+          - userName : String
+          + afterTextChanged()
+          + beforeTextChanged()
+          + onClick()
+          + onTextChanged()
+          # initData()
+          # initLayout()
+          # initView()
+          # onDestroy()
+          - updatePhoneNetRequest()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneOutActivity.TimeCount {
+          + TimeCount()
+          + onFinish()
+          + onTick()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePwdActivity {
+          ~ backImg : ImageView
+          ~ configNewPwdEt : EditText
+          ~ newPwdEt : EditText
+          ~ oldPwdEt : EditText
+          ~ pwdTv : TextView
+          ~ updateBtn : Button
+          ~ userEt : EditText
+          - configNewPwd : String
+          - manager : NotificationManager
+          - newPwd : String
+          - oldPwd : String
+          - textWatcher : TextWatcher
+          - userName : String
+          + onClick()
+          # initData()
+          # initLayout()
+          # initView()
+          - showDiyDialog()
+          - updatePwd()
+          - updateRquestNet()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.WelcomeActivity {
+          - img : int[]
+          - mDatas : List<ImageView>
+          - viewPager : ViewPager
+          # initData()
+          # initLayout()
+          # initView()
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.activity.AppInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.AppInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.BaseActivity .up.|> org.xutils.common.Callback.CacheCallback
+  com.yyzy.constellation.activity.BaseActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.CancelActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.CancelActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelidActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.CancelidActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.CancelidActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelidActivity o-- com.yyzy.constellation.activity.CancelidActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.CancelidActivity +-down- com.yyzy.constellation.activity.CancelidActivity.TimeCount
+  com.yyzy.constellation.activity.CancelidActivity.TimeCount -up-|> android.os.CountDownTimer
+  com.yyzy.constellation.activity.ConfigPwdActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.ConfigPwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.ConfigPwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.FindPwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.FindPwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.FindPwdActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : mDialog
+  com.yyzy.constellation.activity.HomeActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LocalMusicActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LocalMusicActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LocalMusicActivity o-- com.yyzy.constellation.adapter.LocalMusicAdapter : adapter
+  com.yyzy.constellation.activity.LocalMusicActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.activity.LoginActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.LoginActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LoginActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LuckDetailsActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LuckDetailsActivity .up.|> com.yyzy.constellation.utils.LoadDataAsyncTask.OnGetNetDataListener
+  com.yyzy.constellation.activity.LuckDetailsActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LuckDetailsActivity o-- com.yyzy.constellation.adapter.LuckItemLvAdapter : adapter
+  com.yyzy.constellation.activity.MainActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.MainActivity .up.|> android.widget.RadioGroup.OnCheckedChangeListener
+  com.yyzy.constellation.activity.MainActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.MoreHistoryActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.MoreHistoryActivity o-- com.yyzy.constellation.history.adapter.HistoryAdapter : adapter
+  com.yyzy.constellation.activity.MoreHistoryActivity o-- com.yyzy.constellation.history.bean.HistoryEntity : bean
+  com.yyzy.constellation.activity.RegisterActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.RegisterActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.RegisterActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.RegisterActivity o-- com.yyzy.constellation.activity.RegisterActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.RegisterActivity +-down- com.yyzy.constellation.activity.RegisterActivity.TimeCount
+  com.yyzy.constellation.activity.RegisterActivity.TimeCount -up-|> android.os.CountDownTimer
+  com.yyzy.constellation.activity.StarDetailsActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.StarDetailsActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.StarDetailsActivity o-- com.yyzy.constellation.adapter.StarDetailsAdapter : adapter
+  com.yyzy.constellation.activity.StarDetailsActivity o-- com.yyzy.constellation.entity.StarInfoEntity.StarinfoDTO : entity
+  com.yyzy.constellation.activity.StarStartActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.StarStartActivity .up.|> com.yyzy.constellation.utils.LoadDataAsyncTask.OnGetNetDataListener
+  com.yyzy.constellation.activity.StarStartActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.StarStartActivity o-- com.yyzy.constellation.entity.PartnerAsyncEntity : entity
+  com.yyzy.constellation.activity.SwipeCheckActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.SwipeCheckActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.SwipeCheckActivity o-- com.yyzy.constellation.utils.SwipeCaptchaView : mSwipeCaptchaView
+  com.yyzy.constellation.activity.UpdatePhoneActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.UpdatePhoneActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePhoneActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.UpdatePhoneActivity o-- com.yyzy.constellation.activity.UpdatePhoneActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.UpdatePhoneActivity +-down- com.yyzy.constellation.activity.UpdatePhoneActivity.TimeCount
+  com.yyzy.constellation.activity.UpdatePhoneActivity.TimeCount -up-|> android.os.CountDownTimer
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity o-- com.yyzy.constellation.activity.UpdatePhoneOutActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity +-down- com.yyzy.constellation.activity.UpdatePhoneOutActivity.TimeCount
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity.TimeCount -up-|> android.os.CountDownTimer
+  com.yyzy.constellation.activity.UpdatePwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.WelcomeActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

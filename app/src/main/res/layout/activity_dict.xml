@@ -160,29 +160,55 @@
                 android:src="@drawable/ic_refresh"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/fireRed"/>
+
+            <ProgressBar
+                android:id="@+id/dict_progressBar"
+                android:layout_width="@dimen/dimen_20dp"
+                android:layout_height="@dimen/dimen_20dp"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateBehavior="repeat"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:indeterminateDrawable="@drawable/anim"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+<!--            <ProgressBar-->
+<!--                android:id="@+id/dict_progressBar"-->
+<!--                android:layout_width="@dimen/dimen_20dp"-->
+<!--                android:layout_height="@dimen/dimen_20dp"-->
+<!--                android:indeterminateTintMode="src_atop"-->
+<!--                android:indeterminateBehavior="repeat"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:visibility="visible"-->
+<!--                android:indeterminateDrawable="@drawable/anim"/>-->
 
-        <TextView
-            android:id="@+id/dict_tv_everyDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_600"
-            android:lineHeight="@dimen/dimen_18dp"
-            android:textIsSelectable="true"
-            android:layout_marginTop="@dimen/dimen_10dp"/>
+            <TextView
+                android:id="@+id/dict_tv_everyDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_600"
+                android:lineHeight="@dimen/dimen_18dp"
+                android:textIsSelectable="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/dimen_10dp"/>
 
-        <TextView
-            android:id="@+id/dict_tv_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_600"
-            android:layout_gravity="right|center_vertical"
-            android:visibility="gone"
-            android:drawableLeft="@drawable/ic_dict_author"
-            android:drawablePadding="@dimen/dimen_5dp"
-            android:text="@string/author"
-            android:layout_marginTop="@dimen/dimen_5dp"/>
+            <TextView
+                android:id="@+id/dict_tv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_600"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:drawableLeft="@drawable/ic_dict_author"
+                android:drawablePadding="@dimen/dimen_5dp"
+                android:text="@string/author"
+                android:layout_below="@+id/dict_tv_everyDay"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

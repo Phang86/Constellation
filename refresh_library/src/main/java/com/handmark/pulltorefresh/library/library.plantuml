@@ -1,0 +1,574 @@
+@startuml
+
+title __LIBRARY's Class Diagram__\n
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.ILoadingLayout {
+        {abstract} + setLastUpdatedLabel()
+        {abstract} + setLoadingDrawable()
+        {abstract} + setPullLabel()
+        {abstract} + setRefreshingLabel()
+        {abstract} + setReleaseLabel()
+        {abstract} + setTextTypeface()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.IPullToRefresh {
+        {abstract} + demo()
+        {abstract} + getCurrentMode()
+        {abstract} + getFilterTouchEvents()
+        {abstract} + getLoadingLayoutProxy()
+        {abstract} + getLoadingLayoutProxy()
+        {abstract} + getMode()
+        {abstract} + getRefreshableView()
+        {abstract} + getShowViewWhileRefreshing()
+        {abstract} + getState()
+        {abstract} + isPullToRefreshEnabled()
+        {abstract} + isPullToRefreshOverScrollEnabled()
+        {abstract} + isRefreshing()
+        {abstract} + isScrollingWhileRefreshingEnabled()
+        {abstract} + onRefreshComplete()
+        {abstract} + setFilterTouchEvents()
+        {abstract} + setMode()
+        {abstract} + setOnPullEventListener()
+        {abstract} + setOnRefreshListener()
+        {abstract} + setOnRefreshListener()
+        {abstract} + setPullToRefreshOverScrollEnabled()
+        {abstract} + setRefreshing()
+        {abstract} + setRefreshing()
+        {abstract} + setScrollAnimationInterpolator()
+        {abstract} + setScrollingWhileRefreshingEnabled()
+        {abstract} + setShowViewWhileRefreshing()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.LoadingLayoutProxy {
+        - mLoadingLayouts : HashSet<LoadingLayout>
+        + addLayout()
+        + setLastUpdatedLabel()
+        + setLoadingDrawable()
+        + setPullLabel()
+        + setRefreshingLabel()
+        + setReleaseLabel()
+        + setTextTypeface()
+        ~ LoadingLayoutProxy()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.OverscrollHelper {
+        {static} ~ DEFAULT_OVERSCROLL_SCALE : float
+        {static} ~ LOG_TAG : String
+        {static} + overScrollBy()
+        {static} + overScrollBy()
+        {static} + overScrollBy()
+        {static} ~ isAndroidOverScrollEnabled()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    abstract class com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase {
+        - mEmptyView : View
+        - mLastItemVisible : boolean
+        - mOnScrollListener : OnScrollListener
+        - mScrollEmptyView : boolean
+        - mShowIndicator : boolean
+        + PullToRefreshAdapterViewBase()
+        + PullToRefreshAdapterViewBase()
+        + PullToRefreshAdapterViewBase()
+        + PullToRefreshAdapterViewBase()
+        + getShowIndicator()
+        + onScroll()
+        + onScrollStateChanged()
+        + setAdapter()
+        + setEmptyView()
+        + setOnItemClickListener()
+        + setOnLastItemVisibleListener()
+        + setOnScrollListener()
+        + setScrollEmptyView()
+        + setShowIndicator()
+        # handleStyledAttributes()
+        # isReadyForPullEnd()
+        # isReadyForPullStart()
+        # onPullToRefresh()
+        # onRefreshing()
+        # onReleaseToRefresh()
+        # onReset()
+        # onScrollChanged()
+        # updateUIForMode()
+        - addIndicatorViews()
+        {static} - convertEmptyViewLayoutParams()
+        - getShowIndicatorInternal()
+        - isFirstItemVisible()
+        - isLastItemVisible()
+        - removeIndicatorViews()
+        - updateIndicatorViewsVisibility()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    abstract class com.handmark.pulltorefresh.library.PullToRefreshBase {
+        {static} + SMOOTH_SCROLL_DURATION_MS : int
+        {static} + SMOOTH_SCROLL_LONG_DURATION_MS : int
+        {static} ~ DEBUG : boolean
+        {static} ~ DEMO_SCROLL_INTERVAL : int
+        {static} ~ FRICTION : float
+        {static} ~ LOG_TAG : String
+        {static} ~ STATE_CURRENT_MODE : String
+        {static} ~ STATE_MODE : String
+        {static} ~ STATE_SCROLLING_REFRESHING_ENABLED : String
+        {static} ~ STATE_SHOW_REFRESHING_VIEW : String
+        {static} ~ STATE_STATE : String
+        {static} ~ STATE_SUPER : String
+        {static} ~ USE_HW_LAYERS : boolean
+        - mFilterTouchEvents : boolean
+        - mInitialMotionX : float
+        - mInitialMotionY : float
+        - mIsBeingDragged : boolean
+        - mLastMotionX : float
+        - mLastMotionY : float
+        - mLayoutVisibilityChangesEnabled : boolean
+        - mOnPullEventListener : OnPullEventListener<T>
+        - mOnRefreshListener : OnRefreshListener<T>
+        - mOnRefreshListener2 : OnRefreshListener2<T>
+        - mOverScrollEnabled : boolean
+        - mRefreshableViewWrapper : FrameLayout
+        - mScrollAnimationInterpolator : Interpolator
+        - mScrollingWhileRefreshingEnabled : boolean
+        - mShowViewWhileRefreshing : boolean
+        - mTouchSlop : int
+        + PullToRefreshBase()
+        + PullToRefreshBase()
+        + PullToRefreshBase()
+        + PullToRefreshBase()
+        + addView()
+        + demo()
+        + getCurrentMode()
+        + getFilterTouchEvents()
+        + getLoadingLayoutProxy()
+        + getLoadingLayoutProxy()
+        + getMode()
+        {abstract} + getPullToRefreshScrollDirection()
+        + getRefreshableView()
+        + getShowViewWhileRefreshing()
+        + getState()
+        + isDisableScrollingWhileRefreshing()
+        + isPullToRefreshEnabled()
+        + isPullToRefreshOverScrollEnabled()
+        + isRefreshing()
+        + isScrollingWhileRefreshingEnabled()
+        + onInterceptTouchEvent()
+        + onRefreshComplete()
+        + onTouchEvent()
+        + setDisableScrollingWhileRefreshing()
+        + setFilterTouchEvents()
+        + setLastUpdatedLabel()
+        + setLoadingDrawable()
+        + setLoadingDrawable()
+        + setLongClickable()
+        + setMode()
+        + setOnPullEventListener()
+        + setOnRefreshListener()
+        + setOnRefreshListener()
+        + setPullLabel()
+        + setPullLabel()
+        + setPullToRefreshEnabled()
+        + setPullToRefreshOverScrollEnabled()
+        + setRefreshing()
+        + setRefreshing()
+        + setRefreshingLabel()
+        + setRefreshingLabel()
+        + setReleaseLabel()
+        + setReleaseLabel()
+        + setScrollAnimationInterpolator()
+        + setScrollingWhileRefreshingEnabled()
+        + setShowViewWhileRefreshing()
+        # addViewInternal()
+        # addViewInternal()
+        # createLoadingLayout()
+        # createLoadingLayoutProxy()
+        {abstract} # createRefreshableView()
+        # disableLoadingLayoutVisibilityChanges()
+        # getFooterLayout()
+        # getFooterSize()
+        # getHeaderLayout()
+        # getHeaderSize()
+        # getPullToRefreshScrollDuration()
+        # getPullToRefreshScrollDurationLonger()
+        # getRefreshableViewWrapper()
+        # handleStyledAttributes()
+        {abstract} # isReadyForPullEnd()
+        {abstract} # isReadyForPullStart()
+        # onPtrRestoreInstanceState()
+        # onPtrSaveInstanceState()
+        # onPullToRefresh()
+        # onRefreshing()
+        # onReleaseToRefresh()
+        # onReset()
+        # onRestoreInstanceState()
+        # onSaveInstanceState()
+        # onSizeChanged()
+        # refreshLoadingViewsSize()
+        # refreshRefreshableViewSize()
+        # setHeaderScroll()
+        # smoothScrollTo()
+        # smoothScrollTo()
+        # smoothScrollToLonger()
+        # updateUIForMode()
+        ~ setState()
+        - addRefreshableView()
+        - callRefreshListener()
+        - getLoadingLayoutLayoutParams()
+        - getMaximumPullScroll()
+        - init()
+        - isReadyForPull()
+        - pullEvent()
+        - smoothScrollTo()
+        - smoothScrollTo()
+        - smoothScrollToAndBack()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    enum AnimationStyle {
+      FLIP
+      ROTATE
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    enum Mode {
+      BOTH
+      DISABLED
+      MANUAL_REFRESH_ONLY
+      PULL_DOWN_TO_REFRESH
+      PULL_FROM_END
+      PULL_FROM_START
+      PULL_UP_TO_REFRESH
+      mIntValue
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener {
+        {abstract} + onLastItemVisible()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.PullToRefreshBase.OnPullEventListener {
+        {abstract} + onPullEvent()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener {
+        {abstract} + onRefresh()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2 {
+        {abstract} + onPullDownToRefresh()
+        {abstract} + onPullUpToRefresh()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.PullToRefreshBase.OnSmoothScrollFinishedListener {
+        {abstract} + onSmoothScrollFinished()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    enum Orientation {
+      HORIZONTAL
+      VERTICAL
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable {
+        - mContinueRunning : boolean
+        - mCurrentY : int
+        - mDuration : long
+        - mInterpolator : Interpolator
+        - mScrollFromY : int
+        - mScrollToY : int
+        - mStartTime : long
+        + SmoothScrollRunnable()
+        + run()
+        + stop()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    enum State {
+      MANUAL_REFRESHING
+      OVERSCROLLING
+      PULL_TO_REFRESH
+      REFRESHING
+      RELEASE_TO_REFRESH
+      RESET
+      mIntValue
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshExpandableListView {
+        + PullToRefreshExpandableListView()
+        + PullToRefreshExpandableListView()
+        + PullToRefreshExpandableListView()
+        + PullToRefreshExpandableListView()
+        + getPullToRefreshScrollDirection()
+        # createRefreshableView()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListView {
+        + InternalExpandableListView()
+        + setEmptyView()
+        + setEmptyViewInternal()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListViewSDK9 {
+        + InternalExpandableListViewSDK9()
+        # overScrollBy()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshGridView {
+        + PullToRefreshGridView()
+        + PullToRefreshGridView()
+        + PullToRefreshGridView()
+        + PullToRefreshGridView()
+        + getPullToRefreshScrollDirection()
+        # createRefreshableView()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridView {
+        + InternalGridView()
+        + setEmptyView()
+        + setEmptyViewInternal()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridViewSDK9 {
+        + InternalGridViewSDK9()
+        # overScrollBy()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView {
+        + PullToRefreshHorizontalScrollView()
+        + PullToRefreshHorizontalScrollView()
+        + PullToRefreshHorizontalScrollView()
+        + PullToRefreshHorizontalScrollView()
+        + getPullToRefreshScrollDirection()
+        # createRefreshableView()
+        # isReadyForPullEnd()
+        # isReadyForPullStart()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView.InternalHorizontalScrollViewSDK9 {
+        + InternalHorizontalScrollViewSDK9()
+        # overScrollBy()
+        - getScrollRange()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshListView {
+        - mListViewExtrasEnabled : boolean
+        - mLvFooterLoadingFrame : FrameLayout
+        + PullToRefreshListView()
+        + PullToRefreshListView()
+        + PullToRefreshListView()
+        + PullToRefreshListView()
+        + getPullToRefreshScrollDirection()
+        # createListView()
+        # createLoadingLayoutProxy()
+        # createRefreshableView()
+        # handleStyledAttributes()
+        # onRefreshing()
+        # onReset()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListView {
+        - mAddedLvFooter : boolean
+        + InternalListView()
+        + dispatchTouchEvent()
+        + setAdapter()
+        + setEmptyView()
+        + setEmptyViewInternal()
+        # dispatchDraw()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListViewSDK9 {
+        + InternalListViewSDK9()
+        # overScrollBy()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshScrollView {
+        + PullToRefreshScrollView()
+        + PullToRefreshScrollView()
+        + PullToRefreshScrollView()
+        + PullToRefreshScrollView()
+        + getPullToRefreshScrollDirection()
+        # createRefreshableView()
+        # isReadyForPullEnd()
+        # isReadyForPullStart()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshScrollView.InternalScrollViewSDK9 {
+        + InternalScrollViewSDK9()
+        # overScrollBy()
+        - getScrollRange()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshWebView {
+        {static} - defaultOnRefreshListener : OnRefreshListener<WebView>
+        - defaultWebChromeClient : WebChromeClient
+        + PullToRefreshWebView()
+        + PullToRefreshWebView()
+        + PullToRefreshWebView()
+        + PullToRefreshWebView()
+        + getPullToRefreshScrollDirection()
+        # createRefreshableView()
+        # isReadyForPullEnd()
+        # isReadyForPullStart()
+        # onPtrRestoreInstanceState()
+        # onPtrSaveInstanceState()
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshWebView.InternalWebViewSDK9 {
+        {static} ~ OVERSCROLL_FUZZY_THRESHOLD : int
+        {static} ~ OVERSCROLL_SCALE_FACTOR : float
+        + InternalWebViewSDK9()
+        # overScrollBy()
+        - getScrollRange()
+    }
+  }
+  
+
+  com.handmark.pulltorefresh.library.LoadingLayoutProxy .up.|> com.handmark.pulltorefresh.library.ILoadingLayout
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase .up.|> android.widget.AbsListView.OnScrollListener
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.internal.IndicatorLayout : mIndicatorIvBottom
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.internal.IndicatorLayout : mIndicatorIvTop
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener : mOnLastItemVisibleListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase .up.|> com.handmark.pulltorefresh.library.IPullToRefresh
+  com.handmark.pulltorefresh.library.PullToRefreshBase -up-|> android.widget.LinearLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- T : mRefreshableView
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mCurrentMode
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable : mCurrentSmoothScrollRunnable
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mFooterLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mHeaderLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.AnimationStyle : mLoadingAnimationStyle
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mMode
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.State : mState
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.AnimationStyle
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.OnPullEventListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.OnSmoothScrollFinishedListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.Orientation
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable
+  com.handmark.pulltorefresh.library.PullToRefreshBase +-down- com.handmark.pulltorefresh.library.PullToRefreshBase.State
+  com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable .up.|> java.lang.Runnable
+  com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable o-- com.handmark.pulltorefresh.library.PullToRefreshBase.OnSmoothScrollFinishedListener : mListener
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView +-down- com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListView
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView +-down- com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListView .up.|> com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListView -up-|> android.widget.ExpandableListView
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListViewSDK9 -up-|> com.handmark.pulltorefresh.library.PullToRefreshExpandableListView.InternalExpandableListView
+  com.handmark.pulltorefresh.library.PullToRefreshGridView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshGridView +-down- com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridView
+  com.handmark.pulltorefresh.library.PullToRefreshGridView +-down- com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridView .up.|> com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor
+  com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridView -up-|> android.widget.GridView
+  com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridViewSDK9 -up-|> com.handmark.pulltorefresh.library.PullToRefreshGridView.InternalGridView
+  com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView +-down- com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView.InternalHorizontalScrollViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView.InternalHorizontalScrollViewSDK9 -up-|> android.widget.HorizontalScrollView
+  com.handmark.pulltorefresh.library.PullToRefreshListView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshListView o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mFooterLoadingView
+  com.handmark.pulltorefresh.library.PullToRefreshListView o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mHeaderLoadingView
+  com.handmark.pulltorefresh.library.PullToRefreshListView +-down- com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListView
+  com.handmark.pulltorefresh.library.PullToRefreshListView +-down- com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListView .up.|> com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor
+  com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListView -up-|> android.widget.ListView
+  com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListViewSDK9 -up-|> com.handmark.pulltorefresh.library.PullToRefreshListView.InternalListView
+  com.handmark.pulltorefresh.library.PullToRefreshScrollView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshScrollView +-down- com.handmark.pulltorefresh.library.PullToRefreshScrollView.InternalScrollViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshScrollView.InternalScrollViewSDK9 -up-|> android.widget.ScrollView
+  com.handmark.pulltorefresh.library.PullToRefreshWebView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshWebView +-down- com.handmark.pulltorefresh.library.PullToRefreshWebView.InternalWebViewSDK9
+  com.handmark.pulltorefresh.library.PullToRefreshWebView.InternalWebViewSDK9 -up-|> android.webkit.WebView
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

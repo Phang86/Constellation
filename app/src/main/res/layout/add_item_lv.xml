@@ -11,6 +11,8 @@
         android:layout_margin="@dimen/dimen_10dp"
         app:cardCornerRadius="@dimen/dimen_15dp"
         app:contentPadding="@dimen/dimen_20dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:cardMaxElevation="@dimen/dimen_0dp"
         app:cardBackgroundColor="@color/yellow_100">
 
         <RelativeLayout

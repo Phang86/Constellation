@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 
 import org.xutils.common.Callback;
@@ -35,6 +36,7 @@ import java.util.regex.Pattern;
 
 public abstract class BaseActivity extends AppCompatActivity implements Callback.CacheCallback<String>{
     public Context context;
+    private static DiyProgressDialog mDialog;
 
     public void loadDatas(String url){
         RequestParams params = new RequestParams(url);
@@ -180,4 +182,22 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         });
     }
 
+//    public static void showDiyProgress(Context context){
+//        if (mDialog == null) {
+//            mDialog = new DiyProgressDialog(context,"加载中...");
+//            mDialog.show();
+//            mDialog.setCanceledOnTouchOutside(false);
+//            mDialog.setCancelable(true);
+//        }else{
+//            mDialog.dismiss();
+//        }
+//    }
+
+//    public static void hideDiyProgress(){
+////        if (mDialog != null || mDialog.isShowing()){
+////            mDialog.dismiss();
+////            mDialog = null;
+////        }
+//        mDialog.dismiss();
+//    }
 }

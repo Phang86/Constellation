@@ -1,0 +1,339 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity {
+          - error_code : int
+          - reason : String
+          + getError_code()
+          + getReason()
+          + getResult()
+          + setError_code()
+          + setReason()
+          + setResult()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO {
+          - city : String
+          - future : List<FutureDTO>
+          + getCity()
+          + getFuture()
+          + getRealtime()
+          + setCity()
+          + setFuture()
+          + setRealtime()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO {
+          - date : String
+          - direct : String
+          - temperature : String
+          - weather : String
+          + getDate()
+          + getDirect()
+          + getTemperature()
+          + getWeather()
+          + getWid()
+          + setDate()
+          + setDirect()
+          + setTemperature()
+          + setWeather()
+          + setWid()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO.WidDTO {
+          - day : String
+          - night : String
+          + getDay()
+          + getNight()
+          + setDay()
+          + setNight()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.RealtimeDTO {
+          - aqi : String
+          - direct : String
+          - humidity : String
+          - info : String
+          - power : String
+          - temperature : String
+          - wid : String
+          + getAqi()
+          + getDirect()
+          + getHumidity()
+          + getInfo()
+          + getPower()
+          + getTemperature()
+          + getWid()
+          + setAqi()
+          + setDirect()
+          + setHumidity()
+          + setInfo()
+          + setPower()
+          + setTemperature()
+          + setWid()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity {
+          - error_code : int
+          - reason : String
+          + getError_code()
+          + getReason()
+          + getResult()
+          + setError_code()
+          + setReason()
+          + setResult()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO {
+          - city : String
+          + getCity()
+          + getLife()
+          + setCity()
+          + setLife()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO {
+          + getChuanyi()
+          + getDaisan()
+          + getDiaoyu()
+          + getGanmao()
+          + getGuomin()
+          + getKongtiao()
+          + getShushidu()
+          + getXiche()
+          + getYundong()
+          + getZiwaixian()
+          + setChuanyi()
+          + setDaisan()
+          + setDiaoyu()
+          + setGanmao()
+          + setGuomin()
+          + setKongtiao()
+          + setShushidu()
+          + setXiche()
+          + setYundong()
+          + setZiwaixian()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ChuanyiDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DaisanDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DiaoyuDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GanmaoDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GuominDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.KongtiaoDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ShushiduDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.XicheDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.YundongDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ZiwaixianDTO {
+          - des : String
+          - v : String
+          + getDes()
+          + getV()
+          + setDes()
+          + setV()
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.weather.entity.WeatherEntity o-- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO : result
+  com.yyzy.constellation.weather.entity.WeatherEntity +-down- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO
+  com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO o-- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.RealtimeDTO : realtime
+  com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO +-down- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO
+  com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO +-down- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.RealtimeDTO
+  com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO o-- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO.WidDTO : wid
+  com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO +-down- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO.FutureDTO.WidDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO : result
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO : life
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ChuanyiDTO : chuanyi
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DaisanDTO : daisan
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DiaoyuDTO : diaoyu
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GanmaoDTO : ganmao
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GuominDTO : guomin
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.KongtiaoDTO : kongtiao
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ShushiduDTO : shushidu
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.XicheDTO : xiche
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.YundongDTO : yundong
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ZiwaixianDTO : ziwaixian
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ChuanyiDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DaisanDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.DiaoyuDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GanmaoDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.GuominDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.KongtiaoDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ShushiduDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.XicheDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.YundongDTO
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO +-down- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO.ZiwaixianDTO
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

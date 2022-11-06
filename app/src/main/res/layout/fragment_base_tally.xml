@@ -16,6 +16,8 @@
         app:cardBackgroundColor="@color/yellow_100"
         app:contentPaddingTop="@dimen/dimen_15dp"
         app:contentPaddingBottom="@dimen/dimen_15dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:cardMaxElevation="@dimen/dimen_0dp"
         app:contentPaddingLeft="@dimen/dimen_10dp"
         app:contentPaddingRight="@dimen/dimen_10dp">
 

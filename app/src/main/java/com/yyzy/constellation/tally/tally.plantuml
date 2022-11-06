@@ -1,0 +1,174 @@
+@startuml
+
+title __TALLY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.ChartActivity {
+          - btnIn : Button
+          - btnOut : Button
+          - ca : Calendar
+          - dialogSelPos : int
+          - fragList : List<Fragment>
+          - imgBack : ImageView
+          - imgCalendar : ImageView
+          - inBean : List<TallyLvItemBean>
+          - inBillOfMonth : float
+          - month : int
+          - outBean : List<TallyLvItemBean>
+          - outBillOfMonth : float
+          - tvInBill : TextView
+          - tvMonthBill : TextView
+          - tvOutBill : TextView
+          - vp : ViewPager
+          - year : int
+          + onClick()
+          # onCreate()
+          - initData()
+          - initFrag()
+          - initView()
+          - setButtonStyle()
+          - showCalendarDialog()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.RecordActivity {
+          - imgBack : ImageView
+          - tab : TabLayout
+          - vp : ViewPager
+          + onClick()
+          # initData()
+          # initLayout()
+          # initView()
+          - initPager()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallyActivity {
+          - day : int
+          - imgAdd : ImageView
+          - imgBack : ImageView
+          - imgLookMoney : ImageView
+          - imgMore : ImageView
+          - inSumMoneyOneDay : float
+          - lv : ListView
+          - mData : List<TallyLvItemBean>
+          - month : int
+          - msg : String
+          - outSumMoneyOneDay : float
+          - refreshLayout : SmartRefreshLayout
+          - spf : SharedPreferences
+          - statetb : String
+          - tvIn : TextView
+          - tvLook : TextView
+          - tvOut : TextView
+          - tvSum : TextView
+          - tvTitle : TextView
+          - tvYusuan : TextView
+          - year : int
+          + onClick()
+          # initData()
+          # initLayout()
+          # initView()
+          # onRestart()
+          # onStart()
+          - initHeaderViewData()
+          - initLvHeaderView()
+          - loadProgress()
+          - lvAddHeaderView()
+          - onRefresh()
+          - showDialogBottom()
+          - startIntent()
+          - toggleShow()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallyJiluActivity {
+          - ca : Calendar
+          - dialogSelMonth : int
+          - dialogSelPos : int
+          - imgBack : ImageView
+          - imgCalendar : ImageView
+          - linearLayout : LinearLayout
+          - lv : ListView
+          - mData : List<TallyLvItemBean>
+          - month : int
+          - smartRefreshLayout : SmartRefreshLayout
+          - time : String
+          - tvNoData : TextView
+          - tvTitle : TextView
+          - year : int
+          + onClick()
+          # initData()
+          # initLayout()
+          # initView()
+          - loadData()
+          - showCalendarDialog()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallySearchActivity {
+          - et : EditText
+          - imgBack : ImageView
+          - lin : LinearLayout
+          - lv : ListView
+          - mData : List<TallyLvItemBean>
+          - tv : TextView
+          - tvTitle : TextView
+          + onClick()
+          + onEditorAction()
+          # initData()
+          # initLayout()
+          # initView()
+          - downOptions()
+          - loadProgress()
+          - setLvListener()
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.tally.ChartActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.ChartActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.tally.ChartActivity o-- com.yyzy.constellation.tally.adapter.ChartVpAdapter : chartVpAdapter
+  com.yyzy.constellation.tally.RecordActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.RecordActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallyActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallyActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.tally.TallyJiluActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallyJiluActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyJiluActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallyJiluActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : progressDialog
+  com.yyzy.constellation.tally.TallySearchActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallySearchActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.tally.TallySearchActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallySearchActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallySearchActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

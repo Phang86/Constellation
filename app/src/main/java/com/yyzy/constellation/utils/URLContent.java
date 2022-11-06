@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 public class URLContent {
     //登录、注册  本地服务器接口
-    public static final String BASE_URL = "http://192.168.43.208:8080/myapp";
+    public static final String BASE_URL = "http://192.168.0.101:8080/myapp";
 
     //字典 每日一句接口
     public static final String DICT_EVERYDAY_URL = "https://www.mxnzp.com/api/daily_word/recommend?count=1&app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
@@ -42,9 +42,9 @@ public class URLContent {
     //天气预报网络接口
     private static final String temp_url = "http://apis.juhe.cn/simpleWeather/query?";
     //天气预报网络接口键值
-//    private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
+    private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
 //    private static final String KEY = "864bdd5bfbaa5474078aa98ec94ed947";
-    private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
+//    private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
 
 
     public static String getTemp_url(String city){

@@ -56,7 +56,8 @@
     <string name="cancelUser" translatable="false">注销账号</string>
     <string name="phone" translatable="false">手机号</string>
     <string name="userName" translatable="false">用户名</string>
-    <string name="createTime" translatable="false">最近更新时间</string>
+    <string name="updateTime" translatable="false">最近更新时间</string>
+    <string name="registerTime" translatable="false">注册时间</string>
     <string name="enjoyApp" translatable="false">分享应用</string>
     <string name="enjoy" translatable="false">分享</string>
     <string name="about" translatable="false">关于我们</string>
@@ -90,6 +91,7 @@
     <string name="lifeTally" translatable="false">生活记账</string>
     <string name="setbeizhu" translatable="false">设置备注</string>
     <string name="addBeizhu" translatable="false">添加备注</string>
+    <string name="addCity" translatable="false">添加城市</string>
     <string name="inputHintBiezhu" translatable="false">请输入备注（限50字以内）</string>
     <string name="inputTimeHint" translatable="false">请输入时间（24小时制）</string>
     <string name="monthOut" translatable="false">本月支出</string>
@@ -109,6 +111,7 @@
     <string name="out" translatable="false">支出</string>
     <string name="in" translatable="false">收入</string>
     <string name="chartAnalyse" translatable="false">图表分析</string>
+    <string name="next" translatable="false">下一步</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->

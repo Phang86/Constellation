@@ -178,6 +178,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginLeft">@dimen/dimen_20dp</item>
         <item name="android:layout_marginRight">@dimen/dimen_20dp</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <!--tally_more_dialog CardView样式-->

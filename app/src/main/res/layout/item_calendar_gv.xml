@@ -11,6 +11,8 @@
         app:contentPadding="@dimen/dimen_5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/dimen_15dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:cardMaxElevation="@dimen/dimen_0dp"
         android:layout_margin="@dimen/dimen_5dp">
 
         <TextView

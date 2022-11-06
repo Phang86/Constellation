@@ -2,6 +2,7 @@ package com.yyzy.constellation.tally.util;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,14 +32,16 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
     private EditText et;
     private Button btnCancel,btnConfirm;
     private OnClickSure clickSure;
-    private TextView tv;
+    private TextView tvLength;
+    private Context context;
 
     public void setClickSure(OnClickSure clickSure) {
         this.clickSure = clickSure;
     }
 
-    public BeiZhuDialog(@NonNull Context context) {
+    public BeiZhuDialog(Context context) {
         super(context);
+        this.context = context;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
         et = findViewById(R.id.tally_dialog_et);
         btnCancel = findViewById(R.id.tally_dialog_btn_cancel);
         btnConfirm = findViewById(R.id.tally_dialog_btn_confirm);
-        tv = findViewById(R.id.tally_dialog_tv);
+        tvLength = findViewById(R.id.tally_dialog_tv_length);
         btnCancel.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
         et.addTextChangedListener(this);
@@ -114,6 +117,7 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        tvLength.setText("0/50");
         btnConfirm.setEnabled(false);
     }
 
@@ -125,6 +129,16 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
     @Override
     public void afterTextChanged(Editable s) {
         String text = et.getText().toString().trim();
+        tvLength.setText(text.length()+"/50");
+        if (text.length() > 50){
+            tvLength.setTextColor(context.getResources().getColor(R.color.red));
+            tvLength.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+            tvLength.getPaint().setAntiAlias(true);//抗锯齿
+        }else{
+            tvLength.setTextColor(context.getResources().getColor(R.color.grey));
+            tvLength.getPaint().setFlags(Paint.HINTING_OFF);
+            tvLength.getPaint().setAntiAlias(true);
+        }
         if (!TextUtils.isEmpty(text) && et.length() <= 50) {
             btnConfirm.setEnabled(true);
         }else{

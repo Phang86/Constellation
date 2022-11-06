@@ -1,0 +1,278 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LocalMusicEntity {
+          - duration : String
+          - dvd : String
+          - geMing : String
+          - geShou : String
+          - id : String
+          - path : String
+          + LocalMusicEntity()
+          + LocalMusicEntity()
+          + getDuration()
+          + getDvd()
+          + getGeMing()
+          + getGeShou()
+          + getId()
+          + getPath()
+          + setDuration()
+          + setDvd()
+          + setGeMing()
+          + setGeShou()
+          + setId()
+          + setPath()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LuckItemEntity {
+          - color : int
+          - content : String
+          - title : String
+          + LuckItemEntity()
+          + getColor()
+          + getContent()
+          + getTitle()
+          + setColor()
+          + setContent()
+          + setTitle()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LuckNetEntity {
+          - career : List<String>
+          - date : String
+          - error_code : int
+          - finance : List<String>
+          - future : String
+          - health : List<String>
+          - love : List<String>
+          - luckeyStone : String
+          - name : String
+          - resultcode : String
+          - year : int
+          + getCareer()
+          + getDate()
+          + getError_code()
+          + getFinance()
+          + getFuture()
+          + getHealth()
+          + getLove()
+          + getLuckeyStone()
+          + getMima()
+          + getName()
+          + getResultcode()
+          + getYear()
+          + setCareer()
+          + setDate()
+          + setError_code()
+          + setFinance()
+          + setFuture()
+          + setHealth()
+          + setLove()
+          + setLuckeyStone()
+          + setMima()
+          + setName()
+          + setResultcode()
+          + setYear()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LuckNetEntity.MimaDTO {
+          - info : String
+          - text : List<String>
+          + getInfo()
+          + getText()
+          + setInfo()
+          + setText()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.PartnerAsyncEntity {
+          - error_code : int
+          - reason : String
+          + getError_code()
+          + getReason()
+          + getResult()
+          + setError_code()
+          + setReason()
+          + setResult()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.PartnerAsyncEntity.ResultDTO {
+          - bizhong : String
+          - jieguo : String
+          - lianai : String
+          - men : String
+          - tcdj : String
+          - women : String
+          - xiangyue : String
+          - zhishu : String
+          - zhuyi : String
+          + getBizhong()
+          + getJieguo()
+          + getLianai()
+          + getMen()
+          + getTcdj()
+          + getWomen()
+          + getXiangyue()
+          + getZhishu()
+          + getZhuyi()
+          + setBizhong()
+          + setJieguo()
+          + setLianai()
+          + setMen()
+          + setTcdj()
+          + setWomen()
+          + setXiangyue()
+          + setZhishu()
+          + setZhuyi()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.StarDetailsEntity {
+          - color : int
+          - content : String
+          - title : String
+          + StarDetailsEntity()
+          + getColor()
+          + getContent()
+          + getTitle()
+          + setColor()
+          + setContent()
+          + setTitle()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.StarInfoEntity {
+          - starinfo : List<StarinfoDTO>
+          + getStarinfo()
+          + setStarinfo()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.StarInfoEntity.StarinfoDTO {
+          - date : String
+          - gw : String
+          - hm : String
+          - info : String
+          - js : String
+          - logoname : String
+          - name : String
+          - td : String
+          - tz : String
+          - ys : String
+          - yy : String
+          - zb : String
+          - zg : String
+          + getDate()
+          + getGw()
+          + getHm()
+          + getInfo()
+          + getJs()
+          + getLogoname()
+          + getName()
+          + getTd()
+          + getTz()
+          + getYs()
+          + getYy()
+          + getZb()
+          + getZg()
+          + setDate()
+          + setGw()
+          + setHm()
+          + setInfo()
+          + setJs()
+          + setLogoname()
+          + setName()
+          + setTd()
+          + setTz()
+          + setYs()
+          + setYy()
+          + setZb()
+          + setZg()
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.User {
+          - createTime : String
+          - mobile : String
+          - passWord : String
+          - updateTime : String
+          - userId : Integer
+          - userName : String
+          + getCreateTime()
+          + getMobile()
+          + getPassWord()
+          + getUpdateTime()
+          + getUserId()
+          + getUserName()
+          + setCreateTime()
+          + setMobile()
+          + setPassWord()
+          + setUpdateTime()
+          + setUserId()
+          + setUserName()
+          + toString()
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.entity.LuckNetEntity o-- com.yyzy.constellation.entity.LuckNetEntity.MimaDTO : mima
+  com.yyzy.constellation.entity.LuckNetEntity +-down- com.yyzy.constellation.entity.LuckNetEntity.MimaDTO
+  com.yyzy.constellation.entity.PartnerAsyncEntity o-- com.yyzy.constellation.entity.PartnerAsyncEntity.ResultDTO : result
+  com.yyzy.constellation.entity.PartnerAsyncEntity +-down- com.yyzy.constellation.entity.PartnerAsyncEntity.ResultDTO
+  com.yyzy.constellation.entity.StarInfoEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.entity.StarInfoEntity +-down- com.yyzy.constellation.entity.StarInfoEntity.StarinfoDTO
+  com.yyzy.constellation.entity.StarInfoEntity.StarinfoDTO .up.|> java.io.Serializable
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

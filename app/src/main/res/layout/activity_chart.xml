@@ -95,6 +95,7 @@
             android:background="@drawable/tally_calendar_dialog_bg_fs"
             android:text="@string/out"
             android:textColor="@color/white"
+            android:elevation="@dimen/dimen_0dp"
             android:textStyle="bold"/>
 
         <Button
@@ -105,6 +106,7 @@
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:text="@string/in"
             android:textColor="@color/pink"
+            android:elevation="@dimen/dimen_0dp"
             android:textStyle="bold"/>
     </LinearLayout>
 
