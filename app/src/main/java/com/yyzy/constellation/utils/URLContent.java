@@ -5,7 +5,7 @@ import java.net.URLEncoder;
 
 public class URLContent {
     //登录、注册  本地服务器接口
-    public static final String BASE_URL = "http://192.168.0.101:8080/myapp";
+    public static final String BASE_URL = "http://192.168.2.20:8080/myapp";
 
     //字典 每日一句接口
     public static final String DICT_EVERYDAY_URL = "https://www.mxnzp.com/api/daily_word/recommend?count=1&app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";

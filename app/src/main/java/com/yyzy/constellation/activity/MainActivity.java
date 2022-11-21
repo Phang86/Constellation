@@ -54,6 +54,7 @@ import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.BitmapUtils;
 import com.yyzy.constellation.utils.CameraUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SPUtils;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.weather.activity.WeatherActivity;
@@ -67,15 +68,15 @@ import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 import skin.support.SkinCompatManager;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener{
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private DrawerLayout drawerLayout;
     private RadioGroup radioGroup;
     private FragmentManager manager;
     private Bundle bundle;
-    private Fragment starFragment,partnershipFragment,luckFragment,meFragment;
-    private TextView title,tvName;
+    private Fragment starFragment, partnershipFragment, luckFragment, meFragment;
+    private TextView title, tvName;
     private NavigationView nv;
-    private ImageView imgClose,imgMore;
+    private ImageView imgClose, imgMore;
     private NotificationManager NotiManager;
     //权限请求
     private RxPermissions rxPermissions;
@@ -104,6 +105,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private BroadcastReceiver receivers = new IntentReceiver();
 
+    private long exitTime = 0;
+
     @Override
     protected int initLayout() {
         return R.layout.activity_main;
@@ -113,7 +116,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void initView() {
         StarInfoEntity starInfoEntity = loadData();
         bundle = new Bundle();
-        bundle.putSerializable("info",starInfoEntity);
+        bundle.putSerializable("info", starInfoEntity);
 
         radioGroup = findViewById(R.id.main_rb);
         //为RadioGroup控件设置监听，判断点击哪个
@@ -148,15 +151,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         nv.setItemIconTintList(null);
         checkVersion();
         //取出缓存
-        String imageUrl = SPUtils.getString("imageUrl",null,this);
-        if(imageUrl != null){
+        String imageUrl = SPUtils.getString("imageUrl", null, this);
+        if (imageUrl != null) {
             Glide.with(this).load(imageUrl).apply(requestOptions).into(cirImg);
         }
 
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        this.registerReceiver(receivers,filter);
+        this.registerReceiver(receivers, filter);
     }
-
 
 
     protected String findByKey(String key) {
@@ -164,7 +166,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return sp.getString(key, "");
     }
 
-    protected void insertVal( String key, String val) {
+    protected void insertVal(String key, String val) {
         SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, val);
@@ -180,23 +182,23 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 switch (item.getItemId()) {
                     case R.id.skin:
                         String skin = findByKey("skin");
-                        if (skin.equals("night")){
+                        if (skin.equals("night")) {
                             // 恢复应用默认皮肤
                             SkinCompatManager.getInstance().restoreDefaultTheme();
-                            insertVal("skin","defualt");
-                        }else {
+                            insertVal("skin", "defualt");
+                        } else {
                             SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
-                            insertVal("skin","night");
+                            insertVal("skin", "night");
                         }
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.gongneng:
-                        MeFragment.showDialogSure(MainActivity.this,"功能介绍", StringUtils.setContent());
+                        MeFragment.showDialogSure(MainActivity.this, "功能介绍", StringUtils.setContent());
                         break;
                     case R.id.user_info:
                         intent.setClass(MainActivity.this, AppInfoActivity.class);
                         startActivity(intent);
-                    break;
+                        break;
                     case R.id.weather:
                         intent.setClass(MainActivity.this, WeatherActivity.class);
                         startActivity(intent);
@@ -232,7 +234,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private void showDefaultDialog() {
         AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
-        AlertDialogUtils.showConfirmDialog(MainActivity.this,"温馨提示","您确定退出吗？","确定","取消");
+        AlertDialogUtils.showConfirmDialog(MainActivity.this, "温馨提示", "您确定退出吗？", "确定", "取消");
         dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
             @Override
             public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {
@@ -248,7 +250,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 //editor.remove("username");
                 //editor.remove("password");
                 //提交
-                DiyProgressDialog dialog1 = new DiyProgressDialog(MainActivity.this,"退出登录中...");
+                DiyProgressDialog dialog1 = new DiyProgressDialog(MainActivity.this, "退出登录中...");
                 dialog1.setCancelable(false);//设置不能通过后退键取消
                 dialog1.show();
                 new Handler().postDelayed(new Runnable() {
@@ -262,7 +264,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         ed.clear();
                         editor.commit();
                         ed.commit();
-                        SPUtils.remove("imageUrl",MainActivity.this);
+                        SPUtils.remove("imageUrl", MainActivity.this);
                         finish();
                         startActivity(intent);
                         //取消登录通知
@@ -272,7 +274,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         dialog1.cancel();
                         Toast.makeText(MainActivity.this, "您已成功退出星缘！", Toast.LENGTH_SHORT).show();
                     }
-                },1200);
+                }, 1200);
             }
 
             @Override
@@ -308,14 +310,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         String json = AssetsUtils.getJsonFromAssets(this, "xzcontent/xzcontent.json");
         Gson gson = new Gson();
         StarInfoEntity infoEntity = gson.fromJson(json, StarInfoEntity.class);
-        AssetsUtils.saveBitmapFromAssets(this,infoEntity);
+        AssetsUtils.saveBitmapFromAssets(this, infoEntity);
         return infoEntity;
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         FragmentTransaction transaction = manager.beginTransaction();
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.main_rb_star:
                 transaction.hide(partnershipFragment);
                 transaction.hide(luckFragment);
@@ -328,14 +330,14 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 transaction.hide(luckFragment);
                 transaction.hide(meFragment);
                 transaction.show(partnershipFragment);
-                title.setText(getResources().getString(R.string.label_star)+""+getResources().getString(R.string.label_partnership));
+                title.setText(getResources().getString(R.string.label_star) + "" + getResources().getString(R.string.label_partnership));
                 break;
             case R.id.main_rb_luck:
                 transaction.hide(partnershipFragment);
                 transaction.hide(starFragment);
                 transaction.hide(meFragment);
                 transaction.show(luckFragment);
-                title.setText(getResources().getString(R.string.label_star)+""+getResources().getString(R.string.label_luck));
+                title.setText(getResources().getString(R.string.label_star) + "" + getResources().getString(R.string.label_luck));
                 break;
 //            case R.id.main_rb_me:
 //                transaction.hide(partnershipFragment);
@@ -351,14 +353,26 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            MyToast.showText(getApplicationContext(), "再按一次返回到手机主界面");
+            exitTime = System.currentTimeMillis();
+        } else {
+//            finish();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addCategory(Intent.CATEGORY_HOME);
             startActivity(intent);
-            return true;
+            //System.exit(0);
         }
-        return super.onKeyDown(keyCode, event);
+
     }
 
     @Override
@@ -477,6 +491,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     /**
      * 返回到Activity
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -520,7 +535,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             //显示图片
             Glide.with(this).load(imagePath).apply(requestOptions).into(cirImg);
             //放入缓存
-            SPUtils.putString("imageUrl",imagePath,this);
+            SPUtils.putString("imageUrl", imagePath, this);
             //压缩图片
             orc_bitmap = CameraUtils.compression(BitmapFactory.decodeFile(imagePath));
             //转Base64
