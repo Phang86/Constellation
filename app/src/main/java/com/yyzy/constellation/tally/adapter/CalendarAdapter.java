@@ -70,5 +70,6 @@ public class CalendarAdapter extends BaseAdapter {
             tv.setTextColor(Color.WHITE);
         }
         return convertView;
+
     }
 }
