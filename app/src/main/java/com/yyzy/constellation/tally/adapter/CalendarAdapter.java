@@ -23,6 +23,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     public void setYear(int year) {
         this.year = year;
+
         mData.clear();
         loadDatas(year);
         notifyDataSetChanged();
