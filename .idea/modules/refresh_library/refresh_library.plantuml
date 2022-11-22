@@ -1,0 +1,199 @@
+@startuml
+
+title __CONSTELLATION.REFRESH_LIBRARY's Class Diagram__\n
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.BuildConfig {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.ILoadingLayout {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    interface com.handmark.pulltorefresh.library.IPullToRefresh {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.LoadingLayoutProxy {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.OverscrollHelper {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    abstract class com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    abstract class com.handmark.pulltorefresh.library.PullToRefreshBase {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshExpandableListView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshGridView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshListView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshScrollView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    class com.handmark.pulltorefresh.library.PullToRefreshWebView {
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace extras {
+      class com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2 {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace extras {
+      class com.handmark.pulltorefresh.library.extras.SoundPullEventListener {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      interface com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.FlipLoadingLayout {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.IndicatorLayout {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      abstract class com.handmark.pulltorefresh.library.internal.LoadingLayout {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.RotateLoadingLayout {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.Utils {
+      }
+    }
+  }
+  
+
+  namespace com.handmark.pulltorefresh.library {
+    namespace internal {
+      class com.handmark.pulltorefresh.library.internal.ViewCompat {
+      }
+    }
+  }
+  
+
+  com.handmark.pulltorefresh.library.LoadingLayoutProxy .up.|> com.handmark.pulltorefresh.library.ILoadingLayout
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase .up.|> android.widget.AbsListView.OnScrollListener
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.internal.IndicatorLayout : mIndicatorIvBottom
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.internal.IndicatorLayout : mIndicatorIvTop
+  com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener : mOnLastItemVisibleListener
+  com.handmark.pulltorefresh.library.PullToRefreshBase .up.|> com.handmark.pulltorefresh.library.IPullToRefresh
+  com.handmark.pulltorefresh.library.PullToRefreshBase -up-|> android.widget.LinearLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- T : mRefreshableView
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mCurrentMode
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.SmoothScrollRunnable : mCurrentSmoothScrollRunnable
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mFooterLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mHeaderLayout
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.AnimationStyle : mLoadingAnimationStyle
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mMode
+  com.handmark.pulltorefresh.library.PullToRefreshBase o-- com.handmark.pulltorefresh.library.PullToRefreshBase.State : mState
+  com.handmark.pulltorefresh.library.PullToRefreshExpandableListView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshGridView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshHorizontalScrollView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshListView -up-|> com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase
+  com.handmark.pulltorefresh.library.PullToRefreshListView o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mFooterLoadingView
+  com.handmark.pulltorefresh.library.PullToRefreshListView o-- com.handmark.pulltorefresh.library.internal.LoadingLayout : mHeaderLoadingView
+  com.handmark.pulltorefresh.library.PullToRefreshScrollView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.PullToRefreshWebView -up-|> com.handmark.pulltorefresh.library.PullToRefreshBase
+  com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2 -up-|> com.handmark.pulltorefresh.library.PullToRefreshWebView
+  com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2 o-- com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2.JsValueCallback : mJsCallback
+  com.handmark.pulltorefresh.library.extras.SoundPullEventListener .up.|> com.handmark.pulltorefresh.library.PullToRefreshBase.OnPullEventListener
+  com.handmark.pulltorefresh.library.internal.FlipLoadingLayout -up-|> com.handmark.pulltorefresh.library.internal.LoadingLayout
+  com.handmark.pulltorefresh.library.internal.IndicatorLayout .up.|> android.view.animation.Animation.AnimationListener
+  com.handmark.pulltorefresh.library.internal.IndicatorLayout -up-|> android.widget.FrameLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout .up.|> com.handmark.pulltorefresh.library.ILoadingLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout -up-|> android.widget.FrameLayout
+  com.handmark.pulltorefresh.library.internal.LoadingLayout o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Mode : mMode
+  com.handmark.pulltorefresh.library.internal.LoadingLayout o-- com.handmark.pulltorefresh.library.PullToRefreshBase.Orientation : mScrollDirection
+  com.handmark.pulltorefresh.library.internal.RotateLoadingLayout -up-|> com.handmark.pulltorefresh.library.internal.LoadingLayout
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -1,0 +1,175 @@
+@startuml
+
+title __CONSTELLATION.OCR_UI's Class Diagram__\n
+
+  namespace com.baidu.idcardquality {
+    class com.baidu.idcardquality.IDcardQualityProcess {
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    class com.baidu.ocr.ui.BuildConfig {
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.Camera1Control {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.Camera2Control {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.CameraActivity {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.CameraNativeHelper {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.CameraThreadPool {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.CameraView {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      interface com.baidu.ocr.ui.camera.ICameraControl {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.MaskView {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.OCRCameraLayout {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      class com.baidu.ocr.ui.camera.OCRFrameLayout {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace camera {
+      interface com.baidu.ocr.ui.camera.PermissionCallback {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace crop {
+      class com.baidu.ocr.ui.crop.CropView {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace crop {
+      class com.baidu.ocr.ui.crop.FrameOverlayView {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace util {
+      class com.baidu.ocr.ui.util.DimensionUtil {
+      }
+    }
+  }
+  
+
+  namespace com.baidu.ocr.ui {
+    namespace util {
+      class com.baidu.ocr.ui.util.ImageUtil {
+      }
+    }
+  }
+  
+
+  com.baidu.ocr.ui.camera.Camera1Control .up.|> com.baidu.ocr.ui.camera.ICameraControl
+  com.baidu.ocr.ui.camera.Camera1Control o-- com.baidu.ocr.ui.camera.ICameraControl.OnDetectPictureCallback : detectCallback
+  com.baidu.ocr.ui.camera.Camera1Control o-- com.baidu.ocr.ui.camera.PermissionCallback : permissionCallback
+  com.baidu.ocr.ui.camera.Camera1Control o-- com.baidu.ocr.ui.camera.Camera1Control.PreviewView : previewView
+  com.baidu.ocr.ui.camera.Camera2Control .up.|> com.baidu.ocr.ui.camera.ICameraControl
+  com.baidu.ocr.ui.camera.Camera2Control o-- com.baidu.ocr.ui.camera.ICameraControl.OnTakePictureCallback : onTakePictureCallback
+  com.baidu.ocr.ui.camera.Camera2Control o-- com.baidu.ocr.ui.camera.PermissionCallback : permissionCallback
+  com.baidu.ocr.ui.camera.CameraActivity -up-|> android.app.Activity
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.CameraView.OnTakePictureCallback : autoTakePictureCallback
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.CameraView : cameraView
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.OCRCameraLayout : confirmResultContainer
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.OCRCameraLayout : cropContainer
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.MaskView : cropMaskView
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.crop.CropView : cropView
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.crop.FrameOverlayView : overlayView
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.PermissionCallback : permissionCallback
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.CameraView.OnTakePictureCallback : takePictureCallback
+  com.baidu.ocr.ui.camera.CameraActivity o-- com.baidu.ocr.ui.camera.OCRCameraLayout : takePictureContainer
+  com.baidu.ocr.ui.camera.CameraView -up-|> android.widget.FrameLayout
+  com.baidu.ocr.ui.camera.CameraView o-- com.baidu.ocr.ui.camera.CameraView.OnTakePictureCallback : autoPictureCallback
+  com.baidu.ocr.ui.camera.CameraView o-- com.baidu.ocr.ui.camera.ICameraControl : cameraControl
+  com.baidu.ocr.ui.camera.CameraView o-- com.baidu.ocr.ui.camera.CameraView.CameraViewTakePictureCallback : cameraViewTakePictureCallback
+  com.baidu.ocr.ui.camera.CameraView o-- com.baidu.ocr.ui.camera.MaskView : maskView
+  com.baidu.ocr.ui.camera.MaskView -up-|> android.view.View
+  com.baidu.ocr.ui.camera.OCRCameraLayout -up-|> android.widget.FrameLayout
+  com.baidu.ocr.ui.camera.OCRFrameLayout -up-|> android.view.ViewGroup
+  com.baidu.ocr.ui.crop.CropView -up-|> android.view.View
+  com.baidu.ocr.ui.crop.FrameOverlayView -up-|> android.view.View
+  com.baidu.ocr.ui.crop.FrameOverlayView o-- com.baidu.ocr.ui.crop.FrameOverlayView.OnFrameChangeListener : onFrameChangeListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

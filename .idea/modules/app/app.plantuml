@@ -1,0 +1,1650 @@
+@startuml
+
+title __CONSTELLATION.APP's Class Diagram__\n
+
+  namespace com.yyzy.constellation {
+    class com.yyzy.constellation.BuildConfig {
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.AppInfoActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      abstract class com.yyzy.constellation.activity.BaseActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.CancelActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.CancelidActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.ConfigPwdActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.FindPwdActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.HomeActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LocalMusicActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LoginActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.LuckDetailsActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.MainActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.MoreHistoryActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.RegisterActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.StarDetailsActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.StarStartActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.SwipeCheckActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePhoneOutActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.UpdatePwdActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace activity {
+      class com.yyzy.constellation.activity.WelcomeActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LocalMusicAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.LuckItemLvAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarDetailsAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarItemAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.StarPagerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace adapter {
+      class com.yyzy.constellation.adapter.WelcomeAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      class com.yyzy.constellation.dict.BaseSearchActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.ChengYuActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.ChengYuInfoActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.CollectActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.DictActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.IdentifyImgActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SearchBushouActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SearchPinyinActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.SetActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace activity {
+        class com.yyzy.constellation.dict.activity.WordInfoActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace adapter {
+        class com.yyzy.constellation.dict.adapter.CollectFragmentAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace adapter {
+        class com.yyzy.constellation.dict.adapter.SearchLeftAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace adapter {
+        class com.yyzy.constellation.dict.adapter.SearchRightAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace db {
+        class com.yyzy.constellation.dict.db.DBOpenHelper {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace db {
+        class com.yyzy.constellation.dict.db.DBmanager {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.ChengyuInfoEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.DictEveryOneBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.PinBuWordEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.TuWenEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace entity {
+        class com.yyzy.constellation.dict.entity.WordEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace dict {
+      namespace fragment {
+        class com.yyzy.constellation.dict.fragment.CollectZiFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LocalMusicEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LuckItemEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.LuckNetEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.PartnerAsyncEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.StarDetailsEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.StarInfoEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace entity {
+      class com.yyzy.constellation.entity.User {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace fragment {
+      class com.yyzy.constellation.fragment.LuckFragment {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace fragment {
+      class com.yyzy.constellation.fragment.MeFragment {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace fragment {
+      class com.yyzy.constellation.fragment.PartnershipFragment {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace fragment {
+      class com.yyzy.constellation.fragment.StarFragment {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      class com.yyzy.constellation.history.HistoryActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      class com.yyzy.constellation.history.HistoryInfoActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace adapter {
+        class com.yyzy.constellation.history.adapter.HistoryAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace adapter {
+        class com.yyzy.constellation.history.adapter.ViewHolder {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.HistoryInfoEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace history {
+      namespace bean {
+        class com.yyzy.constellation.history.bean.LaoHuangLiEntity {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      class com.yyzy.constellation.news.AddItemActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      class com.yyzy.constellation.news.NewsActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      class com.yyzy.constellation.news.NewsInfoActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace adapter {
+        class com.yyzy.constellation.news.adapter.AddItemAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace adapter {
+        class com.yyzy.constellation.news.adapter.NewsInfoAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace adapter {
+        class com.yyzy.constellation.news.adapter.NewsItemAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace bean {
+        class com.yyzy.constellation.news.bean.NewsBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace bean {
+        class com.yyzy.constellation.news.bean.TypeBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace db {
+        class com.yyzy.constellation.news.db.NewsDBHelper {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace db {
+        class com.yyzy.constellation.news.db.NewsDBManger {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace fragment {
+        class com.yyzy.constellation.news.fragment.NewsInfoFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace util {
+        class com.yyzy.constellation.news.util.NetJavaScriptInterface {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace news {
+      namespace view {
+        class com.yyzy.constellation.news.view.PagerSlidingTabStrip {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace receiver {
+      class com.yyzy.constellation.receiver.IntentReceiver {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.ChartActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.RecordActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallyActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallyJiluActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      class com.yyzy.constellation.tally.TallySearchActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.CalendarAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.ChartLvItemAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.ChartVpAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.GvTypeAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.ReCordPagerAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace adapter {
+        class com.yyzy.constellation.tally.adapter.TallyLVAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace bean {
+        class com.yyzy.constellation.tally.bean.BarCharItemBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace bean {
+        class com.yyzy.constellation.tally.bean.ChartLvItemBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace bean {
+        class com.yyzy.constellation.tally.bean.GvTypeBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace bean {
+        class com.yyzy.constellation.tally.bean.TallyLvItemBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace db {
+        class com.yyzy.constellation.tally.db.TallyDBOpenHelper {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace db {
+        class com.yyzy.constellation.tally.db.TallyManger {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        abstract class com.yyzy.constellation.tally.fragment.BaseChartFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        class com.yyzy.constellation.tally.fragment.InComeChartFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        class com.yyzy.constellation.tally.fragment.InComeFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        class com.yyzy.constellation.tally.fragment.OutComeChartFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        class com.yyzy.constellation.tally.fragment.OutComeFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace fragment {
+        abstract class com.yyzy.constellation.tally.fragment.TallyBaseFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.BeiZhuDialog {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.FloatUtils {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        interface com.yyzy.constellation.tally.util.OnClickSure {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.SwipeItemLayout {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.SwipeListView {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyCalendarDialog {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyDialogTime {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyInfoDialog {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyMoneyDialog {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace tally {
+      namespace util {
+        class com.yyzy.constellation.tally.util.TallyMoreDialog {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.AlertDialogUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.AssetsUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.BitmapUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.CameraUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.CommonUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.Constellation {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.DialogUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.DiyProgressDialog {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.FileUtil {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.FourFiguresNumberCode {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.HttpUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.KeyBoardUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.LoadDataAsyncTask {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.MyEditText {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.MyGridView {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.MyPasswordEditText {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.MyToast {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.Mydialog {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.PatternUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.RecognizeService {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.SPUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.SplitEditText {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.StringUtils {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.SwipeCaptchaView {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.URLContent {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace utils {
+      class com.yyzy.constellation.utils.ViewUtil {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.activity {
+      class com.yyzy.constellation.weather.activity.CityManagerActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.activity {
+      class com.yyzy.constellation.weather.activity.DeleteCityActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.activity {
+      class com.yyzy.constellation.weather.activity.MoreActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.activity {
+      class com.yyzy.constellation.weather.activity.SearchCityActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.activity {
+      class com.yyzy.constellation.weather.activity.WeatherActivity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.adapter {
+      class com.yyzy.constellation.weather.adapter.CityFragmentPagerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.adapter {
+      class com.yyzy.constellation.weather.adapter.CityManagerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.adapter {
+      class com.yyzy.constellation.weather.adapter.DeleteCityAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.db {
+      class com.yyzy.constellation.weather.db.DBHelper {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.db {
+      class com.yyzy.constellation.weather.db.DBManager {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.db {
+      class com.yyzy.constellation.weather.db.DatabaseEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.entity {
+      class com.yyzy.constellation.weather.entity.WeatherIndexEntity {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.fragment {
+      class com.yyzy.constellation.weather.fragment.BaseFragment {
+      }
+    }
+  }
+  
+
+  namespace com.yyzy.constellation {
+    namespace weather.fragment {
+      class com.yyzy.constellation.weather.fragment.CityWeatherFragment {
+      }
+    }
+  }
+  
+
+  com.yyzy.constellation.activity.AppInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.AppInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.BaseActivity .up.|> org.xutils.common.Callback.CacheCallback
+  com.yyzy.constellation.activity.BaseActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.CancelActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.CancelActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelidActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.CancelidActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.CancelidActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.CancelidActivity o-- com.yyzy.constellation.activity.CancelidActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.ConfigPwdActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.ConfigPwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.ConfigPwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.FindPwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.FindPwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.FindPwdActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : mDialog
+  com.yyzy.constellation.activity.HomeActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LocalMusicActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LocalMusicActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LocalMusicActivity o-- com.yyzy.constellation.adapter.LocalMusicAdapter : adapter
+  com.yyzy.constellation.activity.LocalMusicActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.activity.LoginActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.LoginActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LoginActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LuckDetailsActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.LuckDetailsActivity .up.|> com.yyzy.constellation.utils.LoadDataAsyncTask.OnGetNetDataListener
+  com.yyzy.constellation.activity.LuckDetailsActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.LuckDetailsActivity o-- com.yyzy.constellation.adapter.LuckItemLvAdapter : adapter
+  com.yyzy.constellation.activity.MainActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.MainActivity .up.|> android.widget.RadioGroup.OnCheckedChangeListener
+  com.yyzy.constellation.activity.MainActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.MoreHistoryActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.MoreHistoryActivity o-- com.yyzy.constellation.history.adapter.HistoryAdapter : adapter
+  com.yyzy.constellation.activity.MoreHistoryActivity o-- com.yyzy.constellation.history.bean.HistoryEntity : bean
+  com.yyzy.constellation.activity.RegisterActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.RegisterActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.RegisterActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.RegisterActivity o-- com.yyzy.constellation.activity.RegisterActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.StarDetailsActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.StarDetailsActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.StarDetailsActivity o-- com.yyzy.constellation.adapter.StarDetailsAdapter : adapter
+  com.yyzy.constellation.activity.StarDetailsActivity o-- com.yyzy.constellation.entity.StarInfoEntity.StarinfoDTO : entity
+  com.yyzy.constellation.activity.StarStartActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.StarStartActivity .up.|> com.yyzy.constellation.utils.LoadDataAsyncTask.OnGetNetDataListener
+  com.yyzy.constellation.activity.StarStartActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.StarStartActivity o-- com.yyzy.constellation.entity.PartnerAsyncEntity : entity
+  com.yyzy.constellation.activity.SwipeCheckActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.SwipeCheckActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.activity.SwipeCheckActivity o-- com.yyzy.constellation.utils.SwipeCaptchaView : mSwipeCaptchaView
+  com.yyzy.constellation.activity.UpdatePhoneActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.UpdatePhoneActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePhoneActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.UpdatePhoneActivity o-- com.yyzy.constellation.activity.UpdatePhoneActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity .up.|> android.text.TextWatcher
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.UpdatePhoneOutActivity o-- com.yyzy.constellation.activity.UpdatePhoneOutActivity.TimeCount : mTimeCount
+  com.yyzy.constellation.activity.UpdatePwdActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.activity.UpdatePwdActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.activity.WelcomeActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.adapter.LocalMusicAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.yyzy.constellation.adapter.LocalMusicAdapter o-- com.yyzy.constellation.adapter.LocalMusicAdapter.OnItemClickListener : onItemClickListener
+  com.yyzy.constellation.adapter.LuckItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.LuckItemLvAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.StarDetailsAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.StarItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.adapter.StarPagerAdapter -up-|> androidx.viewpager.widget.PagerAdapter
+  com.yyzy.constellation.adapter.WelcomeAdapter -up-|> androidx.viewpager.widget.PagerAdapter
+  com.yyzy.constellation.dict.BaseSearchActivity .up.|> org.xutils.common.Callback.CommonCallback
+  com.yyzy.constellation.dict.BaseSearchActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.dict.BaseSearchActivity o-- com.yyzy.constellation.dict.adapter.SearchLeftAdapter : adapter
+  com.yyzy.constellation.dict.BaseSearchActivity o-- com.yyzy.constellation.dict.adapter.SearchRightAdapter : gridViewAdapter
+  com.yyzy.constellation.dict.BaseSearchActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.dict.BaseSearchActivity o-- com.handmark.pulltorefresh.library.PullToRefreshGridView : gridView
+  com.yyzy.constellation.dict.activity.ChengYuActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.ChengYuActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.dict.activity.ChengYuActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.MyGridView : fyGv
+  com.yyzy.constellation.dict.activity.ChengYuInfoActivity o-- com.yyzy.constellation.utils.MyGridView : tyGv
+  com.yyzy.constellation.dict.activity.CollectActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.CollectActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.CollectActivity o-- com.yyzy.constellation.dict.adapter.CollectFragmentAdapter : adapter
+  com.yyzy.constellation.dict.activity.DictActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.DictActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.dict.activity.DictActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.IdentifyImgActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.IdentifyImgActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.SearchBushouActivity -up-|> com.yyzy.constellation.dict.BaseSearchActivity
+  com.yyzy.constellation.dict.activity.SearchPinyinActivity -up-|> com.yyzy.constellation.dict.BaseSearchActivity
+  com.yyzy.constellation.dict.activity.SetActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.SetActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.WordInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.dict.activity.WordInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.dict.activity.WordInfoActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.dict.adapter.CollectFragmentAdapter -up-|> androidx.fragment.app.FragmentStatePagerAdapter
+  com.yyzy.constellation.dict.adapter.SearchLeftAdapter -up-|> android.widget.BaseExpandableListAdapter
+  com.yyzy.constellation.dict.adapter.SearchRightAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.dict.db.DBOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.yyzy.constellation.dict.entity.ChengyuInfoEntity o-- com.yyzy.constellation.dict.entity.ChengyuInfoEntity.ResultBean : result
+  com.yyzy.constellation.dict.entity.PinBuWordEntity o-- com.yyzy.constellation.dict.entity.PinBuWordEntity.ResultBean : result
+  com.yyzy.constellation.dict.entity.WordEntity o-- com.yyzy.constellation.dict.entity.WordEntity.ResultBean : result
+  com.yyzy.constellation.dict.fragment.CollectZiFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.entity.LuckNetEntity o-- com.yyzy.constellation.entity.LuckNetEntity.MimaDTO : mima
+  com.yyzy.constellation.entity.PartnerAsyncEntity o-- com.yyzy.constellation.entity.PartnerAsyncEntity.ResultDTO : result
+  com.yyzy.constellation.entity.StarInfoEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.fragment.LuckFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.fragment.LuckFragment o-- com.yyzy.constellation.entity.StarInfoEntity : entity
+  com.yyzy.constellation.fragment.MeFragment .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.fragment.MeFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.fragment.MeFragment o-- com.yyzy.constellation.entity.StarInfoEntity : starInfoEntity
+  com.yyzy.constellation.fragment.PartnershipFragment .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.fragment.PartnershipFragment .up.|> android.widget.AdapterView.OnItemSelectedListener
+  com.yyzy.constellation.fragment.PartnershipFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.fragment.PartnershipFragment o-- com.yyzy.constellation.entity.StarInfoEntity : info
+  com.yyzy.constellation.fragment.StarFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.fragment.StarFragment o-- com.yyzy.constellation.adapter.StarItemAdapter : adapter
+  com.yyzy.constellation.fragment.StarFragment o-- com.yyzy.constellation.adapter.StarPagerAdapter : starPagerAdapter
+  com.yyzy.constellation.history.HistoryActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.history.HistoryActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.history.HistoryActivity o-- com.yyzy.constellation.history.adapter.HistoryAdapter : adapter
+  com.yyzy.constellation.history.HistoryActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.history.HistoryActivity o-- com.yyzy.constellation.history.bean.HistoryEntity : entity
+  com.yyzy.constellation.history.HistoryInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.history.HistoryInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.history.adapter.HistoryAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.history.bean.HistoryEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.history.bean.HistoryInfoEntity .up.|> java.io.Serializable
+  com.yyzy.constellation.history.bean.LaoHuangLiEntity o-- com.yyzy.constellation.history.bean.LaoHuangLiEntity.ResultBean : result
+  com.yyzy.constellation.news.AddItemActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.news.AddItemActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.news.AddItemActivity o-- com.yyzy.constellation.news.adapter.AddItemAdapter : addItemAdapter
+  com.yyzy.constellation.news.NewsActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.news.NewsActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.news.NewsActivity o-- com.yyzy.constellation.news.adapter.NewsInfoAdapter : newsInfoAdapter
+  com.yyzy.constellation.news.NewsActivity o-- com.yyzy.constellation.news.view.PagerSlidingTabStrip : pagerStrip
+  com.yyzy.constellation.news.NewsInfoActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.news.NewsInfoActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.news.NewsInfoActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : mDialog
+  com.yyzy.constellation.news.adapter.AddItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.news.adapter.NewsInfoAdapter -up-|> androidx.fragment.app.FragmentStatePagerAdapter
+  com.yyzy.constellation.news.adapter.NewsItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.news.bean.NewsBean o-- com.yyzy.constellation.news.bean.NewsBean.ResultBean : result
+  com.yyzy.constellation.news.bean.TypeBean .up.|> java.io.Serializable
+  com.yyzy.constellation.news.db.NewsDBHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.yyzy.constellation.news.fragment.NewsInfoFragment -up-|> com.yyzy.constellation.weather.fragment.BaseFragment
+  com.yyzy.constellation.news.fragment.NewsInfoFragment o-- com.yyzy.constellation.news.adapter.NewsItemAdapter : adapter
+  com.yyzy.constellation.news.view.PagerSlidingTabStrip -up-|> android.widget.HorizontalScrollView
+  com.yyzy.constellation.news.view.PagerSlidingTabStrip o-- com.yyzy.constellation.news.view.PagerSlidingTabStrip.PageListener : pageListener
+  com.yyzy.constellation.receiver.IntentReceiver -up-|> android.content.BroadcastReceiver
+  com.yyzy.constellation.tally.ChartActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.ChartActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.yyzy.constellation.tally.ChartActivity o-- com.yyzy.constellation.tally.adapter.ChartVpAdapter : chartVpAdapter
+  com.yyzy.constellation.tally.RecordActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.RecordActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallyActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallyActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.tally.TallyJiluActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallyJiluActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallyJiluActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallyJiluActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : progressDialog
+  com.yyzy.constellation.tally.TallySearchActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.TallySearchActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.tally.TallySearchActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.tally.TallySearchActivity o-- com.yyzy.constellation.tally.adapter.TallyLVAdapter : adapter
+  com.yyzy.constellation.tally.TallySearchActivity o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.tally.adapter.CalendarAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.tally.adapter.ChartLvItemAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.tally.adapter.ChartVpAdapter -up-|> androidx.fragment.app.FragmentStatePagerAdapter
+  com.yyzy.constellation.tally.adapter.GvTypeAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.tally.adapter.ReCordPagerAdapter -up-|> androidx.fragment.app.FragmentStatePagerAdapter
+  com.yyzy.constellation.tally.adapter.TallyLVAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.tally.db.TallyDBOpenHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.yyzy.constellation.tally.fragment.BaseChartFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.tally.fragment.BaseChartFragment o-- com.yyzy.constellation.tally.adapter.ChartLvItemAdapter : chartLvItemAdapter
+  com.yyzy.constellation.tally.fragment.InComeChartFragment -up-|> com.yyzy.constellation.tally.fragment.BaseChartFragment
+  com.yyzy.constellation.tally.fragment.InComeFragment -up-|> com.yyzy.constellation.tally.fragment.TallyBaseFragment
+  com.yyzy.constellation.tally.fragment.OutComeChartFragment -up-|> com.yyzy.constellation.tally.fragment.BaseChartFragment
+  com.yyzy.constellation.tally.fragment.OutComeFragment -up-|> com.yyzy.constellation.tally.fragment.TallyBaseFragment
+  com.yyzy.constellation.tally.fragment.TallyBaseFragment .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.fragment.TallyBaseFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.tally.fragment.TallyBaseFragment o-- com.yyzy.constellation.tally.adapter.GvTypeAdapter : adapter
+  com.yyzy.constellation.tally.fragment.TallyBaseFragment o-- com.yyzy.constellation.tally.bean.TallyLvItemBean : itemBean
+  com.yyzy.constellation.tally.fragment.TallyBaseFragment o-- com.yyzy.constellation.utils.KeyBoardUtils : keyBoardUtils
+  com.yyzy.constellation.tally.util.BeiZhuDialog .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.BeiZhuDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.BeiZhuDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.BeiZhuDialog o-- com.yyzy.constellation.tally.util.OnClickSure : clickSure
+  com.yyzy.constellation.tally.util.SwipeItemLayout -up-|> android.view.ViewGroup
+  com.yyzy.constellation.tally.util.SwipeItemLayout o-- com.yyzy.constellation.tally.util.SwipeItemLayout.ScrollRunnable : mScrollRunnable
+  com.yyzy.constellation.tally.util.SwipeItemLayout o-- com.yyzy.constellation.tally.util.SwipeItemLayout.Mode : mTouchMode
+  com.yyzy.constellation.tally.util.SwipeListView -up-|> android.widget.ListView
+  com.yyzy.constellation.tally.util.SwipeListView o-- com.yyzy.constellation.tally.util.SwipeItemLayout : mCaptureItem
+  com.yyzy.constellation.tally.util.TallyCalendarDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyCalendarDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyCalendarDialog o-- com.yyzy.constellation.tally.adapter.CalendarAdapter : adapter
+  com.yyzy.constellation.tally.util.TallyCalendarDialog o-- com.yyzy.constellation.tally.util.TallyCalendarDialog.RefreshListener : refreshListener
+  com.yyzy.constellation.tally.util.TallyDialogTime .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.TallyDialogTime .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyDialogTime -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyDialogTime o-- com.yyzy.constellation.tally.util.TallyDialogTime.OnEnSure : onEnSure
+  com.yyzy.constellation.tally.util.TallyInfoDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyInfoDialog -up-|> com.google.android.material.bottomsheet.BottomSheetDialog
+  com.yyzy.constellation.tally.util.TallyInfoDialog o-- com.yyzy.constellation.tally.bean.TallyLvItemBean : bean
+  com.yyzy.constellation.tally.util.TallyMoneyDialog .up.|> android.text.TextWatcher
+  com.yyzy.constellation.tally.util.TallyMoneyDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyMoneyDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.tally.util.TallyMoneyDialog o-- com.yyzy.constellation.tally.util.TallyMoneyDialog.OnClickEnSure : clickEnSure
+  com.yyzy.constellation.tally.util.TallyMoreDialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.tally.util.TallyMoreDialog -up-|> com.google.android.material.bottomsheet.BottomSheetDialog
+  com.yyzy.constellation.tally.util.TallyMoreDialog o-- com.yyzy.constellation.tally.util.TallyMoreDialog.RefreshListener : refresh
+  com.yyzy.constellation.utils.Constellation -up-|> android.app.Application
+  com.yyzy.constellation.utils.DiyProgressDialog -up-|> android.app.Dialog
+  com.yyzy.constellation.utils.KeyBoardUtils o-- com.yyzy.constellation.utils.KeyBoardUtils.OnEnSureListener : onEnSureListener
+  com.yyzy.constellation.utils.LoadDataAsyncTask -up-|> android.os.AsyncTask
+  com.yyzy.constellation.utils.LoadDataAsyncTask o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.utils.LoadDataAsyncTask o-- com.yyzy.constellation.utils.LoadDataAsyncTask.OnGetNetDataListener : listener
+  com.yyzy.constellation.utils.MyEditText -up-|> androidx.appcompat.widget.AppCompatEditText
+  com.yyzy.constellation.utils.MyGridView -up-|> android.widget.GridView
+  com.yyzy.constellation.utils.MyPasswordEditText .up.|> android.text.TextWatcher
+  com.yyzy.constellation.utils.MyPasswordEditText .up.|> android.view.View.OnFocusChangeListener
+  com.yyzy.constellation.utils.MyPasswordEditText -up-|> androidx.appcompat.widget.AppCompatEditText
+  com.yyzy.constellation.utils.MyToast -up-|> android.widget.Toast
+  com.yyzy.constellation.utils.Mydialog .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.utils.Mydialog -up-|> androidx.appcompat.app.AlertDialog
+  com.yyzy.constellation.utils.SplitEditText -up-|> androidx.appcompat.widget.AppCompatEditText
+  com.yyzy.constellation.utils.SplitEditText o-- com.yyzy.constellation.utils.SplitEditText.OnTextInputListener : mOnTextInputListener
+  com.yyzy.constellation.utils.SwipeCaptchaView -up-|> androidx.appcompat.widget.AppCompatImageView
+  com.yyzy.constellation.utils.SwipeCaptchaView o-- com.yyzy.constellation.utils.SwipeCaptchaView.OnCaptchaMatchCallback : onCaptchaMatchCallback
+  com.yyzy.constellation.weather.activity.CityManagerActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.activity.CityManagerActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.weather.activity.CityManagerActivity o-- com.yyzy.constellation.weather.adapter.CityManagerAdapter : adapter
+  com.yyzy.constellation.weather.activity.DeleteCityActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.activity.DeleteCityActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.weather.activity.DeleteCityActivity o-- com.yyzy.constellation.weather.adapter.DeleteCityAdapter : adapter
+  com.yyzy.constellation.weather.activity.MoreActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.activity.MoreActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.weather.activity.SearchCityActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.activity.SearchCityActivity .up.|> android.widget.TextView.OnEditorActionListener
+  com.yyzy.constellation.weather.activity.SearchCityActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.weather.activity.WeatherActivity .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.activity.WeatherActivity -up-|> com.yyzy.constellation.activity.BaseActivity
+  com.yyzy.constellation.weather.activity.WeatherActivity o-- com.yyzy.constellation.weather.adapter.CityFragmentPagerAdapter : adapter
+  com.yyzy.constellation.weather.adapter.CityFragmentPagerAdapter -up-|> androidx.fragment.app.FragmentStatePagerAdapter
+  com.yyzy.constellation.weather.adapter.CityManagerAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.weather.adapter.DeleteCityAdapter -up-|> android.widget.BaseAdapter
+  com.yyzy.constellation.weather.db.DBHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.yyzy.constellation.weather.entity.WeatherEntity o-- com.yyzy.constellation.weather.entity.WeatherEntity.ResultDTO : result
+  com.yyzy.constellation.weather.entity.WeatherIndexEntity o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO : result
+  com.yyzy.constellation.weather.fragment.BaseFragment .up.|> com.android.volley.Response.ErrorListener
+  com.yyzy.constellation.weather.fragment.BaseFragment .up.|> com.android.volley.Response.Listener
+  com.yyzy.constellation.weather.fragment.BaseFragment .up.|> org.xutils.common.Callback.CommonCallback
+  com.yyzy.constellation.weather.fragment.BaseFragment -up-|> androidx.fragment.app.Fragment
+  com.yyzy.constellation.weather.fragment.CityWeatherFragment .up.|> android.view.View.OnClickListener
+  com.yyzy.constellation.weather.fragment.CityWeatherFragment -up-|> com.yyzy.constellation.weather.fragment.BaseFragment
+  com.yyzy.constellation.weather.fragment.CityWeatherFragment o-- com.yyzy.constellation.utils.DiyProgressDialog : dialog
+  com.yyzy.constellation.weather.fragment.CityWeatherFragment o-- com.yyzy.constellation.weather.entity.WeatherIndexEntity.ResultDTO.LifeDTO : life
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -75,13 +75,13 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = mData.get(position);
                 AlertDialogUtils instance = AlertDialogUtils.getInstance();
-                AlertDialogUtils.showConfirmDialog(ChengYuActivity.this,"温馨提示","确定删除（"+name+"）这条记录吗？","确定","算了");
+                AlertDialogUtils.showConfirmDialog(ChengYuActivity.this, "温馨提示", "确定删除（" + name + "）这条记录吗？", "确定", "算了");
                 instance.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
                     @Override
                     public void onPositiveButtonClick(AlertDialog dialog) {
                         int del = DBmanager.delWhereCyFromCyutb(name);
-                        if (del > 0){
-                            MyToast.showText(getBaseContext(),"删除成功！");
+                        if (del > 0) {
+                            MyToast.showText(getBaseContext(), "删除成功！");
                             mData.clear();
 //                            List<String> list = DBmanager.queryAllCyFromCyutb();
 //                            if (list.size() > 0){
@@ -92,8 +92,8 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
 //                            mData.addAll(list);
                             loadData();
                             adapter.notifyDataSetChanged();
-                        }else{
-                            MyToast.showText(getBaseContext(),"删除失败！");
+                        } else {
+                            MyToast.showText(getBaseContext(), "删除失败！");
                         }
                         dialog.cancel();
                     }
@@ -121,9 +121,9 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         mData.clear();
         List<String> list = DBmanager.queryAllCyFromCyutb();
         mData.addAll(list);
-        if (mData.size() > 0){
+        if (mData.size() > 0) {
             relativeLayout.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             relativeLayout.setVisibility(View.GONE);
         }
     }
@@ -137,7 +137,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.chengyu_tv_clear:
                 AlertDialogUtils instance = AlertDialogUtils.getInstance();
-                AlertDialogUtils.showConfirmDialog(this,"温馨提示","确定清空这（"+mData.size()+"条）查找记录吗？","确定","算了");
+                AlertDialogUtils.showConfirmDialog(this, "温馨提示", "确定清空这（" + mData.size() + "条）查找记录吗？", "确定", "算了");
                 instance.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
                     @Override
                     public void onPositiveButtonClick(AlertDialog dialog) {
@@ -147,12 +147,12 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                         mData.addAll(list);
                         adapter.notifyDataSetChanged();
                         dialog.cancel();
-                        if (mData.size() > 0){
+                        if (mData.size() > 0) {
                             relativeLayout.setVisibility(View.VISIBLE);
-                            MyToast.showText(getBaseContext(),"记录清空失败！",false);
-                        }else{
+                            MyToast.showText(getBaseContext(), "记录清空失败！", false);
+                        } else {
                             relativeLayout.setVisibility(View.GONE);
-                            MyToast.showText(getBaseContext(),"记录已全部清空！",true);
+                            MyToast.showText(getBaseContext(), "记录已全部清空！", true);
                         }
                     }
 
@@ -175,16 +175,16 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
                 String text = searchEt.getText().toString().trim();
-                if (text.isEmpty()){
+                if (text.isEmpty()) {
                     MyToast.showText(context, "搜索框不能为空哦！");
                     return;
-                }else if (!checkHanZi(text)){
+                } else if (!checkHanZi(text)) {
                     MyToast.showText(context, "请输入中文汉字！");
                     return;
-                }else if (text.length() != 4){
+                } else if (text.length() != 4) {
                     MyToast.showText(context, "请输入四字成语！");
                     return;
-                }else{
+                } else {
                     //把文本输入的信息添加到集合
                     //跳转页面
                     startPage(text);
@@ -195,11 +195,11 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    private void startPage(String name){
+    private void startPage(String name) {
         //跳转到成语详情界面
         intent = new Intent(this, ChengYuInfoActivity.class);
-        intent.putExtra("chengyu",name);
+        intent.putExtra("chengyu", name);
         startActivity(intent);
-        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 }
