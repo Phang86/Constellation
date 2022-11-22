@@ -110,7 +110,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         passWord = findByKey("passWord");
         //获取应用版本号
         version = getVersion();
-        //刷新数据
+
         refreshData();
     }
 
