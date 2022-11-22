@@ -370,7 +370,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addCategory(Intent.CATEGORY_HOME);
             startActivity(intent);
-            //System.exit(0);
+//            System.exit(0);
         }
 
     }
