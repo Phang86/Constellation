@@ -179,7 +179,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                     MyToast.showText(context, "搜索框不能为空哦！");
                     return;
                 } else if (!checkHanZi(text)) {
-                    MyToast.showText(context, "请输入中文汉字！");
+                    MyToast.showText(context, "请输入汉字！");
                     return;
                 } else if (text.length() != 4) {
                     MyToast.showText(context, "请输入四字成语！");

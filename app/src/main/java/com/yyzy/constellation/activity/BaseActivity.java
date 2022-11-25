@@ -137,6 +137,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         return matcher.matches();
     }
 
+    // 验证是否为汉字
     public static boolean checkHanZi(String hanzi){
         String regexp = "^[\u4e00-\u9fa5]*$";
         Pattern pattern = Pattern.compile(regexp);

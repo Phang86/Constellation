@@ -281,14 +281,17 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         OCR.getInstance(this).release();
     }
 
+    // 当点击软键盘上自带的按钮时
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        // 把点击的键值传过去
         downOptions(actionId);
         return true;
     }
 
     private void downOptions(int actionId) {
         String text = editText.getText().toString().trim();
+        // 判断点击搜索按钮
         switch (actionId){
             case EditorInfo.IME_ACTION_SEARCH:
                 if (TextUtils.isEmpty(text)) {
