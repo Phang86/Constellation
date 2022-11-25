@@ -81,7 +81,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                     public void onPositiveButtonClick(AlertDialog dialog) {
                         int del = DBmanager.delWhereCyFromCyutb(name);
                         if (del > 0) {
-                            MyToast.showText(getBaseContext(), "删除成功！");
+                            MyToast.showText(getBaseContext(), "记录删除成功！");
                             mData.clear();
 //                            List<String> list = DBmanager.queryAllCyFromCyutb();
 //                            if (list.size() > 0){
@@ -93,7 +93,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                             loadData();
                             adapter.notifyDataSetChanged();
                         } else {
-                            MyToast.showText(getBaseContext(), "删除失败！");
+                            MyToast.showText(getBaseContext(), "记录删除失败！");
                         }
                         dialog.cancel();
                     }
@@ -149,10 +149,10 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                         dialog.cancel();
                         if (mData.size() > 0) {
                             relativeLayout.setVisibility(View.VISIBLE);
-                            MyToast.showText(getBaseContext(), "记录清空失败！", false);
+                            MyToast.showText(getBaseContext(), "查找记录清空失败！", false);
                         } else {
                             relativeLayout.setVisibility(View.GONE);
-                            MyToast.showText(getBaseContext(), "记录已全部清空！", true);
+                            MyToast.showText(getBaseContext(), "查找记录已全部清空！", true);
                         }
                     }
 

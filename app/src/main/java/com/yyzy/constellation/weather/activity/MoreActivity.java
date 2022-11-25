@@ -139,7 +139,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
                 clearData();
                 break;
             case R.id.more_layout_enjoy:
-                enjoyApp(getResources().getString(R.string.app_name)+"下载网址");
+                enjoyApp("ConstellationAPK_debug_v1.2.8_2022_11_22_18_30_11.apk");
                 break;
 //            case R.id.more_layout_version:
 //                //showAlertDialog();

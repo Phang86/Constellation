@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_35dp"
+        android:layout_margin="@dimen/dimen_30dp"
         app:cardCornerRadius="@dimen/dimen_10dp">
 
         <LinearLayout

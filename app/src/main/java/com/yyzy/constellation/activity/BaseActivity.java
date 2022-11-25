@@ -157,7 +157,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         return versionName;
     }
 
-    protected static void showDiyDialog(Context context, String msg) {
+    protected static void showDiyDialog(Activity context, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
