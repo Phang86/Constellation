@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -16,11 +17,29 @@ import com.yyzy.constellation.utils.AlertDialogUtils;
 
 public class IntentReceiver extends BroadcastReceiver {
 
+    private static IntentReceiver mInstance;
+
+    public IntentReceiver(){
+
+    }
+
+    public static IntentReceiver getInstance() {
+        if (mInstance == null) {
+            synchronized (IntentReceiver.class) {
+                if (mInstance == null) {
+                    mInstance = new IntentReceiver();
+                }
+            }
+        }
+        return mInstance;
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         if (networkInfo !=null && networkInfo.isAvailable()){
+            Log.e("TAG", "onReceive: "+"网络连接成功！");
 //            Toast toast = Toast.makeText(context,"网络连接成功",Toast.LENGTH_SHORT);
 //            toast.setGravity(Gravity.TOP,0,0);
 //            toast.show();

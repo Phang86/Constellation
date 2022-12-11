@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -180,18 +181,18 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 Intent intent = new Intent();
                 switch (item.getItemId()) {
-                    case R.id.skin:
-                        String skin = findByKey("skin");
-                        if (skin.equals("night")) {
-                            // 恢复应用默认皮肤
-                            SkinCompatManager.getInstance().restoreDefaultTheme();
-                            insertVal("skin", "defualt");
-                        } else {
-                            SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
-                            insertVal("skin", "night");
-                        }
-                        drawerLayout.closeDrawers();
-                        break;
+//                    case R.id.skin:
+//                        String skin = findByKey("skin");
+//                        if (skin.equals("night")) {
+//                            // 恢复应用默认皮肤
+//                            SkinCompatManager.getInstance().restoreDefaultTheme();
+//                            insertVal("skin", "defualt");
+//                        } else {
+//                            SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+//                            insertVal("skin", "night");
+//                        }
+//                        drawerLayout.closeDrawers();
+//                        break;
                     case R.id.gongneng:
                         MeFragment.showDialogSure(MainActivity.this, "功能介绍", StringUtils.setContent());
                         break;
@@ -352,7 +353,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK  && event.getAction() == KeyEvent.ACTION_DOWN) {
             exit();
             return true;
         }
@@ -378,7 +379,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receivers);
+        unregisterReceiver(IntentReceiver.getInstance());
     }
 
     @Override
