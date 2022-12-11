@@ -33,6 +33,16 @@
             android:layout_marginBottom="@dimen/dimen_20dp"
             android:textStyle="bold"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="86+"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dimen_5dp"/>
+
         <com.yyzy.constellation.utils.MyEditText
             android:id="@+id/cancel_et_phone"
             android:layout_width="match_parent"

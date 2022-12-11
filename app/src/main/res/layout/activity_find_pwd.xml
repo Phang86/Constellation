@@ -52,11 +52,17 @@
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@mipmap/account" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/find_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:background="@null"
                     android:hint="@string/eduser"
@@ -84,16 +90,26 @@
                 android:orientation="horizontal">
 
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_register_phone" />
+                    android:text="86+"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_15sp"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
 
                 <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/find_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:hint="请输入手机号"
@@ -127,6 +143,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_ver_code" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -135,7 +158,6 @@
                         android:id="@+id/find_et_verCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_20dp"
                         android:layout_marginRight="@dimen/dimen_70dp"
                         android:textCursorDrawable="@drawable/color_cursor"
                         android:hint="请输入验证码"

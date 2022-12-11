@@ -379,7 +379,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(IntentReceiver.getInstance());
+        unregisterReceiver(receivers);
     }
 
     @Override

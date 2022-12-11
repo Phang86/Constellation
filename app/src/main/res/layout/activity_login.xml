@@ -45,11 +45,17 @@
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@mipmap/account" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/edLogin_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:textCursorDrawable="@drawable/color_cursor_green"
                     android:lines="1"
                     android:background="@null"
@@ -82,11 +88,17 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/icon_iv_pwd" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/edLogin_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:textCursorDrawable="@drawable/color_cursor_green"
                     android:background="@null"
                     android:lines="1"
@@ -118,6 +130,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_ver_code" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -126,7 +145,6 @@
                         android:id="@+id/login_et_varCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dimen_15dp"
                         android:layout_marginRight="@dimen/dimen_70dp"
                         android:hint="请输入验证码"
                         android:textCursorDrawable="@drawable/color_cursor_green"

@@ -33,11 +33,17 @@
                 android:layout_height="@dimen/dimen_25dp"
                 android:background="@mipmap/account"/>
 
+            <View
+                android:layout_width="@dimen/dimen_1dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="@color/gray_200"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
+
             <EditText
                 android:id="@+id/update_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:hint="用户名（默认）"
                 android:inputType="text"
@@ -69,11 +75,17 @@
                 android:background="@drawable/icon_iv_pwd"
                 android:scaleType="fitXY"/>
 
+            <View
+                android:layout_width="@dimen/dimen_1dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="@color/gray_200"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
+
             <com.yyzy.constellation.utils.MyPasswordEditText
                 android:id="@+id/old_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:hint="@string/oldPwd"
                 android:textCursorDrawable="@drawable/color_cursor"
@@ -107,11 +119,17 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_update_pwd" />
 
+            <View
+                android:layout_width="@dimen/dimen_1dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="@color/gray_200"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
+
             <com.yyzy.constellation.utils.MyPasswordEditText
                 android:id="@+id/new_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:hint="@string/newPwd"
                 android:textCursorDrawable="@drawable/color_cursor"
@@ -143,11 +161,17 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_update_pwd" />
 
+            <View
+                android:layout_width="@dimen/dimen_1dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:background="@color/gray_200"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"/>
+
             <com.yyzy.constellation.utils.MyPasswordEditText
                 android:id="@+id/new_pwd_config"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_20dp"
                 android:background="@null"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:hint="@string/newPwdConfig"

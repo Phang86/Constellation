@@ -53,11 +53,17 @@
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@mipmap/account" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <EditText
                     android:id="@+id/config_ed_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:hint="用户名（默认）"
                     android:inputType="text"
@@ -85,16 +91,26 @@
                 android:orientation="horizontal">
 
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_register_phone" />
+                    android:text="86+"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_15sp"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
 
                 <EditText
                     android:id="@+id/config_ed_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:hint="手机号（默认）"
                     android:lines="1"
@@ -128,11 +144,17 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_update_pwd" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/config_ed_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:hint="@string/newPwd"
                     android:inputType="textPassword"
@@ -165,11 +187,17 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_update_pwd" />
 
+                <View
+                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/config_ed_pwd_two"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_20dp"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:hint="@string/newPwdConfig"
