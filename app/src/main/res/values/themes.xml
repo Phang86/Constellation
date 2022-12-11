@@ -5,7 +5,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
-        <item name="android:statusBarColor" tools:targetApi="l">#F0E68C</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -16,7 +15,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 

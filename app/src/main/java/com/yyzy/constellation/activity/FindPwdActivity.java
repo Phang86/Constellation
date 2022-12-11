@@ -41,7 +41,6 @@ import okhttp3.Response;
 
 public class FindPwdActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView ivBack;
     private TextView tvBack;
     private EditText userEt, phoneEt, verCodeEt;
     private Button findBtn;
@@ -59,12 +58,10 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
         phoneEt = findViewById(R.id.find_phone);
         findBtn = findViewById(R.id.find_btn);
         tvBack = findViewById(R.id.find_tv_login);
-        ivBack = findViewById(R.id.find_iv_back);
         ivCode = findViewById(R.id.find_iv_code);
         verCodeEt = findViewById(R.id.find_et_verCode);
         tvBack.setOnClickListener(this);
         findBtn.setOnClickListener(this);
-        ivBack.setOnClickListener(this);
         ivCode.setOnClickListener(this);
         findBtn.setEnabled(false);
         tvBack.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
@@ -167,10 +164,6 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                break;
-            case R.id.find_iv_back:
-                finish();
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_in);
                 break;
             case R.id.find_iv_code:
                 //重置验证码

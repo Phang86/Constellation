@@ -38,7 +38,7 @@ import com.yyzy.constellation.utils.SwipeCaptchaView;
 import java.util.Arrays;
 import java.util.List;
 
-public class SwipeCheckActivity extends AppCompatActivity implements View.OnClickListener {
+public class SwipeCheckActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView tvTitle;
@@ -70,17 +70,13 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
 
     private Animation animation;
 
-
     @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_swipe_check);
-        initView();
-        initData();
+    protected int initLayout() {
+        return R.layout.activity_swipe_check;
     }
 
-
-    private void initView(){
+    @Override
+    protected void initView() {
         imgBack = findViewById(R.id.details_back);
         tvTitle = findViewById(R.id.details_title);
         mSwipeCaptchaView = findViewById(R.id.swipeCaptchaView);
@@ -95,10 +91,10 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
         animation.setDuration(500);
         animation.setRepeatCount(1);//动画的重复次数
         animation.setFillAfter(true);//设置为true，动画转化结束后被应用
-
     }
 
-    private void initData(){
+    @Override
+    protected void initData() {
         mSwipeCaptchaView.setCurrentSwipeValue(0);
         mSwipeCaptchaView.setOnCaptchaMatchCallback(new SwipeCaptchaView.OnCaptchaMatchCallback() {
             @Override
@@ -123,8 +119,9 @@ public class SwipeCheckActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void matchFailed(SwipeCaptchaView swipeCaptchaView) {
                 MyToast.showText(SwipeCheckActivity.this,"验证失败！", Toast.LENGTH_SHORT,false);
-                swipeCaptchaView.resetCaptcha();
                 mSeekBar.setProgress(0);
+                swipeCaptchaView.resetCaptcha();
+
             }
         });
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

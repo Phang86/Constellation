@@ -47,7 +47,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     private TextView tvBack;
     private String findUserName;
     private String findUserPhone;
-    private ImageView ivBack;
 
     @Override
     protected int initLayout() {
@@ -62,12 +61,10 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         tvBack = findViewById(R.id.config_tv_login);
         edPwd = findViewById(R.id.config_ed_pwd);
         edConfigNewPwd = findViewById(R.id.config_ed_pwd_two);
-        ivBack = findViewById(R.id.config_iv_back);
         edPwd.addTextChangedListener(this);
         edConfigNewPwd.addTextChangedListener(this);
         tvBack.setOnClickListener(this);
         btnConfigPwd.setOnClickListener(this);
-        ivBack.setOnClickListener(this);
         Intent intent = getIntent();
         findUserName = intent.getStringExtra("findUserName");
         findUserPhone = intent.getStringExtra("findUserPhone");
@@ -100,10 +97,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 String newPwd = edPwd.getText().toString().trim();
                 String configNewPwd = edConfigNewPwd.getText().toString().trim();
                 requestNet(user,phone,newPwd,configNewPwd);
-                break;
-            case R.id.config_iv_back:
-                finish();
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }

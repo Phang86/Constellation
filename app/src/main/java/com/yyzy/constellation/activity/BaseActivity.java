@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
+import com.jaeger.library.StatusBarUtil;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
@@ -50,6 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         context = this;
         initView();
         initData();
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.lightyellow),0);
+
     }
 
     //初始化布局文件

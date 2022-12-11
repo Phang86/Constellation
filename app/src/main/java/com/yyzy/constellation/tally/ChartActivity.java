@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.tally.adapter.ChartVpAdapter;
 import com.yyzy.constellation.tally.bean.TallyLvItemBean;
 import com.yyzy.constellation.tally.db.TallyManger;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ChartActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChartActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack,imgCalendar;
     private TextView tvMonthBill,tvOutBill,tvInBill;
@@ -41,10 +42,29 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
     private ChartVpAdapter chartVpAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chart);
-        initView();
+    protected int initLayout() {
+        return R.layout.activity_chart;
+    }
+
+    @Override
+    protected void initView() {
+        imgBack = findViewById(R.id.chart_img_back);
+        imgCalendar = findViewById(R.id.chart_img_calendar);
+        tvMonthBill = findViewById(R.id.chart_tv_monthBill);
+        tvOutBill = findViewById(R.id.chart_tv_outBill);
+        tvInBill = findViewById(R.id.chart_tv_inBill);
+        btnOut = findViewById(R.id.chart_btn_out);
+        btnIn = findViewById(R.id.chart_btn_in);
+        vp = findViewById(R.id.chart_vp);
+
+        btnIn.setOnClickListener(this);
+        btnOut.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
+        imgCalendar.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initData() {
         ca = Calendar.getInstance();
         year = ca.get(Calendar.YEAR);
         month = ca.get(Calendar.MONTH)+1;
@@ -81,22 +101,6 @@ public class ChartActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-    }
-
-    private void initView() {
-        imgBack = findViewById(R.id.chart_img_back);
-        imgCalendar = findViewById(R.id.chart_img_calendar);
-        tvMonthBill = findViewById(R.id.chart_tv_monthBill);
-        tvOutBill = findViewById(R.id.chart_tv_outBill);
-        tvInBill = findViewById(R.id.chart_tv_inBill);
-        btnOut = findViewById(R.id.chart_btn_out);
-        btnIn = findViewById(R.id.chart_btn_in);
-        vp = findViewById(R.id.chart_vp);
-
-        btnIn.setOnClickListener(this);
-        btnOut.setOnClickListener(this);
-        imgBack.setOnClickListener(this);
-        imgCalendar.setOnClickListener(this);
     }
 
     private void initData(int year,int month) {

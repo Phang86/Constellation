@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/dimen_8dp"
             app:cardBackgroundColor="@color/bgyellow"
+            app:cardElevation="@dimen/dimen_0dp"
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginRight="@dimen/dimen_20dp">
 
@@ -61,26 +62,15 @@
                 app:captchaWidth="@dimen/dimen_35dp"/>
         </androidx.cardview.widget.CardView>
 
-
-        <LinearLayout
+        <SeekBar
+            android:id="@+id/dragBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp">
-
-            <SeekBar
-                android:id="@+id/dragBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/bg_check_dragbg"
-                android:thumb="@drawable/ic_btn"
-                android:layout_marginTop="@dimen/dimen_15dp"
-                android:splitTrack="false"
-                android:maxHeight="@dimen/dimen_15dp"
-                android:minHeight="@dimen/dimen_15dp"
-                android:paddingTop="@dimen/dimen_5dp"
-                android:paddingBottom="@dimen/dimen_0dp"
-                android:thumbOffset="9dp"/>
-        </LinearLayout>
+            android:progressDrawable="@drawable/seekbar_bg"
+            android:thumb="@drawable/ic_slide_btn"
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:thumbOffset="0dp"/>
     </LinearLayout>
 </LinearLayout>

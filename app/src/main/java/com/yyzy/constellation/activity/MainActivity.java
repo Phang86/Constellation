@@ -288,6 +288,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initData() {
+        //StatusBarUtil.setColor(MainActivity.this,getResources().getColor(R.color.yellow_300),0);
+
         //为布局管理器添加相应的Fragment
         //创建碎片管理者对象
         manager = getSupportFragmentManager();

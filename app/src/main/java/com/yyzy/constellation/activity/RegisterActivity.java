@@ -54,8 +54,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private Button mbtnRegister;
     private TextView tv;
-    //private DiyProgressDialog mDialog;
-    private ImageView ivBack;
+    //private DiyProgressDialog mDialog
 
     private Button validateNum_btn;
     private EditText validateNum;
@@ -76,7 +75,6 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         edRegisterPwd = findViewById(R.id.edRegister_pwd);
         edRegisterPhone = findViewById(R.id.edRegister_phone);
         mbtnRegister = findViewById(R.id.btnRegister_register);
-        ivBack = findViewById(R.id.register_iv_back);
         validateNum_btn = findViewById(R.id.validateNum_btn);
         validateNum = findViewById(R.id.validateNum);
         mbtnRegister.setEnabled(false);
@@ -84,7 +82,6 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         edRegisterUser.addTextChangedListener(this);
         edRegisterPwd.addTextChangedListener(this);
         validateNum.addTextChangedListener(this);
-        ivBack.setOnClickListener(this);
         validateNum_btn.setOnClickListener(this);
 
         mTimeCount = new TimeCount(60000, 1000);
@@ -399,10 +396,6 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                     //Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
                     MyToast.showText(RegisterActivity.this,"请输入手机号码",Toast.LENGTH_SHORT);
                 }
-                break;
-            case R.id.register_iv_back:
-                finish();
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
         }
     }

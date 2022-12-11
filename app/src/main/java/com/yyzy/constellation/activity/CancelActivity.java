@@ -18,7 +18,7 @@ import com.yyzy.constellation.R;
 import com.yyzy.constellation.utils.MyEditText;
 import com.yyzy.constellation.utils.MyToast;
 
-public class CancelActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+public class CancelActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private ImageView imgBack;
     private TextView tvTitle;
@@ -28,14 +28,12 @@ public class CancelActivity extends AppCompatActivity implements View.OnClickLis
     private String name;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cancel);
-        initView();
-        initData();
+    protected int initLayout() {
+        return R.layout.activity_cancel;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         imgBack = findViewById(R.id.details_back);
         tvTitle = findViewById(R.id.details_title);
         btnNext = findViewById(R.id.cancel_btn_next);
@@ -54,7 +52,8 @@ public class CancelActivity extends AppCompatActivity implements View.OnClickLis
         Log.e("TAG", "注销用户，该用户电话为："+myPhone);
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
 
     }
 

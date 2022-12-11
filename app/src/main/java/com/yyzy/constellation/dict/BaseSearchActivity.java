@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.activity.WordInfoActivity;
 import com.yyzy.constellation.dict.adapter.SearchLeftAdapter;
 import com.yyzy.constellation.dict.adapter.SearchRightAdapter;
@@ -42,7 +43,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseSearchActivity extends AppCompatActivity implements Callback.CommonCallback<String> {
+public class BaseSearchActivity extends BaseActivity implements Callback.CommonCallback<String> {
     private ImageView imgBack;
     public TextView tv;
     public ExpandableListView listView;
@@ -62,20 +63,27 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
     public String url = "";
     private DiyProgressDialog dialog;
 
+
+
     @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_pinyin);
-        initView();
-        //初始化GridView的数据源
-        initGridDada();
+    protected int initLayout() {
+        return R.layout.activity_search_pinyin;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         imgBack = findViewById(R.id.search_pinyin_iv_back);
         listView = findViewById(R.id.search_pinyin_epdlistView);
         gridView = findViewById(R.id.search_pinyin_gv);
         tv = findViewById(R.id.search_pinyin_tv);
+    }
+
+    @Override
+    protected void initData() {
+        gridDatas = new ArrayList<>();
+        //设置适配器
+        gridViewAdapter = new SearchRightAdapter(this, gridDatas);
+        gridView.setAdapter(gridViewAdapter);
     }
 
     public void setExlvListener(int type) {
@@ -131,13 +139,8 @@ public class BaseSearchActivity extends AppCompatActivity implements Callback.Co
         loadData(url);
     }
 
-    //初始化GridView里面的数据
-    public void initGridDada() {
-        gridDatas = new ArrayList<>();
-        //设置适配器
-        gridViewAdapter = new SearchRightAdapter(this, gridDatas);
-        gridView.setAdapter(gridViewAdapter);
-    }
+
+
 
     public void setGVListener(int type) {
         //下拉加载的监听器

@@ -50,7 +50,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CancelidActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+public class CancelidActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private TextView tvNum;
     private ImageView imgBack;
@@ -68,15 +68,14 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
     private String name;
     private NotificationManager manager;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cancelid);
-        initView();
-        initData();
+    protected int initLayout() {
+        return R.layout.activity_cancelid;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         MobSDK.submitPolicyGrantResult(true);
         tvNum = findViewById(R.id.zhuxiao_tv_num_to);
         imgBack = findViewById(R.id.details_back);
@@ -101,7 +100,8 @@ public class CancelidActivity extends AppCompatActivity implements View.OnClickL
         mTimeCount = new TimeCount(60000, 1000);
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
         eh = new EventHandler(){
             @Override
             public void afterEvent(int event, int result, Object data) {
