@@ -21,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.activity.LoginActivity;
@@ -30,7 +32,7 @@ import com.yyzy.constellation.weather.db.DBManager;
 
 
 public class MoreActivity extends BaseActivity implements View.OnClickListener {
-    private RelativeLayout layoutUpdate,layoutClear,layoutEnjoy;
+    private CardView layoutUpdate,layoutClear,layoutEnjoy;
     private RadioGroup radioGroup;
     private ImageView back;
     private SharedPreferences bgPref;

@@ -117,20 +117,19 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/bg</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:foreground">@drawable/view_foreground</item>
     </style>
     <style name="setImgStyle">
         <item name="android:layout_width">@dimen/dimen_25dp</item>
         <item name="android:layout_height">@dimen/dimen_25dp</item>
-        <item name="android:layout_margin">@dimen/dimen_10dp</item>
+        <item name="android:layout_marginRight">@dimen/dimen_10dp</item>
     </style>
     <style name="setTvStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/gray_600</item>
-        <item name="android:textSize">@dimen/size_14sp</item>
+        <item name="android:textColor">@color/black_200</item>
+        <item name="android:textSize">@dimen/size_15sp</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
     <style name="setViewStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -153,8 +152,8 @@
 
     <!--  weather包：更多设置字体样式  -->
     <style name="weatherMoreTv">
-        <item name="android:textSize">@dimen/size_14sp</item>
-        <item name="android:textColor">@color/gray_600</item>
+        <item name="android:textSize">@dimen/size_15sp</item>
+        <item name="android:textColor">@color/black_200</item>
     </style>
     <!--  weather包：更多设置RadioButton样式 -->
     <style name="weatherMoreRadioBtn">

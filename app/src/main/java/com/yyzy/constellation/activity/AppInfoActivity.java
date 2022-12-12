@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
@@ -64,7 +65,7 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 public class AppInfoActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView titleTv,userNameTv,updateTimeTv,versionTv,phoneTv,createTimeTv;
-    private RelativeLayout versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
+    private CardView versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
     private ImageView backImg;
     private String name,version;
     private SmartRefreshLayout swipeRefresh;
