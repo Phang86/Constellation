@@ -378,9 +378,10 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                                         if (!TextUtils.isEmpty(resultStr)) {
                                             MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
                                             //finish();
-                                            etPhone.setEnabled(false);
-                                            etValNum.setEnabled(false);
+//                                            etPhone.setEnabled(false);
+//                                            etValNum.setEnabled(false);
                                             mDialog.cancel();
+                                            finish();
                                         } else {
                                             MyToast.showText(UpdatePhoneOutActivity.this,"修改失败！服务器连接超时！");
                                             mDialog.cancel();
