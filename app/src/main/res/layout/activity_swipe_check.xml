@@ -71,6 +71,6 @@
             android:layout_marginLeft="@dimen/dimen_15dp"
             android:layout_marginRight="@dimen/dimen_15dp"
             android:layout_marginTop="@dimen/dimen_15dp"
-            android:thumbOffset="0dp"/>
+            android:thumbOffset="-5dp"/>
     </LinearLayout>
 </LinearLayout>

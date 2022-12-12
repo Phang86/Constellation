@@ -9,9 +9,9 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_330dp"
+        android:layout_height="@dimen/dimen_350dp"
         android:background="@mipmap/login"
-        android:scaleType="fitXY"/>
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_220dp"
+            android:layout_marginTop="@dimen/dimen_250dp"
             android:layout_marginRight="@dimen/dimen_18dp"
             android:paddingBottom="@dimen/dimen_20dp"
             android:paddingTop="@dimen/dimen_20dp"
@@ -46,7 +46,7 @@
                     android:background="@mipmap/account" />
 
                 <View
-                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_width="@dimen/dimen_0.5dp"
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@color/gray_200"
                     android:layout_marginLeft="@dimen/dimen_10dp"
@@ -89,7 +89,7 @@
                     android:background="@drawable/icon_iv_pwd" />
 
                 <View
-                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_width="@dimen/dimen_0.5dp"
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@color/gray_200"
                     android:layout_marginLeft="@dimen/dimen_10dp"
@@ -131,7 +131,7 @@
                     android:background="@drawable/ic_ver_code" />
 
                 <View
-                    android:layout_width="@dimen/dimen_1dp"
+                    android:layout_width="@dimen/dimen_0.5dp"
                     android:layout_height="@dimen/dimen_25dp"
                     android:background="@color/gray_200"
                     android:layout_marginLeft="@dimen/dimen_10dp"

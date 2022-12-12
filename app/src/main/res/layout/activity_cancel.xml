@@ -33,36 +33,59 @@
             android:layout_marginBottom="@dimen/dimen_20dp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="86+"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/dimen_5dp"/>
-
-        <com.yyzy.constellation.utils.MyEditText
-            android:id="@+id/cancel_et_phone"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入账号所绑定的手机号"
-            android:textColor="@color/black_200"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:inputType="number"
-            android:singleLine="true"
-            android:maxLength="11"
-            android:textSize="@dimen/size_16sp"
-            android:background="@null"
-            android:textStyle="bold"
-            android:textColorHint="@color/grey"/>
+            app:cardBackgroundColor="@color/white"
+            app:contentPadding="@dimen/dimen_16dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            app:cardMaxElevation="@dimen/dimen_0dp"
+            app:cardCornerRadius="@dimen/dimen_10dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_1dp"
-            android:background="#29B6F6"
-            android:layout_marginTop="@dimen/dimen_10dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="86+"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"/>
+
+                <View
+                    android:id="@+id/view_center"
+                    android:layout_width="@dimen/dimen_0.5dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/gray_200"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_toRightOf="@+id/tv_left"
+                    android:layout_centerVertical="true"/>
+
+                <com.yyzy.constellation.utils.MyEditText
+                    android:id="@+id/cancel_et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入账号所绑定的手机号"
+                    android:textColor="@color/black_200"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:maxLength="11"
+                    android:textSize="@dimen/size_15sp"
+                    android:background="@null"
+                    android:textColorHint="@color/grey"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@+id/view_center"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/cancel_btn_next"
