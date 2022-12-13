@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -235,7 +236,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                 if (statetb.equals("true")){
                     SharedPreferences app = getSharedPreferences("busApp", MODE_PRIVATE);
                     String username = app.getString("username", "");
-                    if (username.isEmpty()){
+                    if (TextUtils.isEmpty(username)){
                         username = "123456";
                     }
                     InputPwdDialog pwdDialog = new InputPwdDialog(TallyActivity.this, username);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -91,7 +92,7 @@ public class InputPwdDialog extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.dialog_pwd_btn_sure:
                 String pwd = etPwd.getText().toString();
-                if (!pwd.isEmpty()){
+                if (!TextUtils.isEmpty(pwd)){
                     if (pwd.equals(password)){
                         onClickSure.onSure();
                         return;
