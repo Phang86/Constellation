@@ -46,7 +46,7 @@
                 android:textSize="@dimen/size_22sp"
                 android:background="@null"
                 android:inputType="textPassword"
-                >
+                android:textColorHint="@color/red">
                 <requestFocus/>
             </com.yyzy.constellation.utils.MyPasswordEditText>
 

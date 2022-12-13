@@ -106,7 +106,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp"/>
 
 
             </LinearLayout>
@@ -155,7 +155,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -201,7 +201,7 @@
                     android:lines="1"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

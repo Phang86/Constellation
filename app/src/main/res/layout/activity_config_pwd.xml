@@ -155,7 +155,7 @@
                     android:lines="1"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/lightred"
-                    android:textSize="@dimen/size_16sp" />
+                    android:textSize="@dimen/size_16sp"/>
             </LinearLayout>
         </LinearLayout>
 

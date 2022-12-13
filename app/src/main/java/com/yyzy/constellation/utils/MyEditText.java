@@ -6,8 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import com.yyzy.constellation.R;
 
+import com.yyzy.constellation.R;
 
 
 public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
@@ -31,7 +31,7 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
     }
 
     private void init(Context context) {
-        this.mContext=context;
+        this.mContext = context;
         mDeleteDrawable = getCompoundDrawables()[2];
         if (mDeleteDrawable == null) {
             mDeleteDrawable = getResources().getDrawable(
@@ -58,9 +58,9 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.length()>0){
+            if (s.length() > 0) {
                 setClearIconVisible(true);
-            }else {
+            } else {
                 setClearIconVisible(false);
             }
         }
@@ -94,7 +94,7 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
-    private   int dip2px(float dpValue) {
+    private int dip2px(float dpValue) {
         final float scale = mContext.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }

@@ -2,6 +2,7 @@ package com.yyzy.constellation.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
@@ -9,13 +10,23 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
+
 import androidx.core.content.ContextCompat;
 import com.yyzy.constellation.R;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class MyPasswordEditText extends androidx.appcompat.widget.AppCompatEditText implements View.OnFocusChangeListener, TextWatcher {
     /**
@@ -34,6 +45,15 @@ public class MyPasswordEditText extends androidx.appcompat.widget.AppCompatEditT
     public MyPasswordEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+        //设置禁用长按
+        this.setLongClickable(false);
+        // 禁止编辑框横屏时弹出另外一个编辑界面
+        this.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        this.setCustomSelectionActionModeCallback(new ActionModeCallbackInterceptor());
+        //使用该方式基本可以实现禁用粘贴复制功能,6.0以上可用
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            this.setCustomInsertionActionModeCallback( new ActionModeCallbackInterceptor());
+        }
     }
 
 
@@ -146,4 +166,26 @@ public class MyPasswordEditText extends androidx.appcompat.widget.AppCompatEditT
         return translateAnimation;
     }
 
+    //禁止复制、粘贴
+    private class ActionModeCallbackInterceptor implements ActionMode.Callback {
+//        private final String TAG = this.class.getSimpleName();
+
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            return false;
+        }
+
+
+        public void onDestroyActionMode(ActionMode mode) {
+        }
+    }
 }
