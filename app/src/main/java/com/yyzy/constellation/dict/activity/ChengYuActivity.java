@@ -176,7 +176,7 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
             case EditorInfo.IME_ACTION_SEARCH:
                 String text = searchEt.getText().toString().trim();
                 if (text.isEmpty()) {
-                    MyToast.showText(context, "搜索框不能为空哦！");
+                    MyToast.showText(context, "请输入关键字！");
                     return;
                 } else if (!checkHanZi(text)) {
                     MyToast.showText(context, "请输入汉字！");

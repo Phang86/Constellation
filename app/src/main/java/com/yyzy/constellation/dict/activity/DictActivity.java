@@ -295,7 +295,7 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         switch (actionId){
             case EditorInfo.IME_ACTION_SEARCH:
                 if (TextUtils.isEmpty(text)) {
-                    showToast("输入框不能空！");
+                    showToast("请输入关键字！");
                     return;
                 }else if (!checkHanZi(text)){
                     showToast("请输入汉字！");

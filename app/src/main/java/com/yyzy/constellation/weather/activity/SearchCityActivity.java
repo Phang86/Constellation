@@ -122,7 +122,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
                 loadDatas(url);
             }
         }else {
-            MyToast.showText(this,"输入内容不能为空！");
+            MyToast.showText(this,"请输入关键字！");
         }
     }
 }

@@ -17,15 +17,15 @@
 
         <ImageView
             android:id="@+id/weather_iv_add"
-            android:layout_width="@dimen/dimen_30dp"
-            android:layout_height="@dimen/dimen_30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:src="@drawable/ic_iv_add" />
 
         <ImageView
             android:id="@+id/weather_iv_more"
-            android:layout_width="@dimen/dimen_30dp"
-            android:layout_height="@dimen/dimen_30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_iv_more" />
 
@@ -42,7 +42,8 @@
         android:layout_width="@dimen/dimen_25dp"
         android:layout_height="@dimen/dimen_25dp"
         android:src="@mipmap/icon_back"
-        android:layout_margin="@dimen/dimen_10dp"/>
+        android:layout_margin="@dimen/dimen_10dp"
+        android:visibility="invisible"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/weather_viewPager"
