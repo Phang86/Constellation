@@ -46,7 +46,6 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import skin.support.SkinCompatManager;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -135,17 +134,17 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.meFrag_tv_jieshao:
                 showDialogSure(getContext(),"功能介绍",StringUtils.setContent());
                 break;
-            case R.id.meFrag_tv_huanfu:
-                String skin = findByKey("skin");
-                if (skin.equals("night")){
-                    // 恢复应用默认皮肤
-                    SkinCompatManager.getInstance().restoreDefaultTheme();
-                    insertVal("skin","defualt");
-                }else {
-                    SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
-                    insertVal("skin","night");
-                }
-                break;
+//            case R.id.meFrag_tv_huanfu:
+//                String skin = findByKey("skin");
+//                if (skin.equals("night")){
+//                    // 恢复应用默认皮肤
+//                    SkinCompatManager.getInstance().restoreDefaultTheme();
+//                    insertVal("skin","defualt");
+//                }else {
+//                    SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+//                    insertVal("skin","night");
+//                }
+//                break;
             case R.id.meFrag_tv_tuichu:
                 dialogShow();
 //                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext())

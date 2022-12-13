@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yyzy.constellation.R;
@@ -72,12 +71,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         MyToast.showText(this, msg, Toast.LENGTH_SHORT);
     }
 
-    @NonNull
-    @Override
-    public AppCompatDelegate getDelegate() {
-        //获取系统换肤权限，取消系统默认的皮肤
-        return SkinAppCompatDelegateImpl.get(this, this);
-    }
+//    @NonNull
+//    @Override
+//    public AppCompatDelegate getDelegate() {
+//        //获取系统换肤权限，取消系统默认的皮肤
+//        return SkinAppCompatDelegateImpl.get(this, this);
+//    }
 
     @Override
     public boolean onCache(String result) {

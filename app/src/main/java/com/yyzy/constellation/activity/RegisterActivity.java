@@ -326,31 +326,31 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                             public void run() {
                                 if (resultStr.equals("success")) {
                                     MyToast.showText(RegisterActivity.this,"恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
-                                    edRegisterUser.setText("");
-                                    edRegisterUser.setHint("");
-                                    edRegisterPwd.setText("");
-                                    edRegisterPwd.setHint("");
-                                    edRegisterPhone.setText("");
-                                    edRegisterPhone.setHint("");
-                                    validateNum.setText("");
-                                    validateNum.setHint("");
-
+//                                    edRegisterUser.setText("");
+//                                    edRegisterUser.setHint("");
+//                                    edRegisterPwd.setText("");
+//                                    edRegisterPwd.setHint("");
+//                                    edRegisterPhone.setText("");
+//                                    edRegisterPhone.setHint("");
+//                                    validateNum.setText("");
+//                                    validateNum.setHint("");
                                     //mbtnRegister.setEnabled(false);
                                     mDialog.cancel();
+                                    finish();
+                                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                                     return;
-                                }else if (resultStr.equals("error")) {
+                                }
+                                if (resultStr.equals("error")) {
                                     MyToast.showText(RegisterActivity.this,"此用户名已存在！请更换用户名！");
                                     mbtnRegister.setEnabled(true);
                                     mDialog.cancel();
                                     return;
-                                } else {
-                                    MyToast.showText(RegisterActivity.this,"注册失败！服务器连接超时！");
-                                    mbtnRegister.setEnabled(true);
-                                    mDialog.cancel();
-                                    //return;
                                 }
+                                MyToast.showText(RegisterActivity.this,"注册失败！服务器连接超时！");
+                                mbtnRegister.setEnabled(true);
+                                mDialog.cancel();
                             }
-                        }, 1000);
+                        }, 500);
                     }
                 });
             }
