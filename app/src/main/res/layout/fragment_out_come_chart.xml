@@ -13,7 +13,8 @@
         android:text="@string/hello_blank_fragment"
         android:overScrollMode="never"
         android:dividerHeight="3px"
-        android:listSelector="@drawable/bg"/>
+        android:listSelector="@drawable/bg"
+        android:divider="@null"/>
 
     <TextView
         android:id="@+id/chart_frag_tv"

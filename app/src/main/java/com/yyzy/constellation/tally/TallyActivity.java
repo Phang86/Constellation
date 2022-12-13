@@ -3,20 +3,10 @@ package com.yyzy.constellation.tally;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.media.Image;
 import android.os.Handler;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,13 +17,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.yyzy.constellation.BuildConfig;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.tally.adapter.TallyLVAdapter;
 import com.yyzy.constellation.tally.bean.TallyLvItemBean;
 import com.yyzy.constellation.tally.db.TallyManger;
-import com.yyzy.constellation.tally.util.BeiZhuDialog;
+import com.yyzy.constellation.tally.util.InputPwdDialog;
 import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.tally.util.TallyInfoDialog;
 import com.yyzy.constellation.tally.util.TallyMoneyDialog;
@@ -44,9 +33,6 @@ import com.yyzy.constellation.utils.MyToast;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -62,8 +48,6 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
 
     private TextView tvOut,tvIn,tvYusuan,tvLook,tvSum;
     private ImageView imgLookMoney;
-    private float outSumMoneyOneDay;
-    private float inSumMoneyOneDay;
     private SharedPreferences spf;
     private String statetb;
     private DiyProgressDialog dialog;
@@ -76,6 +60,16 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     protected void initView() {
+        tvOut = findViewById(R.id.tally_lv_header_tv_Out);
+        tvIn = findViewById(R.id.tally_lv_header_tv_In);
+        tvYusuan = findViewById(R.id.tally_lv_header_tv_yusuan);
+        tvLook = findViewById(R.id.tally_lv_header_tv_look);
+        tvSum = findViewById(R.id.tally_lv_header_tv_sum);
+        imgLookMoney = findViewById(R.id.tally_lv_header_img_eyes);
+        imgLookMoney.setOnClickListener(this);
+        tvLook.setOnClickListener(this);
+        tvYusuan.setOnClickListener(this);
+        initHeaderViewData();
         imgBack = findViewById(R.id.tally_img_back);
         tvTitle = findViewById(R.id.tally_tv_title);
         imgAdd = findViewById(R.id.tally_img_add);
@@ -114,7 +108,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                         TallyActivity.this.onRefresh();
                     }
                 },200);
-                lv.setVisibility(View.VISIBLE);
+                //lv.setVisibility(View.VISIBLE);
                 if (dialog != null){
                     dialog.cancel();
                 }
@@ -130,38 +124,33 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void lvAddHeaderView() {
-        View view = LayoutInflater.from(this).inflate(R.layout.tally_lv_header,null);
-        lv.addHeaderView(view);
-        initLvHeaderView(view);
+//        View view = LayoutInflater.from(this).inflate(R.layout.tally_lv_header,null);
+//        lv.addHeaderView(view);
+        //initLvHeaderView(view);
         //给listView  item添加长按事件
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    //MyToast.showText(context,"此纪录不可删除哦！");
-                    return false;
-                }else{
-                    AlertDialogUtils dialog = AlertDialogUtils.getInstance();
-                    AlertDialogUtils.showConfirmDialog(context,"温馨提示","确定删除此纪录吗？","确定","取消");
-                    dialog.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
-                        @Override
-                        public void onPositiveButtonClick(AlertDialog dialog) {
-                            TallyLvItemBean bean = mData.get(position-1);
-                            if (TallyManger.delToData(bean.getId())) {
-                                MyToast.showText(context,"删除成功！");
-                                onRefresh();
-                            }else{
-                                MyToast.showText(context,"删除失败！");
-                            }
-                            dialog.dismiss();
+                AlertDialogUtils dialog = AlertDialogUtils.getInstance();
+                AlertDialogUtils.showConfirmDialog(context,"温馨提示","确定删除此纪录吗？","确定","取消");
+                dialog.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
+                    @Override
+                    public void onPositiveButtonClick(AlertDialog dialog) {
+                        TallyLvItemBean bean = mData.get(position);
+                        if (TallyManger.delToData(bean.getId())) {
+                            MyToast.showText(context,"删除成功！");
+                            onRefresh();
+                        }else{
+                            MyToast.showText(context,"删除失败！");
                         }
+                        dialog.dismiss();
+                    }
 
-                        @Override
-                        public void onNegativeButtonClick(AlertDialog dialog) {
-                            dialog.dismiss();
-                        }
-                    });
-                }
+                    @Override
+                    public void onNegativeButtonClick(AlertDialog dialog) {
+                        dialog.dismiss();
+                    }
+                });
                 return true;
             }
         });
@@ -170,30 +159,18 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    return;
-                }else{
-                    TallyLvItemBean itemBean = mData.get(position-1);
-                    TallyInfoDialog dialog = new TallyInfoDialog(TallyActivity.this, itemBean);
-                    dialog.show();
+                TallyLvItemBean itemBean = mData.get(position);
+                TallyInfoDialog dialog = new TallyInfoDialog(TallyActivity.this, itemBean);
+                dialog.show();
 //                    dialog.setWindowSize();
-                }
+
             }
         });
     }
 
-    private void initLvHeaderView(View view){
-        tvOut = view.findViewById(R.id.tally_lv_header_tv_Out);
-        tvIn = view.findViewById(R.id.tally_lv_header_tv_In);
-        tvYusuan = view.findViewById(R.id.tally_lv_header_tv_yusuan);
-        tvLook = view.findViewById(R.id.tally_lv_header_tv_look);
-        tvSum = view.findViewById(R.id.tally_lv_header_tv_sum);
-        imgLookMoney = view.findViewById(R.id.tally_lv_header_img_eyes);
-        imgLookMoney.setOnClickListener(this);
-        tvLook.setOnClickListener(this);
-        tvYusuan.setOnClickListener(this);
-        initHeaderViewData();
-    }
+//    private void initLvHeaderView(View view){
+//
+//    }
 
     private void initHeaderViewData() {
         new Handler().postDelayed(new Runnable() {
@@ -202,26 +179,31 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                 if (dialog != null) {
                     dialog.cancel();
                 }
-                lv.setVisibility(View.VISIBLE);
-                outSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 0);
-                inSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 1);
-                String str = "今日支出：￥"+outSumMoneyOneDay+"\t\t\t今日收入：￥"+inSumMoneyOneDay;
-                tvSum.setText(str);
-                float outMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 0);
-                float inMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 1);
-                tvOut.setText("￥"+outMoneyOneMonth);
-                tvIn.setText("￥"+inMoneyOneMonth);
-                float money = spf.getFloat("money", 0);
-                if (money == 0){
-                    tvYusuan.setText("￥0.0");
-                }else{
-                    float m = money - outMoneyOneMonth;
-                    tvYusuan.setText("￥"+m);
-                }
+//                lv.setVisibility(View.VISIBLE);
+                showAllPrice();
                 statetb = TallyManger.getStatetb();
                 toggleShow(statetb);
             }
         },300);
+
+    }
+
+    private void showAllPrice(){
+        float outSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 0);
+        float inSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 1);
+        String str = "今日支出：￥"+outSumMoneyOneDay+"\t\t\t今日收入：￥"+inSumMoneyOneDay;
+        tvSum.setText(str);
+        float outMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 0);
+        float inMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 1);
+        tvOut.setText("￥"+outMoneyOneMonth);
+        tvIn.setText("￥"+inMoneyOneMonth);
+        float money = spf.getFloat("money", 0);
+        if (money == 0){
+            tvYusuan.setText("￥0.0");
+        }else{
+            float m = money - outMoneyOneMonth;
+            tvYusuan.setText("￥"+m);
+        }
 
     }
 
@@ -251,13 +233,33 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                 statetb = TallyManger.getStatetb();
                 toggleShow(statetb);
                 if (statetb.equals("true")){
-                    TallyManger.updateStatetb("false");
-                    statetb = TallyManger.getStatetb();
+                    SharedPreferences app = getSharedPreferences("busApp", MODE_PRIVATE);
+                    String username = app.getString("username", "");
+                    if (username.isEmpty()){
+                        username = "123456";
+                    }
+                    InputPwdDialog pwdDialog = new InputPwdDialog(TallyActivity.this, username);
+                    pwdDialog.show();
+                    pwdDialog.setWindowSize();
+                    pwdDialog.setOnClickSure(new OnClickSure() {
+                        @Override
+                        public void onSure() {
+                            TallyManger.updateStatetb("false");
+                            statetb = TallyManger.getStatetb();
+                            toggleShow(statetb);
+                            pwdDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
                 }else{
                     TallyManger.updateStatetb("true");
                     statetb = TallyManger.getStatetb();
+                    toggleShow(statetb);
                 }
-                toggleShow(statetb);
                 break;
             case R.id.tally_lv_header_tv_look:
                 startIntent(ChartActivity.class);
@@ -278,19 +280,29 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
 
     private void toggleShow(String isShow) {
         if (isShow.equals("true")){
-            PasswordTransformationMethod passwordMethod = PasswordTransformationMethod.getInstance();
-            tvOut.setTransformationMethod(passwordMethod);
-            tvIn.setTransformationMethod(passwordMethod);
-            tvYusuan.setTransformationMethod(passwordMethod);
+            tvOut.setText("***");
+            tvIn.setText("***");
+            tvYusuan.setText("***");
+            tvSum.setText("今日支出：***\t\t\t\t今日收入：***");
+            lv.setVisibility(View.GONE);
             imgLookMoney.setImageResource(R.drawable.icon_eyes_hint);
+            imgMore.setVisibility(View.GONE);
+            tvYusuan.setEnabled(false);
+            tvLook.setEnabled(false);
         }else{
-            HideReturnsTransformationMethod hideMethod = HideReturnsTransformationMethod.getInstance();
-            tvOut.setTransformationMethod(hideMethod);
-            tvIn.setTransformationMethod(hideMethod);
-            tvYusuan.setTransformationMethod(hideMethod);
+            showAllPrice();
+            lv.setVisibility(View.VISIBLE);
             imgLookMoney.setImageResource(R.drawable.icon_eyes);
+            imgMore.setVisibility(View.VISIBLE);
+            tvYusuan.setEnabled(true);
+            tvLook.setEnabled(true);
         }
     }
+
+//    private boolean showInputPwdDialog(String pwd){
+//
+//        return false;
+//    }
 
     private void showDialogBottom(String money, float yu) {
         TallyMoneyDialog dialog = new TallyMoneyDialog(this);
@@ -327,7 +339,6 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mData.clear();
                 mData = TallyManger.getItemAll(year,month,day);
 //        mData = TallyManger.getAll();
                 adapter = new TallyLVAdapter(getBaseContext(),mData);

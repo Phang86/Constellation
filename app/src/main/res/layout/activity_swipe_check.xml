@@ -17,19 +17,19 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:layout_marginBottom="@dimen/dimen_5dp">
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_15dp">
 
             <TextView
                 android:id="@+id/swipe_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拖动下方滑块完成验证"
-                android:textColor="@color/yaBlack"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/size_15sp"/>
@@ -50,8 +50,8 @@
             app:cardCornerRadius="@dimen/dimen_8dp"
             app:cardBackgroundColor="@color/bgyellow"
             app:cardElevation="@dimen/dimen_0dp"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginRight="@dimen/dimen_20dp">
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp">
 
             <com.yyzy.constellation.utils.SwipeCaptchaView
                 android:id="@+id/swipeCaptchaView"
@@ -68,8 +68,8 @@
             android:layout_height="wrap_content"
             android:progressDrawable="@drawable/seekbar_bg"
             android:thumb="@drawable/ic_slide_btn"
-            android:layout_marginLeft="@dimen/dimen_15dp"
-            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:layout_marginTop="@dimen/dimen_15dp"
             android:thumbOffset="-5dp"/>
     </LinearLayout>

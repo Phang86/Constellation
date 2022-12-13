@@ -17,12 +17,12 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimen_30dp"
         android:orientation="vertical"
-        android:layout_margin="@dimen/dimen_20dp">
+        android:layout_margin="@dimen/dimen_10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/gray_100_ededed"
             app:contentPadding="@dimen/dimen_16dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
@@ -79,7 +79,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/gray_100_ededed"
             app:contentPadding="@dimen/dimen_16dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
@@ -130,7 +130,7 @@
     <Button
         android:id="@+id/updateOut_btn_confirm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_45dp"
         android:background="@drawable/selector_update_btn"
         android:text="完成"
         android:textColor="@color/white"

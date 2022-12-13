@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimen_30dp"
-        android:background="@color/white">
+        android:background="@color/gray_100_ededed">
 
 
         <LinearLayout
@@ -30,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:text="验证码将发送到手机\t\t86+"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/size_14sp"/>
+                android:textStyle="bold"
+                android:textSize="@dimen/size_15sp"/>
 
             <TextView
                 android:id="@+id/zhuxiao_tv_num_to"
@@ -90,8 +91,11 @@
     <Button
         android:id="@+id/zhuxiao_next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
         android:background="@drawable/selector_update_btn"
         android:text="确定注销"
         android:textColor="@color/white"

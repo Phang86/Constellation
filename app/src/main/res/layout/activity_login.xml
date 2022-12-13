@@ -205,14 +205,13 @@
             android:id="@+id/btnLogin_login"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_45dp"
-            android:layout_marginLeft="@dimen/dimen_18dp"
+            android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginTop="@dimen/dimen_70dp"
-            android:layout_marginRight="@dimen/dimen_18dp"
+            android:layout_marginRight="@dimen/dimen_20dp"
             android:background="@drawable/selector_login_btn_bg"
             android:text="@string/login"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_18sp"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/size_16sp"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"

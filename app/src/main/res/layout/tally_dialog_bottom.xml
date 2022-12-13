@@ -72,8 +72,7 @@
                 android:text="@string/smssdk_cancel"
                 android:layout_weight="1"
                 android:background="@drawable/selector_register_btn"
-                android:textStyle="bold"
-                android:textSize="@dimen/size_16sp"
+                android:textSize="@dimen/size_15sp"
                 android:layout_marginRight="@dimen/dimen_5dp"
                 android:layout_marginBottom="@dimen/dimen_10dp"
                 android:textColor="@color/white"/>
@@ -86,8 +85,7 @@
                 android:text="@string/smssdk_confirm"
                 android:layout_weight="1"
                 android:background="@drawable/selector_login_btn_bg"
-                android:textStyle="bold"
-                android:textSize="@dimen/size_16sp"
+                android:textSize="@dimen/size_15sp"
                 android:textColor="@color/white"
                 android:layout_marginLeft="@dimen/dimen_5dp"
                 android:layout_marginBottom="@dimen/dimen_10dp"/>

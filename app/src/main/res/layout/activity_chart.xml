@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_15dp"
-        android:background="@color/yellow_100"
+        android:background="@color/lightyellow"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/dimen_20dp">
 

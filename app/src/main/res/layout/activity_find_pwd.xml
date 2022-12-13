@@ -209,15 +209,14 @@
         <Button
             android:id="@+id/find_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_45dp"
             android:text="@string/next"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginRight="@dimen/dimen_20dp"
             android:background="@drawable/selector_update_btn"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
-            android:textStyle="bold" >
+            android:textSize="@dimen/size_16sp">
 
         </Button>
     </LinearLayout>

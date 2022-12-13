@@ -34,12 +34,19 @@
         tools:replace="android:icon, android:theme">
 
         <activity android:name=".tally.ChartActivity"/>
+
         <activity android:name=".tally.TallyJiluActivity" />
+
         <activity android:name=".tally.TallySearchActivity" />
+
         <activity android:name=".tally.RecordActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".tally.TallyActivity" />
+
+        <activity android:name=".tally.TallyActivity"
+            android:configChanges="orientation|keyboardHidden"/>
+
         <activity android:name=".news.NewsInfoActivity" />
+
         <activity android:name=".news.AddItemActivity" />
 
         <uses-library
@@ -127,8 +134,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LuckDetailsActivity" />
+
         <activity android:name=".activity.StarStartActivity" />
+
         <activity android:name=".activity.StarDetailsActivity" />
+
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"

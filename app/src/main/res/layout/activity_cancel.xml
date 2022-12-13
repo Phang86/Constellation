@@ -9,34 +9,35 @@
     tools:context=".activity.CancelActivity">
 
     <include
+        android:id="@+id/star_details_title"
         layout="@layout/star_details_title"
         android:layout_alignParentTop="true"
         android:layout_height="@dimen/dimen_50dp"
         android:layout_width="match_parent"/>
 
-
-
     <LinearLayout
+        android:id="@+id/star_details_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/dimen_100dp"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp">
+        android:layout_margin="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_below="@+id/star_details_title">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账号即将注销"
-            android:textSize="@dimen/size_20sp"
-            android:textColor="@color/black_200"
-            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:text="账号即将注销，为了确保是本人操作则进行手机验证。"
+            android:textSize="@dimen/size_15sp"
+            android:textColor="@color/grey"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:layout_marginBottom="@dimen/dimen_15dp"
             android:textStyle="bold"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/gray_100_ededed"
             app:contentPadding="@dimen/dimen_16dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
@@ -87,15 +88,20 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/cancel_btn_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_30dp"
-            android:background="@drawable/selector_update_btn"
-            android:text="下一步"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"/>
-    </LinearLayout>
 
+    </LinearLayout>
+    <Button
+        android:id="@+id/cancel_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:background="@drawable/selector_update_btn"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16sp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_below="@+id/star_details_center"
+        />
 </RelativeLayout>

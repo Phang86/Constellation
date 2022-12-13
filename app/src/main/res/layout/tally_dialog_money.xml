@@ -60,7 +60,8 @@
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
             app:cardCornerRadius="@dimen/dimen_10dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/gray_100_ededed">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -102,15 +103,14 @@
             android:id="@+id/tally_dialog_money_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40dp"
-            android:layout_marginLeft="@dimen/dimen_40dp"
-            android:layout_marginRight="@dimen/dimen_40dp"
+            android:layout_marginLeft="@dimen/dimen_60dp"
+            android:layout_marginRight="@dimen/dimen_60dp"
             android:layout_gravity="center"
             android:text="@string/smssdk_confirm"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:background="@drawable/selector_login_btn_bg"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
-            android:textStyle="bold"
+            android:textSize="@dimen/size_15sp"
             android:layout_marginBottom="@dimen/dimen_10dp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

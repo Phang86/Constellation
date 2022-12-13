@@ -3,6 +3,7 @@ package com.yyzy.constellation.tally;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,8 +47,6 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     private TextView tv;
     private DiyProgressDialog dialog;
 
-
-
     @Override
     protected int initLayout() {
         return R.layout.activity_tally_search;
@@ -70,6 +70,24 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
 
+    }
+
+    private Handler hander = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            et.setFocusable(true);
+            et.setFocusableInTouchMode(true);
+            et.requestFocus();
+            InputMethodManager inputManager = (InputMethodManager)et.getContext().getSystemService(INPUT_METHOD_SERVICE);
+            inputManager.showSoftInput(et, 0);
+        };
+    };
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            hander.sendEmptyMessageDelayed(0,10);
+        }
     }
 
     private void setLvListener() {
@@ -100,7 +118,7 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
             case EditorInfo.IME_ACTION_SEARCH:
                 lin.setVisibility(View.GONE);
                 if (TextUtils.isEmpty(text)) {
-                    MyToast.showText(getBaseContext(),"输入框不能为空！");
+                    MyToast.showText(getBaseContext(),"请输入关键字！");
                 }else{
                     mData.clear();
                     loadProgress();
