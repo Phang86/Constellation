@@ -65,8 +65,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.code.gson:gson:2.9.1'
 
-//    implementation 'skin.support:skin-support:+'                   // skin-support
-//    implementation 'skin.support:skin-support-appcompat:+'         // skin-support 基础控件支持
+    implementation 'skin.support:skin-support:+'                   // skin-support
+    implementation 'skin.support:skin-support-appcompat:+'         // skin-support 基础控件支持
     implementation 'org.xutils:xutils:3.8.12'
 
     //Google Material控件,以及迁移到AndroidX下一些控件的依赖
