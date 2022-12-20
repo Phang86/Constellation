@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private NotificationManager manager;
     private Notification note;
 
-    private BroadcastReceiver receivers = new IntentReceiver();
+//    private BroadcastReceiver receivers = new IntentReceiver();
 
     @Override
     protected int initLayout() {
@@ -119,8 +119,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         forgetTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         forgetTv.getPaint().setAntiAlias(true);//抗锯齿
 
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        this.registerReceiver(receivers,filter);
+//        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//        this.registerReceiver(receivers,filter);
 
     }
 
@@ -480,7 +480,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receivers);
+//        unregisterReceiver(receivers);
     }
 
     @Override

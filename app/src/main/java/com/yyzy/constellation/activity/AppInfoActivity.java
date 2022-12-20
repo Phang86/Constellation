@@ -282,7 +282,6 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                                     updateTimeTv.setText(data.get(0).getUpdateTime());
                                     userNameTv.setText(data.get(0).getUserName());
                                     createTimeTv.setText(data.get(0).getCreateTime());
-                                    Log.e("TAG", "run: ");
                                     String mobile = data.get(0).getMobile();
                                     String replacePhone = mobile.replace(" ", "");
                                     //进行加密

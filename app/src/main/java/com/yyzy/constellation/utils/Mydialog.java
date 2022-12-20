@@ -1,6 +1,7 @@
 package com.yyzy.constellation.utils;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +10,11 @@ import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,56 +26,56 @@ import com.yyzy.constellation.R;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Mydialog extends AlertDialog implements View.OnClickListener{
-    TextView text_read;
-    Button mBtnCancel, mBtnConnect;
-    Context mContext;
-    Activity mActivity;
+public class Mydialog extends Dialog {
+    private ClickSure clickSure;
+    private TextView tvTitle,tvContent;
+    private Button mBtnSure;
+    private Context mContext;
+    private String title,content;
 
-    protected Mydialog(Context context, Activity activity) {
+    public void setClickSure(ClickSure clickSure) {
+        this.clickSure = clickSure;
+    }
+
+    public Mydialog(Context context, String title, String content) {
         super(context);
-        mContext = context;
-        mActivity = activity;
+        this.mContext = context;
+        this.title = title;
+        this.content = content;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diy_alert_dialog);
-        //mBtnCancel = (Button) findViewById(R.id.btn_cancel);
-        //mBtnCancel.setOnClickListener(this);
-        ///mBtnConnect = (Button) findViewById(R.id.btn_connect);
-        //mBtnConnect.setOnClickListener(this);
-        //text_read = (TextView) findViewById(R.id.read_text);
-
-        final SpannableStringBuilder style = new SpannableStringBuilder();
-
-        //设置文字
-        style.append("请您在使用前点击阅读《XXXX隐私政策》，如果同意，请点击下方“同意”按钮开始使用软件。");
-
-        //设置部分文字点击事件
-        ClickableSpan clickableSpan = new ClickableSpan() {
+        setContentView(R.layout.diy_alert_dialog_sure);
+        mBtnSure = (Button) findViewById(R.id.dialog_two_btn_sure);
+        tvTitle = findViewById(R.id.dialog_two_title);
+        tvContent = findViewById(R.id.dialog_two_content);
+        tvTitle.setText(title);
+        tvContent.setText(content);
+        mBtnSure.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View widget) {
-                Toast.makeText(mContext, "触发点击事件!", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                clickSure.onClickSure();
             }
-        };
-        style.setSpan(clickableSpan, 11, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        text_read.setText(style);
-
-        //设置部分文字颜色
-        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#0000FF"));
-        style.setSpan(foregroundColorSpan, 11, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        //配置给TextView
-        text_read.setMovementMethod(LinkMovementMethod.getInstance());
-        text_read.setText(style);
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void setDialogSize(){
+        //获取窗口对象
+        Window window = getWindow();
+        //获取窗口对象参数
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        //获取屏幕尺寸
+        Display d = window.getWindowManager().getDefaultDisplay();
+        wlp.width = d.getWidth();
+        wlp.gravity = Gravity.CENTER;
+        window.setBackgroundDrawableResource(android.R.color.transparent);
+        window.setAttributes(wlp);
+    }
 
-        }
+
+    public interface ClickSure{
+        void onClickSure();
     }
 }

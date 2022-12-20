@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.receiver.IntentReceiver;
 
 public class AlertDialogUtils {
     private static View view_custom;
@@ -21,9 +22,21 @@ public class AlertDialogUtils {
     public static AlertDialog alert;
     public static TextView tv_dialog_title, tv_dialog_content;
     public static Button dialog_cancelBtn, dialog_confirmBtn;
+    private static AlertDialogUtils mInstance;
+
+    public AlertDialogUtils(){
+
+    }
 
     public static AlertDialogUtils getInstance() {
-        return new AlertDialogUtils();
+        if (mInstance == null) {
+            synchronized (AlertDialogUtils.class) {
+                if (mInstance == null) {
+                    mInstance = new AlertDialogUtils();
+                }
+            }
+        }
+        return mInstance;
     }
 
     /**

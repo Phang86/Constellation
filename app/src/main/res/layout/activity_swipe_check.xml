@@ -47,7 +47,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/dimen_8dp"
+            app:cardCornerRadius="@dimen/dimen_5dp"
             app:cardBackgroundColor="@color/bgyellow"
             app:cardElevation="@dimen/dimen_0dp"
             android:layout_marginLeft="@dimen/dimen_10dp"
@@ -56,8 +56,8 @@
             <com.yyzy.constellation.utils.SwipeCaptchaView
                 android:id="@+id/swipeCaptchaView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:layout_height="@dimen/dimen_220dp"
+                android:scaleType="centerCrop"
                 app:captchaHeight="@dimen/dimen_35dp"
                 app:captchaWidth="@dimen/dimen_35dp"/>
         </androidx.cardview.widget.CardView>

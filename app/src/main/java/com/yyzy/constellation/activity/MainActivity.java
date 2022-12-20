@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             .diskCacheStrategy(DiskCacheStrategy.NONE)  //不做磁盘缓存
             .skipMemoryCache(true);         //不做内存缓存
 
-    private BroadcastReceiver receivers = new IntentReceiver();
+
 
     private long exitTime = 0;
 
@@ -156,8 +156,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             Glide.with(this).load(imageUrl).apply(requestOptions).into(cirImg);
         }
 
-        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        this.registerReceiver(receivers, filter);
+
     }
 
 
@@ -380,7 +379,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(receivers);
+//        unregisterReceiver(receivers);
     }
 
     @Override

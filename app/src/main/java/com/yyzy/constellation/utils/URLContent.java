@@ -10,6 +10,9 @@ public class URLContent {
     //字典 每日一句接口
     public static final String DICT_EVERYDAY_URL = "https://www.mxnzp.com/api/daily_word/recommend?count=1&app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
 
+    //随机图片
+    public static final String RANDOM_IMG_URL = "https://www.mxnzp.com/api/image/girl/list/random?app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
+
     //注册  本地服务器接口
     //星座配对网络接口
     public static String getPartnerURL(String man,String woman){

@@ -3,10 +3,13 @@ package com.yyzy.constellation.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,8 +28,10 @@ import androidx.appcompat.app.SkinAppCompatDelegateImpl;
 
 import com.jaeger.library.StatusBarUtil;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.receiver.IntentReceiver;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.Mydialog;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -52,7 +57,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         initView();
         initData();
         StatusBarUtil.setColor(this,getResources().getColor(R.color.lightyellow),0);
-
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        this.registerReceiver(IntentReceiver.getInstance(), filter);
     }
 
     //初始化布局文件
@@ -104,7 +110,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(IntentReceiver.getInstance());
+    }
 
     /*
      * 注册：严格使用正则表达式
