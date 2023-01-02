@@ -32,7 +32,7 @@
             app:contentPaddingLeft="@dimen/dimen_10dp"
             android:layout_marginRight="@dimen/dimen_10dp"
             android:paddingRight="@dimen/dimen_10dp"
-            app:cardCornerRadius="@dimen/dimen_40dp">
+            app:cardCornerRadius="@dimen/dimen_20dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -3,6 +3,7 @@
     <style name="Theme.Constellation" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="q">true</item>
 <!--        <item name="colorControlActivated">#C759D662</item>-->
     </style>
 
