@@ -115,9 +115,9 @@
                 <View
                     android:id="@+id/chengyuInfo_view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_height="1px"
                     android:layout_below="@+id/chengyuInfo_tv_jieshi"
-                    android:background="@color/gray_500"
+                    android:background="@color/gray_600"
                     android:layout_marginBottom="@dimen/dimen_10dp"/>
 
                 <TextView
@@ -211,9 +211,9 @@
                 <View
                     android:id="@+id/chengyuInfo_viewT"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_height="1px"
                     android:layout_below="@+id/chengyuInfo_tv_jbyy"
-                    android:background="@color/gray_500"/>
+                    android:background="@color/gray_600"/>
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_jbyy_content"

@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public class TallyDialogTime extends Dialog implements View.OnClickListener, TextWatcher {
     private DatePicker datePicker;
     private EditText etHour,etMinute;
-    private Button btnCancel,btnConfirm;
+    private TextView btnCancel,btnConfirm;
     private OnEnSure onEnSure;
 
     public void setOnEnSure(OnEnSure onEnSure) {

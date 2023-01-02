@@ -21,14 +21,12 @@
             android:text="@string/smssdk_back"
             android:textColor="@color/black"
             android:textSize="@dimen/size_15sp"
-            android:foreground="?android:attr/selectableItemBackground"
             android:drawableLeft="@drawable/icon_delete_city_back" />
 
         <TextView
             android:id="@+id/delete_iv_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:foreground="?android:attr/selectableItemBackground"
             android:text="完成"
             android:textSize="@dimen/size_15sp"
             android:textColor="@color/black"

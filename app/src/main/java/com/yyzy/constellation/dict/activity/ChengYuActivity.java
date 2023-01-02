@@ -26,6 +26,7 @@ import java.util.List;
 
 public class ChengYuActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
+    private TextView tvSearch;
     private ImageView backImg;
     private EditText searchEt;
     private GridView gv;
@@ -47,8 +48,10 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         gv = findViewById(R.id.chengyu_gv);
         relativeLayout = findViewById(R.id.chengyu_layout);
         tvClear = findViewById(R.id.chengyu_tv_clear);
+        tvSearch = findViewById(R.id.search_iv_confirm);
         backImg.setOnClickListener(this);
         tvClear.setOnClickListener(this);
+        tvSearch.setOnClickListener(this);
         searchEt.setOnEditorActionListener(this);
         relativeLayout.setVisibility(View.GONE);
     }
@@ -158,6 +161,9 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
                     }
                 });
                 break;
+            case R.id.search_iv_confirm:
+                searchIdiom();
+                break;
         }
     }
 
@@ -170,28 +176,33 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
     private void downOption(int actionId) {
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
-                ViewUtil.hideOneInputMethod(ChengYuActivity.this,searchEt);
-                String text = searchEt.getText().toString().trim();
-                if (text.isEmpty()) {
-                    MyToast.showText(context, "请输入关键字！");
-                    return;
-                }
-                if (!checkHanZi(text)) {
-                    MyToast.showText(context, "请输入汉字！");
-                    return;
-                }
-                if (text.length() != 4) {
-                    MyToast.showText(context, "请输入四字成语！");
-                    return;
-                }
-                //把文本输入的信息添加到集合
-                //跳转页面
-                startPage(text);
-                //清空文本框
-                searchEt.setText("");
+                searchIdiom();
                 break;
         }
     }
+
+    private void searchIdiom() {
+        ViewUtil.hideOneInputMethod(ChengYuActivity.this,searchEt);
+        String text = searchEt.getText().toString().trim();
+        if (text.isEmpty()) {
+            MyToast.showText(context, "请输入关键字！");
+            return;
+        }
+        if (!checkHanZi(text)) {
+            MyToast.showText(context, "请输入汉字！");
+            return;
+        }
+        if (text.length() != 4) {
+            MyToast.showText(context, "请输入四字成语！");
+            return;
+        }
+        //把文本输入的信息添加到集合
+        //跳转页面
+        startPage(text);
+        //清空文本框
+        searchEt.setText("");
+    }
+
 
     private void startPage(String name) {
         //跳转到成语详情界面

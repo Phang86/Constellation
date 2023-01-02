@@ -108,7 +108,7 @@ public class SearchLeftAdapter extends BaseExpandableListAdapter {
             convertView.setBackgroundColor(Color.parseColor("#6495ED"));
             holder.groupTv.setTextColor(Color.parseColor("#FF9800"));
         }else {
-            convertView.setBackgroundResource(R.color.yellow_100);
+            convertView.setBackgroundResource(R.color.gray_200);
             holder.groupTv.setTextColor(Color.BLACK);
         }
         return convertView;
@@ -135,7 +135,7 @@ public class SearchLeftAdapter extends BaseExpandableListAdapter {
             convertView.setBackgroundColor(Color.parseColor("#95B6F1"));
             holder.childTv.setTextColor(Color.parseColor("#FF9800"));
         }else {
-            convertView.setBackgroundResource(R.color.yellow_100);
+            convertView.setBackgroundResource(R.color.state_bg);
             holder.childTv.setTextColor(Color.BLACK);
         }
         return convertView;

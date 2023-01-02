@@ -67,7 +67,7 @@ public class CalendarAdapter extends BaseAdapter {
 //        cv.setCardBackgroundColor();
         tv.setTextColor(Color.BLACK);
         if (position == selPos) {
-            cv.setCardBackgroundColor(context.getResources().getColor(R.color.pink));
+            cv.setCardBackgroundColor(context.getResources().getColor(R.color.gray_500));
             tv.setTextColor(Color.WHITE);
         }
         return convertView;

@@ -34,7 +34,6 @@ import static com.yyzy.constellation.utils.CommonUtils.TYPE_PINYIN;
 public class SearchPinyinActivity extends BaseSearchActivity {
     String url;
 
-
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

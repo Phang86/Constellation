@@ -6,7 +6,6 @@
     android:orientation="vertical"
     app:cardElevation="@dimen/dimen_0dp"
     app:cardMaxElevation="@dimen/dimen_0dp"
-    app:cardBackgroundColor="@color/lightyellow"
     app:cardCornerRadius="@dimen/dimen_15dp">
 
     <LinearLayout
@@ -32,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="4"
-            android:listSelector="@color/yellow_100"
+            android:listSelector="@color/state_bg"
             android:overScrollMode="never"
             android:scrollbars="none" />
 

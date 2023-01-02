@@ -154,15 +154,15 @@ public class ChartActivity extends BaseActivity implements View.OnClickListener{
     private void setButtonStyle(int outOrIn){
         if (outOrIn == 0){
             btnOut.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg_fs));
-            btnOut.setTextColor(getResources().getColor(R.color.white));
+            btnOut.setTextColor(getResources().getColor(R.color.grey));
             btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
-            btnIn.setTextColor(getResources().getColor(R.color.pink));
+            btnIn.setTextColor(getResources().getColor(R.color.gray_500));
         }
         if (outOrIn == 1){
             btnOut.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
-            btnOut.setTextColor(getResources().getColor(R.color.pink));
+            btnOut.setTextColor(getResources().getColor(R.color.gray_500));
             btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg_fs));
-            btnIn.setTextColor(getResources().getColor(R.color.white));
+            btnIn.setTextColor(getResources().getColor(R.color.grey));
         }
     }
 }

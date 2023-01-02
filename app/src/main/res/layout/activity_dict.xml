@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightyellow">
+        android:background="@color/state_bg">
 
         <ImageView
             android:id="@+id/dict_iv_back"
@@ -52,7 +52,6 @@
             android:textColor="@color/black"
             android:textSize="@dimen/size_15sp"
             android:imeOptions="actionSearch"
-            android:textStyle="bold"
             android:maxLength="1"
             android:inputType="text">
             <requestFocus/>

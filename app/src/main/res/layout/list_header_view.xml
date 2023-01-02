@@ -3,8 +3,7 @@
     android:orientation="vertical"
     android:id="@+id/header_layout_max"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/mainBg">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/header_tv_gongli"
@@ -64,7 +63,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textIsSelectable="true"
-            android:text=""
             android:lineHeight="@dimen/dimen_20dp"
             android:textSize="@dimen/size_15sp" />
 
@@ -75,7 +73,6 @@
             android:textIsSelectable="true"
             android:textColor="@color/black"
             android:lineHeight="@dimen/dimen_20dp"
-            android:text=""
             android:textSize="@dimen/size_15sp" />
 
         <TextView

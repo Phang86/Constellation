@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LocalMusicActivity"
-    android:orientation="vertical"
-    android:background="@mipmap/bg2">
+    android:orientation="vertical">
 
     <include
         android:id="@+id/shang"
@@ -18,8 +17,7 @@
         android:layout_height="@dimen/dimen_0dp"
         android:layout_below="@+id/shang"
         android:layout_above="@+id/bottom"
-        android:overScrollMode="never"
-        android:background="@mipmap/bg2"/>
+        android:overScrollMode="never"/>
 
    <RelativeLayout
        android:id="@+id/bottom"
@@ -28,15 +26,15 @@
        android:layout_alignParentBottom="true"
        android:background="@drawable/bg_two">
 
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/dimen_1dp"
-           android:background="@color/grey"/>
+<!--       <View-->
+<!--           android:layout_width="match_parent"-->
+<!--           android:layout_height="@dimen/dimen_1dp"-->
+<!--           android:background="@color/grey"/>-->
 
        <ImageView
            android:id="@+id/titleImg"
-           android:layout_width="@dimen/dimen_70dp"
-           android:layout_height="@dimen/dimen_70dp"
+           android:layout_width="@dimen/dimen_60dp"
+           android:layout_height="@dimen/dimen_60dp"
            android:src="@mipmap/icon_song"
            android:background="@mipmap/a1"/>
 

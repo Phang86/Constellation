@@ -18,64 +18,58 @@
                     android:id="@+id/search_iv_back"
                     android:layout_width="@dimen/dimen_25dp"
                     android:layout_height="@dimen/dimen_25dp"
-                    android:src="@mipmap/icon_back"/>
+                    android:src="@mipmap/icon_back"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/findCity"
-                    android:textSize="@dimen/size_16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/search_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            app:cardBackgroundColor="@color/gray_100_ededed"
-            app:cardMaxElevation="@dimen/dimen_0dp"
-            app:cardElevation="@dimen/dimen_0dp"
-            android:layout_below="@+id/search_top_layout"
-            app:contentPadding="@dimen/dimen_5dp"
-            app:cardCornerRadius="@dimen/dimen_8dp">
-
-                <RelativeLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="@dimen/dimen_40dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardMaxElevation="@dimen/dimen_0dp"
+                    app:cardElevation="@dimen/dimen_0dp"
+                    android:layout_below="@+id/search_top_layout"
+                    app:contentPaddingLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    app:cardCornerRadius="@dimen/dimen_40dp">
 
-                        <com.yyzy.constellation.utils.MyEditText
-                            android:id="@+id/search_et"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/search_iv_confirm"
-                            android:hint="@string/searchCity"
-                            android:paddingLeft="@dimen/dimen_5dp"
-                            android:paddingTop="@dimen/dimen_10dp"
-                            android:lines="1"
-                            android:inputType="text"
-                            android:imeOptions="actionSearch"
-                            android:textColorHint="@color/grey"
-                            android:textColor="@color/black"
-                            android:paddingBottom="@dimen/dimen_10dp"
-                            android:textSize="@dimen/size_16sp"
-                            android:background="@null">
-                                <requestFocus/>
-                        </com.yyzy.constellation.utils.MyEditText>
+                            android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:id="@+id/search_iv_confirm"
-                            android:layout_width="@dimen/dimen_25dp"
-                            android:layout_height="@dimen/dimen_25dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginLeft="@dimen/dimen_15dp"
-                            android:src="@mipmap/icon_search"
-                            android:layout_centerVertical="true"/>
-                </RelativeLayout>
+                                <com.yyzy.constellation.utils.MyEditText
+                                    android:id="@+id/search_et"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toLeftOf="@+id/search_iv_confirm"
+                                    android:hint="@string/searchCity"
+                                    android:paddingLeft="@dimen/dimen_5dp"
+                                    android:paddingTop="@dimen/dimen_10dp"
+                                    android:lines="1"
+                                    android:inputType="text"
+                                    android:imeOptions="actionSearch"
+                                    android:textColorHint="@color/grey"
+                                    android:textColor="@color/black"
+                                    android:paddingBottom="@dimen/dimen_10dp"
+                                    android:textSize="@dimen/size_16sp"
+                                    android:background="@null">
+                                        <requestFocus/>
+                                </com.yyzy.constellation.utils.MyEditText>
 
-        </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/search_iv_confirm"
+                                    android:layout_width="@dimen/dimen_70dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentRight="true"
+                                    android:gravity="center"
+                                    android:text="搜索"
+                                    android:layout_margin="@dimen/dimen_3dp"
+                                    android:background="@drawable/selector_partnership_btn_bg"/>
+                        </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+        </androidx.appcompat.widget.Toolbar>
 
 
 
@@ -83,7 +77,7 @@
             android:id="@+id/search_tv_hotCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/search_layout"
+            android:layout_below="@+id/search_top_layout"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:textSize="@dimen/size_16sp"

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class CityManagerActivity extends BaseActivity implements View.OnClickListener {
     private ImageView backImg,deleteImg;
-    private TextView tvAddCity;
+    private ImageView tvAddCity;
     private ListView listView;
     //显示列表数据源
     private List<DatabaseEntity> mData;

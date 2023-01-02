@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 public class TallyMoneyDialog extends Dialog implements View.OnClickListener, TextWatcher {
 
     private EditText etMoney;
-    private Button btnConfirm;
+    private TextView btnConfirm;
     private ImageView imgClose;
     private OnClickEnSure clickEnSure;
     private TextView tvSum;

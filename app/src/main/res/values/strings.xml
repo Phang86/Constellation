@@ -7,10 +7,10 @@
     <string name="label_me" translatable="false">我的</string>
     <string name="starCharacter" translatable="false">星座特性：</string>
     <string name="starParse" translatable="false">星座解析</string>
-    <string name="man" translatable="false">男生:</string>
-    <string name="woman" translatable="false">女生:</string>
+    <string name="man" translatable="false">男生</string>
+    <string name="woman" translatable="false">女生</string>
     <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
-    <string name="start_partnership" translatable="false">开始配对</string>
+    <string name="start_partnership" translatable="false">配对分析</string>
     <string name="lucky" translatable="false">放松一下</string>
     <string name="historyToday" translatable="false">历史上的今天</string>
     <string name="jieshao" translatable="false">功能介绍</string>

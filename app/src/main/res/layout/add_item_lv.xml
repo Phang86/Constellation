@@ -13,7 +13,7 @@
         app:contentPadding="@dimen/dimen_20dp"
         app:cardElevation="@dimen/dimen_0dp"
         app:cardMaxElevation="@dimen/dimen_0dp"
-        app:cardBackgroundColor="@color/yellow_100">
+        app:cardBackgroundColor="@color/state_bg">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -23,7 +23,8 @@ import com.yyzy.constellation.weather.entity.WeatherEntity;
 
 public class SearchCityActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
-    private ImageView imgBack,imgSearch;
+    private ImageView imgBack;
+    private TextView imgSearch;
     private EditText etSearch;
     private GridView gv;
     String hotCity[] = {"北京","上海","杭州","重庆","长沙","苏州","厦门","广州","深圳","成都"};

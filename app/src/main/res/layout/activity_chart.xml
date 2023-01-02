@@ -16,13 +16,13 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@color/lightyellow">
+            android:background="@color/state_bg">
 
             <ImageView
                 android:id="@+id/chart_img_back"
-                android:layout_width="@dimen/dimen_20dp"
-                android:layout_height="@dimen/dimen_20dp"
-                android:src="@mipmap/back"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@mipmap/icon_back"
                 android:background="@null"/>
 
             <TextView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tallyInfo"
                 android:textSize="@dimen/size_16sp"
-                android:textColor="@color/pink"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center"/>
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_15dp"
-        android:background="@color/lightyellow"
+        android:background="@color/state_bg"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:layout_below="@+id/top_layout">
@@ -100,7 +100,7 @@
             android:layout_height="@dimen/dimen_35dp"
             android:background="@drawable/tally_calendar_dialog_bg_fs"
             android:text="@string/out"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:elevation="@dimen/dimen_0dp"
             android:textStyle="bold"
             android:gravity="center"
@@ -113,7 +113,7 @@
             android:background="@drawable/tally_calendar_dialog_bg"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:text="@string/in"
-            android:textColor="@color/pink"
+            android:textColor="@color/black"
             android:elevation="@dimen/dimen_0dp"
             android:textStyle="bold"
             android:gravity="center"

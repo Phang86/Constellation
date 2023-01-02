@@ -122,11 +122,11 @@ public class TallyCalendarDialog extends Dialog implements View.OnClickListener 
         for (int i = 0; i < hsvViewList.size(); i++) {
             TextView textView = hsvViewList.get(i);
             textView.setBackgroundResource(R.drawable.tally_calendar_dialog_bg);
-            textView.setTextColor(getContext().getResources().getColor(R.color.pink));
+            textView.setTextColor(getContext().getResources().getColor(R.color.black_200));
         }
 
         TextView selectTv = hsvViewList.get(selectPos);
-        selectTv.setTextColor(getContext().getResources().getColor(R.color.white));
+        selectTv.setTextColor(getContext().getResources().getColor(R.color.black));
         selectTv.setBackgroundResource(R.drawable.tally_calendar_dialog_bg_fs);
     }
 

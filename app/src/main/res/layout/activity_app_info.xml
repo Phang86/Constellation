@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@color/black"
-        app:srlPrimaryColor="#F8F4CF">
+        app:srlPrimaryColor="#f1f2f3">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"

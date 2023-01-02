@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWatcher {
     private EditText et;
-    private Button btnCancel,btnConfirm;
+    private TextView btnCancel,btnConfirm;
     private OnClickSure clickSure;
     private TextView tvLength;
     private Context context;

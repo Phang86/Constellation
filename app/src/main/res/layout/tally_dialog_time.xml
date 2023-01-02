@@ -8,7 +8,7 @@
     app:cardCornerRadius="@dimen/dimen_20dp"
     app:cardElevation="@dimen/dimen_0dp"
     app:cardMaxElevation="@dimen/dimen_0dp"
-    app:cardBackgroundColor="@color/yellow_100">
+    app:cardBackgroundColor="@color/state_bg">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -67,10 +67,10 @@
             android:layout_height="@dimen/dimen_50dp"
             android:layout_marginTop="@dimen/dimen_10dp">
 
-            <Button
+            <TextView
                 android:id="@+id/tally_dialog_time_btnCancel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_register_btn"
                 android:text="@string/smssdk_cancel"
@@ -78,12 +78,13 @@
                 android:textColor="@color/white"
                 android:layout_marginBottom="@dimen/dimen_10dp"
                 android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_5dp"/>
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:gravity="center"/>
 
-            <Button
+            <TextView
                 android:id="@+id/tally_dialog_time_btnConfirm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_weight="1"
                 android:background="@drawable/selector_login_btn_bg"
                 android:text="@string/smssdk_confirm"
@@ -91,7 +92,8 @@
                 android:textColor="@color/white"
                 android:layout_marginBottom="@dimen/dimen_10dp"
                 android:layout_marginLeft="@dimen/dimen_5dp"
-                android:layout_marginRight="@dimen/dimen_10dp"/>
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:gravity="center"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

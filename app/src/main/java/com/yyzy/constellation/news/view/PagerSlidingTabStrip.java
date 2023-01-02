@@ -92,7 +92,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	private int dividerWidth = 1;
 
 	private int tabTextSize = 14;
-	private int tabTextColor = Color.BLACK;
+	private int tabTextColor = getResources().getColor(R.color.black_200);
 	private Typeface tabTypeface = null;
 	private int tabTypefaceStyle = Typeface.BOLD;
 
@@ -105,7 +105,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	//	正在被选中的位置
 	private int selectionPosition;
 	private int selectionTextSize = 18;  //设置被选中的文字的大小
-	private int selectionTextColor = getResources().getColor(R.color.tab_textColor);  //设置被选中的文字的颜色
+	private int selectionTextColor = getResources().getColor(R.color.black);  //设置被选中的文字的颜色
 
 	public PagerSlidingTabStrip(Context context) {
 		this(context, null);

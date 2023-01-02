@@ -37,16 +37,15 @@
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/city_tv_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_25dp"
+            android:layout_height="@dimen/dimen_25dp"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/dimen_20dp"
             android:textColor="@color/black"
-            android:text="@string/addCity"
-            android:textSize="@dimen/size_15sp"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:src="@mipmap/search"/>
     </androidx.appcompat.widget.Toolbar>
 
 

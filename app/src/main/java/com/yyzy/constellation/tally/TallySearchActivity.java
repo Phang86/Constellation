@@ -38,14 +38,13 @@ import java.util.List;
 
 public class TallySearchActivity extends BaseActivity implements View.OnClickListener,TextView.OnEditorActionListener{
 
-    private TextView tvTitle;
     private ImageView imgBack;
     private ListView lv;
     private EditText et;
     private List<TallyLvItemBean> mData = new ArrayList<>();
     private TallyLVAdapter adapter;
     private LinearLayout lin;
-    private TextView tv;
+    private TextView tv,search;
     private DiyProgressDialog dialog;
 
     @Override
@@ -56,14 +55,14 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initView() {
         imgBack = findViewById(R.id.details_back);
-        tvTitle = findViewById(R.id.details_title);
         et = findViewById(R.id.tally_search_et);
         lv = findViewById(R.id.tally_search_lv);
         lin = findViewById(R.id.tally_search_lin);
         tv = findViewById(R.id.local_music_tv);
+        search = findViewById(R.id.search_iv_confirm);
         imgBack.setOnClickListener(this);
         et.setOnEditorActionListener(this);
-        tvTitle.setText(getResources().getString(R.string.searchRecord));
+        search.setOnClickListener(this);
         //lin.setVisibility(View.GONE);
         setLvListener();
     }
@@ -86,7 +85,16 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        finish();
+        switch (v.getId()) {
+            case R.id.details_back:
+                finish();
+                break;
+            case R.id.search_iv_confirm:
+                String text = et.getText().toString().trim();
+                searchRecord(text);
+                break;
+        }
+
     }
 
     @Override
@@ -99,35 +107,38 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
         String text = et.getText().toString().trim();
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
-                ViewUtil.hideOneInputMethod(TallySearchActivity.this,et);
-                lin.setVisibility(View.GONE);
-                if (TextUtils.isEmpty(text)) {
-                    MyToast.showText(getBaseContext(),"请输入关键字！");
+                searchRecord(text);
+                break;
+        }
+    }
+
+    private void searchRecord(String text) {
+        ViewUtil.hideOneInputMethod(TallySearchActivity.this,et);
+        lin.setVisibility(View.GONE);
+        if (TextUtils.isEmpty(text)) {
+            MyToast.showText(getBaseContext(),"请输入关键字！");
+            return;
+        }
+        mData.clear();
+        loadProgress();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mData = TallyManger.findBeizhuList(text);
+                String textContent = et.getText().toString();
+                if (mData.size() > 0 && mData != null) {
+                    lin.setVisibility(View.GONE);
+                    adapter = new TallyLVAdapter(getBaseContext(), mData);
+                    lv.setAdapter(adapter);
+                    dialog.cancel();
                     return;
                 }
-                mData.clear();
-                loadProgress();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mData = TallyManger.findBeizhuList(text);
-                        String textContent = et.getText().toString();
-                        if (mData.size() > 0 && mData != null) {
-                            lin.setVisibility(View.GONE);
-                            adapter = new TallyLVAdapter(getBaseContext(), mData);
-                            lv.setAdapter(adapter);
-                            dialog.cancel();
-                            return;
-                        }
-                        dialog.cancel();
-                        lin.setVisibility(View.VISIBLE);
-                        tv.setText("不好意思，未查询到备注内容包含（"+textContent+"）的相关记录！");
+                dialog.cancel();
+                lin.setVisibility(View.VISIBLE);
+                tv.setText("不好意思，未查询到备注内容包含（"+textContent+"）的相关记录！");
 
-                    }
-                },300);
-
-            break;
-        }
+            }
+        },300);
     }
 
     private void loadProgress(){

@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/man"
-                android:textColor="@color/white"
+                android:textColor="@color/black_200"
                 android:textSize="@dimen/size_18sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
@@ -63,7 +63,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/woman"
-                android:textColor="@color/white"
+                android:textColor="@color/black_200"
                 android:textSize="@dimen/size_18sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
@@ -89,8 +89,8 @@
             android:text="@string/partnership_info"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_below="@+id/partnershipFrag_layout_woman"
-            android:textSize="@dimen/size_16sp"
-            android:textColor="@color/gray_600"/>
+            android:textSize="@dimen/size_14sp"
+            android:textColor="@color/black_200"/>
     </LinearLayout>
 
 

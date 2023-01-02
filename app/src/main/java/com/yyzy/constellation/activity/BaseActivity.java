@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         context = this;
         initView();
         initData();
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.lightyellow),0);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.state_bg),0);
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         this.registerReceiver(IntentReceiver.getInstance(), filter);
     }

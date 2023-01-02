@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.yyzy.constellation.R;
 
 import java.util.List;
@@ -68,10 +70,10 @@ public class DeleteCityAdapter extends BaseAdapter {
 
     class ViewHolder {
         TextView tv;
-        ImageView iv;
+        CardView iv;
         public ViewHolder(View view){
             tv = view.findViewById(R.id.item_deleteCity_tv);
-            iv = view.findViewById(R.id.item_deleteCity_iv);
+            iv = view.findViewById(R.id.del_cv);
         }
     }
 }

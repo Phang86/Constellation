@@ -16,13 +16,13 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50dp"
-            android:background="@color/lightyellow">
+            android:background="@color/state_bg">
 
             <ImageView
                 android:id="@+id/tally_jilu_img_back"
-                android:layout_width="@dimen/dimen_20dp"
-                android:layout_height="@dimen/dimen_20dp"
-                android:src="@mipmap/back"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@mipmap/icon_back"
                 android:background="@null"/>
 
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tallyJilu"
                 android:textSize="@dimen/size_16sp"
-                android:textColor="@color/pink"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center"/>
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@color/black"
-        app:srlPrimaryColor="#F8F4CF"
+        app:srlPrimaryColor="#f1f2f3"
         android:layout_below="@+id/tally_jilu_top">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader

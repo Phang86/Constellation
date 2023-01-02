@@ -34,7 +34,7 @@
     <!--MainActivity控件样式-->
     <style name="main_rb">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">@dimen/dimen_50dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
         <item name="android:drawablePadding">2dp</item>
@@ -98,7 +98,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/size_15sp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/chengyu_info_tv_bg</item>
         <item name="android:layout_marginTop">@dimen/dimen_10dp</item>
@@ -172,10 +171,10 @@
     <!--PartnershipFragment 三个Button样式-->
     <style name="frag_partnership">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_45dp</item>
+        <item name="android:layout_height">@dimen/dimen_40dp</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/selector_partnership_btn_bg</item>
-        <item name="android:textColor">@color/gray_600</item>
+        <item name="android:textColor">@color/black_200</item>
         <item name="android:textSize">@dimen/size_16sp</item>
         <item name="android:layout_marginLeft">@dimen/dimen_20dp</item>
         <item name="android:layout_marginRight">@dimen/dimen_20dp</item>

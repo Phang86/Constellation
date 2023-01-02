@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F0E68C">
+    android:background="@color/state_bg">
 
     <ImageView
         android:id="@+id/header_close"
@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginBottom="@dimen/dimen_10dp"
-            android:text=""
             android:textSize="@dimen/size_18sp"
             android:textColor="@color/black"/>
     </LinearLayout>
