@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/dimen_40dp"
         android:src="@drawable/ic_launcher_background"
         app:civ_border_color="@color/white"
-        app:civ_border_width="@dimen/dimen_2dp" />
+        app:civ_border_width="@dimen/dimen_1dp" />
 
     <TextView
         android:id="@+id/star_details_name"

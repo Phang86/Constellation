@@ -36,8 +36,8 @@ public class URLContent {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        //String path = "http://web.juhe.cn/constellation/getAll?consName="+name+"&type=year&key=37654c72ae968cedc1f7f173181eb019";
-        String path = "http://web.juhe.cn/constellation/getAll?consName="+name+"&type=year&key=7610d57786604caf00b00db70ebdc31f";
+        String path = "http://web.juhe.cn/constellation/getAll?consName="+name+"&type=year&key=37654c72ae968cedc1f7f173181eb019";
+//        String path = "http://web.juhe.cn/constellation/getAll?consName="+name+"&type=year&key=7610d57786604caf00b00db70ebdc31f";
         return path;
     }
 
@@ -45,9 +45,9 @@ public class URLContent {
     //天气预报网络接口
     private static final String temp_url = "http://apis.juhe.cn/simpleWeather/query?";
     //天气预报网络接口键值
-    private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
+//    private static final String KEY = "dc5aa3c9d420eca9d567ff9220f3d8f1";
 //    private static final String KEY = "864bdd5bfbaa5474078aa98ec94ed947";
-//    private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
+    private static final String KEY = "d9bc43174536fa905488b4fd93165efe";
 
 
     public static String getTemp_url(String city){
@@ -81,8 +81,8 @@ public class URLContent {
     public static String bushourul = "http://v.juhe.cn/xhzd/querybs?key=";
 
     //字典key
-//    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
-    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
+    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
+//    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
 
     public static String wordurl = "http://v.juhe.cn/xhzd/query?key=";
 
@@ -131,7 +131,9 @@ public class URLContent {
     }
 
     //    公共的key   http://v.juhe.cn/toutiao/index?key=0af60a86bfa3575d53c1491d1be310ca&type=top
-    public static String key = "0af60a86bfa3575d53c1491d1be310ca";
+    public static String key = "7e892c1f26c696a1153ee7e543ebae1d";
+//    public static String key = "0af60a86bfa3575d53c1491d1be310ca";
+    //http://v.juhe.cn/toutiao/index?type=top&key=APPKEY
     public static String info_url = "http://v.juhe.cn/toutiao/index?key="+key+"&type=";
     //     头条
     public static String headline_url = info_url +"top";

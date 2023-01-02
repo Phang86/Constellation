@@ -201,17 +201,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/config_btn_pwd"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_45dp"
+            android:layout_height="@dimen/dimen_40dp"
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginTop="@dimen/dimen_70dp"
             android:layout_marginRight="@dimen/dimen_20dp"
             android:background="@drawable/selector_update_btn"
             android:text="@string/buyFind"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"/>
+            android:textSize="@dimen/size_16sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/config_tv_login"

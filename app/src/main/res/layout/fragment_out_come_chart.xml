@@ -16,14 +16,15 @@
         android:listSelector="@drawable/bg"
         android:divider="@null"/>
 
-    <TextView
-        android:id="@+id/chart_frag_tv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/no_data_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        android:text="暂无数据！"
-        android:textSize="@dimen/size_16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black_200"/>
+        android:gravity="center">
+
+        <include layout="@layout/no_data_layout"/>
+
+    </LinearLayout>
 </RelativeLayout>

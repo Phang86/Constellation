@@ -1,17 +1,10 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.user;
 
 import android.app.Dialog;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.os.Handler;
-import android.os.Looper;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,14 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,18 +25,17 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.user.logoutUser.CancelActivity;
+import com.yyzy.constellation.activity.LoginActivity;
+import com.yyzy.constellation.user.alertPwd.SwipeCheckActivity;
+import com.yyzy.constellation.user.alertPhone.UpdatePhoneActivity;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.fragment.MeFragment;
-import com.yyzy.constellation.receiver.IntentReceiver;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
-import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SPUtils;
-import com.yyzy.constellation.utils.SwipeCaptchaView;
-import com.yyzy.constellation.utils.URLContent;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -359,7 +348,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(AppInfoActivity.this,LoginActivity.class);
+                intent.setClass(AppInfoActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);

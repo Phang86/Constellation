@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/mainBg"
-    tools:context=".activity.MoreHistoryActivity">
+    tools:context=".history.MoreHistoryActivity">
 
     <include
         android:id="@+id/more_title"
@@ -20,15 +20,16 @@
         android:divider="@null"
         android:layout_below="@+id/more_title"/>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/more_history_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="暂无数据！"
-        android:textStyle="bold"
-        android:textSize="@dimen/size_25sp"
-        android:textColor="@color/fireRed"
+        android:layout_centerInParent="true"
         android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        android:gravity="center">
+
+        <include layout="@layout/no_data_layout"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

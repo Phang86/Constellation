@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +42,8 @@ import java.util.List;
 public class HistoryInfoActivity extends BaseActivity implements View.OnClickListener{
 
 
-    private TextView tvTitle,tvContent,tvInfoTitle,tvWu;
+    private TextView tvTitle,tvContent,tvInfoTitle;
+    private LinearLayout tvWu;
     private ImageView imgBack,imgTitle;
     private CardView cardView;
     private ScrollView sv;
@@ -112,7 +114,6 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
             e.printStackTrace();
             sv.setVisibility(View.GONE);
             tvWu.setVisibility(View.VISIBLE);
-            tvWu.setText("暂无数据！");
         }
     }
 

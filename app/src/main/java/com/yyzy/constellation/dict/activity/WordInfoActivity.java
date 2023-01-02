@@ -8,11 +8,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.AndroidException;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,17 +31,18 @@ import com.yyzy.constellation.dict.entity.WordEntity;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.HttpUtils;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.Mydialog;
 import com.yyzy.constellation.utils.URLContent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WordInfoActivity extends BaseActivity implements View.OnClickListener {
 
     private RelativeLayout layoutBottom;
-    private ImageView imgNull;
-    private TextView tv;
+    private LinearLayout noDataLayout,noLvDataLayout;
     private ImageView ivBack,ivCollect;
     private TextView tvMax,tvduyin,tvBushou,tvBihua,tvWubi,tvJs,tvXxjs;
     private ListView lvJs;
@@ -78,9 +82,8 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         tvXxjs = findViewById(R.id.wordInfo_tv_xxjs);
         lvJs = findViewById(R.id.wordInfo_listView);
         layoutBottom = findViewById(R.id.word_info_layout_bottom);
-        imgNull = findViewById(R.id.word_info_img);
-        tv = findViewById(R.id.word_info_tv);
-
+        noDataLayout = findViewById(R.id.no_data_layout);
+        noLvDataLayout = findViewById(R.id.no_data_lv_layout);
         ivBack.setOnClickListener(this);
         ivCollect.setOnClickListener(this);
         tvXxjs.setOnClickListener(this);
@@ -89,7 +92,7 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         layoutBottom.setVisibility(View.GONE);
         ivCollect.setVisibility(View.GONE);
 
-        dialog = new DiyProgressDialog(this, "Loading");
+        dialog = new DiyProgressDialog(this, "Loading...");
         dialog.show();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
@@ -149,28 +152,41 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
                 tvJs.setTextColor(Color.parseColor("#6495ED"));
                 tvXxjs.setTextColor(Color.BLACK);
                 //清空之前的数据
-                if (mDatas != null && mDatas.size() > 0) {
-                    mDatas.clear();
-                    mDatas.addAll(jijie);
-                    adapter.notifyDataSetChanged();
-                }else {
-                    return;
-                }
+//                if (mDatas != null && mDatas.size() > 0) {
+//                    mDatas.clear();
+//                    mDatas.addAll(jijie);
+//                    adapter.notifyDataSetChanged();
+//                }else {
+//                    return;
+//                }
+                lvNotOrHave(jijie);
                 break;
             case R.id.wordInfo_tv_xxjs:
                 tvXxjs.setTextColor(Color.parseColor("#6495ED"));
                 tvJs.setTextColor(Color.BLACK);
-                if (mDatas != null && mDatas.size() > 0) {
-                    mDatas.clear();
-                    mDatas.addAll(xiangjie);
-                    adapter.notifyDataSetChanged();
-                }else {
-                    return;
-                }
+                lvNotOrHave(xiangjie);
                 break;
         }
     }
 
+    private void lvNotOrHave(List<String> list){
+        if (mDatas != null && mDatas.size() > 0) {
+            String repList = list.toString().replace("[]", "");
+            Log.e("TAG", "notifyView: list"+repList.toString()+repList.toString().length());
+            if (repList.toString().length() > 0 && !repList.toString().isEmpty()){
+                lvJs.setVisibility(View.VISIBLE);
+                noLvDataLayout.setVisibility(View.GONE);
+                mDatas.clear();
+                mDatas.addAll(Collections.singleton(repList));
+                adapter.notifyDataSetChanged();
+                return;
+            }
+            lvJs.setVisibility(View.INVISIBLE);
+            noLvDataLayout.setVisibility(View.VISIBLE);
+        }else {
+            return;
+        }
+    }
 
     @Override
     public void onSuccess(String result) {
@@ -181,7 +197,7 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
             DBmanager.insertWordToWordtb(bean);
             //将数据显示在View控件上
             notifyView(bean);
-            showOrHide(true,"");
+            showOrHide(true);
         }else{
             return;
         }
@@ -195,6 +211,8 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         tvWubi.setText("五笔："+bean.getWubi());
         jijie = bean.getJijie();
         xiangjie = bean.getXiangjie();
+//        Log.e("TAG", "notifyView: jijie"+jijie.toString());
+//        Log.e("TAG", "notifyView: xiangjie"+xiangjie.toString());
         //默认进入显示基本释义
         mDatas.clear();
         mDatas.addAll(jijie);
@@ -209,30 +227,28 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         if (DBmanager.queryWordFromWordtb(zi) != null){
             WordEntity.ResultBean bean = DBmanager.queryWordFromWordtb(zi);
             notifyView(bean);
-            showOrHide(true,"");
+            showOrHide(true);
         }else if (!isOnCallback){
             Log.e("TAG", "onError: "+isOnCallback);
-            showToast("网络错误！请查看网络是否连接！");
-            showOrHide(false,"网络错误！请查看网络是否连接！");
+            MyToast.showText(getBaseContext(),"网络错误！请查看网络是否连接！", Gravity.BOTTOM);
+            showOrHide(false);
             //dialog.cancel();
             return;
         }else {
-            showToast("接口访问次数上限！");
-            showOrHide(false,"接口访问次数上限！");
+            MyToast.showText(getBaseContext(),"接口访问次数上限！",Gravity.BOTTOM);
+            showOrHide(false);
         }
     }
 
-    public void showOrHide(boolean show, String msg){
+    public void showOrHide(boolean show){
         if (show) {
             layoutBottom.setVisibility(View.VISIBLE);
             ivCollect.setVisibility(View.VISIBLE);
-            tv.setText("抱歉，暂无数据！"+msg);
+            noDataLayout.setVisibility(View.GONE);
         }else{
             ivCollect.setVisibility(View.GONE);
             layoutBottom.setVisibility(View.GONE);
-            imgNull.setVisibility(View.VISIBLE);
-            tv.setVisibility(View.VISIBLE);
-            tv.setText(msg);
+            noDataLayout.setVisibility(View.VISIBLE);
         }
         dialog.dismiss();
     }

@@ -52,6 +52,7 @@ import com.yyzy.constellation.receiver.IntentReceiver;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -73,7 +74,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private TextView tv, forgetTv;
     private EditText edUser, edPwd, edValCode;
-    private Button btnLogin;
+    private TextView btnLogin;
     private List<User> data = new ArrayList<>();
     private String userPassword;
 
@@ -209,6 +210,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     //登陆
                     String varCode = FourFiguresNumberCode.getInstance().getCode();
                     login(user, pwd, varCode);
+                    ViewUtil.hideOneInputMethod(LoginActivity.this,edValCode);
             }
         }
     };

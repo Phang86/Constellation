@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -139,10 +140,10 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                     public void onPositiveButtonClick(AlertDialog dialog) {
                         TallyLvItemBean bean = mData.get(position);
                         if (TallyManger.delToData(bean.getId())) {
-                            MyToast.showText(context,"删除成功！");
+                            MyToast.showText(context,"删除成功！", Gravity.BOTTOM);
                             onRefresh();
                         }else{
-                            MyToast.showText(context,"删除失败！");
+                            MyToast.showText(context,"删除失败！",Gravity.BOTTOM);
                         }
                         dialog.dismiss();
                     }
@@ -226,7 +227,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void refreshData() {
                         onRefresh();
-                        MyToast.showText(getBaseContext(),"记录清理完毕！");
+                        MyToast.showText(getBaseContext(),"记录清理完毕！",Gravity.BOTTOM);
                     }
                 });
                 break;

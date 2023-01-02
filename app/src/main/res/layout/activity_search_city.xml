@@ -30,55 +30,61 @@
                     android:textColor="@color/black"/>
         </androidx.appcompat.widget.Toolbar>
 
-
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            app:cardBackgroundColor="@color/gray_100_ededed"
+            app:cardMaxElevation="@dimen/dimen_0dp"
+            app:cardElevation="@dimen/dimen_0dp"
             android:layout_below="@+id/search_top_layout"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:padding="@dimen/dimen_10dp">
+            app:contentPadding="@dimen/dimen_5dp"
+            app:cardCornerRadius="@dimen/dimen_8dp">
 
-
-                <com.yyzy.constellation.utils.MyEditText
-                    android:id="@+id/search_et"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/search_iv_confirm"
-                    android:textCursorDrawable="@drawable/color_cursor"
-                    android:hint="@string/searchCity"
-                    android:background="@drawable/search_bg"
-                    android:paddingLeft="@dimen/dimen_15dp"
-                    android:paddingTop="@dimen/dimen_10dp"
-                    android:paddingRight="@dimen/dimen_10dp"
-                    android:drawableRight="@drawable/ic_delete"
-                    android:textStyle="bold"
-                    android:lines="1"
-                    android:inputType="text"
-                    android:imeOptions="actionSearch"
-                    android:textColorHint="@color/grey"
-                    android:textColor="@color/black"
-                    android:paddingBottom="@dimen/dimen_10dp"
-                    android:textSize="@dimen/size_16sp" >
-                <requestFocus/>
-                </com.yyzy.constellation.utils.MyEditText>
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/search_iv_confirm"
-                    android:layout_width="@dimen/dimen_25dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/dimen_15dp"
-                    android:src="@mipmap/icon_search"
-                    android:layout_centerVertical="true"/>
-        </RelativeLayout>
+                        <com.yyzy.constellation.utils.MyEditText
+                            android:id="@+id/search_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/search_iv_confirm"
+                            android:hint="@string/searchCity"
+                            android:paddingLeft="@dimen/dimen_5dp"
+                            android:paddingTop="@dimen/dimen_10dp"
+                            android:lines="1"
+                            android:inputType="text"
+                            android:imeOptions="actionSearch"
+                            android:textColorHint="@color/grey"
+                            android:textColor="@color/black"
+                            android:paddingBottom="@dimen/dimen_10dp"
+                            android:textSize="@dimen/size_16sp"
+                            android:background="@null">
+                                <requestFocus/>
+                        </com.yyzy.constellation.utils.MyEditText>
+
+                        <ImageView
+                            android:id="@+id/search_iv_confirm"
+                            android:layout_width="@dimen/dimen_25dp"
+                            android:layout_height="@dimen/dimen_25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="@dimen/dimen_15dp"
+                            android:src="@mipmap/icon_search"
+                            android:layout_centerVertical="true"/>
+                </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/search_tv_hotCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/search_layout"
-            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:textSize="@dimen/size_16sp"
             android:textStyle="bold"

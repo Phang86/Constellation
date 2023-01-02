@@ -34,7 +34,7 @@ public class NewsItemAdapter extends BaseAdapter {
                 //正在加载中显示的图片
                 .showImageOnLoading(R.mipmap.bg_defualt_220x150)
                 //正在加载中遇到空字符串
-                .showImageForEmptyUri(null)
+                .showImageForEmptyUri(R.drawable.load)
                 //加载失败显示的图片
                 .showImageOnFail(null)
                 .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true)

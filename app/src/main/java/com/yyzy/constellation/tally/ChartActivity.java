@@ -28,7 +28,7 @@ public class ChartActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack,imgCalendar;
     private TextView tvMonthBill,tvOutBill,tvInBill;
-    private Button btnOut,btnIn;
+    private TextView btnOut,btnIn;
     private ViewPager vp;
     private Calendar ca;
     private int year;
@@ -157,7 +157,8 @@ public class ChartActivity extends BaseActivity implements View.OnClickListener{
             btnOut.setTextColor(getResources().getColor(R.color.white));
             btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
             btnIn.setTextColor(getResources().getColor(R.color.pink));
-        }else if (outOrIn == 1){
+        }
+        if (outOrIn == 1){
             btnOut.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
             btnOut.setTextColor(getResources().getColor(R.color.pink));
             btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg_fs));

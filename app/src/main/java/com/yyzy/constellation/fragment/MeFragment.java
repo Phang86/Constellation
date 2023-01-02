@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,19 +23,15 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.activity.AppInfoActivity;
-import com.yyzy.constellation.activity.LoginActivity;
+import com.yyzy.constellation.user.AppInfoActivity;
 import com.yyzy.constellation.adapter.LuckItemAdapter;
 import com.yyzy.constellation.dict.activity.DictActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.AssetsUtils;
-import com.yyzy.constellation.utils.DialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.weather.activity.WeatherActivity;

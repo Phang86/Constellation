@@ -1,9 +1,6 @@
 package com.yyzy.constellation.weather.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,8 +16,8 @@ import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.MyToast;
-import com.yyzy.constellation.utils.Mydialog;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.utils.ViewUtil;
 import com.yyzy.constellation.weather.db.DBManager;
 import com.yyzy.constellation.weather.entity.WeatherEntity;
 
@@ -114,6 +111,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     }
 
     private void checkCityHaveOrNot(String city){
+        ViewUtil.hideOneInputMethod(SearchCityActivity.this,etSearch);
         if (!TextUtils.isEmpty(city)) {
             if (DBManager.findCity(city).equals(city)){
                 MyToast.showText(this,"（"+city+"）相关天气信息已存在！无需重复添加！");

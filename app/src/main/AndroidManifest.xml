@@ -37,13 +37,16 @@
 
         <activity android:name=".tally.TallyJiluActivity" />
 
-        <activity android:name=".tally.TallySearchActivity" />
+        <activity android:name=".tally.TallySearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"
+            />
 
         <activity android:name=".tally.RecordActivity"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".tally.TallyActivity"
-            android:configChanges="orientation|keyboardHidden"/>
+            />
 
         <activity android:name=".news.NewsInfoActivity" />
 
@@ -59,22 +62,22 @@
 
         <activity android:name=".history.HistoryActivity" />
 
-        <activity android:name=".activity.MoreHistoryActivity" />
+        <activity android:name=".history.MoreHistoryActivity" />
 
-        <activity android:name=".activity.UpdatePhoneOutActivity" />
+        <activity android:name=".user.alertPhone.UpdatePhoneOutActivity" />
 
-        <activity android:name=".activity.UpdatePhoneActivity" />
+        <activity android:name=".user.alertPhone.UpdatePhoneActivity" />
 
-        <activity android:name=".activity.CancelidActivity" />
+        <activity android:name=".user.logoutUser.CancelidActivity" />
 
-        <activity android:name=".activity.CancelActivity" />
+        <activity android:name=".user.logoutUser.CancelActivity" />
 
         <receiver
             android:name=".receiver.IntentReceiver"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.SwipeCheckActivity" />
+        <activity android:name=".user.alertPwd.SwipeCheckActivity" />
         <activity
             android:name=".activity.ConfigPwdActivity"
             android:theme="@style/Login" />
@@ -82,7 +85,7 @@
             android:name=".activity.FindPwdActivity"
             android:theme="@style/Login" />
 
-        <activity android:name=".activity.UpdatePwdActivity" />
+        <activity android:name=".user.alertPwd.UpdatePwdActivity" />
 
         <activity android:name=".dict.activity.CollectActivity" />
 
@@ -94,7 +97,7 @@
 
         <activity android:name=".dict.activity.IdentifyImgActivity" />
 
-        <activity android:name=".activity.AppInfoActivity" />
+        <activity android:name=".user.AppInfoActivity" />
 
         <activity android:name=".dict.activity.WordInfoActivity" />
 

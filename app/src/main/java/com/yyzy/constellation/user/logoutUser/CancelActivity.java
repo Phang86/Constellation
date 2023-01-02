@@ -1,10 +1,6 @@
-package com.yyzy.constellation.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.yyzy.constellation.user.logoutUser;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,14 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.utils.MyEditText;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 public class CancelActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private ImageView imgBack;
     private TextView tvTitle;
-    private Button btnNext;
+    private TextView btnNext;
     private EditText etPhone;
     private String myPhone;
     private String name;
@@ -43,7 +40,7 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
         btnNext.setOnClickListener(this);
         etPhone.addTextChangedListener(this);
 
-        tvTitle.setText("手机验证");
+        tvTitle.setText("身份验证");
         btnNext.setEnabled(false);
         Intent intent = getIntent();
         String phone = intent.getStringExtra("MyPhone");
@@ -77,8 +74,8 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
                     finish();
                 }else{
                     MyToast.showText(this,"手机号不正确！",false);
-                    return;
                 }
+                ViewUtil.hideOneInputMethod(CancelActivity.this,etPhone);
                 break;
         }
     }

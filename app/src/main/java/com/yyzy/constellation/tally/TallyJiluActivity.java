@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -65,7 +66,7 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
         lv = findViewById(R.id.tally_jilu_lv);
         linearLayout = findViewById(R.id.tally_jilu_no_data);
         smartRefreshLayout = findViewById(R.id.tally_jilu_smr_refreshLayout);
-        tvNoData = findViewById(R.id.tally_jilu_no_data_tv);
+        tvNoData = findViewById(R.id.local_music_tv);
 
 
         imgBack.setOnClickListener(this);
@@ -120,9 +121,9 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
                         dialog.cancel();
                         if (TallyManger.delToData(tallyLvItemBean.getId())) {
                             loadData(year,month);
-                            MyToast.showText(getBaseContext(),"删除成功！");
+                            MyToast.showText(getBaseContext(),"删除成功！", Gravity.BOTTOM);
                         }else{
-                            MyToast.showText(getBaseContext(),"删除失败！");
+                            MyToast.showText(getBaseContext(),"删除失败！",Gravity.BOTTOM);
                         }
                     }
 

@@ -112,9 +112,9 @@ public class OutComeChartFragment extends BaseChartFragment{
         super.onResume();
         loadData(year,month,outOrIn);
         if (mData.size() > 0){
-            tv.setVisibility(View.GONE);
+            noDataLayout.setVisibility(View.GONE);
         }else{
-            tv.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.VISIBLE);
             tv.setText(year+"年"+month+"月，暂无支出记录！");
         }
     }

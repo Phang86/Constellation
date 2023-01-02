@@ -1,6 +1,7 @@
 package com.yyzy.constellation.receiver;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.AlertDialogUtils;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.Mydialog;
 
 public class IntentReceiver extends BroadcastReceiver {
@@ -53,17 +55,18 @@ public class IntentReceiver extends BroadcastReceiver {
     }
 
     private final void Dialog(final Context context) {
-        Mydialog mydialog = new Mydialog(context, "网络安全设置", "后台检测到手机网络未连接，请您正确设置网络连接!");
-        mydialog.show();
-        mydialog.setCancelable(false);
-        mydialog.setDialogSize();
-        mydialog.setClickSure(new Mydialog.ClickSure() {
-            @Override
-            public void onClickSure() {
-                context.startActivity(new Intent("android.net.wifi.PICK_WIFI_NETWORK"));
-                mydialog.dismiss();
-            }
-        });
+        MyToast.showText(context,"当前网络不可用，请检查网络设置",Gravity.BOTTOM);
+//        Mydialog mydialog = new Mydialog(context, "网络安全设置", "后台检测到手机网络未连接，请您正确设置网络连接!");
+//        mydialog.show();
+//        mydialog.setCancelable(false);
+//        mydialog.setDialogSize();
+//        mydialog.setClickSure(new Mydialog.ClickSure() {
+//            @Override
+//            public void onClickSure() {
+//                context.startActivity(new Intent("android.net.wifi.PICK_WIFI_NETWORK"));
+//                mydialog.dismiss();
+//            }
+//        });
 
 //        AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
 //        AlertDialogUtils.showConfirmDialog(context,"网络安全设置","后台检测到手机网络未连接，请您正确设置网络连接!","前往设置","取消");

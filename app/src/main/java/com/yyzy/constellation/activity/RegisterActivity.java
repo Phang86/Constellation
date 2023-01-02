@@ -33,6 +33,7 @@ import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,11 +53,11 @@ import okhttp3.Response;
 
 public class RegisterActivity extends BaseActivity implements TextWatcher,View.OnClickListener{
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
-    private Button mbtnRegister;
+    private TextView mbtnRegister;
     private TextView tv;
     //private DiyProgressDialog mDialog
 
-    private Button validateNum_btn;
+    private TextView validateNum_btn;
     private EditText validateNum;
     public EventHandler eh; //事件接收器
     private TimeCount mTimeCount;//计时器
@@ -167,6 +168,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 String phone = edRegisterPhone.getText().toString().trim();
                 String valNum = validateNum.getText().toString().trim();
                 register(user, pwd, phone, valNum);
+                ViewUtil.hideOneInputMethod(RegisterActivity.this,validateNum);
             }
         });
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context=".activity.CancelidActivity">
+    tools:context=".user.logoutUser.CancelidActivity">
 
     <include layout="@layout/star_details_title"/>
 
@@ -88,16 +88,16 @@
 
 
     <!--下一步按钮-->
-    <Button
+    <TextView
         android:id="@+id/zhuxiao_next"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_45dp"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_height="@dimen/dimen_40dp"
+        android:layout_marginLeft="@dimen/dimen_30dp"
+        android:layout_marginRight="@dimen/dimen_30dp"
         android:layout_marginTop="@dimen/dimen_30dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
         android:background="@drawable/selector_update_btn"
         android:text="确定注销"
         android:textColor="@color/white"
-        android:textSize="@dimen/size_16sp"/>
+        android:textSize="@dimen/size_16sp"
+        android:gravity="center"/>
 </LinearLayout>

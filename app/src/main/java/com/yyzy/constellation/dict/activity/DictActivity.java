@@ -3,11 +3,8 @@ package com.yyzy.constellation.dict.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -17,29 +14,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.baidu.ocr.ui.camera.CameraActivity;
-import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.google.gson.Gson;
-import com.yyzy.constellation.BuildConfig;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.MainActivity;
 import com.yyzy.constellation.dict.entity.DictEveryOneBean;
 import com.yyzy.constellation.dict.entity.TuWenEntity;
 import com.yyzy.constellation.utils.FileUtil;
 import com.yyzy.constellation.utils.PatternUtils;
 import com.yyzy.constellation.utils.RecognizeService;
-import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.utils.ViewUtil;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -294,21 +284,23 @@ public class DictActivity extends BaseActivity implements View.OnClickListener,T
         // 判断点击搜索按钮
         switch (actionId){
             case EditorInfo.IME_ACTION_SEARCH:
+                ViewUtil.hideOneInputMethod(DictActivity.this,editText);
                 if (TextUtils.isEmpty(text)) {
                     showToast("请输入关键字！");
                     return;
-                }else if (!checkHanZi(text)){
+                }
+                if (!checkHanZi(text)){
                     showToast("请输入汉字！");
                     return;
-                }else{
-                    Intent intent = new Intent();
-                    intent.setClass(this, WordInfoActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("zi",text);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                    editText.setText("");
                 }
+                Intent intent = new Intent();
+                intent.setClass(this, WordInfoActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("zi",text);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                editText.setText("");
+
                 break;
         }
     }

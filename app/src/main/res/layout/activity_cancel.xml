@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg"
-    tools:context=".activity.CancelActivity">
+    tools:context=".user.logoutUser.CancelActivity">
 
     <include
         android:id="@+id/star_details_title"
@@ -90,18 +90,18 @@
 
 
     </LinearLayout>
-    <Button
+    <TextView
         android:id="@+id/cancel_btn_next"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_45dp"
+        android:layout_height="@dimen/dimen_40dp"
         android:background="@drawable/selector_update_btn"
         android:text="下一步"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16sp"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginLeft="@dimen/dimen_30dp"
+        android:layout_marginRight="@dimen/dimen_30dp"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
         android:layout_below="@+id/star_details_center"
+        android:gravity="center"
         />
 </RelativeLayout>

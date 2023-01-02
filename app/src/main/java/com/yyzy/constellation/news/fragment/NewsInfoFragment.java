@@ -7,10 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
@@ -41,6 +43,7 @@ public class NewsInfoFragment extends BaseFragment {
     private NewsItemAdapter adapter;
     private SmartRefreshLayout refreshLayout;
     private DiyProgressDialog dialog;
+    private LinearLayout noDataLayout;
 
     public NewsInfoFragment() {
         // Required empty public constructor
@@ -52,6 +55,7 @@ public class NewsInfoFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_news_info, container, false);
         listView = view.findViewById(R.id.news_fragment_lv);
         refreshLayout = view.findViewById(R.id.smr_refreshLayout);
+        noDataLayout = view.findViewById(R.id.no_data_layout);
         Bundle bundle = getArguments();
         TypeBean typeBean = (TypeBean) bundle.getSerializable("type");
         url = typeBean.getUrl();
@@ -115,13 +119,15 @@ public class NewsInfoFragment extends BaseFragment {
         closeProgress();
         NewsBean newsBean = new Gson().fromJson(response, NewsBean.class);
         if (newsBean.getError_code() == 10012 || newsBean.getResult() == null || newsBean.getReason().equals("超过每日可允许请求次数!")) {
-            MyToast.showText(getActivity(),"今日请求次数上限！");
-            //refreshLayout.setVisibility(View.GONE);
-            return;
+            MyToast.showText(getActivity(),"今日请求次数上限！", Gravity.BOTTOM);
+            noDataLayout.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            //return;
         }
         if (newsBean.getResult() != null){
             List<NewsBean.ResultBean.DataBean> data = newsBean.getResult().getData();
-            //refreshLayout.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
             mData.addAll(data);
             adapter.notifyDataSetChanged();
         }

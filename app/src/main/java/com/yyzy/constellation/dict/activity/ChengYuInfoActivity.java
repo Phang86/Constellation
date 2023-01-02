@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,9 +33,8 @@ import javax.security.auth.login.LoginException;
 
 public class ChengYuInfoActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView nullImg;
+    private LinearLayout noDataLayout;
     private ScrollView scroll;
-    private TextView tv;
     private ImageView backImg,collectImg;
     private TextView oneTv,twoTv,threeTv,fourTv,pinyinTv,chuTv,lijuTv,yufaTv,yinzhengTv,shiliTv,biaoyuTv,jbyyTv;
     private MyGridView tyGv,fyGv;
@@ -78,8 +78,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         fyGv = findViewById(R.id.chengyuInfo_gv_fanyici);
         jbyyTv = findViewById(R.id.chengyuInfo_tv_jbyy_content);
         scroll = findViewById(R.id.chengyu_info_scroll);
-        tv = findViewById(R.id.chengyu_info_tv);
-        nullImg = findViewById(R.id.chengyu_info_img);
+        noDataLayout = findViewById(R.id.no_data_layout);
         collectImg.setOnClickListener(this);
         backImg.setOnClickListener(this);
         scroll.setVisibility(View.GONE);
@@ -126,10 +125,9 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
                     showDatasView(entity);
                     showOrHide(true);
                 }else{
-                    MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！");
-                    Log.e("TAG", "onSuccess: 000000");
+                    MyToast.showText(ChengYuInfoActivity.this, "今日接口访问次数已上限！", Gravity.BOTTOM);
+                    //Log.e("TAG", "onSuccess: 000000");
                     showOrHide(false);
-                    tv.setText("抱歉，暂无数据！");
                 }
             } else {
                 if (DBmanager.queryCyFromCyutb(chengyu) != null){
@@ -137,9 +135,8 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
                     showDatasView(entity);
                     showOrHide(true);
                 }else{
-                    MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！");
+                    MyToast.showText(ChengYuInfoActivity.this, "无法查询此成语，请更换需查询的成语！",Gravity.BOTTOM);
                     showOrHide(false);
-                    tv.setText("抱歉，无法查询此成语！");
                 }
             }
             return;
@@ -156,13 +153,11 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
                 showDatasView(bean);
                 showOrHide(true);
             }else if (!isOnCallback){
-                MyToast.showText(this,"网络连接失败，请检查WLAN是否开启！");
+                MyToast.showText(this,"网络连接失败，请检查WLAN是否开启！",Gravity.BOTTOM);
                 showOrHide(false);
-                tv.setText("网络未开启"+isOnCallback);
             }else{
-                MyToast.showText(this,"今日接口访问次数已上限！");
+                MyToast.showText(this,"今日接口访问次数已上限！",Gravity.BOTTOM);
                 showOrHide(false);
-                tv.setText("非常抱歉，接口今日访问次数受限！");
             }
     }
 
@@ -170,12 +165,11 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         if (show) {
             collectImg.setVisibility(View.VISIBLE);
             scroll.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.GONE);
         }else{
             collectImg.setVisibility(View.GONE);
             scroll.setVisibility(View.GONE);
-            tv.setVisibility(View.VISIBLE);
-            tv.setText("抱歉，暂无数据！");
-            nullImg.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.VISIBLE);
         }
         dialog.dismiss();
     }
@@ -237,21 +231,37 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         tyGv.setAdapter(tyAdapter);
         fyGv.setAdapter(fyAdapter);
 
+        //同义词item的点击事件
         tyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String jyText = jycData.get(position);
-                MyToast.showText(getBaseContext(),""+jyText);
+                skipIntent(jyText);
+                //MyToast.showText(getBaseContext(),""+jyText);
             }
         });
 
+        //反义词item的点击事件
         fyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String fyText = fycData.get(position);
-                MyToast.showText(getBaseContext(),""+fyText);
+                skipIntent(fyText);
+                //MyToast.showText(getBaseContext(),""+fyText);
             }
         });
+    }
+
+    private void skipIntent(String str){
+        //finish();
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("chengyu",str);
+        intent.putExtras(bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setClass(getApplicationContext(),ChengYuInfoActivity.class);
+        startActivity(intent);
+        //startActivity(new Intent(getApplicationContext(),,));
     }
 
     @Override

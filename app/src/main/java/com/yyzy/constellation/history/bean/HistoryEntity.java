@@ -106,5 +106,28 @@ public class HistoryEntity implements Serializable{
         public void setLunar(String lunar) {
             this.lunar = lunar;
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "_id='" + _id + '\'' +
+                    ", title='" + title + '\'' +
+                    ", pic='" + pic + '\'' +
+                    ", year=" + year +
+                    ", month=" + month +
+                    ", day=" + day +
+                    ", des='" + des + '\'' +
+                    ", lunar='" + lunar + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "HistoryEntity{" +
+                "result=" + result +
+                ", reason='" + reason + '\'' +
+                ", error_code=" + error_code +
+                '}';
     }
 }

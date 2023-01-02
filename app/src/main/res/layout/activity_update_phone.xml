@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".activity.UpdatePhoneActivity">
+    tools:context=".user.alertPhone.UpdatePhoneActivity">
 
     <include
         layout="@layout/star_details_title"/>
@@ -91,15 +91,16 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-    <Button
+    <TextView
         android:id="@+id/updatePhone_btn_next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_40dp"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:background="@drawable/selector_update_btn"
         android:text="下一步"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16sp"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp"/>
+        android:layout_marginLeft="@dimen/dimen_30dp"
+        android:layout_marginRight="@dimen/dimen_30dp"
+        android:gravity="center"/>
 </LinearLayout>

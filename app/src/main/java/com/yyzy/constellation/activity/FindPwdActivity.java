@@ -43,7 +43,7 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
     private TextView tvBack;
     private EditText userEt, phoneEt, verCodeEt;
-    private Button findBtn;
+    private TextView findBtn;
     private DiyProgressDialog mDialog;
     private ImageView ivCode;
 

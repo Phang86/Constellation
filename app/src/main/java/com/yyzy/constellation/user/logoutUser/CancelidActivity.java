@@ -1,24 +1,15 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.user.logoutUser;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +18,8 @@ import android.widget.Toast;
 
 import com.mob.MobSDK;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
@@ -56,7 +49,7 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
     private ImageView imgBack;
     private TextView tvTitle;
     private EditText etNum;
-    private Button btnZhuxiao;
+    private TextView btnZhuxiao;
     private String myphone;
     private TextView sendNum;
 
@@ -92,8 +85,8 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
         Intent intent = getIntent();
         myphone = intent.getStringExtra("Myphone");
         String phone = myphone.substring(0,3)+"****"+myphone.substring(7,myphone.length());
-        tvNum.setText(" "+phone);
-        tvTitle.setText("短信验证注销");
+        tvNum.setText(phone);
+        tvTitle.setText("账号注销");
         btnZhuxiao.setEnabled(false);
         name = intent.getStringExtra("name");
         Log.e("TAG", "需要注销的用户名为："+name);

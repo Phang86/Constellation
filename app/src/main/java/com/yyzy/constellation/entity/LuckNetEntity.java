@@ -132,5 +132,31 @@ public class LuckNetEntity {
         public void setText(List<String> text) {
             this.text = text;
         }
+
+        @Override
+        public String toString() {
+            return "MimaDTO{" +
+                    "info='" + info + '\'' +
+                    ", text=" + text +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LuckNetEntity{" +
+                "name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", year=" + year +
+                ", mima=" + mima +
+                ", career=" + career +
+                ", love=" + love +
+                ", health=" + health +
+                ", finance=" + finance +
+                ", luckeyStone='" + luckeyStone + '\'' +
+                ", future='" + future + '\'' +
+                ", resultcode='" + resultcode + '\'' +
+                ", error_code=" + error_code +
+                '}';
     }
 }

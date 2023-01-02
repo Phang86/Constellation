@@ -29,6 +29,7 @@ import com.yyzy.constellation.tally.util.TallyInfoDialog;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyEditText;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -59,7 +60,7 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
         et = findViewById(R.id.tally_search_et);
         lv = findViewById(R.id.tally_search_lv);
         lin = findViewById(R.id.tally_search_lin);
-        tv = findViewById(R.id.tally_search_tv);
+        tv = findViewById(R.id.local_music_tv);
         imgBack.setOnClickListener(this);
         et.setOnEditorActionListener(this);
         tvTitle.setText(getResources().getString(R.string.searchRecord));
@@ -70,24 +71,6 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initData() {
 
-    }
-
-    private Handler hander = new Handler(){
-        public void handleMessage(android.os.Message msg) {
-            et.setFocusable(true);
-            et.setFocusableInTouchMode(true);
-            et.requestFocus();
-            InputMethodManager inputManager = (InputMethodManager)et.getContext().getSystemService(INPUT_METHOD_SERVICE);
-            inputManager.showSoftInput(et, 0);
-        };
-    };
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus){
-            hander.sendEmptyMessageDelayed(0,10);
-        }
     }
 
     private void setLvListener() {
@@ -116,32 +99,33 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
         String text = et.getText().toString().trim();
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
+                ViewUtil.hideOneInputMethod(TallySearchActivity.this,et);
                 lin.setVisibility(View.GONE);
                 if (TextUtils.isEmpty(text)) {
                     MyToast.showText(getBaseContext(),"请输入关键字！");
-                }else{
-                    mData.clear();
-                    loadProgress();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mData = TallyManger.findBeizhuList(text);
-                            String textContent = et.getText().toString();
-                            if (mData.size() > 0 && mData != null) {
-                                lin.setVisibility(View.GONE);
-                                adapter = new TallyLVAdapter(getBaseContext(), mData);
-                                lv.setAdapter(adapter);
-                                dialog.cancel();
-                                //return;
-                            }else {
-                                dialog.cancel();
-                                lin.setVisibility(View.VISIBLE);
-                                tv.setText("不好意思，未查询到备注内容包含（"+textContent+"）的相关记录！");
-                            }
-                        }
-                    },300);
-
+                    return;
                 }
+                mData.clear();
+                loadProgress();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mData = TallyManger.findBeizhuList(text);
+                        String textContent = et.getText().toString();
+                        if (mData.size() > 0 && mData != null) {
+                            lin.setVisibility(View.GONE);
+                            adapter = new TallyLVAdapter(getBaseContext(), mData);
+                            lv.setAdapter(adapter);
+                            dialog.cancel();
+                            return;
+                        }
+                        dialog.cancel();
+                        lin.setVisibility(View.VISIBLE);
+                        tv.setText("不好意思，未查询到备注内容包含（"+textContent+"）的相关记录！");
+
+                    }
+                },300);
+
             break;
         }
     }

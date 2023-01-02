@@ -1,10 +1,8 @@
 package com.yyzy.constellation.dict.activity;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -15,17 +13,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
-import com.yyzy.constellation.dict.entity.ChengyuInfoEntity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ChengYuActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
@@ -174,23 +170,25 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
     private void downOption(int actionId) {
         switch (actionId) {
             case EditorInfo.IME_ACTION_SEARCH:
+                ViewUtil.hideOneInputMethod(ChengYuActivity.this,searchEt);
                 String text = searchEt.getText().toString().trim();
                 if (text.isEmpty()) {
                     MyToast.showText(context, "请输入关键字！");
                     return;
-                } else if (!checkHanZi(text)) {
+                }
+                if (!checkHanZi(text)) {
                     MyToast.showText(context, "请输入汉字！");
                     return;
-                } else if (text.length() != 4) {
+                }
+                if (text.length() != 4) {
                     MyToast.showText(context, "请输入四字成语！");
                     return;
-                } else {
-                    //把文本输入的信息添加到集合
-                    //跳转页面
-                    startPage(text);
-                    //清空文本框
-                    searchEt.setText("");
                 }
+                //把文本输入的信息添加到集合
+                //跳转页面
+                startPage(text);
+                //清空文本框
+                searchEt.setText("");
                 break;
         }
     }

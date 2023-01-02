@@ -1,9 +1,6 @@
 package com.yyzy.constellation.news;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.activity.AppInfoActivity;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.news.util.NetJavaScriptInterface;
 import com.yyzy.constellation.utils.DiyProgressDialog;
@@ -45,8 +41,8 @@ public class NewsInfoActivity extends BaseActivity implements View.OnClickListen
         Intent intent = getIntent();
         url = intent.getStringExtra("url");
         title = intent.getStringExtra("title");
-        //Log.e("TAG", "initView: "+url);
-        tvTitle.setText(title+"");
+        Log.e("TAG", "webViewUrl: "+url);
+        tvTitle.setText(title);
     }
 
     @Override

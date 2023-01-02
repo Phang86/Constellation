@@ -29,12 +29,10 @@
             android:hint="@string/findByBeizhu"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/size_16sp"
+            android:textSize="@dimen/size_14sp"
             android:textColorHint="@color/grey"
-            android:textStyle="bold"
             android:imeOptions="actionSearch"
             android:maxLength="20">
-
             <requestFocus/>
         </com.yyzy.constellation.utils.MyEditText>
     </LinearLayout>
@@ -51,30 +49,13 @@
 
     <LinearLayout
         android:id="@+id/tally_search_lin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
         android:visibility="visible"
-        android:gravity="center"
-        android:layout_marginLeft="@dimen/dimen_15dp"
-        android:layout_marginRight="@dimen/dimen_15dp">
+        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/tally_search_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_null_top"
-            android:layout_marginBottom="@dimen/dimen_10dp"/>
+        <include layout="@layout/no_data_layout"/>
 
-        <TextView
-            android:id="@+id/tally_search_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_15sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="暂无内容！"
-            />
     </LinearLayout>
 </RelativeLayout>

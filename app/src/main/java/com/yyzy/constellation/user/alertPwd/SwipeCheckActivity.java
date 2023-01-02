@@ -1,27 +1,14 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.user.alertPwd;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.net.ConnectivityManager;
-import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -31,14 +18,12 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.entity.RandomImgBean;
-import com.yyzy.constellation.receiver.IntentReceiver;
-import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SwipeCaptchaView;
 import com.yyzy.constellation.utils.URLContent;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,25 +34,7 @@ public class SwipeCheckActivity extends BaseActivity implements View.OnClickList
     private ImageView imgRefresh;
 
 
-    //private static final List<String> URLS = Arrays.asList("http://juheimg.oss-cn-hangzhou.aliyuncs.com/toh/201108/3/6717173923.jpg");
-
-    //随便给一个必应的吧
-//    private static final List<String> URLS = Arrays.asList(
-//            "https://api.dujin.org/bing/1920.php"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-090916%2Ferppivcyduverppivcyduv.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389041&t=3110820cc7477a9c7626021f4a127c2d"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-090811%2Fo2zgduf2fwjo2zgduf2fwj.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389221&t=3e1653bd2a673a03e863dbeb71c6e848"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091404%2Fodsnxo5lixxodsnxo5lixx.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389247&t=6ce59920275a01455e63d41e49575115"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091121%2F0u5s3hcmfne0u5s3hcmfne.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389294&t=5d247f87c78acdda4a2ac7646eb9a1e6"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091313%2F1x2j2ivbpaj1x2j2ivbpaj.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389310&t=c68737163b61ac7b68a2cd764f8b8de2"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091219%2Fks32cq0qk2vks32cq0qk2v.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389522&t=3dae8f220b2271134db4c4654e0f862a"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091022%2Fmkdvml00qvemkdvml00qve.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389575&t=652337c33b8594fbe3575149aeb0dd89"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091121%2Fl34jh3xolcvl34jh3xolcv.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389607&t=04dc7cfd3898e602472bd7973b4a30d9"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091204%2Fhmjyps3tscnhmjyps3tscn.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389637&t=f326e31e0bebf2ceb97be3774d7b1165"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091106%2Fpa4nutbu2mkpa4nutbu2mk.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389650&t=782833b3aa738e84c3c91b80822a2cf1"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091401%2Fkc0gyhfl4itkc0gyhfl4it.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389707&t=ee9309df8b22f55056003a59cd246444"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091123%2Fiet3f3p0jtoiet3f3p0jto.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389890&t=64497cbd5ea3c6c68d3c2ce912cf628f"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091322%2Fnxgeou3z5s1nxgeou3z5s1.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663389963&t=9b15aa0b3403f12c2bf947ad10051cc8"
-//            ,"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.jj20.com%2Fup%2Fallimg%2F1011%2F112G6002358%2F16112F02358-7.jpg&refer=http%3A%2F%2Fpic.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1663390140&t=44e9621984c732826a5e97cf8d5ac32c");
+    private static final List<String> URLS = Arrays.asList("http://juheimg.oss-cn-hangzhou.aliyuncs.com/toh/201108/3/6717173923.jpg");
 
     private SwipeCaptchaView mSwipeCaptchaView;
     private SeekBar mSeekBar;
@@ -136,7 +103,7 @@ public class SwipeCheckActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void matchFailed(SwipeCaptchaView swipeCaptchaView) {
-                MyToast.showText(SwipeCheckActivity.this, "验证失败！", Toast.LENGTH_SHORT, false);
+                MyToast.showText(SwipeCheckActivity.this, "验证失败！",false);
                 refreshImg();
                 mSeekBar.setProgress(0);
                 swipeCaptchaView.resetCaptcha();

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.activity.ChengYuInfoActivity;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollectZiFragment extends Fragment {
+    private LinearLayout noDataLayout;
     private SwipeRefreshLayout refreshLayout;
     private GridView gv;
     private String type;
@@ -43,6 +45,7 @@ public class CollectZiFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_collect_zi, container, false);
         gv = view.findViewById(R.id.collect_zi_frag);
+        noDataLayout = view.findViewById(R.id.no_data_layout);
         refreshLayout = view.findViewById(R.id.collect_refresh_layout);
         Bundle bundle = getArguments();
         type = bundle.getString("type");
@@ -93,8 +96,17 @@ public class CollectZiFragment extends Fragment {
         }else{
             list = DBmanager.queryAllInCollwordtb();
         }
+        showOrHide(list);
         mData.addAll(list);
         adapter.notifyDataSetChanged();
+    }
+
+    private void showOrHide(List<String> list){
+        if (list.size() > 0 && list != null) {
+            noDataLayout.setVisibility(View.GONE);
+        }else{
+            noDataLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setGvListener() {

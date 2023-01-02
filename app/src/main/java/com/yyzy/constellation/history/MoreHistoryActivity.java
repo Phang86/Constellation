@@ -1,26 +1,28 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.history;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.history.adapter.HistoryAdapter;
 import com.yyzy.constellation.history.bean.HistoryEntity;
-import com.yyzy.constellation.history.HistoryInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoreHistoryActivity extends BaseActivity{
+public class MoreHistoryActivity extends BaseActivity {
 
     private ListView lv;
-    private TextView tv;
+    private LinearLayout tv;
     private List<HistoryEntity.ResultBean> mData;
     private HistoryAdapter adapter;
     private HistoryEntity bean;
@@ -53,9 +55,15 @@ public class MoreHistoryActivity extends BaseActivity{
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             bean = (HistoryEntity) bundle.getSerializable("historyBean");
-            List<HistoryEntity.ResultBean> result = bean.getResult();
-            mData.addAll(result);
-            adapter.notifyDataSetChanged();
+            Log.e("TAG", "initView: "+bean.toString()+bean.toString().length());
+            if (!bean.toString().isEmpty()) {
+                List<HistoryEntity.ResultBean> result = bean.getResult();
+                mData.addAll(result);
+                adapter.notifyDataSetChanged();
+                tv.setVisibility(View.GONE);
+                return;
+            }
+            tv.setVisibility(View.VISIBLE);
         }catch (Exception e){
             e.printStackTrace();
             tv.setVisibility(View.VISIBLE);

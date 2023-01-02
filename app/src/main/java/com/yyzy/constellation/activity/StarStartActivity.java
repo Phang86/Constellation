@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -34,6 +35,7 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
     private String woman_logo,man_logo;
     private String url;
     private PartnerAsyncEntity entity;
+    private LinearLayout haveDataLayout,noDataLayout,startTopLayout;
 
     @Override
     protected int initLayout() {
@@ -42,6 +44,9 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initView() {
+        noDataLayout = findViewById(R.id.no_data_layout);
+        haveDataLayout = findViewById(R.id.have_data_layout);
+        startTopLayout = findViewById(R.id.star_start_top_layout);
         manTv = findViewById(R.id.starStart_tv_man);
         womanTv = findViewById(R.id.starStart_tv_woman);
         pdTv = findViewById(R.id.starStart_tv_pd);
@@ -91,24 +96,26 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
     public void onSuccess(String json) {
         try {
             if (!TextUtils.isEmpty(json)) {
+                showOrHide(true);
                 entity = new Gson().fromJson(json, PartnerAsyncEntity.class);
                 PartnerAsyncEntity.ResultDTO result = entity.getResult();
                 if (entity.getResult() == null || entity.getError_code() == 10012) {
                     showToast("今日接口访问次数已上限！");
+                    showOrHide(false);
                     return;
                 }
                 pfTv.setText("配对："+result.getZhishu()+" "+result.getJieguo());
                 bzTv.setText("星座比重："+result.getBizhong());
                 jxTv.setText("解析：\n\n"+result.getLianai());
                 zyTv.setText("注意事项：\n\n"+result.getZhuyi());
+            }else{
+                showOrHide(false);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-
-
 
     @Override
     public void onClick(View v) {
@@ -119,5 +126,16 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    private void showOrHide(boolean isShow){
+        if (isShow) {
+            noDataLayout.setVisibility(View.GONE);
+            haveDataLayout.setVisibility(View.VISIBLE);
+            startTopLayout.setVisibility(View.VISIBLE);
+        }else{
+            noDataLayout.setVisibility(View.VISIBLE);
+            haveDataLayout.setVisibility(View.INVISIBLE);
+            startTopLayout.setVisibility(View.INVISIBLE);
+        }
+    }
 
 }

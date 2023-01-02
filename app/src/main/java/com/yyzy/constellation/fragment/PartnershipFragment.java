@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.history.HistoryActivity;
@@ -30,7 +31,7 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
 
     private ImageView imgWoman, imgMan;
     private Spinner snWoman, snMan;
-    private Button btnLucky, btnStart, btnGame;
+    private TextView btnLucky, btnStart, btnGame;
     private StarInfoEntity info;
     private List<StarInfoEntity.StarinfoDTO> dtoList;
     private Map<String, Bitmap> logoImgMap;

@@ -1,10 +1,8 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.user.alertPhone;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Editable;
@@ -18,20 +16,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.entity.User;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.DiyProgressDialog;
-import com.yyzy.constellation.utils.MyEditText;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
@@ -51,7 +45,7 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
     private TextView tvTitle;
     private EditText etPhone, etValNum;
     private TextView tvSendValNum;
-    private Button btnConfirm;
+    private TextView btnConfirm;
     private String updatePhone;
 
     public EventHandler eh; //事件接收器
@@ -78,7 +72,7 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
         btnConfirm.setOnClickListener(this);
         etValNum.addTextChangedListener(this);
 
-        tvTitle.setText("修改手机号码");
+        tvTitle.setText("更换手机号");
 
         Intent intent = getIntent();
         updatePhone = intent.getStringExtra("updatePhone");
@@ -252,28 +246,21 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
             case R.id.updateOut_btn_confirm:
                 String mobile = etPhone.getText().toString().trim();
                 String valNum = etValNum.getText().toString().trim();
-                if (!TextUtils.isEmpty(mobile)) {
-                    if (checkPhone(mobile)) {
-                        if (!mobile.equals(updatePhone)) {
-                            if (!TextUtils.isEmpty(valNum)) {
-                                //进行验证码和手机号效验
-                                SMSSDK.submitVerificationCode("+86", mobile, valNum);
-                            } else {
-                                MyToast.showText(this, "验证码不能为空哦！");
-                                return;
-                            }
-                        } else {
-                            MyToast.showText(this, "新手机号码不能与旧手机号相同哦！请更换新的手机号码！");
+                if (checkPhone(mobile)) {
+                    if (!mobile.equals(updatePhone)) {
+                        if (!TextUtils.isEmpty(valNum)) {
+                            //进行验证码和手机号效验
+                            SMSSDK.submitVerificationCode("+86", mobile, valNum);
+                            ViewUtil.hideOneInputMethod(UpdatePhoneOutActivity.this,etValNum);
                             return;
                         }
-                    } else {
-                        MyToast.showText(this, "手机号码格式不对！");
+                        MyToast.showText(this, "验证码不能为空哦！");
                         return;
                     }
-                } else {
-                    MyToast.showText(this, "手机号码不能为空！");
+                    MyToast.showText(this, "新手机号码不能与旧手机号一致！请更换新的手机号码！");
                     return;
                 }
+                MyToast.showText(this, "手机号码格式不对！");
                 break;
         }
     }

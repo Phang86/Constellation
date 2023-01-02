@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,34 +8,60 @@
     android:background="@drawable/bg"
     android:orientation="vertical">
 
-    <include layout="@layout/star_details_title"/>
+    <include
+        android:id="@+id/top_layout"
+        layout="@layout/star_details_title"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_20dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/luck_details_cv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="@dimen/dimen_2dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_launcher_background"/>
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/luck_details_lv"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:divider="@null"
-        android:dividerHeight="@dimen/dimen_0dp"
-        android:scrollbars="none"
-        android:paddingRight="@dimen/dimen_20dp"
-        android:paddingLeft="@dimen/dimen_20dp"
-        android:paddingBottom="@dimen/dimen_20dp"
-        android:overScrollMode="never"/>
-</LinearLayout>
+        android:layout_below="@+id/top_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/center_layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/luck_details_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/dimen_1dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dimen_20dp"
+                    android:src="@drawable/ic_launcher_background"/>
+
+
+                <com.yyzy.constellation.utils.MyListView
+                    android:id="@+id/luck_details_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:scrollbars="none"
+                    android:paddingRight="@dimen/dimen_20dp"
+                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:paddingBottom="@dimen/dimen_20dp"
+                    android:overScrollMode="never"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/no_data_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <include layout="@layout/no_data_layout"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

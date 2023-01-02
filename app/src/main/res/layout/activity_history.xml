@@ -32,30 +32,15 @@
             android:layout_below="@+id/history_title"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-
     <LinearLayout
         android:id="@+id/history_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
         android:visibility="gone"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/history_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_null_top"
-            android:layout_marginBottom="@dimen/dimen_10dp"/>
+        <include layout="@layout/no_data_layout"/>
 
-        <TextView
-            android:id="@+id/history_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/size_18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/icon_null"/>
     </LinearLayout>
 </RelativeLayout>

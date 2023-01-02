@@ -95,22 +95,23 @@
 
 
 
-        <Button
+        <TextView
             android:id="@+id/partnershipFrag_btn_start"
             android:text="@string/start_partnership"
             style="@style/frag_partnership"
             android:layout_marginTop="@dimen/dimen_50dp"/>
 
 
-        <Button
+        <TextView
             android:id="@+id/partnershipFrag_btn_lucky"
             android:text="@string/lucky"
             style="@style/frag_partnership"
             android:layout_marginTop="@dimen/dimen_20dp"/>
 
-        <Button
+        <TextView
             android:id="@+id/partnershipFrag_btn_game"
             android:text="@string/historyToday"
             style="@style/frag_partnership"
-            android:layout_marginTop="@dimen/dimen_20dp"/>
+            android:layout_marginTop="@dimen/dimen_20dp"
+            />
 </LinearLayout>

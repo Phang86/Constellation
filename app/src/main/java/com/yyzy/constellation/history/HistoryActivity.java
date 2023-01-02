@@ -22,11 +22,11 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.MoreHistoryActivity;
 import com.yyzy.constellation.history.adapter.HistoryAdapter;
 import com.yyzy.constellation.history.bean.HistoryEntity;
 import com.yyzy.constellation.history.bean.LaoHuangLiEntity;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyListView;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -44,7 +44,6 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
 
     private SmartRefreshLayout refreshLayout;
     private LinearLayout linLayout;
-    private TextView tv;
     private ListView lv;
     private List<HistoryEntity.ResultBean> mData;
     private HistoryAdapter adapter;
@@ -72,7 +71,6 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         imgBack = findViewById(R.id.details_back);
         tvTitle = findViewById(R.id.details_title);
         linLayout = findViewById(R.id.history_layout);
-        tv = findViewById(R.id.history_tv);
         refreshLayout = findViewById(R.id.smr_refreshLayout);
         imgBack.setOnClickListener(this);
         showProgress();
@@ -174,10 +172,12 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                 if (entity != null){
                     bundle.putSerializable("historyBean",entity);
                     intent.putExtras(bundle);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
+                    dialog.dismiss();
+                    return;
                 }
-                startActivity(intent);
-                overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
-                dialog.dismiss();
+                MyToast.showText(getBaseContext(),"尾布局内容为空！");
             }
         });
     }
@@ -247,7 +247,8 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
                 Log.e("TAG", "onError: "+isOnCallback);
                 if (!isOnCallback){
                     showOrHide(false);
-                    MyToast.showText(HistoryActivity.this,"网络暂未开启！"+isOnCallback);
+                    Log.e("TAG", "onError: 网络状态 "+isOnCallback);
+                    //MyToast.showText(HistoryActivity.this,"网络暂未开启！"+isOnCallback);
                 }else{
                     showOrHide(false);
                     MyToast.showText(HistoryActivity.this,"接口访问次数受限！");
@@ -275,7 +276,6 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
             lv.setVisibility(View.GONE);
             linLayout.setVisibility(View.VISIBLE);
             refreshLayout.setVisibility(View.GONE);
-            tv.setText("抱歉，暂无数据！");
         }
         dialog.dismiss();
     }

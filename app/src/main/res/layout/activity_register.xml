@@ -196,7 +196,7 @@
                     android:singleLine="true"
                     android:textSize="16sp" />
 
-                <Button
+                <TextView
                     android:id="@+id/validateNum_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -204,23 +204,24 @@
                     android:background="@drawable/selector_get_val_code"
                     android:layout_weight="1"
                     android:textSize="@dimen/size_13sp"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:text="点击获取"/>
+                    android:text="点击获取"
+                    android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/btnRegister_register"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_45dp"
+            android:layout_height="@dimen/dimen_40dp"
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginTop="@dimen/dimen_70dp"
             android:layout_marginRight="@dimen/dimen_20dp"
             android:background="@drawable/selector_register_btn"
             android:text="@string/register"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"/>
+            android:textSize="@dimen/size_16sp"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/btnRegister_tv_login"

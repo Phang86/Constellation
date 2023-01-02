@@ -138,11 +138,13 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         //获取风向的信息
         windTv.setText(jhRealtime.getDirect() + jhRealtime.getPower());
         //获取温度区间的信息
-        tempRangeTv.setText(jhTodayFuture.getTemperature());
+        String relTempFuture = jhTodayFuture.getTemperature().replace("/", "~");
+        tempRangeTv.setText(relTempFuture);
         //获取今天天气情况信息
         conditionTv.setText(jhRealtime.getInfo());
         //获取实时温度情况
-        tempTv.setText(jhRealtime.getTemperature() + "℃");
+        String temp = jhRealtime.getTemperature();
+        tempTv.setText( temp + "℃");
         //获取未来五天的天气情况，并保存到layout中
         List<WeatherEntity.ResultDTO.FutureDTO> futureList = jhResult.getFuture();
         futureList.remove(0);
@@ -160,7 +162,8 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             String replaceDate = date.replace("2022-", "").replace("2023-","");
             iDateTv.setText(replaceDate);
             iconTv.setText(dataEntity.getWeather());
-            iTempRangeTv.setText(dataEntity.getTemperature());
+            String relTemp = dataEntity.getTemperature().replace("/", "~");
+            iTempRangeTv.setText(relTemp);
             windTv.setText(dataEntity.getDirect());
         }
     }

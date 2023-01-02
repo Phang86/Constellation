@@ -1,5 +1,6 @@
 package com.yyzy.constellation.tally.fragment;
 
+import android.icu.util.ValueIterator;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ public abstract class BaseChartFragment extends Fragment {
     public TextView tv;
     public BarChart barChart;
     private int year,month;
+    public LinearLayout noDataLayout;
 
     public BaseChartFragment() {
         // Required empty public constructor
@@ -49,7 +52,8 @@ public abstract class BaseChartFragment extends Fragment {
 
     private void initView(View view) {
         lv = view.findViewById(R.id.chart_frag_lv);
-        tv = view.findViewById(R.id.chart_frag_tv);
+        tv = view.findViewById(R.id.local_music_tv);
+        noDataLayout = view.findViewById(R.id.no_data_layout);
         mData = new ArrayList<>();
         chartLvItemAdapter = new ChartLvItemAdapter(getContext(), mData);
         lv.setAdapter(chartLvItemAdapter);

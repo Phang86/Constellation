@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     android:background="@drawable/bg">
 
     <RelativeLayout
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,12 +48,14 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/center_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_15dp"
         android:background="@color/lightyellow"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/dimen_20dp">
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_below="@+id/top_layout">
 
         <TextView
             android:id="@+id/chart_tv_monthBill"
@@ -83,36 +86,45 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_15dp"
-        android:layout_gravity="center">
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/center_layout"
+        android:weightSum="4">
 
-        <Button
+        <TextView
             android:id="@+id/chart_btn_out"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dimen_45dp"
             android:layout_height="@dimen/dimen_35dp"
             android:background="@drawable/tally_calendar_dialog_bg_fs"
             android:text="@string/out"
             android:textColor="@color/white"
             android:elevation="@dimen/dimen_0dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"/>
 
-        <Button
+        <TextView
             android:id="@+id/chart_btn_in"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dimen_45dp"
             android:layout_height="@dimen/dimen_35dp"
             android:background="@drawable/tally_calendar_dialog_bg"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:text="@string/in"
             android:textColor="@color/pink"
             android:elevation="@dimen/dimen_0dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/chart_vp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never"/>
-</LinearLayout>
+        android:overScrollMode="never"
+        android:layout_below="@id/bottom_layout"/>
+
+</RelativeLayout>

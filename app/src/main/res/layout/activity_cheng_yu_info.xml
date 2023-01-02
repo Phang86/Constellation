@@ -229,24 +229,15 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/chengyu_info_img"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/no_data_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_null_top"
-        android:visibility="gone"
         android:layout_centerInParent="true"
-        android:layout_above="@+id/chengyu_info_tv"
-        android:layout_marginBottom="@dimen/dimen_10dp"/>
+        android:visibility="gone"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/chengyu_info_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/size_18sp"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:drawableRight="@drawable/icon_null"/>
+        <include layout="@layout/no_data_layout"/>
+
+    </LinearLayout>
 </RelativeLayout>

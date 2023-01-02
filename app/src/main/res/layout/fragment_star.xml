@@ -15,7 +15,9 @@
         android:layout_marginTop="@dimen/dimen_20dp"
         android:layout_marginLeft="@dimen/dimen_20dp"
         android:layout_marginRight="@dimen/dimen_20dp"
-        android:layout_marginBottom="@dimen/dimen_10dp">
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        app:cardMaxElevation="@dimen/dimen_0dp"
+        app:cardElevation="@dimen/dimen_0dp">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/starFrag_vp"

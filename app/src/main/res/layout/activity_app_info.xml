@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".activity.AppInfoActivity">
+    tools:context=".user.AppInfoActivity">
 
     <include layout="@layout/star_details_title"/>
 

@@ -1,19 +1,14 @@
-package com.yyzy.constellation.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.yyzy.constellation.user.alertPwd;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,20 +19,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -52,8 +48,8 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
 
     TextView pwdTv;
     ImageView backImg;
-    EditText userEt,oldPwdEt,newPwdEt,configNewPwdEt;
-    Button updateBtn;
+    EditText oldPwdEt,newPwdEt,configNewPwdEt;
+    TextView updateBtn;
     private String oldPwd;
     private String newPwd;
     private String configNewPwd;
@@ -69,7 +65,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     protected void initView() {
         pwdTv = findViewById(R.id.details_title);
         backImg = findViewById(R.id.details_back);
-        userEt = findViewById(R.id.update_user);
+//        userEt = findViewById(R.id.update_user);
         updateBtn  = findViewById(R.id.update_btn);
         oldPwdEt  = findViewById(R.id.old_pwd);
         newPwdEt  = findViewById(R.id.new_pwd);
@@ -78,7 +74,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
         newPwdEt.addTextChangedListener(textWatcher);
         configNewPwdEt.addTextChangedListener(textWatcher);
         updateBtn.setOnClickListener(this);
-        userEt.setEnabled(false);
+//        userEt.setEnabled(false);
         updateBtn.setEnabled(false);
         backImg.setOnClickListener(this);
         pwdTv.setText("修改密码");
@@ -88,7 +84,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
     protected void initData() {
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
-        userEt.setText(userName);
+//        userEt.setText(userName);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
@@ -122,8 +118,9 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                 oldPwd = oldPwdEt.getText().toString().trim();
                 newPwd = newPwdEt.getText().toString().trim();
                 configNewPwd = configNewPwdEt.getText().toString().trim();
-                String user = userEt.getText().toString().trim();
-                updatePwd(oldPwd,newPwd,configNewPwd,user);
+//                String user = userEt.getText().toString().trim();
+                updatePwd(oldPwd,newPwd,configNewPwd,userName);
+                ViewUtil.hideOneInputMethod(UpdatePwdActivity.this,configNewPwdEt);
                 break;
         }
     }

@@ -1,9 +1,6 @@
-package com.yyzy.constellation.activity;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.yyzy.constellation.user.alertPhone;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -17,12 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.utils.MyEditText;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.ViewUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
@@ -32,7 +29,7 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
     private TextView tvSendValNumTo;
     private ImageView imgBack;
     private TextView tvTitle;
-    private Button btnNext;
+    private TextView btnNext;
     private EditText etValNum;
     private TextView tvSendValNum;
 
@@ -63,7 +60,7 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
         etValNum.addTextChangedListener(this);
         btnNext.setEnabled(false);
 
-        tvTitle.setText("修改手机号码");
+        tvTitle.setText("短信验证");
         Intent intent = getIntent();
         String phone = intent.getStringExtra("updatePhone");
         userName = intent.getStringExtra("userName");
@@ -90,7 +87,7 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
                                 //showAlertDialog();
                                 //showDefaultDialog();
                                 Intent intent = new Intent();
-                                intent.setClass(UpdatePhoneActivity.this,UpdatePhoneOutActivity.class);
+                                intent.setClass(UpdatePhoneActivity.this, UpdatePhoneOutActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("updatePhone",replacePhone);
                                 intent.putExtra("userName",userName);
@@ -155,19 +152,16 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
                     //发送验证码
                     SMSSDK.getVerificationCode("+86",replacePhone);//获取验证码
                     mTimeCount.start();
-                }else{
-                    MyToast.showText(this,"手机号为空！");
                     return;
                 }
+                MyToast.showText(this,"手机号为空！");
                 break;
             case R.id.updatePhone_btn_next:
                 String valNum = etValNum.getText().toString().trim();
                 if (!TextUtils.isEmpty(valNum)){
                     //进行验证码核验
                     SMSSDK.submitVerificationCode("+86",replacePhone,valNum);
-                }else{
-                    MyToast.showText(this,"验证码不能为空！");
-                    return;
+                    ViewUtil.hideOneInputMethod(UpdatePhoneActivity.this,etValNum);
                 }
                 break;
         }

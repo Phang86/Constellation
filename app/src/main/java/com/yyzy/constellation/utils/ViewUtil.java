@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -47,4 +48,26 @@ public class ViewUtil {
         // 关闭屏幕上的输入法软键盘
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
+
+    /**
+     * 软键盘显示/隐藏
+     */
+    public static void hideShowKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE); //得到InputMethodManager的实例
+        if (imm.isActive()) {//如果开启
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);//关闭软键盘，开启方法相同，这个方法是切换开启与关闭状态的
+        }
+    }
+
+    //键盘的隐藏
+    public static void hideSystemKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    //键盘的显示
+    public static void showSystemKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view, 0);
+    }
+
 }

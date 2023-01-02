@@ -58,13 +58,14 @@ public class MyToast extends Toast {
         }
     }
 
+
     /**
      * 初始化Toast
      *
      * @param context 上下文
      * @param text    显示的文本
      */
-    private static void initToast(Context context, CharSequence text) {
+    private static void initToast(Context context, CharSequence text, int gravity) {
         try {
             cancelToast();
 
@@ -84,12 +85,16 @@ public class MyToast extends Toast {
             TextView toast_text = (TextView) layout.findViewById(R.id.toast_text);
             toast_text.setText(text);
             toast.setView(layout);
-            toast.setGravity(Gravity.CENTER, 0, 70);
+            if (gravity == Gravity.BOTTOM) {
+                toast.setGravity(gravity, 0, 190);
+                return;
+            }
+            toast.setGravity(gravity,0,0);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * 图标状态 不显示图标
@@ -112,9 +117,9 @@ public class MyToast extends Toast {
      * @param time    显示时长
      * @param imgType 图标状态
      */
-    private static void showToast(Context context, CharSequence text, int time, int imgType) {
+    private static void showToast(Context context, CharSequence text, int time, int imgType, int gravity) {
         // 初始化一个新的Toast对象
-        initToast(context, text);
+        initToast(context, text, gravity);
 
         // 设置显示时长
         if (time == Toast.LENGTH_LONG) {
@@ -150,7 +155,17 @@ public class MyToast extends Toast {
      * @param text    显示的文本
      */
     public static void showText(Context context, CharSequence text) {
-        showToast(context, text, Toast.LENGTH_SHORT, TYPE_HIDE);
+        showToast(context, text, Toast.LENGTH_SHORT, TYPE_HIDE, Gravity.CENTER);
+    }
+
+    /**
+     * 显示一个设置指定位置的纯文本吐司
+     *
+     * @param context 上下文
+     * @param text    显示的文本
+     */
+    public static void showText(Context context, CharSequence text, int gravity) {
+        showToast(context, text, Toast.LENGTH_SHORT, TYPE_HIDE, gravity);
     }
 
     /**
@@ -161,7 +176,7 @@ public class MyToast extends Toast {
      * @param isSucceed 显示【对号图标】还是【叉号图标】
      */
     public static void showText(Context context, CharSequence text, boolean isSucceed) {
-        showToast(context, text, Toast.LENGTH_SHORT, isSucceed ? TYPE_TRUE : TYPE_FALSE);
+        showToast(context, text, Toast.LENGTH_SHORT, isSucceed ? TYPE_TRUE : TYPE_FALSE, Gravity.CENTER);
     }
 
     /**
@@ -171,9 +186,9 @@ public class MyToast extends Toast {
      * @param text    显示的文本
      * @param time    持续的时间
      */
-    public static void showText(Context context, CharSequence text, int time) {
-        showToast(context, text, time, TYPE_HIDE);
-    }
+//    public static void showText(Context context, CharSequence text, int time) {
+//        showToast(context, text, time, TYPE_HIDE);
+//    }
 
     /**
      * 显示一个带图标的吐司
@@ -183,8 +198,7 @@ public class MyToast extends Toast {
      * @param time      持续的时间
      * @param isSucceed 显示【对号图标】还是【叉号图标】
      */
-    public static void showText(Context context, CharSequence text, int time, boolean isSucceed) {
-        showToast(context, text, time, isSucceed ? TYPE_TRUE : TYPE_FALSE);
+    public static void showText(Context context, CharSequence text, int time, boolean isSucceed, int gravity) {
+        showToast(context, text, time, isSucceed ? TYPE_TRUE : TYPE_FALSE, gravity);
     }
-
 }

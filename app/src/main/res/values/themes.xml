@@ -4,7 +4,7 @@
     <style name="Theme.Constellation" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlActivated">#C759D662</item>
+<!--        <item name="colorControlActivated">#C759D662</item>-->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -173,13 +173,12 @@
     <style name="frag_partnership">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen_45dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:background">@drawable/selector_partnership_btn_bg</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/gray_600</item>
         <item name="android:textSize">@dimen/size_16sp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:layout_marginLeft">@dimen/dimen_20dp</item>
         <item name="android:layout_marginRight">@dimen/dimen_20dp</item>
-        <item name="android:elevation">0dp</item>
     </style>
 
     <!--tally_more_dialog CardView样式-->
