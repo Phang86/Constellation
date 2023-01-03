@@ -62,13 +62,15 @@ public class CalendarAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.item_calendar_gv,parent,false);
         TextView tv = convertView.findViewById(R.id.item_calendar_tv);
-        CardView cv = convertView.findViewById(R.id.item_calendar_cv);
+//        CardView cv = convertView.findViewById(R.id.item_calendar_cv);
         tv.setText(mData.get(position));
 //        cv.setCardBackgroundColor();
-        tv.setTextColor(Color.BLACK);
+        tv.setTextColor(context.getResources().getColor(R.color.grey));
+        tv.setBackground(context.getDrawable(R.drawable.partnership_btn_bg_two));
         if (position == selPos) {
-            cv.setCardBackgroundColor(context.getResources().getColor(R.color.gray_500));
-            tv.setTextColor(Color.WHITE);
+            //cv.setCardBackgroundColor(context.getResources().getColor(R.color.gray_500));
+            tv.setTextColor(Color.BLACK);
+            tv.setBackground(context.getDrawable(R.drawable.partnership_btn_bg));
         }
         return convertView;
 

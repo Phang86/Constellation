@@ -6,7 +6,8 @@
     tools:context=".fragment.PartnershipFragment"
     android:orientation="vertical"
     android:paddingTop="@dimen/dimen_20dp"
-    android:background="@drawable/bg">
+
+    android:background="@drawable/left_right_radio">
 
 
     <LinearLayout
@@ -23,6 +24,7 @@
             android:orientation="horizontal"
             android:padding="@dimen/dimen_15dp"
             android:background="@drawable/partnership_man_bg">
+
             <TextView
                 android:id="@+id/partnershipFrag_tv_man"
                 android:layout_width="@dimen/dimen_0dp"
@@ -57,6 +59,7 @@
             android:padding="@dimen/dimen_15dp"
             android:background="@drawable/partnership_woman_bg"
             android:layout_below="@+id/partnershipFrag_layout_man">
+
             <TextView
                 android:id="@+id/partnershipFrag_tv_woman"
                 android:layout_width="@dimen/dimen_0dp"

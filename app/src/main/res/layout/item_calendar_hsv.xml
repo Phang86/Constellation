@@ -17,6 +17,6 @@
         android:textColor="@color/black_200"
         android:textStyle="bold"
         android:textSize="@dimen/size_15sp"
-        android:background="@drawable/tally_calendar_dialog_bg"
+        android:background="@drawable/selector_partnership_btn_bg"
         android:layout_margin="@dimen/dimen_5dp"/>
 </LinearLayout>

@@ -64,7 +64,7 @@ public class OutComeChartFragment extends BaseChartFragment{
             BarDataSet barDataSet1 = new BarDataSet(barEntries, "");
             barDataSet1.setValueTextColor(Color.BLACK); // 值的颜色
             barDataSet1.setValueTextSize(8f); // 值的大小
-            barDataSet1.setColor(getResources().getColor(R.color.black_200)); // 柱子的颜色
+            barDataSet1.setColor(getResources().getColor(R.color.pink)); // 柱子的颜色
 
             // 设置柱子上数据显示的格式
             barDataSet1.setValueFormatter(new IValueFormatter() {

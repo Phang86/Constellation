@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dict.activity.DictActivity"
-    android:background="@drawable/bg">
+    android:background="@color/state_bg">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -33,181 +33,237 @@
             android:layout_marginRight="@dimen/dimen_15dp"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10dp">
-
-        <com.yyzy.constellation.utils.MyEditText
-            android:id="@+id/dict_ed"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_50dp"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:background="@drawable/dict_ed_bg"
-            android:singleLine="true"
-            android:layout_centerVertical="true"
-            android:hint="@string/findText"
-            android:textColorHint="@color/grey"
-            android:textColor="@color/black"
-            android:textSize="@dimen/size_15sp"
-            android:imeOptions="actionSearch"
-            android:maxLength="1"
-            android:inputType="text">
-            <requestFocus/>
-        </com.yyzy.constellation.utils.MyEditText>
-
-<!--        <ImageView-->
-<!--            android:id="@+id/dict_iv_search"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_width="@dimen/dimen_25dp"-->
-<!--            android:layout_height="@dimen/dimen_25dp"-->
-<!--            android:src="@mipmap/search"-->
-<!--            android:layout_marginRight="@dimen/dimen_20dp"/>-->
-    </RelativeLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10dp"
-        android:orientation="horizontal"
-        android:background="@drawable/dict_layout_bg"
-        android:padding="@dimen/dimen_15dp"
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/dict_tv_pinyin"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/m_pinyin"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:text="@string/pinyinQuery"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-
-
-        <TextView
-            android:id="@+id/dict_tv_bushou"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawableTop="@mipmap/m_bushou"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/bushouQuery"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/dict_tv_chengyu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dimen_8dp"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/m_chengyu"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:drawablePadding="@dimen/dimen_5dp"
-            android:gravity="center"
-            android:text="@string/chengyuQuery"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/dict_tv_xiangji"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:drawableTop="@mipmap/m_xiangji"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/xiangji"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:gravity="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10dp"
-        android:background="@drawable/dict_layout_bg"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/dimen_10dp">
+        android:background="@drawable/left_right_radio">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/everyDay"
-                android:textStyle="bold"
+            <com.yyzy.constellation.utils.MyEditText
+                android:id="@+id/dict_ed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_50dp"
+                android:layout_margin="@dimen/dimen_10dp"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="@drawable/dict_ed_bg"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:hint="@string/findText"
+                android:textColorHint="@color/grey"
                 android:textColor="@color/black"
-                android:layout_alignParentLeft="true"/>
+                android:textSize="@dimen/size_15sp"
+                android:imeOptions="actionSearch"
+                android:maxLength="1"
+                android:inputType="text">
+                <requestFocus/>
+            </com.yyzy.constellation.utils.MyEditText>
 
-
-            <ImageView
-                android:id="@+id/dict_img_update"
-                android:layout_width="@dimen/dimen_20dp"
-                android:layout_height="@dimen/dimen_20dp"
-                android:src="@drawable/ic_refresh"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/fireRed"/>
-
-            <ProgressBar
-                android:id="@+id/dict_progressBar"
-                android:layout_width="@dimen/dimen_20dp"
-                android:layout_height="@dimen/dimen_20dp"
-                android:indeterminateTintMode="src_atop"
-                android:indeterminateBehavior="repeat"
-                android:layout_alignParentRight="true"
-                android:visibility="gone"
-                android:indeterminateDrawable="@drawable/anim"/>
+            <!--        <ImageView-->
+            <!--            android:id="@+id/dict_iv_search"-->
+            <!--            android:layout_centerVertical="true"-->
+            <!--            android:layout_alignParentRight="true"-->
+            <!--            android:layout_width="@dimen/dimen_25dp"-->
+            <!--            android:layout_height="@dimen/dimen_25dp"-->
+            <!--            android:src="@mipmap/search"-->
+            <!--            android:layout_marginRight="@dimen/dimen_20dp"/>-->
         </RelativeLayout>
 
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:orientation="horizontal"
+            android:background="@drawable/dict_layout_bg"
+            android:padding="@dimen/dimen_15dp"
+            android:weightSum="4">
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/dict_progressBar"-->
-<!--                android:layout_width="@dimen/dimen_20dp"-->
-<!--                android:layout_height="@dimen/dimen_20dp"-->
-<!--                android:indeterminateTintMode="src_atop"-->
-<!--                android:indeterminateBehavior="repeat"-->
-<!--                android:layout_centerInParent="true"-->
-<!--                android:visibility="visible"-->
-<!--                android:indeterminateDrawable="@drawable/anim"/>-->
-
-            <TextView
-                android:id="@+id/dict_tv_everyDay"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dict_tv_pinyin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray_600"
-                android:lineHeight="@dimen/dimen_18dp"
-                android:textIsSelectable="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/dimen_10dp"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/gray_100_ededed"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                android:foreground="@drawable/view_foreground"
+                app:cardCornerRadius="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp">
 
-            <TextView
-                android:id="@+id/dict_tv_author"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/m_pinyin"
+                    android:gravity="center"
+                    android:text="@string/pinyinQuery"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingBottom="@dimen/dimen_10dp"/>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dict_tv_bushou"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray_600"
-                android:gravity="center_vertical"
-                android:visibility="gone"
-                android:drawableLeft="@drawable/ic_dict_author"
-                android:drawablePadding="@dimen/dimen_5dp"
-                android:text="@string/author"
-                android:layout_below="@+id/dict_tv_everyDay"
-                android:layout_marginTop="@dimen/dimen_5dp"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/gray_100_ededed"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                android:foreground="@drawable/view_foreground"
+                app:cardCornerRadius="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@mipmap/m_bushou"
+                    android:text="@string/bushouQuery"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimen_10dp"/>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dict_tv_chengyu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/gray_100_ededed"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                android:foreground="@drawable/view_foreground"
+                app:cardCornerRadius="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/dimen_10dp"
+                    android:paddingBottom="@dimen/dimen_10dp"
+                    android:drawableTop="@mipmap/m_chengyu"
+                    android:drawablePadding="@dimen/dimen_5dp"
+                    android:gravity="center"
+                    android:text="@string/chengyuQuery"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dict_tv_xiangji"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/gray_100_ededed"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                android:foreground="@drawable/view_foreground"
+                app:cardCornerRadius="@dimen/dimen_10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableTop="@mipmap/m_xiangji"
+                    android:text="@string/xiangji"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimen_10dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/dict_layout_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/everyDay"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_alignParentLeft="true"/>
+
+
+                <ImageView
+                    android:id="@+id/dict_img_update"
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:src="@drawable/ic_refresh"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/fireRed"/>
+
+                <ProgressBar
+                    android:id="@+id/dict_progressBar"
+                    android:layout_width="@dimen/dimen_20dp"
+                    android:layout_height="@dimen/dimen_20dp"
+                    android:indeterminateTintMode="src_atop"
+                    android:indeterminateBehavior="repeat"
+                    android:layout_alignParentRight="true"
+                    android:visibility="gone"
+                    android:indeterminateDrawable="@drawable/anim"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--            <ProgressBar-->
+                <!--                android:id="@+id/dict_progressBar"-->
+                <!--                android:layout_width="@dimen/dimen_20dp"-->
+                <!--                android:layout_height="@dimen/dimen_20dp"-->
+                <!--                android:indeterminateTintMode="src_atop"-->
+                <!--                android:indeterminateBehavior="repeat"-->
+                <!--                android:layout_centerInParent="true"-->
+                <!--                android:visibility="visible"-->
+                <!--                android:indeterminateDrawable="@drawable/anim"/>-->
+
+                <TextView
+                    android:id="@+id/dict_tv_everyDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_600"
+                    android:lineHeight="@dimen/dimen_18dp"
+                    android:textIsSelectable="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="@dimen/dimen_10dp"/>
+
+                <TextView
+                    android:id="@+id/dict_tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_600"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:drawableLeft="@drawable/ic_dict_author"
+                    android:drawablePadding="@dimen/dimen_5dp"
+                    android:text="@string/author"
+                    android:layout_below="@+id/dict_tv_everyDay"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

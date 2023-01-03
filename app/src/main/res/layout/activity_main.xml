@@ -9,7 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/state_bg">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_layout_top"
@@ -80,7 +81,8 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/main_rb"
             android:layout_below="@id/main_layout_top"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

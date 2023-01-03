@@ -128,5 +128,20 @@ public class WordEntity {
         public void setXiangjie(List<String> xiangjie) {
             this.xiangjie = xiangjie;
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "id='" + id + '\'' +
+                    ", zi='" + zi + '\'' +
+                    ", py='" + py + '\'' +
+                    ", wubi='" + wubi + '\'' +
+                    ", pinyin='" + pinyin + '\'' +
+                    ", bushou='" + bushou + '\'' +
+                    ", bihua='" + bihua + '\'' +
+                    ", jijie=" + jijie +
+                    ", xiangjie=" + xiangjie +
+                    '}';
+        }
     }
 }

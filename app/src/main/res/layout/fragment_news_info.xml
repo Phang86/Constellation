@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".news.fragment.NewsInfoFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/state_bg_f4f3f8">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smr_refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@color/black"
-        app:srlPrimaryColor="#f1f2f3">
+        app:srlPrimaryColor="@color/state_bg_f4f3f8">
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@dimen/dimen_5dp"/>
-    <solid android:color="@color/white"/>
-    <stroke android:color="#6495ED" android:width="@dimen/dimen_1dp"/>
-    <padding
-        android:top="@dimen/dimen_5dp"
-        android:bottom="@dimen/dimen_5dp"
-        android:left="@dimen/dimen_10dp"
-        android:right="@dimen/dimen_10dp"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dimen_5dp"/>
+            <solid android:color="@color/gray_100_ededed"/>
+            <padding
+                android:top="@dimen/dimen_5dp"
+                android:bottom="@dimen/dimen_5dp"
+                android:left="@dimen/dimen_10dp"
+                android:right="@dimen/dimen_10dp"/>
+        </shape>
+    </item>
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/dimen_5dp"/>
+            <solid android:color="@color/white"/>
+            <stroke android:color="#6495ED" android:width="@dimen/dimen_1dp"/>
+            <padding
+                android:top="@dimen/dimen_5dp"
+                android:bottom="@dimen/dimen_5dp"
+                android:left="@dimen/dimen_10dp"
+                android:right="@dimen/dimen_10dp"/>
+        </shape>
+    </item>
+</selector>

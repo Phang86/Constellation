@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".weather.activity.SearchCityActivity"
-    android:background="@drawable/bg"
+    android:background="@color/state_bg"
     android:layout_gravity="center_vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -21,18 +21,13 @@
                     android:src="@mipmap/icon_back"
                     android:layout_marginRight="@dimen/dimen_10dp"/>
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:id="@+id/search_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_40dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardMaxElevation="@dimen/dimen_0dp"
-                    app:cardElevation="@dimen/dimen_0dp"
+                    android:layout_height="@dimen/dimen_35dp"
                     android:layout_below="@+id/search_top_layout"
-                    app:contentPaddingLeft="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
-                    android:paddingRight="@dimen/dimen_10dp"
-                    app:cardCornerRadius="@dimen/dimen_20dp">
+                    android:background="@drawable/searchbox_bg">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -41,56 +36,62 @@
                                 <com.yyzy.constellation.utils.MyEditText
                                     android:id="@+id/search_et"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_toLeftOf="@+id/search_iv_confirm"
                                     android:hint="@string/searchCity"
-                                    android:paddingLeft="@dimen/dimen_5dp"
-                                    android:paddingTop="@dimen/dimen_10dp"
+                                    android:paddingLeft="@dimen/dimen_15dp"
                                     android:lines="1"
                                     android:inputType="text"
                                     android:imeOptions="actionSearch"
                                     android:textColorHint="@color/grey"
                                     android:textColor="@color/black"
-                                    android:paddingBottom="@dimen/dimen_10dp"
                                     android:textSize="@dimen/size_15sp"
-                                    android:background="@null">
+                                    android:background="@null"
+                                    android:layout_centerVertical="true">
                                         <requestFocus/>
                                 </com.yyzy.constellation.utils.MyEditText>
 
                                 <TextView
                                     android:id="@+id/search_iv_confirm"
-                                    android:layout_width="@dimen/dimen_70dp"
+                                    android:layout_width="@dimen/dimen_60dp"
                                     android:layout_height="match_parent"
                                     android:layout_alignParentRight="true"
                                     android:gravity="center"
                                     android:text="搜索"
+                                    android:textColor="@color/white"
                                     android:layout_margin="@dimen/dimen_3dp"
-                                    android:background="@drawable/selector_partnership_btn_bg"/>
+                                    android:background="@drawable/search_tvbtn_bg"/>
                         </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
 
-
-        <TextView
-            android:id="@+id/search_tv_hotCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_top_layout"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:textSize="@dimen/size_16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="@string/hotCity"/>
-
-        <GridView
-            android:id="@+id/search_gv"
-            android:layout_below="@+id/search_tv_hotCity"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:numColumns="5"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/left_right_radio"
+            android:layout_below="@+id/search_top_layout">
+
+                <TextView
+                    android:id="@+id/search_tv_hotCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:textSize="@dimen/size_15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/hotCity"/>
+
+                <GridView
+                    android:id="@+id/search_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:listSelector="@color/white"
+                    android:numColumns="5"/>
+        </LinearLayout>
 </RelativeLayout>

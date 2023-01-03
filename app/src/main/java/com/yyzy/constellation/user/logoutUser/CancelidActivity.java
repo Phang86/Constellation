@@ -219,6 +219,8 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.cancelid_send_num:
                 if(!TextUtils.isEmpty(myphone)){
+                    etNum.requestFocus();
+                    ViewUtil.showSystemKeyboard(getApplicationContext(),etNum);
                     SMSSDK.getVerificationCode("+86",myphone);//获取验证码
                     mTimeCount.start();
                 }else{

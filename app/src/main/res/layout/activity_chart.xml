@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".tally.ChartActivity"
-    android:background="@drawable/bg">
+    android:background="@color/state_bg_f4f3f8">
 
     <RelativeLayout
         android:id="@+id/top_layout"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_15dp"
-        android:background="@color/state_bg"
+        android:background="@color/white"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:layout_below="@+id/top_layout">
@@ -98,7 +98,7 @@
             android:id="@+id/chart_btn_out"
             android:layout_width="@dimen/dimen_45dp"
             android:layout_height="@dimen/dimen_35dp"
-            android:background="@drawable/tally_calendar_dialog_bg_fs"
+            android:background="@drawable/partnership_btn_bg"
             android:text="@string/out"
             android:textColor="@color/black"
             android:elevation="@dimen/dimen_0dp"
@@ -110,7 +110,7 @@
             android:id="@+id/chart_btn_in"
             android:layout_width="@dimen/dimen_45dp"
             android:layout_height="@dimen/dimen_35dp"
-            android:background="@drawable/tally_calendar_dialog_bg"
+            android:background="@drawable/partnership_btn_bg_two"
             android:layout_marginLeft="@dimen/dimen_10dp"
             android:text="@string/in"
             android:textColor="@color/black"

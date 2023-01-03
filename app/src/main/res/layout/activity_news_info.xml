@@ -16,13 +16,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_55dp"
-            android:background="#F0E68C">
+            android:background="@color/state_bg">
 
             <ImageView
                 android:id="@+id/news_info_img"
-                android:layout_width="@dimen/dimen_20dp"
-                android:layout_height="@dimen/dimen_20dp"
-                android:src="@mipmap/back"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_25dp"
+                android:src="@mipmap/icon_back"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dimen_10dp"/>
 
@@ -35,7 +35,7 @@
                 android:singleLine="true"
                 android:text="fsdfsdfdsdffdsffdsffsdf"
                 android:gravity="center"
-                android:textColor="@color/pink"
+                android:textColor="@color/black"
                 android:textSize="@dimen/size_16sp"
                 android:layout_marginLeft="@dimen/dimen_70dp"
                 android:layout_marginRight="@dimen/dimen_70dp"

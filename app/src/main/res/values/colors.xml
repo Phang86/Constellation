@@ -14,10 +14,11 @@
     <color name="bgyellow">#eee9bf</color>
     <color name="pink">#D4237A</color>
     <color name="grey">#8a8a8a</color>
-    <color name="gray_100_ededed">#f6f7f9</color>
+    <color name="gray_100_ededed">#ebeef3</color>
     <color name="white">#FFFFFF</color>
     <color name="zhuBlue">#29B6F6</color>
-    <color name="state_bg">#f6f7f9</color>
+    <color name="state_bg">#ebeef3</color>
+    <color name="state_bg_f4f3f8">#f4f3f8</color>
 
     <color name="lightpink">#EB749C</color>
     <color name="orange">#EEAD0E</color>

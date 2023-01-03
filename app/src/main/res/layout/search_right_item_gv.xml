@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:padding="@dimen/dimen_5dp">
+
     <TextView
         android:id="@+id/search_right_item_tv"
         android:layout_width="wrap_content"

@@ -107,7 +107,6 @@
                 android:layout_weight="1"
                 android:textSize="@dimen/size_20sp"
                 android:textColor="@color/Blue"
-                android:textStyle="bold"
                 android:gravity="center"/>
 
             <TextView
@@ -118,7 +117,6 @@
                 android:layout_weight="1"
                 android:textSize="@dimen/size_20sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:gravity="center"/>
         </LinearLayout>
 

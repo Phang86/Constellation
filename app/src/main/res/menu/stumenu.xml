@@ -44,6 +44,5 @@
             android:id="@+id/exit"
             android:icon="@drawable/ic_exit"
             android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;&#160;&#160;&#8201;退出"/>
-
     </group>
 </menu>

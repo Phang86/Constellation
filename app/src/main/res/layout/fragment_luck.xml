@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.LuckFragment"
     android:orientation="vertical"
-    android:background="@drawable/bg">
+    android:background="@drawable/left_right_radio">
 
     <GridView
         android:id="@+id/luck_gv"

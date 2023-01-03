@@ -36,7 +36,7 @@
         app:tabIndicatorColor="@color/blue"
         app:tabTextColor="@color/black"
         app:tabMode="fixed"
-        android:layout_below="@+id/title_layout"/>
+        android:layout_below="@+id/title_layout" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/collect_vp"

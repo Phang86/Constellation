@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -181,6 +180,8 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                             @Override
                             public void run() {
                                 MyToast.showText(UpdatePhoneOutActivity.this, "验证码已发送", Toast.LENGTH_SHORT);
+                                etValNum.requestFocus();
+                                ViewUtil.showSystemKeyboard(getApplicationContext(),etValNum);
                             }
                         });
                     }

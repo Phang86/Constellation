@@ -20,5 +20,5 @@
         android:paddingRight="@dimen/dimen_10dp"
         android:paddingTop="@dimen/dimen_5dp"
         android:paddingBottom="@dimen/dimen_5dp"
-        android:background="@drawable/item_chengyu_gv_bg"/>
+        android:background="@drawable/selector_partnership_btn_bg"/>
 </LinearLayout>

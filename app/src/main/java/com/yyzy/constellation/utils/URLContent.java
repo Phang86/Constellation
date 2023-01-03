@@ -131,8 +131,8 @@ public class URLContent {
     }
 
     //    公共的key   http://v.juhe.cn/toutiao/index?key=0af60a86bfa3575d53c1491d1be310ca&type=top
-    public static String key = "7e892c1f26c696a1153ee7e543ebae1d";
-//    public static String key = "0af60a86bfa3575d53c1491d1be310ca";
+//    public static String key = "7e892c1f26c696a1153ee7e543ebae1d";
+    public static String key = "0af60a86bfa3575d53c1491d1be310ca";
     //http://v.juhe.cn/toutiao/index?type=top&key=APPKEY
     public static String info_url = "http://v.juhe.cn/toutiao/index?key="+key+"&type=";
     //     头条

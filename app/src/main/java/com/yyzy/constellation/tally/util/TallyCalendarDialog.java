@@ -121,13 +121,13 @@ public class TallyCalendarDialog extends Dialog implements View.OnClickListener 
     private void changTvBg(int selectPos) {
         for (int i = 0; i < hsvViewList.size(); i++) {
             TextView textView = hsvViewList.get(i);
-            textView.setBackgroundResource(R.drawable.tally_calendar_dialog_bg);
-            textView.setTextColor(getContext().getResources().getColor(R.color.black_200));
+            textView.setBackground(getContext().getResources().getDrawable(R.drawable.partnership_btn_bg_two));
+            textView.setTextColor(getContext().getResources().getColor(R.color.grey));
         }
 
         TextView selectTv = hsvViewList.get(selectPos);
         selectTv.setTextColor(getContext().getResources().getColor(R.color.black));
-        selectTv.setBackgroundResource(R.drawable.tally_calendar_dialog_bg_fs);
+        selectTv.setBackground(getContext().getResources().getDrawable(R.drawable.partnership_btn_bg));
     }
 
     //给横向的ScrollView的每一项设置点击事件

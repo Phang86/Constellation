@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
+    android:background="@color/state_bg_f4f3f8"
     tools:context=".user.logoutUser.CancelidActivity">
 
     <include layout="@layout/star_details_title"/>
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimen_30dp"
-        android:background="@color/gray_100_ededed">
+        android:background="@color/white">
 
 
         <LinearLayout

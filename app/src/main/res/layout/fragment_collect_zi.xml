@@ -19,7 +19,8 @@
                 android:id="@+id/collect_zi_frag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:numColumns="3"/>
+                android:numColumns="3"
+                android:listSelector="@color/white"/>
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

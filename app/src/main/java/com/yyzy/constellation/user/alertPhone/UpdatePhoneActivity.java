@@ -150,6 +150,8 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
                 //Log.e("TAG", "要修改的手机号为："+replacePhone);
                 if (!TextUtils.isEmpty(replacePhone)){
                     //发送验证码
+                    etValNum.requestFocus();
+                    ViewUtil.showSystemKeyboard(getApplicationContext(),etValNum);
                     SMSSDK.getVerificationCode("+86",replacePhone);//获取验证码
                     mTimeCount.start();
                     return;

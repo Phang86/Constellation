@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/dimen_10dp"
         android:layout_marginBottom="@dimen/dimen_10dp"
         app:cardCornerRadius="@dimen/dimen_10dp"
-        app:cardBackgroundColor="@color/gray_100_ededed"
+        app:cardBackgroundColor="@color/mainRed"
         app:cardElevation="@dimen/dimen_0dp"
         app:cardMaxElevation="@dimen/dimen_0dp"
         android:foreground="@drawable/view_foreground">

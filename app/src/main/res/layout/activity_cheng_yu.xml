@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/state_bg"
     android:orientation="vertical"
-    android:background="@drawable/bg"
     tools:context=".dict.activity.ChengYuActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_two"
-        android:layout_marginBottom="@dimen/dimen_10dp">
+        android:background="@drawable/bg_two">
 
         <ImageView
             android:id="@+id/chengyu_iv_back"
@@ -21,22 +20,18 @@
             android:src="@mipmap/icon_back"
             android:layout_marginRight="@dimen/dimen_10dp"/>
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="@dimen/dimen_0dp"
-            app:cardElevation="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_35dp"
             android:layout_below="@+id/search_top_layout"
-            app:contentPaddingLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:paddingRight="@dimen/dimen_10dp"
-            app:cardCornerRadius="@dimen/dimen_20dp">
+            android:background="@drawable/searchbox_bg"
+            android:layout_marginRight="@dimen/dimen_10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_10dp">
 
                 <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/chengyu_et"
@@ -45,15 +40,14 @@
                     android:layout_toLeftOf="@+id/search_iv_confirm"
                     android:hint="@string/findChengyu"
                     android:paddingLeft="@dimen/dimen_5dp"
-                    android:paddingTop="@dimen/dimen_10dp"
                     android:lines="1"
                     android:inputType="text"
                     android:imeOptions="actionSearch"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
-                    android:paddingBottom="@dimen/dimen_10dp"
                     android:textSize="@dimen/size_15sp"
-                    android:background="@null">
+                    android:background="@null"
+                    android:layout_centerVertical="true">
                     <requestFocus/>
                 </com.yyzy.constellation.utils.MyEditText>
 
@@ -64,50 +58,56 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:text="查找"
+                    android:textColor="@color/white"
                     android:layout_margin="@dimen/dimen_3dp"
-                    android:background="@drawable/selector_partnership_btn_bg"/>
+                    android:background="@drawable/search_tvbtn_bg"/>
             </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-
-
-    <RelativeLayout
-        android:id="@+id/chengyu_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_10dp"
-        android:visibility="visible">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/left_right_radio">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/chengyu_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/history"
-            android:textSize="@dimen/size_15sp"
-            android:textColor="@color/gray_600"
-            android:textStyle="bold"
-            android:layout_alignParentLeft="true"/>
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/chengyu_tv_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clearRecord"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/black_200"
-            android:textStyle="bold"/>
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/history"
+                android:textSize="@dimen/size_15sp"
+                android:textColor="@color/gray_600"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"/>
 
+            <TextView
+                android:id="@+id/chengyu_tv_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clearRecord"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/black_200"
+                android:textStyle="bold"/>
+        </RelativeLayout>
 
-    <GridView
-        android:id="@+id/chengyu_gv"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_200dp"
-        android:numColumns="4"
-        android:paddingBottom="@dimen/dimen_10dp"
-        android:layout_marginLeft="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_10dp"
-        android:overScrollMode="never"/>
+        <GridView
+            android:id="@+id/chengyu_gv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_200dp"
+            android:numColumns="4"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:overScrollMode="never"/>
+    </LinearLayout>
 </LinearLayout>

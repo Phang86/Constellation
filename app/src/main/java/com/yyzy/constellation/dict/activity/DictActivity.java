@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
@@ -36,7 +38,8 @@ import java.util.List;
 public class DictActivity extends BaseActivity implements View.OnClickListener,TextView.OnEditorActionListener {
 
     private ImageView imgBack,imgSet;
-    private TextView tvPinYin,tvBuShou,tvChengYu,tvXiangJi,tvString,tvAuthor;
+    private TextView tvString,tvAuthor;
+    private CardView tvPinYin,tvBuShou,tvChengYu,tvXiangJi;
     private EditText editText;
     private ImageView imgUpdate;
 //    private String text;

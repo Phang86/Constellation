@@ -46,6 +46,7 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     private LinearLayout lin;
     private TextView tv,search;
     private DiyProgressDialog dialog;
+    private TextView tvResult;
 
     @Override
     protected int initLayout() {
@@ -60,6 +61,7 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
         lin = findViewById(R.id.tally_search_lin);
         tv = findViewById(R.id.local_music_tv);
         search = findViewById(R.id.search_iv_confirm);
+        tvResult = findViewById(R.id.tv_result);
         imgBack.setOnClickListener(this);
         et.setOnEditorActionListener(this);
         search.setOnClickListener(this);
@@ -127,6 +129,8 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
                 mData = TallyManger.findBeizhuList(text);
                 String textContent = et.getText().toString();
                 if (mData.size() > 0 && mData != null) {
+                    tvResult.setVisibility(View.VISIBLE);
+                    tvResult.setText("共查询到 "+mData.size()+" 条记录...");
                     lin.setVisibility(View.GONE);
                     adapter = new TallyLVAdapter(getBaseContext(), mData);
                     lv.setAdapter(adapter);
@@ -135,7 +139,8 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
                 }
                 dialog.cancel();
                 lin.setVisibility(View.VISIBLE);
-                tv.setText("不好意思，未查询到备注内容包含（"+textContent+"）的相关记录！");
+                tvResult.setVisibility(View.GONE);
+                tv.setText("未查询到备注内容包含（"+textContent+"）的相关记录！");
 
             }
         },300);
@@ -144,5 +149,6 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     private void loadProgress(){
         dialog = new DiyProgressDialog(this, "加载中...");
         dialog.show();
+        tvResult.setVisibility(View.GONE);
     }
 }

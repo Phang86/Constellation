@@ -153,16 +153,16 @@ public class ChartActivity extends BaseActivity implements View.OnClickListener{
 
     private void setButtonStyle(int outOrIn){
         if (outOrIn == 0){
-            btnOut.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg_fs));
-            btnOut.setTextColor(getResources().getColor(R.color.grey));
-            btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
-            btnIn.setTextColor(getResources().getColor(R.color.gray_500));
+            btnOut.setBackground(getDrawable(R.drawable.partnership_btn_bg));
+            btnOut.setTextColor(getResources().getColor(R.color.black));
+            btnIn.setBackground(getDrawable(R.drawable.partnership_btn_bg_two));
+            btnIn.setTextColor(getResources().getColor(R.color.grey));
         }
         if (outOrIn == 1){
-            btnOut.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg));
-            btnOut.setTextColor(getResources().getColor(R.color.gray_500));
-            btnIn.setBackground(getDrawable(R.drawable.tally_calendar_dialog_bg_fs));
-            btnIn.setTextColor(getResources().getColor(R.color.grey));
+            btnOut.setBackground(getDrawable(R.drawable.partnership_btn_bg_two));
+            btnOut.setTextColor(getResources().getColor(R.color.grey));
+            btnIn.setBackground(getDrawable(R.drawable.partnership_btn_bg));
+            btnIn.setTextColor(getResources().getColor(R.color.black));
         }
     }
 }

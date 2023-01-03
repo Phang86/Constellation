@@ -94,11 +94,11 @@ public class LuckDetailsActivity extends BaseActivity implements View.OnClickLis
 //            addDataToList(netEntity);
             if (netEntity.getError_code() == 0 || netEntity.getResultcode().equals("200")) {
                 showOrHide(true);
-                LuckItemEntity a = new LuckItemEntity("综合运势",netEntity.getMima().getText().get(0), Color.RED);
-                LuckItemEntity b = new LuckItemEntity("爱情运势",netEntity.getLove().get(0), Color.GREEN);
-                LuckItemEntity c = new LuckItemEntity("事业学业",netEntity.getCareer().get(0), Color.BLUE);
-                LuckItemEntity d = new LuckItemEntity("健康运势",netEntity.getHealth().get(0), Color.MAGENTA);
-                LuckItemEntity e = new LuckItemEntity("财富运势",netEntity.getFinance().get(0), Color.CYAN);
+                LuckItemEntity a = new LuckItemEntity("综合运势",netEntity.getMima().getText().get(0), getResources().getColor(R.color.lightyellow));
+                LuckItemEntity b = new LuckItemEntity("爱情运势",netEntity.getLove().get(0), getResources().getColor(R.color.fireRed));
+                LuckItemEntity c = new LuckItemEntity("事业学业",netEntity.getCareer().get(0), getResources().getColor(R.color.zhuBlue));
+                LuckItemEntity d = new LuckItemEntity("健康运势",netEntity.getHealth().get(0), getResources().getColor(R.color.green_200));
+                LuckItemEntity e = new LuckItemEntity("财富运势",netEntity.getFinance().get(0), getResources().getColor(R.color.lightpink));
                 mData.add(a);
                 mData.add(b);
                 mData.add(c);

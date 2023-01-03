@@ -51,7 +51,7 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
     private DiyProgressDialog progressDialog;
     private int dialogSelPos = -1;
     private int dialogSelMonth = -1;
-    private TextView tvNoData;
+    private TextView tvNoData,tvResult;
 
     @Override
     protected int initLayout() {
@@ -67,7 +67,7 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
         linearLayout = findViewById(R.id.tally_jilu_no_data);
         smartRefreshLayout = findViewById(R.id.tally_jilu_smr_refreshLayout);
         tvNoData = findViewById(R.id.local_music_tv);
-
+        tvResult = findViewById(R.id.tv_result);
 
         imgBack.setOnClickListener(this);
         imgCalendar.setOnClickListener(this);
@@ -153,9 +153,12 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
                 List<TallyLvItemBean> list = TallyManger.getItemOfMonth(year, month);
                 if (list.size() > 0) {
                     linearLayout.setVisibility(View.GONE);
+                    tvResult.setVisibility(View.VISIBLE);
+                    tvResult.setText("共有 "+list.size()+" 条记录...");
                 }else{
                     linearLayout.setVisibility(View.VISIBLE);
                     tvNoData.setText(year+"年"+month+"月，"+"暂无数据！");
+                    tvResult.setVisibility(View.GONE);
                 }
                 mData.clear();
                 mData.addAll(list);

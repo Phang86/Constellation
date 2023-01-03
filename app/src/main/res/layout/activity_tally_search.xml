@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".tally.TallySearchActivity"
-    android:background="@drawable/bg">
+    android:background="@color/state_bg">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/top"
@@ -20,18 +20,15 @@
             android:src="@mipmap/icon_back"
             android:layout_marginRight="@dimen/dimen_10dp"/>
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardMaxElevation="@dimen/dimen_0dp"
-            app:cardElevation="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_35dp"
+            android:background="@drawable/searchbox_bg"
             android:layout_below="@+id/search_top_layout"
-            app:contentPaddingLeft="@dimen/dimen_10dp"
             android:layout_marginRight="@dimen/dimen_10dp"
-            android:paddingRight="@dimen/dimen_10dp"
-            app:cardCornerRadius="@dimen/dimen_20dp">
+            android:paddingLeft="@dimen/dimen_10dp"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -40,47 +37,67 @@
                 <com.yyzy.constellation.utils.MyEditText
                     android:id="@+id/tally_search_et"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/search_iv_confirm"
+                    android:layout_height="@dimen/dimen_35dp"
                     android:hint="@string/findByBeizhu"
-                    android:paddingLeft="@dimen/dimen_5dp"
-                    android:paddingTop="@dimen/dimen_10dp"
                     android:lines="1"
                     android:inputType="text"
                     android:imeOptions="actionSearch"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
-                    android:paddingBottom="@dimen/dimen_10dp"
                     android:textSize="@dimen/size_15sp"
-                    android:background="@null">
+                    android:background="@null"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/dimen_5dp"
+                    android:layout_toLeftOf="@+id/search_iv_confirm">
                     <requestFocus/>
                 </com.yyzy.constellation.utils.MyEditText>
 
                 <TextView
                     android:id="@+id/search_iv_confirm"
-                    android:layout_width="@dimen/dimen_70dp"
+                    android:layout_width="@dimen/dimen_60dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:text="搜索"
+                    android:textColor="@color/white"
                     android:layout_margin="@dimen/dimen_3dp"
-                    android:background="@drawable/selector_partnership_btn_bg"/>
+                    android:background="@drawable/search_tvbtn_bg"/>
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/tally_search_lv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        android:listSelector="@drawable/bg"
-        android:divider="@null"
-        android:layout_below="@+id/top"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/left_right_radio_gray_bg"
+        android:orientation="vertical"
+        android:layout_below="@+id/top">
 
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_dict_search"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:textSize="@dimen/size_15sp"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:visibility="gone"
+            android:textColor="@color/black_200"/>
+
+        <ListView
+            android:id="@+id/tally_search_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:listSelector="@color/state_bg_f4f3f8"
+            android:divider="@null"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/tally_search_lin"
         android:layout_width="match_parent"

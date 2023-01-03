@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -48,7 +49,8 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     private SmartRefreshLayout refreshLayout;
     private int year,month,day;
 
-    private TextView tvOut,tvIn,tvYusuan,tvLook,tvSum;
+    private TextView tvOut,tvIn,tvYusuan,tvSum;
+    private CardView tvLook;
     private ImageView imgLookMoney;
     private SharedPreferences spf;
     private String statetb;
@@ -193,7 +195,7 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
     private void showAllPrice(){
         float outSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 0);
         float inSumMoneyOneDay = TallyManger.getSumMoneyOneDay(year, month, day, 1);
-        String str = "今日支出：￥"+outSumMoneyOneDay+"\t\t\t今日收入：￥"+inSumMoneyOneDay;
+        String str = "今日支出\t￥"+outSumMoneyOneDay+"\t\t\t今日收入\t￥"+inSumMoneyOneDay;
         tvSum.setText(str);
         float outMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 0);
         float inMoneyOneMonth = TallyManger.getSumMoneyOneMonth(year, month, 1);

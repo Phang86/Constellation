@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".history.HistoryActivity">
 
     <include
@@ -15,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@color/black"
-        app:srlPrimaryColor="#f1f2f3"
+        app:srlPrimaryColor="@color/white"
         android:layout_below="@+id/history_title">
     <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
@@ -26,6 +27,7 @@
             android:id="@+id/history_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:listSelector="@color/white"
             android:divider="@null"
             android:overScrollMode="never"
             android:layout_below="@+id/history_title"/>

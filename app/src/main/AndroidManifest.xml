@@ -64,7 +64,9 @@
 
         <activity android:name=".history.MoreHistoryActivity" />
 
-        <activity android:name=".user.alertPhone.UpdatePhoneOutActivity" />
+        <activity android:name=".user.alertPhone.UpdatePhoneOutActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"/>
 
         <activity android:name=".user.alertPhone.UpdatePhoneActivity" />
 

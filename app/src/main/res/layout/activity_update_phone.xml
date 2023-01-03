@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/state_bg_f4f3f8"
     android:orientation="vertical"
     tools:context=".user.alertPhone.UpdatePhoneActivity">
 
@@ -31,8 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="验证码将发送到手机\t\t86+"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/size_15sp"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/size_15sp"/>
 
             <TextView
                 android:id="@+id/updatePhone_send_tv_to"
@@ -45,8 +44,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/gray_100_ededed"
-            app:contentPadding="@dimen/dimen_16dp"
+            app:cardBackgroundColor="@color/white"
+            app:contentPadding="@dimen/dimen_13dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
             app:cardCornerRadius="@dimen/dimen_10dp"
