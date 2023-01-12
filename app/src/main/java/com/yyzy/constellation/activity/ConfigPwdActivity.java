@@ -43,7 +43,7 @@ import okhttp3.Response;
 public class ConfigPwdActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     private EditText edUser,edPhone,edPwd,edConfigNewPwd;
-    private Button btnConfigPwd;
+    private TextView btnConfigPwd;
     private TextView tvBack;
     private String findUserName;
     private String findUserPhone;
@@ -87,7 +87,6 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.config_tv_login:
-                //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
@@ -105,23 +104,24 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         if (TextUtils.isEmpty(newPwd)) {
             MyToast.showText(this,"必填项不能为空哦！");
             return;
-        }else if (TextUtils.isEmpty(configNewPwd)){
+        }
+        if (TextUtils.isEmpty(configNewPwd)){
             MyToast.showText(this,"必填项不能为空哦！");
             return;
-        }else if (!checkPassword(newPwd)){
+        }
+        if (!checkPassword(newPwd)){
             MyToast.showText(this,"密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
-        }else if (TextUtils.isEmpty(user) || TextUtils.isEmpty(phone)){
+        }
+        if (TextUtils.isEmpty(user) || TextUtils.isEmpty(phone)){
             MyToast.showText(ConfigPwdActivity.this,"密码已找回，自动清空默认项。",true);
             return;
-        }else if (!newPwd.equals(configNewPwd)){
+        }
+        if (!newPwd.equals(configNewPwd)){
             MyToast.showText(this,"两次输入的密码不一致！",false);
             return;
         }
-        DiyProgressDialog mDialog = new DiyProgressDialog(ConfigPwdActivity.this,"正在加载中...");
-        mDialog.setCancelable(false);//设置不能通过后退键取消
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
+        loading();
         btnConfigPwd.setEnabled(false);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
@@ -139,8 +139,8 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mDialog.cancel();
-                        showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
+                        stopLoading();
+                        showDiyDialog("找回失败！服务器连接超时！");
                         if (!TextUtils.isEmpty(edPwd.getText()) && !TextUtils.isEmpty(edConfigNewPwd.getText())){
                             btnConfigPwd.setEnabled(true);
                         }else {
@@ -160,32 +160,28 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    stopLoading();
                                     if (result.equals("success")) {
                                         MyToast.showText(ConfigPwdActivity.this,"找回失败！手机号有误！",false);
-                                        mDialog.cancel();
                                         btnConfigPwd.setEnabled(true);
                                         return;
-                                    } else if (result.equals("su_error")) {
-                                        showDiyDialog(ConfigPwdActivity.this,"此账号不存在！");
-                                        mDialog.cancel();
-                                        btnConfigPwd.setEnabled(true);
-                                        return;
-                                    } else{
-                                        List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
-                                        }.getType());
-                                        List<User> data = new ArrayList<>();
-                                        data = dataEntity;
-                                        if (data.size() > 0 && data != null) {
-                                            requestPassPwd(mDialog,configNewPwd);
-                                            btnConfigPwd.setEnabled(true);
-                                            mDialog.cancel();
-                                        } else {
-                                            showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
-                                            btnConfigPwd.setEnabled(true);
-                                            mDialog.cancel();
-                                            return;
-                                        }
                                     }
+                                    if (result.equals("su_error")) {
+                                        showDiyDialog("此账号不存在！");
+                                        btnConfigPwd.setEnabled(true);
+                                        return;
+                                    }
+                                    List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
+                                    }.getType());
+                                    List<User> data = new ArrayList<>();
+                                    data = dataEntity;
+                                    if (data.size() > 0 && data != null) {
+                                        requestPassPwd(configNewPwd);
+                                        btnConfigPwd.setEnabled(true);
+                                        return;
+                                    }
+                                    showDiyDialog("找回失败！服务器连接超时！");
+                                    btnConfigPwd.setEnabled(true);
                                 }
 
 
@@ -199,7 +195,8 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    private void requestPassPwd(DiyProgressDialog mDialog, String configNewPwd) {
+    private void requestPassPwd(String configNewPwd) {
+        loading();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", findUserName);
@@ -216,8 +213,8 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 ConfigPwdActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showDiyDialog(ConfigPwdActivity.this,"找回失败！服务器连接超时！");
-                        mDialog.cancel();
+                        stopLoading();
+                        showDiyDialog("找回失败！服务器连接超时！");
                     }
                 });
             }
@@ -228,25 +225,20 @@ public class ConfigPwdActivity extends BaseActivity implements View.OnClickListe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        stopLoading();
                         if (result.equals("success")) {
                             MyToast.showText(ConfigPwdActivity.this,"账号找回成功！",true);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mDialog.cancel();
-                                    edPwd.setText("");
-                                    edPwd.setHint("");
-                                    edConfigNewPwd.setText("");
-                                    edConfigNewPwd.setHint("");
-                                    edUser.setText("");
-                                    edUser.setHint("");
-                                    edPhone.setText("");
-                                    edPhone.setHint("");
+                                    finish();
+                                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                                 }
-                            },1000);
-                        } else if (result.equals("error")) {
+                            },500);
+                            return;
+                        }
+                        if (result.equals("error")) {
                             MyToast.showText(ConfigPwdActivity.this,"账号找回失败！",false);
-                            mDialog.cancel();
                         }
                     }
                 });

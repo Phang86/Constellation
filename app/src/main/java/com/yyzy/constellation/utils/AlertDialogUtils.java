@@ -20,7 +20,7 @@ public class AlertDialogUtils {
     private static View view_custom;
     public static AlertDialog.Builder builder;
     public static AlertDialog alert;
-    public static TextView tv_dialog_title, tv_dialog_content;
+    public static TextView tv_dialog_content;
     public static Button dialog_cancelBtn, dialog_confirmBtn;
     private static AlertDialogUtils mInstance;
 
@@ -43,10 +43,10 @@ public class AlertDialogUtils {
      * todo 带有确认取消按钮的自定义dialog
      *
      * @param context 上下文对象
-     * @param title   标题
+//     * @param title   标题
      * @param content 内容
      */
-    public static void showConfirmDialog(Context context, String title, String content,String config,String cancel) {
+    public static void showConfirmDialog(Context context, String content,String config,String cancel) {
         builder = new AlertDialog.Builder(context);
         alert = builder.create();
         alert.show();
@@ -56,8 +56,8 @@ public class AlertDialogUtils {
 
         //引入布局
         view_custom = LayoutInflater.from(context).inflate(R.layout.alert_dialog_defaut, null, false);
-        tv_dialog_title = view_custom.findViewById(R.id.title);
-        tv_dialog_title.setText(title);
+//        tv_dialog_title = view_custom.findViewById(R.id.title);
+//        tv_dialog_title.setText(title);
         tv_dialog_content = view_custom.findViewById(R.id.content);
         tv_dialog_content.setText(content);
         dialog_cancelBtn = view_custom.findViewById(R.id.cancel_btn);

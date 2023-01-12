@@ -22,7 +22,6 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
     private TextView btnNext;
     private EditText etPhone;
     private String myPhone;
-    private String name;
 
     @Override
     protected int initLayout() {
@@ -42,10 +41,7 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
 
         tvTitle.setText("身份验证");
         btnNext.setEnabled(false);
-        Intent intent = getIntent();
-        String phone = intent.getStringExtra("MyPhone");
-        myPhone = phone.replace(" ","");
-        name = intent.getStringExtra("name");
+        myPhone = base_phones.replace(" ","");
         Log.e("TAG", "注销用户，该用户电话为："+myPhone);
     }
 
@@ -64,13 +60,7 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
                 String phone = etPhone.getText().toString().trim();
                 if (phone.equals(myPhone)) {//手机号一致
                     //发送验证   跳转到短信验证页面
-                    Intent intent = new Intent();
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("Myphone",myPhone);
-                    intent.putExtra("name",name);
-                    intent.setClass(this,CancelidActivity.class);
-                    //MyToast.showText(this,"手机号正确",true);
-                    startActivity(intent);
+                    intentJump(CancelidActivity.class);
                     finish();
                 }else{
                     MyToast.showText(this,"手机号不正确！",false);

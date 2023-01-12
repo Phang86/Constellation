@@ -44,7 +44,6 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
     private TextView tvBack;
     private EditText userEt, phoneEt, verCodeEt;
     private TextView findBtn;
-    private DiyProgressDialog mDialog;
     private ImageView ivCode;
 
     @Override
@@ -161,7 +160,6 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 findPwd(user, phone, verCode, code);
                 break;
             case R.id.find_tv_login:
-                //tvBack.setTextColor(getResources().getColor(R.color.red));
                 finish();
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;
@@ -174,36 +172,32 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
 
     private void findPwd(String user, String phone, String verCode, String code) {
         if (TextUtils.isEmpty(user)) {
-            //showToast("用户名不能空哦！");
             MyToast.showText(FindPwdActivity.this,"用户名不能空哦！");
             return;
-        } else if (TextUtils.isEmpty(phone)) {
-            //showToast("手机号不能空哦！");
+        }
+        if (TextUtils.isEmpty(phone)) {
             MyToast.showText(FindPwdActivity.this,"手机号不能空哦！");
             return;
-        } else if (!checkUsername(user)) {
-            //showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+        }
+        if (!checkUsername(user)) {
             MyToast.showText(FindPwdActivity.this,"用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
-        } else if (!checkPhone(phone)) {
-            //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+        }
+        if (!checkPhone(phone)) {
             MyToast.showText(FindPwdActivity.this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
-        }else if (verCode.isEmpty()){
-//            showToast("验证码不能为空！");
+        }
+        if (verCode.isEmpty()){
             MyToast.showText(FindPwdActivity.this,"验证码不能为空！");
             return;
-        }else if (!verCode.equals(code)){
+        }
+        if (!verCode.equals(code)){
             //重置验证码
             ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-            //showToast("验证码有误！");
             MyToast.showText(FindPwdActivity.this,"验证码错误！",false);
             return;
         }
-        DiyProgressDialog mDialog = new DiyProgressDialog(FindPwdActivity.this, "正在加载中...");
-        mDialog.setCancelable(false);//设置不能通过后退键取消
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
+        loading();
         findBtn.setEnabled(false);
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
@@ -221,14 +215,14 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 FindPwdActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showDiyDialog(FindPwdActivity.this,"找回失败！服务器连接超时！");
+                        stopLoading();
+                        showDiyDialog("找回失败！服务器连接超时！");
                         if (!TextUtils.isEmpty(userEt.getText()) && !TextUtils.isEmpty(phoneEt.getText())) {
-                                ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-                                findBtn.setEnabled(true);
-                            } else {
-                                findBtn.setEnabled(false);
-                            }
-                        mDialog.dismiss();
+                            ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+                            findBtn.setEnabled(true);
+                        } else {
+                            findBtn.setEnabled(false);
+                        }
                     }
                 });
             }
@@ -243,44 +237,40 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    stopLoading();
                                     if (result.equals("success")) {
                                         MyToast.showText(FindPwdActivity.this,"找回失败！你输入的手机号有误！",false);
                                         ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-                                        mDialog.cancel();
                                         findBtn.setEnabled(true);
                                         return;
-                                    } else if (result.equals("su_error")) {
-                                        showDiyDialog(FindPwdActivity.this,"此账号不存在！");
-                                        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-                                        mDialog.cancel();
-                                        findBtn.setEnabled(true);
-                                        return;
-                                    } else {
-                                        List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
-                                        }.getType());
-                                        List<User> data = new ArrayList<>();
-                                        data = dataEntity;
-                                        if (data.size() > 0 && data != null) {
-                                            Intent intent = new Intent(FindPwdActivity.this, ConfigPwdActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            intent.putExtra("findUserName", data.get(0).getUserName());
-                                            intent.putExtra("findUserPhone", data.get(0).getMobile());
-                                            startActivity(intent);
-                                            //finish();
-                                            mDialog.cancel();
-                                            findBtn.setEnabled(true);
-                                            finish();
-                                            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                                        } else {
-                                            showDiyDialog(FindPwdActivity.this,"密码找回失败！服务器连接超时！");
-                                            mDialog.cancel();
-                                            findBtn.setEnabled(true);
-                                            ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
-                                            return;
-                                        }
                                     }
+                                    if (result.equals("su_error")) {
+                                        showDiyDialog("此账号不存在！");
+                                        ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
+                                        findBtn.setEnabled(true);
+                                        return;
+                                    }
+                                    List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
+                                    }.getType());
+                                    List<User> data = new ArrayList<>();
+                                    data = dataEntity;
+                                    if (data.size() > 0 && data != null) {
+                                        Intent intent = new Intent(FindPwdActivity.this, ConfigPwdActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.putExtra("findUserName", data.get(0).getUserName());
+                                        intent.putExtra("findUserPhone", data.get(0).getMobile());
+                                        startActivity(intent);
+                                        //finish();
+                                        findBtn.setEnabled(true);
+                                        finish();
+                                        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                                        return;
+                                    }
+                                    showDiyDialog("密码找回失败！服务器连接超时！");
+                                    findBtn.setEnabled(true);
+                                    ivCode.setImageBitmap(FourFiguresNumberCode.getInstance().createBitmap());
                                 }
-                            }, 1000);
+                            }, 500);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -288,14 +278,6 @@ public class FindPwdActivity extends BaseActivity implements View.OnClickListene
                 });
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //userEt.setText("");
-        //phoneEt.setText("");
-        //tvBack.setTextColor(getResources().getColor(R.color.grey));
     }
 
     @Override

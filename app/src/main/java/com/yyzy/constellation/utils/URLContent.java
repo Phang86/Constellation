@@ -81,8 +81,8 @@ public class URLContent {
     public static String bushourul = "http://v.juhe.cn/xhzd/querybs?key=";
 
     //字典key
-    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
-//    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
+//    public static final String DICTKEY = "3022583457067131a719f84d10efd275";
+    public static final String DICTKEY = "7af407700fe10eddc0c28ea381a83ebe";
 
     public static String wordurl = "http://v.juhe.cn/xhzd/query?key=";
 

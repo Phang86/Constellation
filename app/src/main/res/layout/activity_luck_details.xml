@@ -36,7 +36,7 @@
                     app:civ_border_color="@color/white"
                     app:civ_border_width="@dimen/dimen_1dp"
                     android:layout_gravity="center"
-                    android:layout_margin="@dimen/dimen_20dp"
+                    android:layout_margin="@dimen/dimen_15dp"
                     android:src="@drawable/ic_launcher_background"/>
 
 
@@ -46,8 +46,8 @@
                     android:layout_height="wrap_content"
                     android:divider="@null"
                     android:scrollbars="none"
-                    android:paddingRight="@dimen/dimen_20dp"
-                    android:paddingLeft="@dimen/dimen_20dp"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:paddingLeft="@dimen/dimen_10dp"
                     android:paddingBottom="@dimen/dimen_20dp"
                     android:overScrollMode="never"/>
             </LinearLayout>

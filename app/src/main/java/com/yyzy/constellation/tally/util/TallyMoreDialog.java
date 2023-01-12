@@ -88,7 +88,7 @@ public class TallyMoreDialog extends BottomSheetDialog implements View.OnClickLi
                 List<TallyLvItemBean> data = TallyManger.getAll();
                 if (data.size() > 0) {
                     AlertDialogUtils dialog = AlertDialogUtils.getInstance();
-                    AlertDialogUtils.showConfirmDialog(getContext(), "友情提示", "所有记录即将被清空，数据一旦清空则不可恢复！您继续执行该操作吗？", "继续", "算了，再想想");
+                    AlertDialogUtils.showConfirmDialog(getContext(),  "所有记录即将被清空，数据一旦清空则不可恢复！您继续执行该操作吗？", "继续", "取消");
                     dialog.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
                         @Override
                         public void onPositiveButtonClick(AlertDialog dialog) {

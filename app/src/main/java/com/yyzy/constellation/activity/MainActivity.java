@@ -1,6 +1,8 @@
 package com.yyzy.constellation.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,6 +22,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
+import com.jaeger.library.StatusBarUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.dict.activity.DictActivity;
@@ -41,6 +45,7 @@ import com.yyzy.constellation.fragment.PartnershipFragment;
 import com.yyzy.constellation.fragment.StarFragment;
 import com.yyzy.constellation.news.NewsActivity;
 import com.yyzy.constellation.tally.TallyActivity;
+import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.user.AppInfoActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.AssetsUtils;
@@ -49,6 +54,7 @@ import com.yyzy.constellation.utils.CameraUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SPUtils;
+import com.yyzy.constellation.utils.StatusBarUtils;
 import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.weather.activity.WeatherActivity;
 
@@ -69,7 +75,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private TextView title, tvName;
     private NavigationView nv;
     private ImageView imgClose, imgMore;
-    private NotificationManager NotiManager;
     //权限请求
     private RxPermissions rxPermissions;
     //是否拥有权限
@@ -137,9 +142,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         cirImg.setOnClickListener(this);
         imgClose.setOnClickListener(this);
         imgMore.setOnClickListener(this);
-        SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-        String name = sp.getString("name", "");
-        tvName.setText(name);
+        tvName.setText(base_user_names);
         nv.setItemIconTintList(null);
         checkVersion();
         //取出缓存
@@ -151,135 +154,101 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     }
 
-
-    protected String findByKey(String key) {
-        SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-        return sp.getString(key, "");
-    }
-
-    protected void insertVal(String key, String val) {
-        SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(key, val);
-        editor.commit();
-    }
-
     private void showDrawerMenu() {
         //给左侧滑动的菜单item设置监听
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                Intent intent = new Intent();
                 switch (item.getItemId()) {
-//                    case R.id.skin:
-//                        String skin = findByKey("skin");
-//                        if (skin.equals("night")) {
-//                            // 恢复应用默认皮肤
-//                            SkinCompatManager.getInstance().restoreDefaultTheme();
-//                            insertVal("skin", "defualt");
-//                        } else {
-//                            SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
-//                            insertVal("skin", "night");
-//                        }
-//                        drawerLayout.closeDrawers();
-//                        break;
                     case R.id.gongneng:
-                        MeFragment.showDialogSure(MainActivity.this, "功能介绍", StringUtils.setContent());
+                        MeFragment.showDialogSure(MainActivity.this, StringUtils.setContent());
                         break;
                     case R.id.user_info:
-                        intent.setClass(MainActivity.this, AppInfoActivity.class);
-                        startActivity(intent);
+                        intentJump(AppInfoActivity.class);
                         break;
                     case R.id.weather:
-                        intent.setClass(MainActivity.this, WeatherActivity.class);
-                        startActivity(intent);
+                        intentJump(WeatherActivity.class);
                         break;
                     case R.id.xingshi:
-                        intent.setClass(MainActivity.this, DictActivity.class);
-                        startActivity(intent);
+                        intentJump(DictActivity.class);
                         break;
                     case R.id.exit:
-                        //dialogShow();
-                        showDefaultDialog();
-                        drawerLayout.closeDrawers();
+//                        showDefaultDialog();
+//                        drawerLayout.closeDrawers();
+                        showExitDialog();
                         break;
                     case R.id.news:
-                        intent.setClass(MainActivity.this, NewsActivity.class);
-                        startActivity(intent);
+                        intentJump(NewsActivity.class);
                         break;
                     case R.id.tally:
-                        intent.setClass(MainActivity.this, TallyActivity.class);
-                        startActivity(intent);
+                        intentJump(TallyActivity.class);
                         break;
                     default:
                         //drawerLayout.closeDrawers();
                         break;
                 }
-                //item.setCheckable(true);//设置可选项
-                //item.setChecked(true);//设置被选中
-                //drawerLayout.closeDrawers();//关闭菜单栏
                 return false;
+            }
+        });
+
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull @NotNull View drawerView, float slideOffset) {
+                // 主页内容
+                View contentView = drawerLayout.getChildAt(0);
+                // 侧边栏
+                View menuView = drawerView;
+                // slideOffset 值默认是0~1
+                contentView.setTranslationX(menuView.getMeasuredWidth() * slideOffset);
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull @NotNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull @NotNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
             }
         });
     }
 
-    private void showDefaultDialog() {
-        AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
-        AlertDialogUtils.showConfirmDialog(MainActivity.this, "温馨提示", "您确定退出吗？", "确定", "取消");
-        dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
+    private void showExitDialog() {
+        openBottomDialog("确定退出星缘吗？", "确定退出", "取消", new OnClickSure() {
             @Override
-            public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {
-                //点击确认按钮要做的事情
-                dialog.dismiss();
-                //获取存储在sp里面的用户名和密码以及两个复选框状态
-                SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-                SharedPreferences.Editor ed = sp.edit();
-                //清空所有
-                //editor.remove("username");
-                //editor.remove("password");
-                //提交
-                DiyProgressDialog dialog1 = new DiyProgressDialog(MainActivity.this, "退出登录中...");
-                dialog1.setCancelable(false);//设置不能通过后退键取消
-                dialog1.show();
+            public void onSure() {
+                loading();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        stopLoading();
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_MAIN);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addCategory(Intent.CATEGORY_HOME);
-                        editor.clear();
-                        ed.clear();
-                        editor.commit();
-                        ed.commit();
-                        SPUtils.remove("imageUrl", MainActivity.this);
+                        clearUserInfo();
+                        clearNotificationManger();
                         finish();
                         startActivity(intent);
-                        //取消登录通知
-                        NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                        NotiManager.cancel(1);
-                        //取消加载
-                        dialog1.cancel();
                         Toast.makeText(MainActivity.this, "您已成功退出星缘！", Toast.LENGTH_SHORT).show();
                     }
-                }, 1200);
+                }, 800);
             }
 
             @Override
-            public void onNegativeButtonClick(androidx.appcompat.app.AlertDialog dialog) {
-                //点击取消按钮关闭弹框
-                dialog.dismiss();
+            public void onCancel() {
+
             }
         });
     }
 
     @Override
     protected void initData() {
-        //StatusBarUtil.setColor(MainActivity.this,getResources().getColor(R.color.yellow_300),0);
-
         //为布局管理器添加相应的Fragment
         //创建碎片管理者对象
         manager = getSupportFragmentManager();
@@ -296,6 +265,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         //提交事务
         transaction.commit();
 
+        ViewGroup.LayoutParams mLayoutParams = nv.getLayoutParams();
+        int width = getResources().getDisplayMetrics().widthPixels;
+        mLayoutParams.width = width;
+        nv.setLayoutParams(mLayoutParams);
     }
 
     //加载数据  读取Assets文件夹下的xzcontent.json文件
@@ -332,13 +305,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 transaction.show(luckFragment);
                 title.setText(getResources().getString(R.string.label_star) + "" + getResources().getString(R.string.label_luck));
                 break;
-//            case R.id.main_rb_me:
-//                transaction.hide(partnershipFragment);
-//                transaction.hide(luckFragment);
-//                transaction.hide(starFragment);
-//                transaction.show(meFragment);
-//                title.setText("我的");
-//                break;
+
         }
         transaction.commit();
     }
@@ -357,28 +324,30 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             MyToast.showText(getApplicationContext(), "再按一次返回到手机主界面");
             exitTime = System.currentTimeMillis();
         } else {
-//            finish();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addCategory(Intent.CATEGORY_HOME);
             startActivity(intent);
-//            System.exit(0);
         }
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        unregisterReceiver(receivers);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_layout_cirImg:
-                changeAvatar(v);
+                openBottomDialog("头像选择", "打开相机", "打开图库", new OnClickSure() {
+                    @Override
+                    public void onSure() {
+                        takePhoto();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        openAlbum();
+                    }
+                });
                 break;
             case R.id.header_close:
                 drawerLayout.closeDrawers();
@@ -418,38 +387,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
     }
 
-    /**
-     * 更换头像
-     *
-     * @param view
-     */
-    public void changeAvatar(View view) {
-        bottomSheetDialog = new BottomSheetDialog(this);
-        bottomView = getLayoutInflater().inflate(R.layout.dialog_select_photo, null);
-        bottomSheetDialog.setContentView(bottomView);
-        bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
-        TextView tvTakePictures = bottomView.findViewById(R.id.tv_take_pictures);
-        TextView tvOpenAlbum = bottomView.findViewById(R.id.tv_open_album);
-        TextView tvCancel = bottomView.findViewById(R.id.tv_cancel);
-
-        //拍照
-        tvTakePictures.setOnClickListener(v -> {
-            takePhoto();
-            //showToast("拍照");
-            bottomSheetDialog.cancel();
-        });
-        //打开相册
-        tvOpenAlbum.setOnClickListener(v -> {
-            openAlbum();
-            //showToast("打开相册");
-            bottomSheetDialog.cancel();
-        });
-        //取消
-        tvCancel.setOnClickListener(v -> {
-            bottomSheetDialog.cancel();
-        });
-        bottomSheetDialog.show();
-    }
 
     /**
      * 拍照
@@ -538,37 +475,4 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             showToast("图片获取失败");
         }
     }
-
-    //退出弹出框
-//    public void dialogShow() {
-//        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-//        LayoutInflater inflater = LayoutInflater.from(this);
-//        View v = inflater.inflate(R.layout.diy_alert_dialog, null);
-//        TextView content = (TextView) v.findViewById(R.id.dialog_content);
-//        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
-//        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
-//        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-//        final Dialog dialog = builder.create();
-//        dialog.show();
-//        dialog.setCancelable(false);
-//        dialog.getWindow().getDecorView().setBackground(null);
-//        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
-//        //设置隐藏dialog默认的背景
-//        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-//        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-//        content.setText("确定退出吗？");
-//        btn_sure.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//
-//        btn_cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                dialog.dismiss();
-//            }
-//        });
-//    }
 }

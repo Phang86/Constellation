@@ -114,7 +114,7 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
                 TallyLvItemBean tallyLvItemBean = mData.get(position);
                 Log.e("TAG", "onItemLongClick: "+tallyLvItemBean);
                 AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
-                AlertDialogUtils.showConfirmDialog(TallyJiluActivity.this,"温馨提示","是否删除此纪录？","是","否");
+                AlertDialogUtils.showConfirmDialog(TallyJiluActivity.this,"是否删除此纪录？","是","否");
                 dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
                     @Override
                     public void onPositiveButtonClick(AlertDialog dialog) {

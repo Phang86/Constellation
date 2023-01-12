@@ -86,7 +86,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/history"
                 android:textSize="@dimen/size_15sp"
-                android:textColor="@color/gray_600"
                 android:textStyle="bold"
                 android:layout_alignParentLeft="true"/>
 
@@ -94,20 +93,29 @@
                 android:id="@+id/chengyu_tv_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/clearRecord"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/black_200"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:drawableRight="@drawable/ic_baseline_delete_forever_24"
+                android:gravity="center"/>
         </RelativeLayout>
 
-        <GridView
-            android:id="@+id/chengyu_gv"
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_search_records"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_200dp"
-            android:numColumns="4"
-            android:paddingBottom="@dimen/dimen_10dp"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:overScrollMode="never"/>
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_10dp"
+            android:paddingRight="@dimen/dimen_10dp"
+            app:is_limit="true"
+            app:limit_line_count="3"
+            app:max_select="1">
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_arrow"
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

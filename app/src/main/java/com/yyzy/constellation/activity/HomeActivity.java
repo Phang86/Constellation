@@ -7,49 +7,35 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.receiver.IntentReceiver;
+import com.yyzy.constellation.user.LoginActivity;
 import com.yyzy.constellation.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class HomeActivity extends BaseActivity {
     private TextView tv;
     private int time = 4;
-    private SharedPreferences firstSpf,userNameSpf, spf;
-    private String username;
-    private String password;
-    private boolean auto;
-    private boolean remenber,isFirst;
+    private SharedPreferences firstSpf;
+    private boolean isFirst;
     private RelativeLayout reBg;
 
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE,
@@ -57,13 +43,6 @@ public class HomeActivity extends BaseActivity {
 
     private AlertDialog dialog;
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        handler.removeCallbacksAndMessages(null);
-        //overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
-    }
 
     @Override
     protected int initLayout() {
@@ -88,13 +67,11 @@ public class HomeActivity extends BaseActivity {
         tv = findViewById(R.id.home_tv);
         tv.setVisibility(View.GONE);
         tv.setEnabled(false);
-        handler.sendEmptyMessageDelayed(1,1000);
         firstSpf = getSharedPreferences("first_spf",MODE_PRIVATE);
-        userNameSpf = getSharedPreferences("busApp", MODE_PRIVATE);
-        spf = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-        username = userNameSpf.getString("username", "");
-        password = userNameSpf.getString("password", "");
+        checkPermission();
+    }
 
+    private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // 检查该权限是否已经获取
             int i = ContextCompat.checkSelfPermission(getApplicationContext(), permissions[0]);
@@ -109,40 +86,7 @@ public class HomeActivity extends BaseActivity {
                 startRequestPermission();
             }
         }
-        //点击定时装置进行相应的逻辑判断    判断密码和账号是否注销
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                //如账号、密码未注销，则直接跳到应用主界面
-                isFirst = firstSpf.getBoolean("isFirst", true);
-                if (isFirst){
-                    intent.setClass(HomeActivity.this,WelcomeActivity.class);
-                    //为了下一次不进行跳转引导界面，把状态设置为false
-                    SharedPreferences.Editor edit = firstSpf.edit();
-                    edit.putBoolean("isFirst",false);
-                    edit.commit();
-                    handler.removeCallbacksAndMessages(null);
-                }else {
-                    String name = spf.getString("name", "");
-                    String phone = spf.getString("phone", "");
-                    String createTime = spf.getString("createTime", "");
-                    if (!name.isEmpty() || !phone.isEmpty() || !createTime.isEmpty()){
-                        intent.setClass(HomeActivity.this, MainActivity.class);
-                        handler.removeCallbacksAndMessages(null);
-                    } else {
-                        //不是第一次进入  直接跳过引导页面进入
-                        intent.setClass(HomeActivity.this, LoginActivity.class);
-                        handler.removeCallbacksAndMessages(null);
-                    }
-                }
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
-            }
-        });
     }
-
 
     /**
      * 开始提交请求权限
@@ -165,14 +109,11 @@ public class HomeActivity extends BaseActivity {
                         // 用户还是想用我的 APP 的
                         // 提示用户去应用设置界面手动开启权限
                         showDialogTipUserGoToAppSettting();
-                    } else{
-                        finish();
+                    } else {
+                        showDialogTipUserGoToAppSettting();
                     }
                 } else {
-                    //获取权限成功提示，可以不要
-//                    Toast toast = Toast.makeText(this, "获取权限成功", Toast.LENGTH_LONG);
-//                    toast.setGravity(Gravity.TOP, 0, 0);
-//                    toast.show();
+                    startNext();
                 }
             }
         }
@@ -195,7 +136,7 @@ public class HomeActivity extends BaseActivity {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        finish();
+                        finish();
                     }
                 }).setCancelable(false).show();
     }
@@ -205,7 +146,6 @@ public class HomeActivity extends BaseActivity {
      */
     private void goToAppSetting() {
         Intent intent = new Intent();
-
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", getPackageName(), null);
         intent.setData(uri);
@@ -223,15 +163,48 @@ public class HomeActivity extends BaseActivity {
                 // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
                 if (i != PackageManager.PERMISSION_GRANTED) {
                     // 提示用户应该去应用设置界面手动开启权限
-                    showDialogTipUserGoToAppSettting();
+                    startRequestPermission();
                 } else {
                     if (dialog != null && dialog.isShowing()) {
                         dialog.dismiss();
                     }
-                    //Toast.makeText(this, "权限获取成功", Toast.LENGTH_SHORT).show();
+                    //权限获取成功
+                    startNext();
                 }
             }
         }
+    }
+
+    //跳转页面
+    private void startNext() {
+        handler.sendEmptyMessageDelayed(1,1000);
+        //点击定时装置进行相应的逻辑判断    判断密码和账号是否注销
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                //如账号、密码未注销，则直接跳到应用主界面
+                isFirst = firstSpf.getBoolean("isFirst", true);
+                if (isFirst){
+                    intent.setClass(HomeActivity.this,WelcomeActivity.class);
+                    //为了下一次不进行跳转引导界面，把状态设置为false
+                    SharedPreferences.Editor edit = firstSpf.edit();
+                    edit.putBoolean("isFirst",false);
+                    edit.commit();
+                }else {
+                    if (!base_user_names.isEmpty() && !base_create_times.isEmpty() && !base_pass_words.isEmpty() && !base_phones.isEmpty()){
+                        intent.setClass(HomeActivity.this, MainActivity.class);
+                    }else {
+                        //不是第一次进入  直接跳过引导页面进入
+                        intent.setClass(HomeActivity.this, LoginActivity.class);
+                    }
+                }
+                handler.removeCallbacksAndMessages(null);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+            }
+        });
     }
 
     @Override
@@ -257,16 +230,9 @@ public class HomeActivity extends BaseActivity {
                             edit.commit();
                         }else {
                             try {
-                                String name = spf.getString("name", "");
-                                String phone = spf.getString("phone", "");
-                                String createTime = spf.getString("createTime", "");
-//                            if (!username.trim().isEmpty() || !password.trim().isEmpty()) {
-//                                intent.setClass(HomeActivity.this, MainActivity.class);
-//                            }
-                                if (!name.isEmpty() || !phone.isEmpty() || !createTime.isEmpty()){
+                                if (!base_create_times.isEmpty() && !base_pass_words.isEmpty() && !base_phones.isEmpty() && !base_user_names.isEmpty()){
                                     intent.setClass(HomeActivity.this, MainActivity.class);
-                                }
-                                else {
+                                }else{
                                     //不是第一次进入  直接跳过引导页面进入
                                     intent.setClass(HomeActivity.this, LoginActivity.class);
                                 }
@@ -295,6 +261,12 @@ public class HomeActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
+        super.onDestroy();
     }
 
 }

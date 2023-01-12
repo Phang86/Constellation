@@ -126,7 +126,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 showDialog();
                 break;
             case R.id.meFrag_tv_jieshao:
-                showDialogSure(getContext(),"功能介绍",StringUtils.setContent());
+                showDialogSure(getContext(),StringUtils.setContent());
                 break;
 //            case R.id.meFrag_tv_huanfu:
 //                String skin = findByKey("skin");
@@ -199,12 +199,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public static void showDialogSure(Context context,String titMsg,String contentMsg) {
+    public static void showDialogSure(Context context,String contentMsg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
         TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
-        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
         Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
         //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         final Dialog dialog = builder.create();
@@ -222,8 +221,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setAttributes(wlp);
         dialog.getWindow().setContentView(view);//自定义布局应该在这里添加，要在dialog.show()的后面
-        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-        title.setText(titMsg);
+        //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位
         content.setText(contentMsg);
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override

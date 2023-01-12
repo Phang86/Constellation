@@ -19,10 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_15dp"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp"
-            android:layout_marginBottom="@dimen/dimen_15dp">
+            android:layout_margin="@dimen/dimen_10dp">
 
             <TextView
                 android:id="@+id/swipe_tv"
@@ -42,23 +39,15 @@
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.yyzy.constellation.utils.SwipeCaptchaView
+            android:id="@+id/swipeCaptchaView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/dimen_5dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="@dimen/dimen_0dp"
+            android:layout_height="@dimen/dimen_220dp"
+            android:scaleType="centerCrop"
+            app:captchaHeight="@dimen/dimen_35dp"
+            app:captchaWidth="@dimen/dimen_35dp"
             android:layout_marginLeft="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_10dp">
-
-            <com.yyzy.constellation.utils.SwipeCaptchaView
-                android:id="@+id/swipeCaptchaView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_220dp"
-                android:scaleType="centerCrop"
-                app:captchaHeight="@dimen/dimen_35dp"
-                app:captchaWidth="@dimen/dimen_35dp"/>
-        </androidx.cardview.widget.CardView>
+            android:layout_marginRight="@dimen/dimen_10dp"/>
 
         <SeekBar
             android:id="@+id/dragBar"

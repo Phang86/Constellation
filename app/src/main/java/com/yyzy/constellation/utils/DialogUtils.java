@@ -1,16 +1,7 @@
 package com.yyzy.constellation.utils;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.widget.Toast;
-
-import com.yyzy.constellation.activity.LoginActivity;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class DialogUtils {
 //    public static void setDialog(Context context, String titleMsg, String contentMsg, String btnCancel, String btnConfirm){

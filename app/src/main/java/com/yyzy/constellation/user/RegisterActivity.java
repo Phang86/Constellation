@@ -1,15 +1,8 @@
-package com.yyzy.constellation.activity;
+package com.yyzy.constellation.user;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.BroadcastReceiver;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,19 +12,14 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mob.MobSDK;
 import com.yyzy.constellation.R;
-import com.yyzy.constellation.receiver.IntentReceiver;
-import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.MyToast;
-import com.yyzy.constellation.utils.StringUtils;
 import com.yyzy.constellation.utils.URLContent;
 import com.yyzy.constellation.utils.ViewUtil;
 
@@ -51,16 +39,16 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class RegisterActivity extends BaseActivity implements TextWatcher,View.OnClickListener{
+public class RegisterActivity extends BaseActivity implements TextWatcher, View.OnClickListener {
     private EditText edRegisterUser, edRegisterPwd, edRegisterPhone;
     private TextView mbtnRegister;
     private TextView tv;
-    //private DiyProgressDialog mDialog
 
     private TextView validateNum_btn;
     private EditText validateNum;
-    public EventHandler eh; //事件接收器
+    private EventHandler eh; //事件接收器
     private TimeCount mTimeCount;//计时器
+    private String users, pwds, phones;
 
 
     @Override
@@ -70,6 +58,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     protected void initView() {
+        MobSDK.init(this);
         MobSDK.submitPolicyGrantResult(true);
         tv = findViewById(R.id.btnRegister_tv_login);
         edRegisterUser = findViewById(R.id.edRegister_user);
@@ -84,13 +73,15 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         edRegisterPwd.addTextChangedListener(this);
         validateNum.addTextChangedListener(this);
         validateNum_btn.setOnClickListener(this);
-
-        mTimeCount = new TimeCount(60000, 1000);
+        addTextListener();
         //设置下划线
         tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         //下划线抗锯齿
         tv.getPaint().setAntiAlias(true);
+        mTimeCount = new TimeCount(60000, 1000);
+    }
 
+    private void addTextListener() {
         edRegisterPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -129,7 +120,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                         edRegisterPhone.setText(sb.toString());
                         edRegisterPhone.setSelection(index);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -141,11 +132,11 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 } else {
                     mbtnRegister.setEnabled(false);
                 }
-                if (edRegisterPhone.getText().length() == 13){
+                if (edRegisterPhone.getText().length() == 13) {
                     validateNum_btn.setEnabled(true);
-                }else{
-                    validateNum_btn.setEnabled(false);
+                    return;
                 }
+                validateNum_btn.setEnabled(false);
             }
         });
     }
@@ -153,11 +144,12 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     protected void initData() {
+        sendMsg();
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
             }
         });
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +160,6 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 String phone = edRegisterPhone.getText().toString().trim();
                 String valNum = validateNum.getText().toString().trim();
                 register(user, pwd, phone, valNum);
-                ViewUtil.hideOneInputMethod(RegisterActivity.this,validateNum);
             }
         });
 
@@ -177,45 +168,50 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
     private void register(String user, String pwd, String phone, String varNum) {
         //判断用户输入的密码、账号、手机号：1、是否为空；2、是否符合账号注册标准(严格使用正则表达式)
         if (TextUtils.isEmpty(user)) {
-            //showToast("");
-            MyToast.showText(this,"注册账号不能为空哦！");
+            MyToast.showText(this, "注册账号不能为空哦！");
             return;
-        } else if (TextUtils.isEmpty(pwd)) {
-            //showToast("注册密码不能为空哦！");
-            MyToast.showText(this,"注册密码不能为空哦！");
+        }
+        if (TextUtils.isEmpty(pwd)) {
+            MyToast.showText(this, "注册密码不能为空哦！");
             return;
-        } else if (TextUtils.isEmpty(phone)) {
-            //showToast("手机号不能为空哦！");
-            MyToast.showText(this,"手机号不能为空哦！");
+        }
+        if (TextUtils.isEmpty(phone)) {
+            MyToast.showText(this, "手机号不能为空哦！");
             return;
-        } else if (!checkUsername(user)) {
-            //showToast("用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
-            MyToast.showText(this,"用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
+        }
+        if (!checkUsername(user)) {
+            MyToast.showText(this, "用户名输入格式不正确！用户名只限大小写字母，且长度为6~12位！");
             return;
-        } else if (!checkPassword(pwd)) {
-            //showToast("密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
-            MyToast.showText(this,"密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
+        }
+        if (!checkPassword(pwd)) {
+            MyToast.showText(this, "密码输入格式不正确！密码只限大小写字母、数字组合，且长度为8~16位！");
             return;
-        } else if (!checkPhone(phone)) {
-            //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
-            MyToast.showText(this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+        }
+        if (!checkPhone(phone)) {
+            MyToast.showText(this, "手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
             return;
-        }else if (!TextUtils.isEmpty(phone)){
-            if (checkPhone(phone)){
-                if (!TextUtils.isEmpty(varNum)){
-                    SMSSDK.submitVerificationCode("+86",phone,varNum);//提交验证
-                }else{
-                    //showToast("请输入验证码!");
-                    MyToast.showText(this,"请输入验证码!");
+        }
+        if (!TextUtils.isEmpty(phone)) {
+            if (checkPhone(phone)) {
+                if (!TextUtils.isEmpty(varNum)) {
+                    loading();
+                    users = user;
+                    pwds = pwd;
+                    phones = phone;
+                    Log.e("TAG", "点击了注册: 用户名：" + users + "密码：" + pwds + "手机号：" + phones + "验证码：" + varNum);
+                    SMSSDK.submitVerificationCode("+86", phones, varNum);//提交验证
                     return;
                 }
-            }else{
-                //showToast("手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
-                MyToast.showText(this,"手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
+                MyToast.showText(this, "请输入验证码!");
                 return;
             }
+            MyToast.showText(this, "手机号输入格式不正确！手机号必须由1开头，且长度为11位！");
         }
-        eh = new EventHandler(){
+
+    }
+
+    private void sendMsg() {
+        eh = new EventHandler() {
             @Override
             public void afterEvent(int event, int result, Object data) {
                 if (result == SMSSDK.RESULT_COMPLETE) { //回调完成
@@ -223,41 +219,49 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                loadNetData(user,pwd,phone);
+                                Log.e("TAG", "run: 用户名：" + users + "密码：" + pwds + "手机号：" + phones);
+                                loadNetData(users, pwds, phones);
+                                return;
                             }
                         });
-                    }else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE){
+                    } else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 MyToast.showText(RegisterActivity.this, "语音验证发送！", Toast.LENGTH_SHORT);
+                                return;
                             }
                         });
                         //获取验证码成功
                         MyToast.showText(RegisterActivity.this, "获取验证码成功！", Toast.LENGTH_SHORT);
-                    }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
+                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
                         //获取验证码成功
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyToast.showText(RegisterActivity.this,"验证码已发送",Toast.LENGTH_SHORT);
+                                Log.e("TAG", "run: 验证码已发送");
+                                stopLoading();
+                                MyToast.showText(RegisterActivity.this, "验证码已发送", Toast.LENGTH_SHORT);
+                                return;
                             }
                         });
                     }
-                }else{
-                    ((Throwable)data).printStackTrace();
+                } else {
+                    ((Throwable) data).printStackTrace();
                     Throwable throwable = (Throwable) data;
                     throwable.printStackTrace();
-                    Log.i("1234",throwable.toString());
+                    Log.i("1234", throwable.toString());
                     try {
                         JSONObject obj = new JSONObject(throwable.getMessage());
                         final String des = obj.optString("detail");
-                        if (!TextUtils.isEmpty(des)){
+                        if (!TextUtils.isEmpty(des)) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
-                                    MyToast.showText(RegisterActivity.this,des);
+                                    Log.e("TAG", "run: " + des);
+                                    stopLoading();
+                                    MyToast.showText(RegisterActivity.this, des);
+                                    return;
                                 }
                             });
                         }
@@ -270,16 +274,10 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         SMSSDK.registerEventHandler(eh); //注册短信回调
     }
 
-    private void loadNetData(String user,String pwd, String phone) {
+    private void loadNetData(String user, String pwd, String phone) {
         //请求本地后台服务器，再进行下一步判断，从数据库筛选用户名是否存在；
         // 一切要求符合，则进行数据库添加数据
-
-        DiyProgressDialog mDialog = new DiyProgressDialog(RegisterActivity.this, "正在注册中...");
-        mDialog.setCancelable(true);//设置能通过后退键取消
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
         mbtnRegister.setEnabled(false);
-
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
         formbody.add("user", user);
@@ -299,21 +297,15 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //showToast("注册失败！服务器连接超时！");
-                        MyToast.showText(RegisterActivity.this,"注册失败！服务器连接超时！",false);
-                        //mDialog.cancel();
-                        mDialog.cancel();
+                        stopLoading();
+                        MyToast.showText(RegisterActivity.this, "注册失败！服务器连接超时！", false);
                         if (!TextUtils.isEmpty(edRegisterUser.getText()) && !TextUtils.isEmpty(edRegisterPwd.getText()) && !TextUtils.isEmpty(edRegisterPhone.getText()) && !TextUtils.isEmpty(validateNum.getText())) {
                             mbtnRegister.setEnabled(true);
-                            //return;
-                        } else {
-                            mbtnRegister.setEnabled(false);
                             return;
                         }
-
+                        mbtnRegister.setEnabled(false);
                     }
                 });
-                mDialog.cancel();
                 Looper.loop();
             }
 
@@ -326,31 +318,20 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                stopLoading();
                                 if (resultStr.equals("success")) {
-                                    MyToast.showText(RegisterActivity.this,"恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
-//                                    edRegisterUser.setText("");
-//                                    edRegisterUser.setHint("");
-//                                    edRegisterPwd.setText("");
-//                                    edRegisterPwd.setHint("");
-//                                    edRegisterPhone.setText("");
-//                                    edRegisterPhone.setHint("");
-//                                    validateNum.setText("");
-//                                    validateNum.setHint("");
-                                    //mbtnRegister.setEnabled(false);
-                                    mDialog.cancel();
+                                    MyToast.showText(RegisterActivity.this, "恭喜" + edRegisterUser.getText().toString().trim() + "！您已注册成功，赶紧前往登录吧！");
                                     finish();
-                                    overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                                    overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                                     return;
                                 }
                                 if (resultStr.equals("error")) {
-                                    MyToast.showText(RegisterActivity.this,"此用户名已存在！请更换用户名！");
+                                    MyToast.showText(RegisterActivity.this, "此用户名已存在！请更换用户名！");
                                     mbtnRegister.setEnabled(true);
-                                    mDialog.cancel();
                                     return;
                                 }
-                                MyToast.showText(RegisterActivity.this,"注册失败！服务器连接超时！");
+                                MyToast.showText(RegisterActivity.this, "注册失败！服务器连接超时！");
                                 mbtnRegister.setEnabled(true);
-                                mDialog.cancel();
                             }
                         }, 500);
                     }
@@ -385,19 +366,21 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         switch (v.getId()) {
             case R.id.validateNum_btn:
                 String phone = edRegisterPhone.getText().toString().trim();
-                if(!TextUtils.isEmpty(phone)){
+                if (!TextUtils.isEmpty(phone)) {
                     if (checkPhone(phone)) {
+                        Log.e("TAG", phone + "onClick: " + users + pwds + phones);
+                        loading();
                         String replacePhone = phone.replace(" ", "").replace(" ", "");
-                        SMSSDK.getVerificationCode("+86",replacePhone);//获取验证码
+                        phones = replacePhone;
+                        Log.e("TAG", "onClick: 验证码手机号：" + phones);
+                        SMSSDK.getVerificationCode("+86", phones);//获取验证码
                         mTimeCount.start();
-                    }else{
-                        //Toast.makeText(RegisterActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
-                        MyToast.showText(RegisterActivity.this,"请输入正确的手机号码",Toast.LENGTH_SHORT);
+                        return;
                     }
-                }else{
-                    //Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
-                    MyToast.showText(RegisterActivity.this,"请输入手机号码",Toast.LENGTH_SHORT);
+                    MyToast.showText(RegisterActivity.this, "请输入正确的手机号码");
+                    return;
                 }
+                MyToast.showText(RegisterActivity.this, "请输入手机号码");
                 break;
         }
     }
@@ -413,14 +396,14 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
         @Override
         public void onTick(long l) {
             validateNum_btn.setEnabled(false);
-            validateNum_btn.setText("重新获取"+"("+l/1000+")");
+            validateNum_btn.setText("重新获取" + "(" + l / 1000 + ")");
         }
 
         @Override
         public void onFinish() {
-            if (edRegisterPhone.getText().length() == 13 && !TextUtils.isEmpty(edRegisterPhone.getText())){
+            if (edRegisterPhone.getText().length() == 13 && !TextUtils.isEmpty(edRegisterPhone.getText())) {
                 validateNum_btn.setEnabled(true);
-            }else{
+            } else {
                 validateNum_btn.setEnabled(false);
             }
             validateNum_btn.setText("重新获取");
@@ -435,9 +418,9 @@ public class RegisterActivity extends BaseActivity implements TextWatcher,View.O
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             finish();
-            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+            overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         }
         return super.onKeyDown(keyCode, event);
     }

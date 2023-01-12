@@ -42,19 +42,36 @@
             android:overScrollMode="never"
             android:background="@drawable/bg"/>
 
-        <com.handmark.pulltorefresh.library.PullToRefreshGridView
-            android:id="@+id/search_pinyin_gv"
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:layout_width="@dimen/dimen_0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:numColumns="4"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:verticalSpacing="@dimen/dimen_2dp"
-            android:horizontalSpacing="@dimen/dimen_2dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:overScrollMode="never"
-            />
+            android:layout_weight="2">
+
+            <com.handmark.pulltorefresh.library.PullToRefreshGridView
+                android:id="@+id/search_pinyin_gv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="4"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:verticalSpacing="@dimen/dimen_2dp"
+                android:horizontalSpacing="@dimen/dimen_2dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:overScrollMode="never"/>
+
+            <LinearLayout
+                android:id="@+id/no_data_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_centerInParent="true">
+
+                <include layout="@layout/no_data_layout" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
     </LinearLayout>
 </LinearLayout>

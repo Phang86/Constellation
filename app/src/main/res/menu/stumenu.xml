@@ -8,15 +8,9 @@
             android:icon="@drawable/ic_gongneng"
             android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;功能介绍"/>
 
-<!--        <item-->
-<!--            android:id="@+id/skin"-->
-<!--            android:icon="@drawable/ic_skin"-->
-<!--            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;主题换肤"/>-->
-
         <item
             android:id="@+id/weather"
             android:icon="@drawable/ic_weather"
-
             android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;出行天气"/>
 
         <item

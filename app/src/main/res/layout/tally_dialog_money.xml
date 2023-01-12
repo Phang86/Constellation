@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/white"
-    app:cardElevation="@dimen/dimen_0dp"
-    app:cardMaxElevation="@dimen/dimen_0dp"
-    app:cardCornerRadius="@dimen/dimen_20dp"
-    android:layout_margin="@dimen/dimen_15dp">
+    android:background="@drawable/left_right_radio"
+    android:layout_marginTop="@dimen/dimen_100dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_30dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
                 android:text="@string/setMoney"
                 android:textStyle="bold"
                 android:textSize="@dimen/size_17sp"
-                android:textColor="@color/gray_600"/>
+                android:textColor="@color/black_200"/>
 
-            <ImageView
+            <TextView
                 android:id="@+id/tally_dialog_money_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_close"
+                android:text="@string/smssdk_cancel"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/size_15sp"/>
         </RelativeLayout>
 
         <TextView
@@ -43,20 +43,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textStyle="bold"
             android:layout_marginLeft="@dimen/dimen_20dp"
             android:layout_marginRight="@dimen/dimen_20dp"
-            android:textColor="@color/gray_500"
             android:textSize="@dimen/size_16sp"
             android:lineHeight="@dimen/dimen_20dp"
+            android:text="fdsfsdfsdfsdfdfsdfdfsdf"
             android:gravity="center"
             android:layout_marginBottom="@dimen/dimen_10dp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dimen_40dp"
-            android:layout_marginLeft="@dimen/dimen_40dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
             app:cardCornerRadius="@dimen/dimen_10dp"
@@ -103,15 +100,14 @@
             android:id="@+id/tally_dialog_money_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40dp"
-            android:layout_marginLeft="@dimen/dimen_60dp"
-            android:layout_marginRight="@dimen/dimen_60dp"
             android:layout_gravity="center"
             android:text="@string/smssdk_confirm"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:background="@drawable/selector_login_btn_bg"
             android:textColor="@color/white"
             android:textSize="@dimen/size_15sp"
-            android:layout_marginBottom="@dimen/dimen_10dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:layout_marginRight="@dimen/dimen_20dp"/>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>

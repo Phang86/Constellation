@@ -67,6 +67,7 @@
     <string name="deleteCity" translatable="false">删除城市</string>
     <string name="findDict" translatable="false">姓氏查找</string>
     <string name="set" translatable="false">设置</string>
+    <string name="go_to_add" translatable="false">《前往添加...》</string>
     <string name="findText" translatable="false">请输入需要查找的文字</string>
     <string name="findChengyu" translatable="false">请输入需要查找的成语</string>
     <string name="pinyinQuery" translatable="false">拼音查找</string>

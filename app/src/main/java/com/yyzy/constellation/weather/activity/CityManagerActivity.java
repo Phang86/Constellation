@@ -2,13 +2,17 @@ package com.yyzy.constellation.weather.activity;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
@@ -20,12 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityManagerActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView backImg,deleteImg;
+    private ImageView backImg;
     private ImageView tvAddCity;
     private ListView listView;
     //显示列表数据源
     private List<DatabaseEntity> mData;
     private CityManagerAdapter adapter;
+    private LinearLayout noDataLayout;
 
     @Override
     protected int initLayout() {
@@ -38,10 +43,9 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
 //        deleteImg = findViewById(R.id.city_iv_delete);
         tvAddCity = findViewById(R.id.city_tv_add);
         listView = findViewById(R.id.city_lv);
+        noDataLayout = findViewById(R.id.weatherManger_no_data);
         mData = new ArrayList<>();
-
         backImg.setOnClickListener(this);
-//        deleteImg.setOnClickListener(this);
         tvAddCity.setOnClickListener(this);
 
         //设置适配器
@@ -51,10 +55,10 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.setClass(CityManagerActivity.this,DeleteCityActivity.class);
+                intent.setClass(CityManagerActivity.this, DeleteCityActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                 return true;
             }
         });
@@ -65,11 +69,16 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
     protected void onResume() {
         super.onResume();
         List<DatabaseEntity> entityList = DBManager.queryAllInfo();
-        Log.e("TAG", "onResume: "+entityList.toString());
         mData.clear();
         mData.addAll(entityList);
         adapter.notifyDataSetChanged();
+        if (mData.size() > 0 && mData != null) {
+            noDataLayout.setVisibility(View.GONE);
+        } else {
+            noDataLayout.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     protected void initData() {
@@ -84,24 +93,14 @@ public class CityManagerActivity extends BaseActivity implements View.OnClickLis
                 intent.setClass(CityManagerActivity.this, WeatherActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
                 break;
-//            case R.id.city_iv_delete:
-//                //intentJump(DeleteCityActivity.class);
-//                intent.setClass(this,DeleteCityActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-//                break;
             case R.id.city_tv_add:
                 int cityCount = DBManager.getCityCount();
                 if (cityCount < 5) {
-                    //intentJump(SearchCityActivity.class);
-                    intent.setClass(this,SearchCityActivity.class);
+                    intent.setClass(this, SearchCityActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    //finish();
-                }else {
+                } else {
                     showToast("城市数量已超过5个！");
                 }
                 break;

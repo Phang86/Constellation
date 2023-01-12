@@ -154,7 +154,6 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:lines="1"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/lightred"
                     android:textSize="@dimen/size_16sp"/>
             </LinearLayout>
             <View
@@ -196,7 +195,6 @@
                     android:lines="1"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/lightred"
                     android:textSize="@dimen/size_16sp"/>
             </LinearLayout>
         </LinearLayout>

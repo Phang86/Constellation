@@ -17,22 +17,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.dict.activity.ChengYuActivity;
 import com.yyzy.constellation.dict.activity.ChengYuInfoActivity;
+import com.yyzy.constellation.dict.activity.SearchBushouActivity;
+import com.yyzy.constellation.dict.activity.SearchPinyinActivity;
 import com.yyzy.constellation.dict.activity.WordInfoActivity;
 import com.yyzy.constellation.dict.db.DBmanager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectZiFragment extends Fragment {
+public class CollectZiFragment extends Fragment implements View.OnClickListener{
     private LinearLayout noDataLayout;
     private SwipeRefreshLayout refreshLayout;
     private GridView gv;
     private String type;
     private List<String> mData;
     private ArrayAdapter<String> adapter;
+    private TextView tvAdd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class CollectZiFragment extends Fragment {
         gv = view.findViewById(R.id.collect_zi_frag);
         noDataLayout = view.findViewById(R.id.no_data_layout);
         refreshLayout = view.findViewById(R.id.collect_refresh_layout);
+        tvAdd = view.findViewById(R.id.tv_add);
+        tvAdd.setOnClickListener(this);
         Bundle bundle = getArguments();
         type = bundle.getString("type");
         mData = new ArrayList<>();
@@ -144,5 +151,18 @@ public class CollectZiFragment extends Fragment {
                 refreshLayout.setRefreshing(false);
             }
         }, 500);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (type.equals("文字")){
+            Intent intent = new Intent(getActivity(), SearchPinyinActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(getActivity(), ChengYuActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 }

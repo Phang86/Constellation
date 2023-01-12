@@ -30,9 +30,17 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
+        android:orientation="vertical"
         android:gravity="center">
 
         <include layout="@layout/no_data_layout"/>
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:text="@string/go_to_add"/>
 
     </LinearLayout>
 </RelativeLayout>

@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_35dp"
+        android:layout_margin="@dimen/dimen_25dp"
         app:cardCornerRadius="@dimen/dimen_10dp">
 
         <LinearLayout
@@ -24,8 +24,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="温馨提示"
-                android:textSize="@dimen/size_18sp" />
+                android:textSize="@dimen/size_16sp" />
 
             <TextView
                 android:id="@+id/dialog_content"
@@ -34,20 +33,20 @@
                 android:layout_marginTop="@dimen/dimen_20dp"
                 android:layout_marginLeft="@dimen/dimen_30dp"
                 android:layout_marginRight="@dimen/dimen_30dp"
+                android:layout_marginBottom="@dimen/dimen_20dp"
                 android:textColor="@color/black"
-                android:text="账号一旦彻底注销，数据无法恢复、且全部清空、且无法找回。确定注销吗？"
                 android:textSize="@dimen/size_16sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
+                android:layout_height="1.5px"
                 android:layout_marginTop="@dimen/dimen_10dp"
-                android:background="#E2E2E2"/>
+                android:background="@color/gray_200"/>
 
             <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40dp"
+                android:layout_height="@dimen/dimen_45dp"
                 android:orientation="horizontal" >
 
                 <Button
@@ -57,27 +56,25 @@
                     android:layout_weight="1"
                     android:background="@null"
                     android:text="取消"
-                    android:textStyle="bold"
                     android:foreground="@drawable/view_foreground"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/size_15sp" />
+                    android:textColor="@color/black_200"
+                    android:textSize="@dimen/size_16sp" />
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="1.5px"
                     android:layout_height="match_parent"
-                    android:background="#E2E2E2"/>
+                    android:background="@color/gray_200"/>
 
                 <Button
                     android:id="@+id/dialog_btn_sure"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="#1965db"
+                    android:textColor="@color/HW_Blue"
                     android:foreground="@drawable/view_foreground"
                     android:background="@null"
                     android:text="确定"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/size_15sp" />
+                    android:textSize="@dimen/size_16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

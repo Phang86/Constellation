@@ -20,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:layout_marginTop="@dimen/dimen_10dp">
 
             <TextView
@@ -37,7 +37,6 @@
                 android:id="@+id/history_info_carView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_220dp"
-                app:cardCornerRadius="@dimen/dimen_10dp"
                 app:cardElevation="@dimen/dimen_0dp"
                 app:cardMaxElevation="@dimen/dimen_0dp"
                 app:cardBackgroundColor="@color/white"

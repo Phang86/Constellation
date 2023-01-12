@@ -113,6 +113,7 @@ public class PinBuWordEntity {
                 this.bihua = bihua;
             }
 
+
             @Override
             public String toString() {
                 return "ListBean{" +
@@ -180,6 +181,7 @@ public class PinBuWordEntity {
             public void setBihua(String bihua) {
                 this.bihua = bihua;
             }
+
         }
     }
 }

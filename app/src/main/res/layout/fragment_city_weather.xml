@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cityFrag_scroll"
     android:layout_width="match_parent"
@@ -8,185 +8,207 @@
     tools:context=".weather.fragment.CityWeatherFragment"
     android:background="@mipmap/bg3">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+        <LinearLayout
+            android:id="@+id/weather_have_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-            <TextView
-                android:id="@+id/cityFrag_tv_temp"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/size_40sp"
-                android:layout_centerHorizontal="true"
-                android:text="25℃"
-                android:textColor="@color/gray_600"/>
+                android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/cityFrag_tv_city"
-                style="@style/todayWeather"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/cityFrag_tv_temp"
-                android:text="衡阳"/>
+                <TextView
+                    android:id="@+id/cityFrag_tv_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/size_40sp"
+                    android:layout_centerHorizontal="true"
+                    android:text="25℃"
+                    android:textColor="@color/gray_600"/>
 
-            <TextView
-                android:id="@+id/cityFrag_tv_condition"
-                style="@style/todayWeather"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/cityFrag_tv_city"
-                android:text="晴天"/>
-            
-            <TextView
-                android:id="@+id/cityFrag_tv_date"
-                android:layout_marginTop="@dimen/dimen_30dp"
-                style="@style/todayWeather"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/cityFrag_tv_condition"
-                android:text="2022.05.24"
-                android:layout_marginBottom="@dimen/dimen_5dp"/>
+                <TextView
+                    android:id="@+id/cityFrag_tv_city"
+                    style="@style/todayWeather"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/cityFrag_tv_temp"
+                    android:text="衡阳"/>
 
-            <TextView
-                android:id="@+id/cityFrag_tv_wind"
-                style="@style/todayWeather"
-                android:layout_below="@+id/cityFrag_tv_date"
-                android:text="东风3~4级" />
+                <TextView
+                    android:id="@+id/cityFrag_tv_condition"
+                    style="@style/todayWeather"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/cityFrag_tv_city"
+                    android:text="晴天"/>
 
+                <TextView
+                    android:id="@+id/cityFrag_tv_date"
+                    android:layout_marginTop="@dimen/dimen_30dp"
+                    style="@style/todayWeather"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/cityFrag_tv_condition"
+                    android:text="2022.05.24"
+                    android:layout_marginBottom="@dimen/dimen_5dp"/>
+
+                <TextView
+                    android:id="@+id/cityFrag_tv_wind"
+                    style="@style/todayWeather"
+                    android:layout_below="@+id/cityFrag_tv_date"
+                    android:text="东风3~4级" />
+
+                <TextView
+                    android:id="@+id/cityFrag_tv_fuhao"
+                    android:layout_width="@dimen/dimen_2dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:background="@color/black"
+                    android:layout_below="@+id/cityFrag_tv_date"
+                    android:layout_toRightOf="@+id/cityFrag_tv_wind"
+                    android:layout_marginLeft="@dimen/dimen_15dp"
+                    android:layout_marginRight="@dimen/dimen_15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/cityFrag_tv_tempRange"
+                    style="@style/todayWeather"
+                    android:layout_below="@+id/cityFrag_tv_date"
+                    android:layout_toRightOf="@+id/cityFrag_tv_fuhao"
+                    android:text="15~25℃"/>
+            </RelativeLayout>
             <TextView
-                android:id="@+id/cityFrag_tv_fuhao"
-                android:layout_width="@dimen/dimen_2dp"
-                android:layout_height="@dimen/dimen_25dp"
-                android:background="@color/black"
-                android:layout_below="@+id/cityFrag_tv_date"
-                android:layout_toRightOf="@+id/cityFrag_tv_wind"
-                android:layout_marginLeft="@dimen/dimen_15dp"
-                android:layout_marginRight="@dimen/dimen_15dp"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_height="wrap_content"
+                android:text="未来4天天气情况如下："
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_16sp"
+                android:textColor="@color/gray_600"
                 android:textStyle="bold"/>
+            <LinearLayout
+                android:id="@+id/cityFrag_center_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dimen_10dp"
+                android:background="@drawable/cityfragment_layout_bg"
+                android:padding="@dimen/dimen_10dp">
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/cityFrag_tv_tempRange"
-                style="@style/todayWeather"
-                android:layout_below="@+id/cityFrag_tv_date"
-                android:layout_toRightOf="@+id/cityFrag_tv_fuhao"
-                android:text="15~25℃"/>
-        </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:layout_height="wrap_content"
-            android:text="未来4天天气情况如下："
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:textSize="@dimen/size_16sp"
-            android:textColor="@color/gray_600"
-            android:textStyle="bold"/>
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_height="wrap_content"
+                android:text="各项指数信息如下："
+                android:textSize="@dimen/size_16sp"
+                android:textColor="@color/gray_600"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:id="@+id/cityFrag_index_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dimen_10dp"
+                android:background="@drawable/cityfragment_layout_bg"
+                android:padding="@dimen/dimen_10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_cloth"
+                        style="@style/indexText"
+                        android:text="@string/cloth"
+                        android:drawableBottom="@mipmap/icon_cloth"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="#2e8b57"/>
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_washCar"
+                        style="@style/indexText"
+                        android:text="@string/washCar"
+                        android:drawableBottom="@mipmap/icon_car"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="#2e8b57"/>
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_cold"
+                        style="@style/indexText"
+                        android:text="@string/cold"
+                        android:drawableBottom="@mipmap/icon_ganmao"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:background="#2e8b57"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginBottom="@dimen/dimen_10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_sport"
+                        style="@style/indexText"
+                        android:text="@string/sport"
+                        android:drawableBottom="@mipmap/icon_sport"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="#2e8b57"/>
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_rays"
+                        style="@style/indexText"
+                        android:text="@string/rays"
+                        android:drawableBottom="@mipmap/icon_light"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="#2e8b57"/>
+
+                    <TextView
+                        android:id="@+id/cityFrag_tv_air"
+                        style="@style/indexText"
+                        android:text="@string/air"
+                        android:drawablePadding="@dimen/dimen_15dp"
+                        android:drawableBottom="@mipmap/icon_air"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/cityFrag_center_layout"
+            android:id="@+id/weather_no_data"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:background="@drawable/cityfragment_layout_bg"
-            android:padding="@dimen/dimen_10dp">
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+
+            <include layout="@layout/no_data_layout"/>
 
         </LinearLayout>
 
+    </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:layout_height="wrap_content"
-            android:text="各项指数信息如下："
-            android:textSize="@dimen/size_16sp"
-            android:textColor="@color/gray_600"
-            android:layout_marginLeft="@dimen/dimen_10dp"
-            android:textStyle="bold"/>
-        <LinearLayout
-            android:id="@+id/cityFrag_index_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/dimen_10dp"
-            android:background="@drawable/cityfragment_layout_bg"
-            android:padding="@dimen/dimen_10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_cloth"
-                    style="@style/indexText"
-                    android:text="@string/cloth"
-                    android:drawableBottom="@mipmap/icon_cloth"/>
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_1dp"
-                    android:layout_height="match_parent"
-                    android:background="#2e8b57"/>
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_washCar"
-                    style="@style/indexText"
-                    android:text="@string/washCar"
-                    android:drawableBottom="@mipmap/icon_car"/>
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_1dp"
-                    android:layout_height="match_parent"
-                    android:background="#2e8b57"/>
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_cold"
-                    style="@style/indexText"
-                    android:text="@string/cold"
-                    android:drawableBottom="@mipmap/icon_ganmao"/>
-            </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:background="#2e8b57"
-                android:layout_marginTop="@dimen/dimen_10dp"
-                android:layout_marginBottom="@dimen/dimen_10dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_sport"
-                    style="@style/indexText"
-                    android:text="@string/sport"
-                    android:drawableBottom="@mipmap/icon_sport"/>
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_1dp"
-                    android:layout_height="match_parent"
-                    android:background="#2e8b57"/>
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_rays"
-                    style="@style/indexText"
-                    android:text="@string/rays"
-                    android:drawableBottom="@mipmap/icon_light"/>
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_1dp"
-                    android:layout_height="match_parent"
-                    android:background="#2e8b57"/>
-
-                <TextView
-                    android:id="@+id/cityFrag_tv_air"
-                    style="@style/indexText"
-                    android:text="@string/air"
-                    android:drawablePadding="@dimen/dimen_15dp"
-                    android:drawableBottom="@mipmap/icon_air"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

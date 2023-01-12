@@ -58,11 +58,15 @@
         android:overScrollMode="never"
         android:listSelector="@android:color/transparent" />
 
-<!--    <ImageView-->
-<!--        android:layout_width="@dimen/dimen_30dp"-->
-<!--        android:layout_height="@dimen/dimen_30dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:src="@drawable/ic_iv_add"-->
-<!--        android:layout_margin="@dimen/dimen_10dp"/>-->
+    <LinearLayout
+        android:id="@+id/weatherManger_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <include layout="@layout/no_data_layout"/>
+
+    </LinearLayout>
 </RelativeLayout>

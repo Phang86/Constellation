@@ -73,7 +73,7 @@
             app:cardBackgroundColor="@color/gray_100_ededed"
             app:cardCornerRadius="@dimen/dimen_10dp"
             android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
             android:layout_marginBottom="@dimen/dimen_10dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp">
@@ -82,24 +82,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:background="@color/mainRed">
+                android:background="@color/mainRed"
+                android:weightSum="3">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/item_main_car"
+                <ImageView
+                    android:id="@+id/item_main_pic"
                     android:layout_width="@dimen/dimen_0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:cardElevation="@dimen/dimen_0dp"
-                    app:cardMaxElevation="@dimen/dimen_0dp"
-                    app:cardBackgroundColor="@color/mainRed"
-                    app:cardCornerRadius="@dimen/dimen_10dp">
-
-                    <ImageView
-                        android:id="@+id/item_main_pic"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
-                </androidx.cardview.widget.CardView>
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/item_main_title"

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -49,9 +50,10 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     private int error_code = 10012;        //网络请求失败码
     private String city;
     private int bgNum;
-    private ScrollView scrollView;
+    private NestedScrollView scrollView;
     private SharedPreferences bg_pref;
     private DiyProgressDialog dialog;
+    private LinearLayout haveDataLayout,noDataLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +84,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onSuccess(String result) {
         super.onSuccess(result);
+        dialog.dismiss();
         if (!result.isEmpty()){
             //当获取数据成功时，解析并展示数据
             parseShowData(result);
@@ -92,7 +95,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 DBManager.addCityInfo(city,result);
             }
         }
-        dialog.dismiss();
+
     }
 
     @Override
@@ -102,9 +105,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             WeatherIndexEntity entity = new Gson().fromJson(response, WeatherIndexEntity.class);
             if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == error_code || entity.getResult().toString().isEmpty()){
                 MyToast.showText(getActivity(),"超过每日可允许请求次数!",Toast.LENGTH_SHORT);
-                //return;
                 return;
             }
+
             life = entity.getResult().getLife();
         }catch (Exception e){
             e.printStackTrace();
@@ -120,8 +123,13 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         }
         String s = DBManager.queryInfoByCity(city);
         if (!TextUtils.isEmpty(s)) {
+            haveDataLayout.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.GONE);
             parseShowData(s);
+            return;
         }
+        haveDataLayout.setVisibility(View.INVISIBLE);
+        noDataLayout.setVisibility(View.VISIBLE);
     }
 
     private void parseShowData(String result) {
@@ -184,6 +192,8 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         airIndexTv = view.findViewById(R.id.cityFrag_tv_air);
         futureLayout = view.findViewById(R.id.cityFrag_center_layout);
         scrollView = view.findViewById(R.id.cityFrag_scroll);
+        haveDataLayout = view.findViewById(R.id.weather_have_data);
+        noDataLayout = view.findViewById(R.id.weather_no_data);
 
         //为控件添加点击事件
         clothIndexTv.setOnClickListener(this);
@@ -192,7 +202,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         sportIndexTv.setOnClickListener(this);
         raysIndexTv.setOnClickListener(this);
         airIndexTv.setOnClickListener(this);
-
         changeBg();
     }
 
@@ -202,7 +211,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
         TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
-        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
         Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
         //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         final Dialog dialog = builder.create();
@@ -224,10 +232,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         //content.setText("确定退出吗？");
         switch (v.getId()) {
             case R.id.cityFrag_tv_cloth:
-                title.setText("穿衣指数");
                 String msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getChuanyi().getV() + "\n" + life.getChuanyi().getDes();
+                    msg = "穿衣指数\n"+life.getChuanyi().getV() + "\n" + life.getChuanyi().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {
@@ -238,10 +245,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 });
                 break;
             case R.id.cityFrag_tv_washCar:
-                title.setText("洗车指数");
                 msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getXiche().getV() + "\n" + life.getXiche().getDes();
+                    msg = "洗车指数\n"+life.getXiche().getV() + "\n" + life.getXiche().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {
@@ -252,10 +258,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 });
                 break;
             case R.id.cityFrag_tv_cold:
-                title.setText("感冒指数");
                 msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getGanmao().getV() + "\n" + life.getGanmao().getDes();
+                    msg = "感冒指数\n"+life.getGanmao().getV() + "\n" + life.getGanmao().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {
@@ -266,10 +271,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 });
                 break;
             case R.id.cityFrag_tv_sport:
-                title.setText("运动指数");
                 msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getYundong().getV() + "\n" + life.getYundong().getDes();
+                    msg = "运动指数\n"+life.getYundong().getV() + "\n" + life.getYundong().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {
@@ -280,10 +284,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 });
                 break;
             case R.id.cityFrag_tv_rays:
-                title.setText("紫外线指数");
                 msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getZiwaixian().getV() + "\n" + life.getZiwaixian().getDes();
+                    msg = "紫外线指数\n"+life.getZiwaixian().getV() + "\n" + life.getZiwaixian().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {
@@ -294,10 +297,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
                 });
                 break;
             case R.id.cityFrag_tv_air:
-                title.setText("空调指数");
                 msg = "暂无信息！";
                 if (life != null) {
-                    msg = life.getKongtiao().getV() + "\n" + life.getKongtiao().getDes();
+                    msg = "空调指数\n"+life.getKongtiao().getV() + "\n" + life.getKongtiao().getDes();
                 }
                 content.setText(msg);
                 btn_sure.setOnClickListener(new View.OnClickListener() {

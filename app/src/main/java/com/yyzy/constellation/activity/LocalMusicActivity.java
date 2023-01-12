@@ -42,7 +42,6 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
     private int currentPos = -1;   //记录播放状态
     private MediaPlayer mediaPlayer = new MediaPlayer();
     private int currentPausePos = 0;   //记录暂停时音乐的状态位置
-    private DiyProgressDialog dialog;
 
     @Override
     protected int initLayout() {
@@ -71,10 +70,6 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
         ivPlay.setOnClickListener(this);
         ivNext.setOnClickListener(this);
         musicRv.setOnClickListener(this);
-        dialog = new DiyProgressDialog(this, "加载中...");
-        dialog.show();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(true);
         //创建适配器
         adapter = new LocalMusicAdapter(this, mDatas);
         musicRv.setAdapter(adapter);
@@ -206,7 +201,6 @@ public class LocalMusicActivity extends BaseActivity implements View.OnClickList
             linLayout.setVisibility(View.VISIBLE);
             tv.setText("本地暂无音乐！");
         }
-        dialog.dismiss();
     }
 
     @Override

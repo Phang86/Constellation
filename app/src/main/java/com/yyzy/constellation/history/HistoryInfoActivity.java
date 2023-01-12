@@ -27,7 +27,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.activity.MainActivity;
 import com.yyzy.constellation.history.bean.HistoryInfoEntity;
+import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.URLContent;
 
@@ -49,7 +51,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
     private ScrollView sv;
     private Bitmap bitmap;
     //底部弹窗
-    private BottomSheetDialog bottomSheetDialog;
+//    private BottomSheetDialog bottomSheetDialog;
 
     @Override
     protected int initLayout() {
@@ -83,7 +85,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
         imgTitle.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                changeAvatar();
+                showImgDialog();
                 return true;
             }
         });
@@ -117,35 +119,19 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-    public void changeAvatar() {
+    public void showImgDialog() {
         bitmap = ((BitmapDrawable) imgTitle.getDrawable()).getBitmap();
-        bottomSheetDialog = new BottomSheetDialog(this);
-        View bottomView = getLayoutInflater().inflate(R.layout.dialog_select_photo, null);
-        bottomSheetDialog.setContentView(bottomView);
-        bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
-        TextView tvEnjoy = bottomView.findViewById(R.id.tv_take_pictures);
-        TextView tvLoad = bottomView.findViewById(R.id.tv_open_album);
-        TextView tvCancel = bottomView.findViewById(R.id.tv_cancel);
-        tvEnjoy.setText("分享图片");
-        tvLoad.setText("保存图片");
+        openBottomDialog("图片选择", "分享图片", "保存图片", new OnClickSure() {
+            @Override
+            public void onSure() {
+                shareSingleImage();
+            }
 
-        //分享图片
-        tvEnjoy.setOnClickListener(v -> {
-            shareSingleImage();
-            bottomSheetDialog.cancel();
+            @Override
+            public void onCancel() {
+                saveImage(bitmap);
+            }
         });
-
-        //保存图片
-        tvLoad.setOnClickListener(v -> {
-            saveImage(bitmap);
-            bottomSheetDialog.cancel();
-        });
-
-        //取消
-        tvCancel.setOnClickListener(v -> {
-            bottomSheetDialog.cancel();
-        });
-        bottomSheetDialog.show();
     }
 
     @Override

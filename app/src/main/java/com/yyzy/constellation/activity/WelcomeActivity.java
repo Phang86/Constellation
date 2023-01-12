@@ -1,16 +1,15 @@
 package com.yyzy.constellation.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.adapter.WelcomeAdapter;
+import com.yyzy.constellation.user.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class WelcomeActivity extends BaseActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 finish();
                 overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
             }

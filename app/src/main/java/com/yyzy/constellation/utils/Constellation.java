@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.yyzy.constellation.dict.db.DBmanager;
+import com.yyzy.constellation.dict.db.RecordsDao;
 import com.yyzy.constellation.news.db.NewsDBManger;
 import com.yyzy.constellation.tally.db.TallyDBOpenHelper;
 import com.yyzy.constellation.tally.db.TallyManger;

@@ -64,16 +64,10 @@ public class HistoryAdapter extends BaseAdapter {
         } else {
             holder.timeLayout.setVisibility(View.VISIBLE);
         }
-
         holder.timeTv.setText(resultBean.getYear() + "-" + resultBean.getMonth() + "-" + resultBean.getDay());
         holder.titleTv.setText(resultBean.getTitle());
         String picURL = resultBean.getPic();
-        if (TextUtils.isEmpty(picURL)) {
-            holder.car.setVisibility(View.GONE);
-        } else {
-            holder.car.setVisibility(View.VISIBLE);
-            Glide.with(context).load(picURL).into(holder.picIv);
-        }
+        Glide.with(context).load(picURL).into(holder.picIv);
         return convertView;
     }
 }
@@ -82,13 +76,11 @@ class ViewHolder{
     TextView timeTv,titleTv;
     ImageView picIv;
     LinearLayout timeLayout;
-    CardView car;
     public ViewHolder(View itemView){
         timeTv = itemView.findViewById(R.id.item_main_time);
         titleTv = itemView.findViewById(R.id.item_main_title);
         picIv = itemView.findViewById(R.id.item_main_pic);
         timeLayout = itemView.findViewById(R.id.item_main_ll);
-        car = itemView.findViewById(R.id.item_main_car);
     }
 
 }

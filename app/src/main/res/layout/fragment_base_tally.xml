@@ -98,9 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:singleLine="true"
-            android:textSize="@dimen/size_15sp"
-            android:textColor="@color/gray_600"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/size_15sp"/>
 
         <TextView
             android:id="@+id/record_frag_tv_beizhu"
@@ -109,7 +107,6 @@
             android:layout_toLeftOf="@+id/record_frag_tv_time"
             android:hint="@string/addBeizhu"
             android:textSize="@dimen/size_15sp"
-            android:textStyle="bold"
             android:singleLine="true"
             android:layout_marginRight="@dimen/dimen_10dp"
             android:textColor="@color/yaBlack"/>

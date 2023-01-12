@@ -1,10 +1,8 @@
 package com.yyzy.constellation.user;
 
 import android.app.Dialog;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,15 +25,12 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.user.logoutUser.CancelActivity;
-import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.user.alertPwd.SwipeCheckActivity;
 import com.yyzy.constellation.user.alertPhone.UpdatePhoneActivity;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.AlertDialogUtils;
-import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
-import com.yyzy.constellation.utils.SPUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,11 +51,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     private TextView titleTv,userNameTv,updateTimeTv,versionTv,phoneTv,createTimeTv;
     private CardView versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
     private ImageView backImg;
-    private String name,version;
+    private String version;
     private SmartRefreshLayout swipeRefresh;
-    private String passWord;
     private List<User> data;
-    private NotificationManager NotiManager;
 
     @Override
     protected int initLayout() {
@@ -86,70 +79,55 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         versionLayout.setOnClickListener(this);
         backImg.setOnClickListener(this);
         userPhoneLayout.setOnClickListener(this);
-
-//        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-//        this.registerReceiver(receiver,filter);
     }
 
     @Override
     protected void initData() {
         titleTv.setText(R.string.appInfo);
-        name = findByKey("name");
-        //userNameTv.setText(name);
-        //createTimeTv.setText(findByKey("createTime"));
-        passWord = findByKey("passWord");
         //获取应用版本号
         version = getVersion();
-
         refreshData();
     }
 
-    protected String findByKey(String key) {
-        SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-        return sp.getString(key, "");
+    private void refreshData(){
+        //下拉刷新
+        swipeRefresh.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                loadData();
+                refreshLayout.finishRefresh(100);
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.details_back:
                 finish();
                 break;
             case R.id.appInfo_layout_version:
-                MeFragment.showDialogSure(this,"应用版本","当前应用版本为\t"+getVersion());
+                MeFragment.showDialogSure(this,"当前应用版本为\t"+getVersion());
                 break;
             case R.id.appInfo_layout_update:
-                intent.setClass(this, SwipeCheckActivity.class);
-                intent.putExtra("userName",name);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intentJump(SwipeCheckActivity.class);
                 break;
             case R.id.appInfo_layout_cancel:
-                //showAlertDialog();
-                intent.setClass(this, CancelActivity.class);
-                intent.putExtra("MyPhone",data.get(0).getMobile());
-                intent.putExtra("name",name);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intentJump(CancelActivity.class);
                 break;
             case R.id.appInfo_layout_phone:
-                showDefaultDialog(intent,this);
+                showDefaultDialog();
                 break;
         }
     }
 
-    private void showDefaultDialog(Intent intent,Context context) {
+    private void showDefaultDialog() {
         AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
-        AlertDialogUtils.showConfirmDialog(context,"友情提示","是否更换手机号？","是","否");
+        AlertDialogUtils.showConfirmDialog(this,"是否更换手机号？","是","否");
         dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
             @Override
             public void onPositiveButtonClick(AlertDialog dialog) {
-                intent.setClass(context, UpdatePhoneActivity.class);
-                intent.putExtra("updatePhone",data.get(0).getMobile());
-                intent.putExtra("userName",data.get(0).getUserName());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                intentJump(UpdatePhoneActivity.class);
                 dialog.dismiss();
             }
 
@@ -161,34 +139,12 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    private void refreshData(){
-        //下拉刷新
-        swipeRefresh.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                //Toast.makeText(MainActivity.this, "顶部", Toast.LENGTH_SHORT).show();
-                loadData();
-                refreshLayout.finishRefresh(200);
-            }
-        });
-
-    }
-
     private void loadData() {
-        DiyProgressDialog mDialog = new DiyProgressDialog(AppInfoActivity.this, "加载中...");
-        try {
-            mDialog.setCancelable(false);//设置能通过后退键取消
-            mDialog.setCanceledOnTouchOutside(false);
-            mDialog.show();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
+        loading();
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
-        formbody.add("user", name);
-        formbody.add("pwd", passWord);
+        formbody.add("user", base_user_names);
+        formbody.add("pwd", base_pass_words);
         RequestBody requestBody = formbody.build();
         Request request = new Request.Builder()
                 .url(BASE_URL + "/user/login")
@@ -201,12 +157,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        stopLoading();
                         MyToast.showText(AppInfoActivity.this,"加载失败！服务器连接超时！",false);
-                        cancelUserLayout.setEnabled(false);
-                        userPhoneLayout.setEnabled(false);
-                        mDialog.cancel();
                         swipeRefresh.setEnableRefresh(false);
-                        return;
                     }
                 });
             }
@@ -218,86 +171,41 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                     @Override
                     public void run() {
                         try {
-                            //获取存储在sp里面的用户名和密码以及两个复选框状态
-                            SharedPreferences sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            SharedPreferences sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-                            SharedPreferences.Editor ed = sp.edit();
+                            stopLoading();
                             if (resultStr.equals("su_error")) {
-                                if (ed != null && editor != null){
-                                    ed.clear();
-                                    ed.commit();
-                                    editor.clear();
-                                    editor.commit();
-                                }
-                                SPUtils.remove("imageUrl",AppInfoActivity.this);
-                                NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                NotiManager.cancel(1);
+                                clearUserInfo();
+                                clearNotificationManger();
                                 showSureDialog(AppInfoActivity.this,"此用户不存在！");
-                                //MyToast.showText(getBaseContext(),"此用户不存在！");
-                                cancelUserLayout.setEnabled(false);
-                                userPhoneLayout.setEnabled(false);
-                                updatePwdLayout.setEnabled(false);
-                                versionLayout.setEnabled(false);
-                                mDialog.cancel();
-                                swipeRefresh.setEnableRefresh(false);
                                 return;
-                            }else if (resultStr.equals("success")){
-                                if (ed != null && editor != null){
-                                    ed.clear();
-                                    ed.commit();
-                                    editor.clear();
-                                    editor.commit();
-                                }
-                                SPUtils.remove("imageUrl",AppInfoActivity.this);
-                                NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                NotiManager.cancel(1);
-                                showSureDialog(AppInfoActivity.this,"登录密码错误！身份已失效，请前往重新登录！");
-                                cancelUserLayout.setEnabled(false);
-                                userPhoneLayout.setEnabled(false);
-                                updatePwdLayout.setEnabled(false);
-                                versionLayout.setEnabled(false);
-                                mDialog.cancel();
-                                swipeRefresh.setEnableRefresh(false);
-                                return;
-                            }else {
-                                List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
-                                }.getType());
-                                data = new ArrayList<>();
-                                data = dataEntity;
-                                if (data.size() > 0 && data != null) {
-                                    //数据获取成功
-                                    versionTv.setText(version);
-                                    updateTimeTv.setText(data.get(0).getUpdateTime());
-                                    userNameTv.setText(data.get(0).getUserName());
-                                    createTimeTv.setText(data.get(0).getCreateTime());
-                                    String mobile = data.get(0).getMobile();
-                                    String replacePhone = mobile.replace(" ", "");
-                                    //进行加密
-                                    String myPhone = replacePhone.substring(0,3)+"****"+replacePhone.substring(7,replacePhone.length());
-                                    phoneTv.setText(myPhone);
-                                    cancelUserLayout.setEnabled(true);
-                                    userPhoneLayout.setEnabled(true);
-                                    updatePwdLayout.setEnabled(true);
-                                    versionLayout.setEnabled(true);
-                                    swipeRefresh.setEnableRefresh(true);
-                                    mDialog.cancel();
-                                } else {
-                                    if (ed != null && editor != null){
-                                        ed.clear();
-                                        ed.commit();
-                                        editor.clear();
-                                        editor.commit();
-                                    }
-                                    SPUtils.remove("imageUrl",AppInfoActivity.this);
-                                    NotiManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                    NotiManager.cancel(1);
-                                    showSureDialog(AppInfoActivity.this,"登录失败！服务器连接超时！");
-                                    mDialog.cancel();
-                                    swipeRefresh.setEnableRefresh(false);
-                                    return;
-                                }
                             }
+                            if (resultStr.equals("success")){
+                                clearUserInfo();
+                                clearNotificationManger();
+                                showSureDialog(AppInfoActivity.this,"身份已失效，请前往重新登录！");
+                                return;
+                            }
+                            List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
+                            }.getType());
+                            data = new ArrayList<>();
+                            data = dataEntity;
+                            if (data.size() > 0 && data != null) {
+                                //数据获取成功
+                                versionTv.setText(version);
+                                updateTimeTv.setText(data.get(0).getUpdateTime());
+                                userNameTv.setText(data.get(0).getUserName());
+                                createTimeTv.setText(data.get(0).getCreateTime());
+                                String mobile = data.get(0).getMobile();
+                                String replacePhone = mobile.replace(" ", "");
+                                //进行加密
+                                String myPhone = replacePhone.substring(0,3)+"****"+replacePhone.substring(7,replacePhone.length());
+                                phoneTv.setText(myPhone);
+                                swipeRefresh.setEnableRefresh(true);
+                                return;
+                            }
+                            clearUserInfo();
+                            clearNotificationManger();
+                            showSureDialog(AppInfoActivity.this,"登录失败！服务器连接超时！");
+                            swipeRefresh.setEnableRefresh(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -311,9 +219,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onStart() {
         super.onStart();
-        //swipeRefresh.setRefreshing(true);
         loadData();
-        //swipeRefresh.setRefreshing(false);
     }
 
 
@@ -322,7 +228,6 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.diy_alert_dialog_sure, null);
         TextView content = (TextView) view.findViewById(R.id.dialog_two_content);
-        TextView title = (TextView) view.findViewById(R.id.dialog_two_title);
         Button btn_sure = (Button) view.findViewById(R.id.dialog_two_btn_sure);
         //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         final Dialog dialog = builder.create();
@@ -342,7 +247,6 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setAttributes(wlp);
         //dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-        title.setText("温馨提示");
         content.setText(msg);
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override

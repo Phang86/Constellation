@@ -1,16 +1,12 @@
 package com.yyzy.constellation.user.logoutUser;
 
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,11 +15,9 @@ import android.widget.Toast;
 import com.mob.MobSDK;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.LoginActivity;
+import com.yyzy.constellation.user.LoginActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
-import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
-import com.yyzy.constellation.utils.SPUtils;
 import com.yyzy.constellation.utils.URLContent;
 import com.yyzy.constellation.utils.ViewUtil;
 
@@ -56,12 +50,6 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
     public EventHandler eh; //事件接收器
     private TimeCount mTimeCount;//计时器
 
-    private SharedPreferences sharedPreferences,sp;
-    private SharedPreferences.Editor editor,ed;
-    private String name;
-    private NotificationManager manager;
-
-
     @Override
     protected int initLayout() {
         return R.layout.activity_cancelid;
@@ -82,14 +70,12 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
         btnZhuxiao.setOnClickListener(this);
         sendNum.setOnClickListener(this);
 
-        Intent intent = getIntent();
-        myphone = intent.getStringExtra("Myphone");
+        myphone = base_phones.replace(" ","");
         String phone = myphone.substring(0,3)+"****"+myphone.substring(7,myphone.length());
         tvNum.setText(phone);
         tvTitle.setText("账号注销");
         btnZhuxiao.setEnabled(false);
-        name = intent.getStringExtra("name");
-        Log.e("TAG", "需要注销的用户名为："+name);
+        Log.e("TAG", "需要注销的用户名为："+base_phones);
         mTimeCount = new TimeCount(60000, 1000);
     }
 
@@ -103,9 +89,7 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                //loadNetData(user,pwd,phone);
-                                //MyToast.showText(CancelidActivity.this,"验证成功",true);
-                                //showAlertDialog();
+                                stopLoading();
                                 showDefaultDialog();
                                 return;
                             }
@@ -114,18 +98,20 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyToast.showText(CancelidActivity.this, "语音验证发送！", Toast.LENGTH_SHORT);
+                                MyToast.showText(CancelidActivity.this, "语音验证发送！");
                                 return;
                             }
                         });
                         //获取验证码成功
-                        MyToast.showText(CancelidActivity.this, "获取验证码成功！", Toast.LENGTH_SHORT);
+                        MyToast.showText(CancelidActivity.this, "获取验证码成功！");
                     }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
                         //获取验证码成功
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyToast.showText(CancelidActivity.this,"验证码已发送",Toast.LENGTH_SHORT);
+                                stopLoading();
+                                etNum.requestFocus();
+                                MyToast.showText(CancelidActivity.this,"验证码已发送");
                                 return;
                             }
                         });
@@ -142,7 +128,8 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
+                                    stopLoading();
+                                    etNum.requestFocus();
                                     MyToast.showText(CancelidActivity.this,des);
                                     return;
                                 }
@@ -212,21 +199,20 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
             case R.id.zhuxiao_next:
                 String valNum = etNum.getText().toString().trim();
                 if (!valNum.isEmpty()){
-                    SMSSDK.submitVerificationCode("+86",myphone,valNum);
-                }else {
-                    MyToast.showText(this,"请输入验证码！");
+                    loading();
+                    SMSSDK.submitVerificationCode("+86",base_phones,valNum);
+                    return;
                 }
+                MyToast.showText(this,"请输入验证码！");
                 break;
             case R.id.cancelid_send_num:
-                if(!TextUtils.isEmpty(myphone)){
-                    etNum.requestFocus();
-                    ViewUtil.showSystemKeyboard(getApplicationContext(),etNum);
-                    SMSSDK.getVerificationCode("+86",myphone);//获取验证码
+                if(!TextUtils.isEmpty(base_phones)){
+                    loading();
+                    SMSSDK.getVerificationCode("+86",base_phones);//获取验证码
                     mTimeCount.start();
-                }else{
-                    //Toast.makeText(RegisterActivity.this, "请输入手机号码", Toast.LENGTH_SHORT).show();
-                    MyToast.showText(CancelidActivity.this,"请输入手机号码",Toast.LENGTH_SHORT);
+                    return;
                 }
+                MyToast.showText(CancelidActivity.this,"请输入手机号码",Toast.LENGTH_SHORT);
                 break;
         }
     }
@@ -234,29 +220,15 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
 
     private void showDefaultDialog(){
         AlertDialogUtils dialogUtils = AlertDialogUtils.getInstance();
-        AlertDialogUtils.showConfirmDialog(CancelidActivity.this,"温馨提示","账号一旦彻底注销，数据无法恢复、且全部清空、无法找回。确定注销此账号吗？","继续","取消");
+        AlertDialogUtils.showConfirmDialog(CancelidActivity.this,"账号一旦彻底注销，数据无法恢复、且全部清空、无法找回。确定注销此账号吗？","继续","取消");
         dialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
             @Override
             public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {
                 //点击确认按钮要做的事情
                 dialog.dismiss();
                 //获取存储在sp里面的用户名和密码以及两个复选框状态
-                sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-                editor = sharedPreferences.edit();
-                SPUtils.remove("imageUrl",CancelidActivity.this);
-                //从后台获取到的用户信息
-                sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-                ed = sp.edit();
-                DiyProgressDialog loadDialog = new DiyProgressDialog(CancelidActivity.this,"账号注销中...");
-                loadDialog.setCancelable(false);//设置不能通过后退键取消
-                loadDialog.setCanceledOnTouchOutside(false);
-                loadDialog.show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        requestNet(loadDialog);
-                    }
-                },1000);
+                loading();
+                requestNet();
             }
 
             @Override
@@ -267,60 +239,10 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-
-//    private void showAlertDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(CancelidActivity.this);
-//        LayoutInflater inflater = LayoutInflater.from(CancelidActivity.this);
-//        View v = inflater.inflate(R.layout.diy_alert_dialog_two, null);
-//        TextView content = (TextView) v.findViewById(R.id.dialog_content);
-//        Button btn_sure = (Button) v.findViewById(R.id.dialog_btn_sure);
-//        Button btn_cancel = (Button) v.findViewById(R.id.dialog_btn_cancel);
-//        //builder.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-//        final Dialog dialog = builder.create();
-//        dialog.show();
-//        dialog.setCancelable(false);
-//        dialog.getWindow().getDecorView().setBackground(null);
-//        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
-//        //设置隐藏dialog默认的背景
-//        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-//        dialog.getWindow().setGravity(Gravity.CENTER);//可以设置显示的位置
-//        content.setText("账号一旦彻底注销，数据无法恢复、且全部清空、且无法找回。确定注销此账号吗？");
-//        btn_sure.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//                //获取存储在sp里面的用户名和密码以及两个复选框状态
-//                sharedPreferences = getSharedPreferences("busApp", MODE_PRIVATE);
-//                editor = sharedPreferences.edit();
-//                SPUtils.remove("imageUrl",CancelidActivity.this);
-//                //从后台获取到的用户信息
-//                sp = getSharedPreferences("sp_ttit", MODE_PRIVATE);
-//                ed = sp.edit();
-//                DiyProgressDialog loadDialog = new DiyProgressDialog(CancelidActivity.this,"账号注销中...");
-//                loadDialog.setCancelable(false);//设置不能通过后退键取消
-//                loadDialog.setCanceledOnTouchOutside(false);
-//                loadDialog.show();
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        requestNet(loadDialog);
-//                    }
-//                },1500);
-//            }
-//        });
-//
-//        btn_cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                dialog.dismiss();
-//            }
-//        });
-//    }
-
-    private void requestNet(DiyProgressDialog loadDialog){
+    private void requestNet(){
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
-        formbody.add("user", name);
+        formbody.add("user", base_user_names);
         RequestBody requestBody = formbody.build();
         Request request = new Request.Builder()
                 .url(URLContent.BASE_URL + "/user/delete")
@@ -333,8 +255,8 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                 CancelidActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        stopLoading();
                         MyToast.showText(CancelidActivity.this,"账号注销失败！服务器连接超时！");
-                        loadDialog.dismiss();
                     }
                 });
             }
@@ -346,22 +268,18 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void run() {
                         if (result.equals("success")) {
-                            loadDialog.cancel();
+                            stopLoading();
+                            clearUserInfo();
+                            clearNotificationManger();
                             Intent intent = new Intent(CancelidActivity.this, LoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             MyToast.showText(CancelidActivity.this,"账号注销成功！",true);
-                            editor.clear();
-                            editor.commit();
-                            ed.clear();
-                            ed.commit();
-                            manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                            manager.cancel(1);
                             finish();
                             overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
                         }
                         if (result.equals("error")) {
-                            loadDialog.cancel();
+                            stopLoading();
                             MyToast.showText(CancelidActivity.this,"账号注销失败！");
                             return;
                         }

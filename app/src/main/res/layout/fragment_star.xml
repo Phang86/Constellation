@@ -12,10 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_200dp"
         app:cardCornerRadius="@dimen/dimen_12dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_margin="@dimen/dimen_10dp"
         app:cardMaxElevation="@dimen/dimen_0dp"
         app:cardElevation="@dimen/dimen_0dp">
 
@@ -42,6 +39,8 @@
         android:numColumns="3"
         android:layout_below="@id/starFrag_layout"
         android:layout_marginTop="@dimen/dimen_20dp"
+        android:scrollbars="none"
         android:overScrollMode="never"
-        android:scrollbars="none"/>
+        android:listSelector="@android:color/transparent"
+        android:padding="@dimen/dimen_10dp"/>
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class BaseSearchActivity extends BaseActivity implements Callback.CommonC
     public String word = "";   //点击了左侧的哪个拼音或部首
     public String url = "";
     private DiyProgressDialog dialog;
+    private LinearLayout noDataLayout;
 
 
 
@@ -76,6 +78,7 @@ public class BaseSearchActivity extends BaseActivity implements Callback.CommonC
         listView = findViewById(R.id.search_pinyin_epdlistView);
         gridView = findViewById(R.id.search_pinyin_gv);
         tv = findViewById(R.id.search_pinyin_tv);
+        noDataLayout = findViewById(R.id.no_data_layout);
     }
 
     @Override
@@ -274,16 +277,25 @@ public class BaseSearchActivity extends BaseActivity implements Callback.CommonC
 
     //设置GridView当中的数据，提示适配器重新加载
     public void refreshDataByGV(List<PinBuWordEntity.ResultBean.ListBean> list) {
-        if (page == 1) {
-            gridDatas.clear();
-            gridDatas.addAll(list);
-            gridViewAdapter.notifyDataSetChanged();
-        } else {  //进行上拉加载新的一页，获取到的数据，保留原来的数据
-            gridDatas.addAll(list);
-            gridViewAdapter.notifyDataSetChanged();
-            //停止显示加载条
-            gridView.onRefreshComplete();
+        Log.i("TAG", "refreshDataByGV: "+list.toString()+list.size());
+        if (list.size() > 0){
+            gridView.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.GONE);
+            if (page == 1) {
+                gridDatas.clear();
+                gridDatas.addAll(list);
+                gridViewAdapter.notifyDataSetChanged();
+            } else {  //进行上拉加载新的一页，获取到的数据，保留原来的数据
+                gridDatas.addAll(list);
+                gridViewAdapter.notifyDataSetChanged();
+                //停止显示加载条
+                gridView.onRefreshComplete();
+            }
+            return;
         }
+        noDataLayout.setVisibility(View.VISIBLE);
+        gridView.setVisibility(View.GONE);
+
     }
 
     @Override

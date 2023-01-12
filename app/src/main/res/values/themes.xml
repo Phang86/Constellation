@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <!--app主题样式-->
-    <style name="Theme.Constellation" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.Constellation" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-<!--        <item name="colorControlActivated">#C759D662</item>-->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -12,7 +11,7 @@
     </style>
 
 
-    <style name="Login" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Login" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorControlActivated">#C759D662</item>
@@ -174,8 +173,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen_40dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/selector_partnership_btn_bg</item>
-        <item name="android:textColor">@color/black_200</item>
+        <item name="android:background">@drawable/search_tvbtn_bg</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/size_16sp</item>
         <item name="android:layout_marginLeft">@dimen/dimen_20dp</item>
         <item name="android:layout_marginRight">@dimen/dimen_20dp</item>

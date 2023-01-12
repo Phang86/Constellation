@@ -32,9 +32,9 @@ public class SwipeCheckActivity extends BaseActivity implements View.OnClickList
     private ImageView imgBack;
     private TextView tvTitle;
     private ImageView imgRefresh;
-
-
-    private static final List<String> URLS = Arrays.asList("http://juheimg.oss-cn-hangzhou.aliyuncs.com/toh/201108/3/6717173923.jpg");
+//
+//
+//    private static final List<String> URLS = Arrays.asList("http://juheimg.oss-cn-hangzhou.aliyuncs.com/toh/201108/3/6717173923.jpg");
 
     private SwipeCaptchaView mSwipeCaptchaView;
     private SeekBar mSeekBar;
@@ -94,8 +94,6 @@ public class SwipeCheckActivity extends BaseActivity implements View.OnClickList
                 //跳转到密码修改页面
                 Intent intent = new Intent();
                 intent.setClass(SwipeCheckActivity.this, UpdatePwdActivity.class);
-                String userName = getIntent().getStringExtra("userName");
-                intent.putExtra("userName", userName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();

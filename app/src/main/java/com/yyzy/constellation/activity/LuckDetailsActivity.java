@@ -110,7 +110,7 @@ public class LuckDetailsActivity extends BaseActivity implements View.OnClickLis
                 showOrHide(false);
                 if (netEntity.getError_code() == 10012) {
                     //Looper.prepare();
-                    Toast.makeText(context, "请求接口次数今日已上限！", Toast.LENGTH_SHORT).show();
+                    MyToast.showText(context, "请求接口次数今日已上限！");
                     //Looper.loop();
                 }else {
                     MyToast.showText(getApplicationContext(),"非访问次数上限！（错误码："+netEntity.getError_code()+"、结果码："+netEntity.getResultcode()+"）",Gravity.BOTTOM);

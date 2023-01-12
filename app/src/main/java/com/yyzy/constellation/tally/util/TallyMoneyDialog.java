@@ -31,7 +31,7 @@ public class TallyMoneyDialog extends Dialog implements View.OnClickListener, Te
 
     private EditText etMoney;
     private TextView btnConfirm;
-    private ImageView imgClose;
+    private TextView imgClose;
     private OnClickEnSure clickEnSure;
     private TextView tvSum;
     private Float money;
@@ -69,15 +69,16 @@ public class TallyMoneyDialog extends Dialog implements View.OnClickListener, Te
     public void setWindowSize(){
         //获取窗口对象
         Window window = getWindow();
-        //获取窗口对象参数
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        //获取屏幕尺寸
-        Display d = window.getWindowManager().getDefaultDisplay();
-        wlp.width = d.getWidth();
-        wlp.gravity = Gravity.BOTTOM;
-        window.setBackgroundDrawableResource(android.R.color.transparent);
-        window.setAttributes(wlp);
-        handler.sendEmptyMessageDelayed(0,100);
+        if (window != null) {
+            //获取窗口对象参数
+            WindowManager.LayoutParams wlp = window.getAttributes();
+            //获取屏幕尺寸
+            wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            wlp.height = WindowManager.LayoutParams.MATCH_PARENT;
+            wlp.gravity = Gravity.BOTTOM;
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            window.setAttributes(wlp);
+        }
     }
 
     public void setTvSum(String sumStr){
@@ -108,21 +109,6 @@ public class TallyMoneyDialog extends Dialog implements View.OnClickListener, Te
                 break;
         }
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        handler.removeCallbacksAndMessages(null);
-    }
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(@NonNull @NotNull Message msg) {
-            super.handleMessage(msg);
-            InputMethodManager manager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            manager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    };
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

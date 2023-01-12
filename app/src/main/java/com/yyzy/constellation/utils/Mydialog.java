@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Mydialog extends Dialog {
     private ClickSure clickSure;
-    private TextView tvTitle,tvContent;
+    private TextView tvContent;
     private Button mBtnSure;
     private Context mContext;
     private String title,content;
@@ -49,9 +49,7 @@ public class Mydialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diy_alert_dialog_sure);
         mBtnSure = (Button) findViewById(R.id.dialog_two_btn_sure);
-        tvTitle = findViewById(R.id.dialog_two_title);
         tvContent = findViewById(R.id.dialog_two_content);
-        tvTitle.setText(title);
         tvContent.setText(content);
         mBtnSure.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,8 @@
     <dimen name="dimen_0.5dp">0.5dp</dimen>
     <dimen name="dimen_1dp">1dp</dimen>
     <dimen name="dimen_1.5dp">1.5dp</dimen>
+    <dimen name="dp_1060">1060dp</dimen>
+    <dimen name="dp_630">630dp</dimen>
     <dimen name="dimen_2dp">2dp</dimen>
     <dimen name="dimen_3dp">3dp</dimen>
     <dimen name="dimen_5dp">5dp</dimen>

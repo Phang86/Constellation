@@ -8,14 +8,16 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_50dp">
+        android:layout_height="@dimen/dimen_50dp"
+        android:minHeight="@dimen/dimen_50dp">
 
         <ImageView
             android:id="@+id/details_back"
             android:layout_width="@dimen/dimen_25dp"
             android:layout_height="@dimen/dimen_25dp"
             android:src="@mipmap/icon_back"
-            android:background="@null"/>
+            android:background="@null"
+            />
 
         <TextView
             android:id="@+id/details_title"
@@ -26,7 +28,8 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 </RelativeLayout>

@@ -2,30 +2,21 @@ package com.yyzy.constellation.weather.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.LoginActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.weather.db.DBManager;
@@ -183,7 +174,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
 
     private void clearData() {
         AlertDialogUtils alertDialogUtils = AlertDialogUtils.getInstance();
-        AlertDialogUtils.showConfirmDialog(this,"温馨提示","您确定清理缓存数据？数据清理后不可找回哦！","确定","取消");
+        AlertDialogUtils.showConfirmDialog(this,"您确定清理缓存数据？数据清理后不可找回哦！","确定","取消");
         alertDialogUtils.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
             @Override
             public void onPositiveButtonClick(androidx.appcompat.app.AlertDialog dialog) {

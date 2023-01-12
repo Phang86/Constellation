@@ -2,12 +2,6 @@ package com.yyzy.constellation.weather.activity;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -15,17 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.LoginActivity;
-import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.weather.adapter.DeleteCityAdapter;
 import com.yyzy.constellation.weather.db.DBManager;
 
@@ -73,7 +62,6 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
                     DBManager.deleteInfoCity(city);
                     adapter.notifyDataSetChanged();
                 }
-                //intentJump(CityManagerActivity.class);
                 finish();
                 overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
                 break;

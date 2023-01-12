@@ -3,12 +3,10 @@ package com.yyzy.constellation.tally.util;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Display;
@@ -17,16 +15,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 
+import com.github.mikephil.charting.formatter.IFillFormatter;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.yyzy.constellation.R;
 
 import org.jetbrains.annotations.NotNull;
+
 
 public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWatcher {
     private EditText et;
@@ -58,8 +57,6 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
         btnConfirm.setEnabled(false);
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -88,31 +85,17 @@ public class BeiZhuDialog extends Dialog implements View.OnClickListener, TextWa
     public void setDialogSize(){
         //获取窗口对象
         Window window = getWindow();
-        //获取窗口对象参数
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        //获取屏幕尺寸
-        Display d = window.getWindowManager().getDefaultDisplay();
-        wlp.width = d.getWidth();
-        wlp.gravity = Gravity.BOTTOM;
-        window.setBackgroundDrawableResource(android.R.color.transparent);
-        window.setAttributes(wlp);
-        handler.sendEmptyMessageDelayed(1,100);
-    }
-
-
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(@NonNull @NotNull Message msg) {
-            super.handleMessage(msg);
-            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
+        if (window != null) {
+            //获取窗口对象参数
+            WindowManager.LayoutParams wlp = window.getAttributes();
+            //获取屏幕尺寸
+            wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            wlp.height = WindowManager.LayoutParams.MATCH_PARENT;
+            wlp.dimAmount = 0.2f;
+            wlp.gravity = Gravity.BOTTOM;
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            window.setAttributes(wlp);
         }
-    };
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        handler.removeCallbacksAndMessages(null);
     }
 
     @Override

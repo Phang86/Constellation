@@ -2,3 +2,4 @@ rootProject.name = "Constellation"
 include ':app'
 include ':refresh_library'
 include ':ocr_ui'
+include ':flowlayout-lib'

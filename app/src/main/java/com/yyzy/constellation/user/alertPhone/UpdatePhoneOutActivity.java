@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.ViewUtil;
@@ -45,12 +46,10 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
     private EditText etPhone, etValNum;
     private TextView tvSendValNum;
     private TextView btnConfirm;
-    private String updatePhone;
 
     public EventHandler eh; //事件接收器
     private TimeCount mTimeCount;//计时器
-    private String userName;
-
+    private String oldPhone;
 
     @Override
     protected int initLayout() {
@@ -73,12 +72,9 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
 
         tvTitle.setText("更换手机号");
 
-        Intent intent = getIntent();
-        updatePhone = intent.getStringExtra("updatePhone");
-        userName = intent.getStringExtra("userName");
-
-        Log.e("TAG", "原手机号为：" + updatePhone);
-        Log.e("TAG", "用户名为：" + userName);
+        oldPhone = base_phones.replace(" ", "");
+        Log.e("TAG", "原手机号为：" + base_phones);
+        Log.e("TAG", "用户名为：" + base_user_names);
 
         btnConfirm.setEnabled(false);
         tvSendValNum.setClickable(false);
@@ -161,7 +157,7 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                             public void run() {
                                 //调用接口
                                 String newPhone = etPhone.getText().toString().trim();
-                                updatePhoneNetRequest(userName,newPhone);
+                                updatePhoneNetRequest(newPhone);
                                 Log.e("TAG", "新的手机号码为："+newPhone);
                             }
                         });
@@ -179,9 +175,9 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyToast.showText(UpdatePhoneOutActivity.this, "验证码已发送", Toast.LENGTH_SHORT);
+                                stopLoading();
+                                MyToast.showText(UpdatePhoneOutActivity.this, "验证码已发送");
                                 etValNum.requestFocus();
-                                ViewUtil.showSystemKeyboard(getApplicationContext(),etValNum);
                             }
                         });
                     }
@@ -197,8 +193,9 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //Toast.makeText(RegisterActivity.this,des,Toast.LENGTH_SHORT).show();
+                                    stopLoading();
                                     MyToast.showText(UpdatePhoneOutActivity.this, des);
+                                    etValNum.requestFocus();
                                 }
                             });
                         }
@@ -224,32 +221,30 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                     if (checkPhone(phone)) {
                         //对手机号进行格式效验
                         String replacePhone = phone.replace(" ", "");
-                        if (replacePhone.equals(updatePhone)) {
+                        if (replacePhone.equals(oldPhone)) {
                             //判断修改后的手机号是否与原来手机号相同
                             MyToast.showText(this, "新手机号码不能与旧手机号相同哦！请更换新的手机号码！");
                             return;
-                        } else {
-                            //对输入框的手机号码进行空格替换
-
-                            //发送验证码
-                            SMSSDK.getVerificationCode("+86", replacePhone);
-                            mTimeCount.start();
                         }
-                    } else {
-                        MyToast.showText(this, "手机号格式不正确！", false);
+                        //对输入框的手机号码进行空格替换
+                        loading();
+                        //发送验证码
+                        SMSSDK.getVerificationCode("+86", replacePhone);
+                        mTimeCount.start();
                         return;
                     }
-                } else {
-                    MyToast.showText(this, "手机号不能为空哦！");
+                    MyToast.showText(this, "手机号格式不正确！", false);
                     return;
                 }
+                MyToast.showText(this, "手机号不能为空哦！");
                 break;
             case R.id.updateOut_btn_confirm:
                 String mobile = etPhone.getText().toString().trim();
                 String valNum = etValNum.getText().toString().trim();
                 if (checkPhone(mobile)) {
-                    if (!mobile.equals(updatePhone)) {
+                    if (!mobile.equals(oldPhone)) {
                         if (!TextUtils.isEmpty(valNum)) {
+                            loading();
                             //进行验证码和手机号效验
                             SMSSDK.submitVerificationCode("+86", mobile, valNum);
                             ViewUtil.hideOneInputMethod(UpdatePhoneOutActivity.this,etValNum);
@@ -315,15 +310,10 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    private void updatePhoneNetRequest(String name,String newPhone) {
-        DiyProgressDialog mDialog = new DiyProgressDialog(UpdatePhoneOutActivity.this, "加载中...");
-        mDialog.setCancelable(false);//设置能通过后退键取消
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
-
+    private void updatePhoneNetRequest(String newPhone) {
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formbody = new FormBody.Builder();
-        formbody.add("user", name);
+        formbody.add("user", base_user_names);
         formbody.add("phone", newPhone);
         RequestBody requestBody = formbody.build();
         Request request = new Request.Builder()
@@ -337,8 +327,8 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        stopLoading();
                         MyToast.showText(UpdatePhoneOutActivity.this,"加载失败！服务器连接超时！",false);
-                        mDialog.cancel();
                     }
                 });
             }
@@ -349,40 +339,24 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    if (resultStr.equals("error")) {
-                                        showDiyDialog(UpdatePhoneOutActivity.this,"修改失败！");
-                                        mDialog.cancel();
-                                        return;
-                                    }else if (resultStr.equals("success")){
-//                                List<User> dataEntity = new Gson().fromJson(resultStr, new TypeToken<List<User>>() {
-//                                }.getType());
-//                                //User data = new Gson().fromJson(resultStr, User.class);
-//                                List<User> data = new ArrayList<>();
-//                                data = dataEntity;
-                                        if (!TextUtils.isEmpty(resultStr)) {
-                                            MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
-                                            //finish();
-//                                            etPhone.setEnabled(false);
-//                                            etValNum.setEnabled(false);
-                                            mDialog.cancel();
-                                            finish();
-                                        } else {
-                                            MyToast.showText(UpdatePhoneOutActivity.this,"修改失败！服务器连接超时！");
-                                            mDialog.cancel();
-                                            return;
-                                        }
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                            try {
+                                stopLoading();
+                                if (resultStr.equals("error")) {
+                                    showDiyDialog("修改失败！");
+                                    return;
                                 }
+                                if (resultStr.equals("success")){
+                                    if (!TextUtils.isEmpty(resultStr)) {
+                                        MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
+                                        updateUserPhone(newPhone);
+                                        finish();
+                                        return;
+                                    }
+                                    MyToast.showText(UpdatePhoneOutActivity.this,"修改失败！服务器连接超时！");
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        }, 1000);
-
-
                     }
                 });
             }

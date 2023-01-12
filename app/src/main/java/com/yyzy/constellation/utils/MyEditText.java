@@ -35,7 +35,7 @@ public class MyEditText extends androidx.appcompat.widget.AppCompatEditText {
         mDeleteDrawable = getCompoundDrawables()[2];
         if (mDeleteDrawable == null) {
             mDeleteDrawable = getResources().getDrawable(
-                    R.drawable.ic_del);
+                    R.drawable.ic_delete);
         }
         //设置mDeleteDrawable占的面积
         mDeleteDrawable.setBounds(0, 0, mDeleteDrawable.getIntrinsicWidth(),

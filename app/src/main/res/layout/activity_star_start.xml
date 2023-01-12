@@ -34,14 +34,14 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/man"
-                        android:textColor="@color/lightblue"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:text="@string/man"-->
+<!--                        android:textColor="@color/lightblue"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"/>-->
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/starStart_cv_man"
@@ -67,10 +67,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="+"
+                    android:text="VS"
                     android:layout_weight="1"
-                    android:textSize="60sp"
-                    android:gravity="center"/>
+                    android:textSize="@dimen/size_25sp"
+                    android:gravity="center"
+                    android:textColor="#FB9C1B"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -78,14 +79,14 @@
                     android:layout_weight="2"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/woman"
-                        android:textColor="@color/lightpink"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:text="@string/woman"-->
+<!--                        android:textColor="@color/lightpink"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"/>-->
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/starStart_cv_woman"
