@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cityFrag_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -30,8 +31,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/size_40sp"
                     android:layout_centerHorizontal="true"
-                    android:text="25℃"
-                    android:textColor="@color/gray_600"/>
+                    android:text="25℃"/>
 
                 <TextView
                     android:id="@+id/cityFrag_tv_city"
@@ -66,7 +66,7 @@
                     android:id="@+id/cityFrag_tv_fuhao"
                     android:layout_width="@dimen/dimen_2dp"
                     android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/black"
+                    android:background="@color/yaBlack"
                     android:layout_below="@+id/cityFrag_tv_date"
                     android:layout_toRightOf="@+id/cityFrag_tv_wind"
                     android:layout_marginLeft="@dimen/dimen_15dp"
@@ -80,42 +80,47 @@
                     android:layout_toRightOf="@+id/cityFrag_tv_fuhao"
                     android:text="15~25℃"/>
             </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_height="wrap_content"
-                android:text="未来4天天气情况如下："
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:textSize="@dimen/size_16sp"
-                android:textColor="@color/gray_600"
-                android:textStyle="bold"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dimen_20dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="未来4天天气情况如下："-->
+<!--                android:layout_marginLeft="@dimen/dimen_10dp"-->
+<!--                android:textSize="@dimen/size_16sp"-->
+<!--                android:textColor="@color/gray_600"-->
+<!--                android:textStyle="bold"/>-->
             <LinearLayout
                 android:id="@+id/cityFrag_center_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_30dp"
                 android:background="@drawable/cityfragment_layout_bg"
                 android:padding="@dimen/dimen_10dp">
 
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_height="wrap_content"
-                android:text="各项指数信息如下："
-                android:textSize="@dimen/size_16sp"
-                android:textColor="@color/gray_600"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:textStyle="bold"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/dimen_20dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="各项指数信息如下："-->
+<!--                android:textSize="@dimen/size_16sp"-->
+<!--                android:textColor="@color/gray_600"-->
+<!--                android:layout_marginLeft="@dimen/dimen_10dp"-->
+<!--                android:textStyle="bold"/>-->
+
             <LinearLayout
                 android:id="@+id/cityFrag_index_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_30dp"
                 android:background="@drawable/cityfragment_layout_bg"
                 android:padding="@dimen/dimen_10dp">
 
@@ -124,33 +129,94 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_cloth"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/cloth"
-                        android:drawableBottom="@mipmap/icon_cloth"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawableBottom="@mipmap/icon_cloth"
+                            android:drawablePadding="@dimen/dimen_5dp"
+                            android:text="@string/cloth"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"/>
+                    </androidx.cardview.widget.CardView>
+
 
                     <ImageView
                         android:layout_width="@dimen/dimen_1dp"
                         android:layout_height="match_parent"
                         android:background="#2e8b57"/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_washCar"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/washCar"
-                        android:drawableBottom="@mipmap/icon_car"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:drawableBottom="@mipmap/icon_car"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/washCar"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"
+                            android:drawablePadding="@dimen/dimen_5dp"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
 
                     <ImageView
                         android:layout_width="@dimen/dimen_1dp"
                         android:layout_height="match_parent"
                         android:background="#2e8b57"/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_cold"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/cold"
-                        android:drawableBottom="@mipmap/icon_ganmao"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:text="@string/cold"
+                            android:drawableBottom="@mipmap/icon_ganmao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
                 </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"
@@ -164,34 +230,93 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_sport"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/sport"
-                        android:drawableBottom="@mipmap/icon_sport"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:text="@string/sport"
+                            android:drawableBottom="@mipmap/icon_sport"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"
+                            android:drawablePadding="@dimen/dimen_5dp"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <ImageView
                         android:layout_width="@dimen/dimen_1dp"
                         android:layout_height="match_parent"
                         android:background="#2e8b57"/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_rays"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/rays"
-                        android:drawableBottom="@mipmap/icon_light"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        android:layout_marginRight="@dimen/dimen_5dp"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:text="@string/rays"
+                            android:drawableBottom="@mipmap/icon_light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"
+                            android:drawablePadding="@dimen/dimen_5dp"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <ImageView
                         android:layout_width="@dimen/dimen_1dp"
                         android:layout_height="match_parent"
                         android:background="#2e8b57"/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cityFrag_tv_air"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
                         style="@style/indexText"
-                        android:text="@string/air"
-                        android:drawablePadding="@dimen/dimen_15dp"
-                        android:drawableBottom="@mipmap/icon_air"/>
+                        android:layout_gravity="center"
+                        app:cardElevation="@dimen/dimen_0dp"
+                        app:cardCornerRadius="@dimen/dimen_10dp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        android:foreground="@drawable/view_foreground"
+                        android:layout_marginLeft="@dimen/dimen_5dp"
+                        app:contentPadding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:text="@string/air"
+                            android:drawablePadding="@dimen/dimen_15dp"
+                            android:drawableBottom="@mipmap/icon_air"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="@dimen/size_15sp"
+                            android:textStyle="bold"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

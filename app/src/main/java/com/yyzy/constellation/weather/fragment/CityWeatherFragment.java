@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
@@ -44,8 +45,9 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 
 public class CityWeatherFragment extends BaseFragment implements View.OnClickListener {
-    private TextView tempTv, cityTv, conditionTv, windTv, dateTv, tempRangeTv, clothIndexTv, carIndexTv, coldIndexTv, sportIndexTv, raysIndexTv, airIndexTv;
+    private TextView tempTv, cityTv, conditionTv, windTv, dateTv, tempRangeTv;
     private LinearLayout futureLayout;
+    private CardView clothIndexTv, carIndexTv, coldIndexTv, sportIndexTv, raysIndexTv, airIndexTv;
     private WeatherIndexEntity.ResultDTO.LifeDTO life;   //网络天气指数存放类
     private int error_code = 10012;        //网络请求失败码
     private String city;
@@ -105,9 +107,19 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             WeatherIndexEntity entity = new Gson().fromJson(response, WeatherIndexEntity.class);
             if (entity.getReason().equals("超过每日可允许请求次数!") || entity.getError_code() == error_code || entity.getResult().toString().isEmpty()){
                 MyToast.showText(getActivity(),"超过每日可允许请求次数!",Toast.LENGTH_SHORT);
+                String s = DBManager.queryInfoByCity(city);
+                if (!TextUtils.isEmpty(s)) {
+                    haveDataLayout.setVisibility(View.VISIBLE);
+                    noDataLayout.setVisibility(View.GONE);
+                    parseShowData(s);
+                    return;
+                }
+                haveDataLayout.setVisibility(View.INVISIBLE);
+                noDataLayout.setVisibility(View.VISIBLE);
                 return;
             }
-
+            haveDataLayout.setVisibility(View.VISIBLE);
+            noDataLayout.setVisibility(View.GONE);
             life = entity.getResult().getLife();
         }catch (Exception e){
             e.printStackTrace();
@@ -118,18 +130,18 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     public void onError(Throwable ex, boolean isOnCallback) {
         super.onError(ex, isOnCallback);
         //去数据库查找上一次信息显示在Fragment中
-        if (dialog != null){
-            dialog.dismiss();
-        }
-        String s = DBManager.queryInfoByCity(city);
-        if (!TextUtils.isEmpty(s)) {
-            haveDataLayout.setVisibility(View.VISIBLE);
-            noDataLayout.setVisibility(View.GONE);
-            parseShowData(s);
-            return;
-        }
-        haveDataLayout.setVisibility(View.INVISIBLE);
-        noDataLayout.setVisibility(View.VISIBLE);
+//        if (dialog != null){
+//            dialog.dismiss();
+//        }
+//        String s = DBManager.queryInfoByCity(city);
+//        if (!TextUtils.isEmpty(s)) {
+//            haveDataLayout.setVisibility(View.VISIBLE);
+//            noDataLayout.setVisibility(View.GONE);
+//            parseShowData(s);
+//            return;
+//        }
+//        haveDataLayout.setVisibility(View.INVISIBLE);
+//        noDataLayout.setVisibility(View.VISIBLE);
     }
 
     private void parseShowData(String result) {

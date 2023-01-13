@@ -180,24 +180,26 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     //当页面重新加载时调用的方法，这个方法在获取焦点之前调用，此处完成Viewpager页面的更新
     @Override
     protected void onRestart() {
+//        List<String> list = DBManager.queryAllCityName();
+//        if (list.size() == 0 || list == null) {
+//            list.add("衡阳");
+//        }
+//        //清空原来的数据源
+//        cityList.clear();
+//        //添加新的数据
+//        cityList.addAll(list);
+//        //剩余城市也要创建对象fragment页面
+//        initPager();
+//        adapter.notifyDataSetChanged();
+//        //页面数量发生改变，指示器数量也会发生变化，重新设置指示器
+//        imgList.clear();      //清空
+//        pointLayout.removeAllViews();   //将布局当中所有元素移除
+//        initPoint();
+//        viewPager.setCurrentItem(fragmentList.size()-1);
+//        Log.e("TAG", "onRestart: "+111111);
         super.onRestart();
-        List<String> list = DBManager.queryAllCityName();
-        if (list.size() == 0 || list == null) {
-            list.add("衡阳");
-        }
-        //清空原来的数据源
-        cityList.clear();
-        //添加新的数据
-        cityList.addAll(list);
-        //剩余城市也要创建对象fragment页面
-        initPager();
-        adapter.notifyDataSetChanged();
-        //页面数量发生改变，指示器数量也会发生变化，重新设置指示器
-        imgList.clear();      //清空
-        pointLayout.removeAllViews();   //将布局当中所有元素移除
-        initPoint();
-        viewPager.setCurrentItem(fragmentList.size()-1);
     }
+
 
     //换壁纸的方法
     public void changeBg(){
