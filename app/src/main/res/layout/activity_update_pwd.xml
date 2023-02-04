@@ -11,11 +11,34 @@
     <include
         layout="@layout/star_details_title"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请设置新密码"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_18sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="身份验证成功"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_14sp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"/>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -65,7 +88,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_50dp"
             app:cardBackgroundColor="@color/white"
             app:contentPadding="@dimen/dimen_13dp"
             app:cardElevation="@dimen/dimen_0dp"
@@ -75,28 +98,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/icon_iv_pwd"
-                    android:scaleType="fitXY"/>
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/icon_iv_pwd"-->
+<!--                    android:scaleType="fitXY"/>-->
 
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
+<!--                <View-->
+<!--                    android:layout_width="@dimen/dimen_0.5dp"-->
+<!--                    android:layout_height="@dimen/dimen_25dp"-->
+<!--                    android:background="@color/gray_200"-->
+<!--                    android:layout_marginLeft="@dimen/dimen_10dp"-->
+<!--                    android:layout_marginRight="@dimen/dimen_10dp"/>-->
 
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/old_pwd"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@null"
                     android:hint="@string/oldPwd"
                     android:textCursorDrawable="@drawable/color_cursor"
@@ -104,7 +127,7 @@
                     android:inputType="textPassword"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/size_16sp"/>
+                    android:textSize="@dimen/size_15sp"/>
 
 
             </LinearLayout>
@@ -113,7 +136,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_50dp"
             app:cardBackgroundColor="@color/white"
             app:contentPadding="@dimen/dimen_13dp"
             app:cardElevation="@dimen/dimen_0dp"
@@ -123,28 +146,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="horizontal">
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_update_pwd" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/ic_update_pwd" />-->
 
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
+<!--                <View-->
+<!--                    android:layout_width="@dimen/dimen_0.5dp"-->
+<!--                    android:layout_height="@dimen/dimen_25dp"-->
+<!--                    android:background="@color/gray_200"-->
+<!--                    android:layout_marginLeft="@dimen/dimen_10dp"-->
+<!--                    android:layout_marginRight="@dimen/dimen_10dp"/>-->
 
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/new_pwd"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@null"
                     android:hint="@string/newPwd"
                     android:textCursorDrawable="@drawable/color_cursor"
@@ -152,13 +175,13 @@
                     android:inputType="textPassword"
                     android:paddingRight="@dimen/dimen_15dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/size_16sp"/>
+                    android:textSize="@dimen/size_15sp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_50dp"
             app:cardBackgroundColor="@color/white"
             app:contentPadding="@dimen/dimen_13dp"
             app:cardElevation="@dimen/dimen_0dp"
@@ -168,28 +191,28 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="horizontal">
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_update_pwd" />
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/ic_update_pwd" />-->
 
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
+<!--                <View-->
+<!--                    android:layout_width="@dimen/dimen_0.5dp"-->
+<!--                    android:layout_height="@dimen/dimen_25dp"-->
+<!--                    android:background="@color/gray_200"-->
+<!--                    android:layout_marginLeft="@dimen/dimen_10dp"-->
+<!--                    android:layout_marginRight="@dimen/dimen_10dp"/>-->
 
                 <com.yyzy.constellation.utils.MyPasswordEditText
                     android:id="@+id/new_pwd_config"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@null"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:hint="@string/newPwdConfig"
@@ -197,7 +220,7 @@
                     android:paddingRight="@dimen/dimen_15dp"
                     android:lines="1"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/size_16sp"/>
+                    android:textSize="@dimen/size_15sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -208,9 +231,7 @@
         android:id="@+id/update_btn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40dp"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_marginLeft="@dimen/dimen_30dp"
-        android:layout_marginRight="@dimen/dimen_30dp"
+        android:layout_margin="@dimen/dimen_30dp"
         android:background="@drawable/selector_update_btn"
         android:text="@string/updateConfig"
         android:textColor="@color/white"

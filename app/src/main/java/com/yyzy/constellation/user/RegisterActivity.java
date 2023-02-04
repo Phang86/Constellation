@@ -326,7 +326,7 @@ public class RegisterActivity extends BaseActivity implements TextWatcher, View.
                                     return;
                                 }
                                 if (resultStr.equals("error")) {
-                                    MyToast.showText(RegisterActivity.this, "此用户名已存在！请更换用户名！");
+                                    MyToast.showText(RegisterActivity.this, "此用户名已存在或该手机已注册！请更换用户名或手机号！");
                                     mbtnRegister.setEnabled(true);
                                     return;
                                 }

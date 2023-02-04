@@ -67,6 +67,11 @@ public class HistoryAdapter extends BaseAdapter {
         holder.timeTv.setText(resultBean.getYear() + "-" + resultBean.getMonth() + "-" + resultBean.getDay());
         holder.titleTv.setText(resultBean.getTitle());
         String picURL = resultBean.getPic();
+        if (TextUtils.isEmpty(picURL)){
+            holder.picIv.setVisibility(View.GONE);
+        }else{
+            holder.picIv.setVisibility(View.VISIBLE);
+        }
         Glide.with(context).load(picURL).into(holder.picIv);
         return convertView;
     }

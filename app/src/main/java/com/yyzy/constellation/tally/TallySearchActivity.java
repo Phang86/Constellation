@@ -147,7 +147,7 @@ public class TallySearchActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void loadProgress(){
-        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog = new DiyProgressDialog(this);
         dialog.show();
         tvResult.setVisibility(View.GONE);
     }

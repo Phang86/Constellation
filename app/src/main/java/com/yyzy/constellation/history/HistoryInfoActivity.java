@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.activity.MainActivity;
+import com.yyzy.constellation.api.OnClickThree;
 import com.yyzy.constellation.history.bean.HistoryInfoEntity;
 import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.utils.MyToast;
@@ -50,6 +52,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
     private CardView cardView;
     private ScrollView sv;
     private Bitmap bitmap;
+    private static File filePath;
     //底部弹窗
 //    private BottomSheetDialog bottomSheetDialog;
 
@@ -121,15 +124,20 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
 
     public void showImgDialog() {
         bitmap = ((BitmapDrawable) imgTitle.getDrawable()).getBitmap();
-        openBottomDialog("图片选择", "分享图片", "保存图片", new OnClickSure() {
+        openBottomDialog("图片选择", "分享图片", "保存图片",false, new OnClickThree() {
             @Override
-            public void onSure() {
+            public void one() {
                 shareSingleImage();
             }
 
             @Override
-            public void onCancel() {
+            public void two() {
                 saveImage(bitmap);
+            }
+
+            @Override
+            public void three() {
+
             }
         });
     }
@@ -165,7 +173,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
     private void saveImage(Bitmap bitmap) {
         boolean isSaveSuccess = saveImageToGallery(this, bitmap);
         if (isSaveSuccess) {
-            MyToast.showText(this, "保存图片成功", Toast.LENGTH_SHORT);
+            MyToast.showText(this, "图片保存在"+filePath+"文件夹下。", Toast.LENGTH_SHORT);
         } else {
             MyToast.showText(this, "保存图片失败，请稍后重试", Toast.LENGTH_SHORT);
         }
@@ -174,7 +182,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
     //保存文件到指定路径
     public static boolean saveImageToGallery(Context context, Bitmap bmp) {
         // 首先保存图片
-        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dearxy";
+        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "xingyuan_imgPath";
         File appDir = new File(storePath);
         if (!appDir.exists()) {
             appDir.mkdir();
@@ -192,6 +200,8 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
 
             //保存图片后发送广播通知更新数据库
             Uri uri = Uri.fromFile(file);
+            filePath = file;
+            Log.e("TAG", "saveImageToGallery: "+filePath);
             context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
             if (isSuccess) {
                 return true;

@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.user.feedback.FeedBackActivity;
 import com.yyzy.constellation.user.logoutUser.CancelActivity;
 import com.yyzy.constellation.user.alertPwd.SwipeCheckActivity;
 import com.yyzy.constellation.user.alertPhone.UpdatePhoneActivity;
@@ -49,7 +50,7 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 public class AppInfoActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView titleTv,userNameTv,updateTimeTv,versionTv,phoneTv,createTimeTv;
-    private CardView versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout;
+    private CardView versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout,feedbackLayout;
     private ImageView backImg;
     private String version;
     private SmartRefreshLayout swipeRefresh;
@@ -74,11 +75,13 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         swipeRefresh = findViewById(R.id.appInfo_refresh);
         userPhoneLayout = findViewById(R.id.appInfo_layout_phone);
         createTimeTv = findViewById(R.id.appInfo_tv_createTime);
+        feedbackLayout = findViewById(R.id.appInfo_layout_feedback);
         cancelUserLayout.setOnClickListener(this);
         updatePwdLayout.setOnClickListener(this);
         versionLayout.setOnClickListener(this);
         backImg.setOnClickListener(this);
         userPhoneLayout.setOnClickListener(this);
+        feedbackLayout.setOnClickListener(this);
     }
 
     @Override
@@ -117,6 +120,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.appInfo_layout_phone:
                 showDefaultDialog();
+                break;
+            case R.id.appInfo_layout_feedback:
+                intentJump(FeedBackActivity.class);
                 break;
         }
     }

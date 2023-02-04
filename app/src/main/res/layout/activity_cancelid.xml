@@ -10,53 +10,50 @@
 
     <include layout="@layout/star_details_title"/>
 
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="身份验证成功"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="@dimen/size_14sp"-->
+<!--        android:layout_marginBottom="@dimen/dimen_5dp"-->
+<!--        android:layout_margin="@dimen/dimen_10dp"/>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen_30dp"
+        android:padding="@dimen/dimen_20dp"
         android:background="@color/white">
-
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/dimen_20dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="验证码将发送到手机\t\t86+"
-                android:textColor="@color/grey"
+                android:text="验证码将发送到手机\t\t+86\t\t"
                 android:textStyle="bold"
-                android:textSize="@dimen/size_15sp"/>
+                android:textSize="@dimen/size_14sp"/>
 
             <TextView
                 android:id="@+id/zhuxiao_tv_num_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/size_15sp"/>
+                android:textSize="@dimen/size_15sp"
+                android:textStyle="bold"/>
 
-<!--            <TextView-->
-<!--                android:id="@+id/zhuxiao_tv_num"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text=""-->
-<!--                android:textSize="@dimen/size_15sp" />-->
         </LinearLayout>
-
 
         <com.yyzy.constellation.utils.SplitEditText
             android:id="@+id/zhuxiao_et"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:inputType="number"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
             app:setMaxLength="6"
             app:setBorderStyle="line"
             android:textSize="30sp"
@@ -74,8 +71,8 @@
                 android:layout_alignParentRight="true"
                 android:text="发送验证码"
                 android:textColor="@color/zhuBlue"
-                android:textSize="@dimen/size_14sp"
-                android:layout_margin="@dimen/dimen_20dp"/>
+                android:textSize="@dimen/size_13sp"
+                android:layout_marginTop="@dimen/dimen_20dp"/>
         </RelativeLayout>
 
 

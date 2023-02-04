@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +19,34 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.StarDetailsActivity;
 import com.yyzy.constellation.adapter.StarItemAdapter;
 import com.yyzy.constellation.adapter.StarPagerAdapter;
+import com.yyzy.constellation.entity.NotableBean;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.StringUtils;
+import com.yyzy.constellation.utils.URLContent;
+import com.yyzy.constellation.weather.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class StarFragment extends Fragment {
+public class StarFragment extends BaseFragment implements View.OnClickListener{
     private GridView gridView;
     private LinearLayout linearLayout;
     private ViewPager viewPager;
     private StarItemAdapter adapter;
     private List<StarInfoEntity.StarinfoDTO> dtoList;
     private StarPagerAdapter starPagerAdapter;
+    private TextView tvNotable;
+    private ImageView iv;
     //声明图片数组
     private int[] imgIds = {R.mipmap.zero,R.mipmap.one,R.mipmap.two,R.mipmap.pic_star};
     //声明Viewpager的数据源
@@ -65,9 +77,10 @@ public class StarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_star, container, false);
+        getUserInfo(getContext());
         initView(view);
+        volleyLoadData(URLContent.NOTABLE);
         getStarData();
         initPager();
         setVpListener();
@@ -157,6 +170,14 @@ public class StarFragment extends Fragment {
         gridView = view.findViewById(R.id.starFrag_gv);
         linearLayout = view.findViewById(R.id.starFrag_layout);
         viewPager = view.findViewById(R.id.starFrag_vp);
+        tvNotable = view.findViewById(R.id.starFrag_tv_notable);
+        iv = view.findViewById(R.id.starFrag_iv_notification);
+        iv.setOnClickListener(this);
+        tvNotable.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        tvNotable.setSelected(true);
+        tvNotable.setFocusable(true);
+        tvNotable.setFocusableInTouchMode(true);
+        setTvShowContent();
     }
 
     @Override
@@ -173,4 +194,31 @@ public class StarFragment extends Fragment {
         handler.sendEmptyMessageDelayed(1,2000);
     }
 
+
+    @Override
+    public void onResponse(String response) {
+        super.onResponse(response);
+        NotableBean bean = new Gson().fromJson(response, NotableBean.class);
+        Log.e("TAG", "onResponse: "+bean.toString());
+        if (bean.getCode() == 1 && bean.getData() != null) {
+            tvNotable.setText("\t\t\t\t欢迎"+base_user_names+"来到星缘应用软件，下面为您带来每日搞笑段子。  ------  "+bean.getData().get((int) (Math.random() * bean.getData().size())).getContent());
+            return;
+        }
+        setTvShowContent();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        super.onErrorResponse(error);
+        setTvShowContent();
+    }
+
+    @Override
+    public void onClick(View v) {
+        volleyLoadData(URLContent.NOTABLE);
+    }
+
+    private void setTvShowContent(){
+        tvNotable.setText("\t\t\t\t欢迎"+base_user_names+"来到星缘应用软件！"+StringUtils.setContent());
+    }
 }

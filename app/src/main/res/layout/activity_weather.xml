@@ -11,46 +11,57 @@
     <RelativeLayout
         android:id="@+id/weather_layout_relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dimen_10dp">
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dimen_40dp"
+        android:layout_marginLeft="@dimen/dimen_15dp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        >
 
         <ImageView
             android:id="@+id/weather_iv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_iv_add" />
+            android:src="@drawable/ic_iv_add"
+            android:layout_centerVertical="true"
+            />
 
         <ImageView
             android:id="@+id/weather_iv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_iv_more" />
+            android:src="@drawable/ic_iv_more"
+            android:layout_centerVertical="true"
+            />
 
         <LinearLayout
             android:id="@+id/weather_layout_point"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            >
         </LinearLayout>
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/weather_iv_back"
         android:layout_width="@dimen/dimen_25dp"
         android:layout_height="@dimen/dimen_25dp"
         android:src="@mipmap/icon_back"
         android:layout_margin="@dimen/dimen_10dp"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/weather_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/weather_iv_back"
-        android:layout_above="@+id/weather_layout_relative"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weather_layout_relative"
         android:overScrollMode="never">
     </androidx.viewpager.widget.ViewPager>
+
 </RelativeLayout>

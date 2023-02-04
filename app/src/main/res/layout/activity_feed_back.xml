@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.feedback.FeedBackActivity"
+    android:background="@color/state_bg_f4f3f8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/star_details_title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_10dp">
+
+                <TextView
+                    android:id="@+id/yijian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="问题和意见"
+                    android:textSize="@dimen/size_15sp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/yijian"
+                    android:layout_centerVertical="true"
+                    android:text="*"
+                    android:layout_marginLeft="@dimen/dimen_3dp"
+                    android:textSize="@dimen/size_15sp"
+                    android:textColor="#D31914"
+                    />
+
+                <TextView
+                    android:id="@+id/feedback_tv_length"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/size_13sp"
+                    />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_150dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/dimen_8dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:contentPadding="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                >
+
+                <com.yyzy.constellation.utils.MyEditText
+                    android:id="@+id/feedback_et_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="请填写您的意见（必填）..."
+                    android:textSize="@dimen/size_15sp"
+                    android:maxLength="300"
+                    android:textColor="@color/black"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/size_15sp"
+                android:textColor="@color/black"
+                android:text="联系方式"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_marginBottom="@dimen/dimen_15dp"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/dimen_8dp"
+                app:cardMaxElevation="@dimen/dimen_0dp"
+                app:cardElevation="@dimen/dimen_0dp"
+                app:contentPaddingBottom="@dimen/dimen_13dp"
+                app:contentPaddingTop="@dimen/dimen_13dp"
+                app:contentPaddingLeft="@dimen/dimen_8dp"
+                app:contentPaddingRight="@dimen/dimen_8dp"
+                >
+
+                <com.yyzy.constellation.utils.MyEditText
+                    android:id="@+id/feedback_et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="填写联系方式，更快解决问题（选填）..."
+                    android:textSize="@dimen/size_15sp"
+                    android:singleLine="true"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/feedback_tv_commit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40dp"
+                android:gravity="center"
+                android:background="@drawable/feedback_btn"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_16sp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

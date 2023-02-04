@@ -133,16 +133,16 @@ public class TallyActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialogUtils dialog = AlertDialogUtils.getInstance();
-                AlertDialogUtils.showConfirmDialog(context, "确定删除此纪录吗？", "确定", "取消");
+                AlertDialogUtils.showConfirmDialog(TallyActivity.this, "确定删除此纪录吗？", "确定", "取消");
                 dialog.setMonDialogButtonClickListener(new AlertDialogUtils.OnDialogButtonClickListener() {
                     @Override
                     public void onPositiveButtonClick(AlertDialog dialog) {
                         TallyLvItemBean bean = mData.get(position);
                         if (TallyManger.delToData(bean.getId())) {
-                            MyToast.showText(context, "删除成功！", Gravity.BOTTOM);
+                            MyToast.showText(TallyActivity.this, "删除成功！", Gravity.BOTTOM);
                             onRefresh();
                         } else {
-                            MyToast.showText(context, "删除失败！", Gravity.BOTTOM);
+                            MyToast.showText(TallyActivity.this, "删除失败！", Gravity.BOTTOM);
                         }
                         dialog.dismiss();
                     }

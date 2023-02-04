@@ -41,8 +41,8 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
 
         tvTitle.setText("身份验证");
         btnNext.setEnabled(false);
-        myPhone = base_phones.replace(" ","");
-        Log.e("TAG", "注销用户，该用户电话为："+myPhone);
+        myPhone = base_phones.replace(" ", "");
+        Log.e("TAG", "注销用户，该用户电话为：" + myPhone);
     }
 
     @Override
@@ -57,17 +57,21 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.cancel_btn_next:
-                String phone = etPhone.getText().toString().trim();
-                if (phone.equals(myPhone)) {//手机号一致
-                    //发送验证   跳转到短信验证页面
-                    intentJump(CancelidActivity.class);
-                    finish();
-                }else{
-                    MyToast.showText(this,"手机号不正确！",false);
-                }
-                ViewUtil.hideOneInputMethod(CancelActivity.this,etPhone);
+                verifyPhone();
                 break;
         }
+    }
+
+    private void verifyPhone() {
+        String phone = etPhone.getText().toString().trim();
+        if (phone.equals(myPhone)) {//手机号一致
+            //发送验证   跳转到短信验证页面
+            intentJump(CancelidActivity.class);
+            finish();
+        } else {
+            MyToast.showText(this, "手机号不正确！", false);
+        }
+        ViewUtil.hideOneInputMethod(CancelActivity.this, etPhone);
     }
 
     @Override
@@ -83,9 +87,10 @@ public class CancelActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void afterTextChanged(Editable s) {
         String phone = etPhone.getText().toString().trim();
-        if (phone.length() == 11){
+        if (phone.length() == 11) {
             btnNext.setEnabled(true);
-        }else {
+            verifyPhone();
+        } else {
             btnNext.setEnabled(false);
         }
     }

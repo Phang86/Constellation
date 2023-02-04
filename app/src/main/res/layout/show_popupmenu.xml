@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tv_del"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/dimen_5dp"
+    android:layout_margin="@dimen/dimen_5dp"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black_200"
+        android:padding="6dp"
+        android:text="删除"
+        android:drawableRight="@drawable/ic_baseline_delete_forever_24"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:drawablePadding="@dimen/dimen_3dp"
+        android:textSize="@dimen/size_14sp"
+        />
+</androidx.cardview.widget.CardView>

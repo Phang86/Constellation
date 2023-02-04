@@ -74,14 +74,14 @@ public class HistoryActivity extends BaseActivity implements View.OnClickListene
         refreshLayout = findViewById(R.id.smr_refreshLayout);
         imgBack.setOnClickListener(this);
         showProgress();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(true);
         lv.setVisibility(View.GONE);
         refreshLayout.setVisibility(View.GONE);
     }
 
     private void showProgress(){
-        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog = new DiyProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
 

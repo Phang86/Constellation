@@ -21,7 +21,7 @@ import com.yyzy.constellation.tally.bean.TallyLvItemBean;
 
 import java.util.List;
 
-public class TallyInfoDialog extends BottomSheetDialog implements View.OnClickListener{
+public class TallyInfoDialog extends Dialog implements View.OnClickListener{
     private TallyLvItemBean bean;
     private Button btnOk;
     private TextView tvTitle,tvType,tvBeiZhu,tvTime,tvMoney;
@@ -45,7 +45,7 @@ public class TallyInfoDialog extends BottomSheetDialog implements View.OnClickLi
         WindowManager.LayoutParams wlp = window.getAttributes();
         Display dp = window.getWindowManager().getDefaultDisplay();
         wlp.width = dp.getWidth();
-//        wlp.gravity = Gravity.CENTER;
+        wlp.gravity = Gravity.BOTTOM;
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setAttributes(wlp);
     }

@@ -63,7 +63,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_city_weather, container, false);
         initView(view);
         getActivityData();
-        dialog = new DiyProgressDialog(getContext(), "加载中...");
+        dialog = new DiyProgressDialog(getContext());
         dialog.show();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
@@ -124,24 +124,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onError(Throwable ex, boolean isOnCallback) {
-        super.onError(ex, isOnCallback);
-        //去数据库查找上一次信息显示在Fragment中
-//        if (dialog != null){
-//            dialog.dismiss();
-//        }
-//        String s = DBManager.queryInfoByCity(city);
-//        if (!TextUtils.isEmpty(s)) {
-//            haveDataLayout.setVisibility(View.VISIBLE);
-//            noDataLayout.setVisibility(View.GONE);
-//            parseShowData(s);
-//            return;
-//        }
-//        haveDataLayout.setVisibility(View.INVISIBLE);
-//        noDataLayout.setVisibility(View.VISIBLE);
     }
 
     private void parseShowData(String result) {

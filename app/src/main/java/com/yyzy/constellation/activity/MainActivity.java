@@ -9,16 +9,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +41,7 @@ import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.api.OnClickThree;
 import com.yyzy.constellation.dict.activity.DictActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
 import com.yyzy.constellation.fragment.LuckFragment;
@@ -47,6 +52,9 @@ import com.yyzy.constellation.news.NewsActivity;
 import com.yyzy.constellation.tally.TallyActivity;
 import com.yyzy.constellation.tally.util.OnClickSure;
 import com.yyzy.constellation.user.AppInfoActivity;
+import com.yyzy.constellation.user.CallBackOkhttp;
+import com.yyzy.constellation.user.GexingActivity;
+import com.yyzy.constellation.user.UserLoginInfoActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.AssetsUtils;
 import com.yyzy.constellation.utils.BitmapUtils;
@@ -56,15 +64,26 @@ import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.SPUtils;
 import com.yyzy.constellation.utils.StatusBarUtils;
 import com.yyzy.constellation.utils.StringUtils;
+import com.yyzy.constellation.utils.URLContent;
 import com.yyzy.constellation.weather.activity.WeatherActivity;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private DrawerLayout drawerLayout;
@@ -72,9 +91,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private FragmentManager manager;
     private Bundle bundle;
     private Fragment starFragment, partnershipFragment, luckFragment, meFragment;
-    private TextView title, tvName;
+    private TextView title, tvName,tvIp;
     private NavigationView nv;
-    private ImageView imgClose, imgMore;
+    private ImageView imgClose, imgMore,ivRight;
+    private TextView tvRight;
+    private CardView cvSex,cvGexing;
+    private TextView tvSex,tvGexing;
     //权限请求
     private RxPermissions rxPermissions;
     //是否拥有权限
@@ -100,8 +122,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             .diskCacheStrategy(DiskCacheStrategy.NONE)  //不做磁盘缓存
             .skipMemoryCache(true);         //不做内存缓存
 
-
-
     private long exitTime = 0;
 
     @Override
@@ -109,6 +129,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return R.layout.activity_main;
     }
 
+    @SuppressLint({"UseCompatLoadingForDrawables", "ResourceType"})
     @Override
     protected void initView() {
         StarInfoEntity starInfoEntity = loadData();
@@ -116,6 +137,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         bundle.putSerializable("info", starInfoEntity);
 
         radioGroup = findViewById(R.id.main_rb);
+        ivRight = findViewById(R.id.main_title_iv_right);
+        tvRight = findViewById(R.id.main_title_tv_right);
+        ivRight.setOnClickListener(this);
+        Log.e("TAG", "initView: "+base_login_info);
+        if (base_login_info){
+            tvRight.setVisibility(View.VISIBLE);
+        }else{
+            tvRight.setVisibility(View.GONE);
+        }
         //为RadioGroup控件设置监听，判断点击哪个
         radioGroup.setOnCheckedChangeListener(this);
         //分别实例化对应的Fragment
@@ -139,18 +169,60 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         cirImg = view.findViewById(R.id.header_layout_cirImg);
         tvName = view.findViewById(R.id.header_layout_tv_name);
         imgClose = view.findViewById(R.id.header_close);
+        tvSex = view.findViewById(R.id.tv_sex);
+        cvSex = view.findViewById(R.id.cv_sex);
+        tvIp = view.findViewById(R.id.tv_ip);
+        cvGexing = view.findViewById(R.id.cv_gexing);
+        tvGexing = view.findViewById(R.id.tv_gexing);
         cirImg.setOnClickListener(this);
         imgClose.setOnClickListener(this);
         imgMore.setOnClickListener(this);
+        cvSex.setOnClickListener(this);
+        cvGexing.setOnClickListener(this);
         tvName.setText(base_user_names);
+        setIpInfo();
         nv.setItemIconTintList(null);
         checkVersion();
         //取出缓存
         String imageUrl = SPUtils.getString("imageUrl", null, this);
-        if (imageUrl != null) {
+        Log.e("TAG", "initView: "+base_imgheader);
+        if (!TextUtils.isEmpty(base_imgheader)) {
+            Glide.with(this).load(URLContent.BASE_URL+base_imgheader).apply(requestOptions).into(cirImg);
+        }else{
             Glide.with(this).load(imageUrl).apply(requestOptions).into(cirImg);
         }
+    }
 
+    private void setIpInfo() {
+        if (!TextUtils.isEmpty(base_signature)){
+            tvGexing.setText(base_signature);
+        }else{
+            tvGexing.setText("这个人很懒，暂无个性签名......");
+        }
+        if (!TextUtils.isEmpty(base_ip)) {
+            tvIp.setText("IP属地 : " + base_ip);
+        } else {
+            tvIp.setText(" IP : ----");
+        }
+        if (base_sex == 0){
+            tvSex.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+            tvSex.setTextColor(getResources().getColor(R.color.zhuBlue));
+            tvSex.setText("♂");
+            tvSex.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+            return;
+        }
+        if (base_sex == 1){
+            tvSex.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+            tvSex.setTextColor(getResources().getColor(R.color.lightpink));
+            tvSex.setText("♀");
+            tvSex.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+        }else{
+            tvSex.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+            tvSex.setTextColor(getResources().getColor(R.color.gray_600));
+            tvSex.setText("性别_未知");
+            tvSex.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
+        }
+        Log.e("TAG", "setIpInfo: "+base_signature);
 
     }
 
@@ -173,8 +245,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         intentJump(DictActivity.class);
                         break;
                     case R.id.exit:
-//                        showDefaultDialog();
-//                        drawerLayout.closeDrawers();
                         showExitDialog();
                         break;
                     case R.id.news:
@@ -220,19 +290,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void showExitDialog() {
-        openBottomDialog("确定退出星缘吗？", "确定退出", "取消", new OnClickSure() {
+        openBottomDialog("确定退出星缘吗？", "确定退出", "取消",false, new OnClickThree() {
             @Override
-            public void onSure() {
+            public void one() {
                 loading();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         stopLoading();
+                        clearUserInfo();
+                        clearNotificationManger();
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
-                        clearUserInfo();
-                        clearNotificationManger();
                         finish();
                         startActivity(intent);
                         Toast.makeText(MainActivity.this, "您已成功退出星缘！", Toast.LENGTH_SHORT).show();
@@ -241,7 +311,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             }
 
             @Override
-            public void onCancel() {
+            public void two() {
+
+            }
+
+            @Override
+            public void three() {
 
             }
         });
@@ -274,40 +349,44 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     //加载数据  读取Assets文件夹下的xzcontent.json文件
     private StarInfoEntity loadData() {
         String json = AssetsUtils.getJsonFromAssets(this, "xzcontent/xzcontent.json");
-        Gson gson = new Gson();
-        StarInfoEntity infoEntity = gson.fromJson(json, StarInfoEntity.class);
+        StarInfoEntity infoEntity = new Gson().fromJson(json, StarInfoEntity.class);
         AssetsUtils.saveBitmapFromAssets(this, infoEntity);
         return infoEntity;
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        FragmentTransaction transaction = manager.beginTransaction();
+
         switch (checkedId) {
             case R.id.main_rb_star:
+                FragmentTransaction transaction = manager.beginTransaction();
                 transaction.hide(partnershipFragment);
                 transaction.hide(luckFragment);
                 transaction.hide(meFragment);
                 transaction.show(starFragment);
                 title.setText(getResources().getString(R.string.app_name));
+                transaction.commit();
                 break;
             case R.id.main_rb_partnership:
-                transaction.hide(starFragment);
-                transaction.hide(luckFragment);
-                transaction.hide(meFragment);
-                transaction.show(partnershipFragment);
+                FragmentTransaction transaction2 = manager.beginTransaction();
+                transaction2.hide(starFragment);
+                transaction2.hide(luckFragment);
+                transaction2.hide(meFragment);
+                transaction2.show(partnershipFragment);
                 title.setText(getResources().getString(R.string.label_star) + "" + getResources().getString(R.string.label_partnership));
+                transaction2.commit();
                 break;
             case R.id.main_rb_luck:
-                transaction.hide(partnershipFragment);
-                transaction.hide(starFragment);
-                transaction.hide(meFragment);
-                transaction.show(luckFragment);
+                FragmentTransaction transaction3 = manager.beginTransaction();
+                transaction3.hide(partnershipFragment);
+                transaction3.hide(starFragment);
+                transaction3.hide(meFragment);
+                transaction3.show(luckFragment);
                 title.setText(getResources().getString(R.string.label_star) + "" + getResources().getString(R.string.label_luck));
+                transaction3.commit();
                 break;
 
         }
-        transaction.commit();
     }
 
     @Override
@@ -321,14 +400,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     private void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            MyToast.showText(getApplicationContext(), "再按一次返回到手机主界面");
+            MyToast.showText(getApplicationContext(), "再按一次退出程序");
             exitTime = System.currentTimeMillis();
         } else {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
+//            Intent intent = new Intent();
+//            intent.setAction(Intent.ACTION_MAIN);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intent.addCategory(Intent.CATEGORY_HOME);
+//            startActivity(intent);
+//            System.exit(0);
+            finish();
         }
 
     }
@@ -337,15 +418,20 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_layout_cirImg:
-                openBottomDialog("头像选择", "打开相机", "打开图库", new OnClickSure() {
+                openBottomDialog("头像选择", "打开相机", "打开图库",false, new OnClickThree() {
                     @Override
-                    public void onSure() {
+                    public void one() {
                         takePhoto();
                     }
 
                     @Override
-                    public void onCancel() {
+                    public void two() {
                         openAlbum();
+                    }
+
+                    @Override
+                    public void three() {
+
                     }
                 });
                 break;
@@ -355,12 +441,68 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             case R.id.main_img_more:
                 drawerLayout.openDrawer(nv);
                 break;
+            case R.id.main_title_iv_right:
+                getUserInfo();
+                if (base_login_info){
+                    tvRight.setVisibility(View.VISIBLE);
+                    updateSpfUserInfo("login_info",false);
+                    tvRight.setVisibility(View.GONE);
+                }else{
+                    tvRight.setVisibility(View.GONE);
+                }
+                intentJump(UserLoginInfoActivity.class);
+                break;
+            case R.id.cv_sex:
+                openBottomDialog("性别选择", "男", "女",true, new OnClickThree() {
+                    @Override
+                    public void one() {
+                        //选择男
+                        requestNetUpdateSex("0");
+                    }
+
+                    @Override
+                    public void two() {
+                        //选择女
+                        requestNetUpdateSex("1");
+                    }
+
+                    @Override
+                    public void three() {
+                        //选择保密
+                        requestNetUpdateSex("2");
+                    }
+                });
+                break;
+            case R.id.cv_gexing:
+                intentJump(GexingActivity.class);
+                break;
             default:
                 break;
         }
 
     }
 
+    private void requestNetUpdateSex(String sex){
+        int intSex = Integer.valueOf(sex);
+        requestOkhttpLoadFeedback(sex, "","user", base_user_names, "/user/update/sex", new CallBackOkhttp() {
+            @Override
+            public void onSuccess(String resultStr) {
+                if (resultStr.equals("success")) {
+                    MyToast.showText(getApplicationContext(),"性别设置成功");
+                    updateSpfUserInfo("sex",intSex);
+                    getUserInfo();
+                    setIpInfo();
+                    return;
+                }
+                MyToast.showText(getApplicationContext(),"性别设置失败");
+            }
+
+            @Override
+            public void onError(Exception e) {
+                MyToast.showText(getApplicationContext(),"性别设置失败，服务器连接超时！");
+            }
+        });
+    }
 
     /**
      * 检查版本
@@ -462,17 +604,85 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
      */
     private void displayImage(String imagePath) {
         if (!TextUtils.isEmpty(imagePath)) {
-            //显示图片
-            Glide.with(this).load(imagePath).apply(requestOptions).into(cirImg);
-            //放入缓存
-            SPUtils.putString("imageUrl", imagePath, this);
-            //压缩图片
-            orc_bitmap = CameraUtils.compression(BitmapFactory.decodeFile(imagePath));
-            //转Base64
-            base64Pic = BitmapUtils.bitmapToBase64(orc_bitmap);
-
+            loading();
+            upload(imagePath);
         } else {
             showToast("图片获取失败");
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setIpInfo();
+    }
+
+    public void upload(String imagePath) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                File file = new File("/storage/emulated/0/Tencent/QQ_Images/-1a45eb02c89a3895.jpg");
+                File file = new File(imagePath);
+                System.out.println("测试返回结果imagePath:"+imagePath);
+                OkHttpClient okHttpClient = new OkHttpClient();
+
+                RequestBody body = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("file", file.getName(), MultipartBody.create(MediaType.parse("multipart/form-data"), new File(imagePath)))
+                        .build();
+
+                String url = URLContent.BASE_URL+"/update/user/img";
+                Request request = new Request.Builder()
+                        .url(url)
+                        .addHeader("user",base_user_names)
+                        .post(body)
+                        .build();
+
+                okHttpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.e("TAG", "onFailure: " );
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                stopLoading();
+                                MyToast.showText(MainActivity.this,"服务器连接超时，头像上传失败！");
+
+                            }
+                        });
+
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String result = response.body().string();
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                stopLoading();
+                                if (result.equals("error")) {
+                                    MyToast.showText(MainActivity.this,"用户名为空，头像上传失败！");
+                                    return;
+                                }
+                                if (result.equals("s_success")) {
+                                    MyToast.showText(MainActivity.this,"头像上传成功！");
+                                    updateSpfUserInfo("imgheader","");
+                                    //显示图片
+                                    Glide.with(MainActivity.this).load(imagePath).apply(requestOptions).into(cirImg);
+                                    //放入缓存
+                                    SPUtils.putString("imageUrl", imagePath, MainActivity.this);
+                                    Log.e("TAG", "上传成功run: "+imagePath);
+                                    //压缩图片
+                                    orc_bitmap = CameraUtils.compression(BitmapFactory.decodeFile(imagePath));
+                                    //转Base64
+                                    base64Pic = BitmapUtils.bitmapToBase64(orc_bitmap);
+                                }else{
+                                    MyToast.showText(MainActivity.this,"头像上传失败！");
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }).start();
     }
 }

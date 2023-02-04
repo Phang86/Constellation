@@ -117,8 +117,12 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
             if (DBManager.findCity(city).equals(city)){
                 MyToast.showText(this,"（"+city+"）相关天气信息已存在！无需重复添加！");
             }else{
-                String url = URLContent.getTemp_url(city);
-                loadDatas(url);
+                if (checkHanZi(city)){
+                    String url = URLContent.getTemp_url(city);
+                    loadDatas(url);
+                    return;
+                }
+                MyToast.showText(this,"请输入汉字！");
             }
         }else {
             MyToast.showText(this,"请输入关键字！");

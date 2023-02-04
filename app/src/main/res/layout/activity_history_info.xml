@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/state_bg_f4f3f8"
     tools:context=".history.HistoryInfoActivity">
 
     <include android:id="@+id/layout_top" layout="@layout/star_details_title"/>
@@ -39,7 +40,7 @@
                 android:layout_height="@dimen/dimen_220dp"
                 app:cardElevation="@dimen/dimen_0dp"
                 app:cardMaxElevation="@dimen/dimen_0dp"
-                app:cardBackgroundColor="@color/white"
+                app:cardBackgroundColor="@color/state_bg_f4f3f8"
                 android:layout_marginBottom="@dimen/dimen_10dp">
 
                 <ImageView

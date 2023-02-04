@@ -69,8 +69,8 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
     }
 
     private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(DeleteCityActivity.this);
-        LayoutInflater inflater = LayoutInflater.from(DeleteCityActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
         View view = inflater.inflate(R.layout.diy_alert_dialog, null);
         TextView content = (TextView) view.findViewById(R.id.dialog_content);
         Button btn_sure = (Button) view.findViewById(R.id.dialog_btn_sure);
@@ -116,8 +116,8 @@ public class DeleteCityActivity extends BaseActivity implements View.OnClickList
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){
-            finish();
-            overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+            showDialog();
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

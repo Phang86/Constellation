@@ -7,6 +7,42 @@ public class User {
     private String passWord;
     private String createTime;
     private String updateTime;
+    private Integer loginState;
+    private Integer sex;
+    private String signature;
+    private String imgHeader;
+
+    public String getImgHeader() {
+        return imgHeader;
+    }
+
+    public void setImgHeader(String imgHeader) {
+        this.imgHeader = imgHeader;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public Integer getLoginState() {
+        return loginState;
+    }
+
+    public void setLoginState(Integer loginState) {
+        this.loginState = loginState;
+    }
 
     public String getUpdateTime() {
         return updateTime;
@@ -65,6 +101,10 @@ public class User {
                 ", passWord='" + passWord + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", updateTime='" + updateTime + '\'' +
+                ", loginState=" + loginState +
+                ", sex=" + sex +
+                ", signature='" + signature + '\'' +
+                ", imgHeader='" + imgHeader + '\'' +
                 '}';
     }
 }

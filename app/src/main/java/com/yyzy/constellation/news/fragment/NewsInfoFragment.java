@@ -138,7 +138,7 @@ public class NewsInfoFragment extends BaseFragment {
 
     private void showProgress(){
         if (dialog == null) {
-            dialog = new DiyProgressDialog(getContext(), "加载中...");
+            dialog = new DiyProgressDialog(getContext());
             dialog.setCancelable(true);//设置能通过后退键取消
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();

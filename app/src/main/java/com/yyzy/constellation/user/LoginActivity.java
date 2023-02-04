@@ -2,7 +2,6 @@ package com.yyzy.constellation.user;
 
 import androidx.annotation.NonNull;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -21,13 +20,16 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
-import com.yyzy.constellation.activity.FindPwdActivity;
+import com.yyzy.constellation.entity.IpBean;
+import com.yyzy.constellation.user.findPwd.FindPwdActivity;
 import com.yyzy.constellation.activity.MainActivity;
 import com.yyzy.constellation.entity.User;
 import com.yyzy.constellation.utils.FourFiguresNumberCode;
 import com.yyzy.constellation.utils.MyToast;
+import com.yyzy.constellation.utils.URLContent;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText edUser, edPwd, edValCode;
     private TextView btnLogin;
     private List<User> data = new ArrayList<>();
-
     private ImageView imgValCode;
 
     @Override
@@ -203,21 +204,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                     }.getType());
                                     data = dataEntity;
                                     if (data.size() > 0 && data != null) {
-                                        //弹出通知
-                                        showNotification(getBaseContext(), edUser.getText().toString().trim());
-                                        //跳转页面
-                                        intentJump(MainActivity.class);
-                                        finish();
-                                        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
-                                        SharedPreferences sp = getSharedPreferences("constellation", MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
-                                        editor.putString("name", edUser.getText().toString().trim());
-                                        editor.putString("createTime", data.get(0).getUpdateTime());
-                                        editor.putString("phone", data.get(0).getMobile());
-                                        editor.putString("passWord",edPwd.getText().toString().trim());
-                                        // 存入数据
-                                        editor.commit();
-                                        btnLogin.setEnabled(true);
+                                        loadDatas(URLContent.IP_URL);
+//                                        startNext();
                                         return;
                                     }
                                     MyToast.showText(LoginActivity.this,"登录失败！服务器连接超时！");
@@ -235,6 +223,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         });
     }
 
+    private void startNext(String ipaddress) {
+        //跳转页面
+        intentJump(MainActivity.class);
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        finish();
+        SharedPreferences sp = getSharedPreferences("constellation", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit(); // 获取编辑器
+        editor.putString("name", edUser.getText().toString().trim());
+        editor.putString("createTime", data.get(0).getUpdateTime());
+        editor.putString("phone", data.get(0).getMobile());
+        editor.putString("passWord",edPwd.getText().toString().trim());
+        editor.putBoolean("isShowGirdOrList",true);
+        editor.putInt("sex",data.get(0).getSex());
+        editor.putString("signature",data.get(0).getSignature());
+        editor.putString("imgheader",data.get(0).getImgHeader());
+        Log.e("TAG", "startNext: "+data.toString());
+        // 存入数据
+        editor.commit();
+        //弹出通知
+        showNotification(getBaseContext(), edUser.getText().toString().trim());
+        btnLogin.setEnabled(true);
+        requestNet(ipaddress);
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -247,13 +259,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             finish();
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void onSuccess(String result) {
-        super.onSuccess(result);
-        User user = new Gson().fromJson(result, User.class);
-        Log.e("TAG", "onSuccess: " + user.toString());
     }
 
     @Override
@@ -275,5 +280,52 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
+    @Override
+    public void onSuccess(String result) {
+        super.onSuccess(result);
+        IpBean bean = new Gson().fromJson(result, IpBean.class);
+        String ip = null,ipaddress = null, ipCity = null;
+        if (bean.getData() != null && bean.getCode() == 1){
+            ip = bean.getData().getProvince().replace("省","");
+            ipaddress = bean.getData().getProvince()+" · "+bean.getData().getCity()+"（"+bean.getData().getIsp()+" · "+bean.getData().getIp()+"）";
+            ipCity = bean.getData().getCity().replace("市","");
+            Log.e("TAG", "login: "+bean.toString());
+        }else{
+            ip = "";
+            ipaddress = "";
+            ipCity = "杭州";
+            Log.e("TAG", "login: != 1"+bean.toString());
+        }
+        updateSpfUserInfo("ip",ip);
+        updateSpfUserInfo("ipaddress",ipaddress);
+        updateSpfUserInfo("ipCity",ipCity);
+        getUserInfo();
+        startNext(ipaddress);
+    }
+
+    private void requestNet(String ip) {
+        getUserInfo();
+        requestOkhttp(base_phones, ip, "wu", "/insert/user/login/info", new CallBackOkhttp() {
+            @Override
+            public void onSuccess(String resultStr) {
+                SharedPreferences spf = getSharedPreferences("constellation", MODE_PRIVATE);
+                SharedPreferences.Editor edit = spf.edit();
+                if (resultStr.equals("success")) {
+                    edit.putBoolean("login_info",true);
+                    edit.commit();
+                    Log.e("TAG", "onSuccess: 用户登录情况插入成功！");
+                    return;
+                }
+                edit.putBoolean("login_info",false);
+                edit.commit();
+                Log.e("TAG", "onSuccess: 用户登录情况插入失败！");
+            }
+
+            @Override
+            public void onError(Exception e) {
+                MyToast.showText(getApplicationContext(),"服务器连接超时！");
+            }
+        });
+    }
 
 }

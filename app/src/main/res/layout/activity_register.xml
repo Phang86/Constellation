@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,231 +7,262 @@
     tools:context=".user.RegisterActivity"
     android:background="@color/white">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_350dp"
-        android:background="@mipmap/login"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_350dp"
+            android:background="@mipmap/login"
+            android:scaleType="centerCrop"
+            />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_250dp"
-            android:layout_marginRight="@dimen/dimen_18dp"
-            android:paddingBottom="@dimen/dimen_20dp"
-            android:paddingTop="@dimen/dimen_20dp"
-            android:paddingLeft="@dimen/dimen_15dp"
-            android:paddingRight="@dimen/dimen_15dp"
-            android:background="@drawable/shape_register_activity"
-            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_18dp"
+                android:layout_marginTop="@dimen/dimen_250dp"
+                android:layout_marginRight="@dimen/dimen_18dp"
+                android:paddingBottom="@dimen/dimen_20dp"
+                android:paddingTop="@dimen/dimen_20dp"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:background="@drawable/shape_register_activity"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_25dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@mipmap/account" />
-
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
-
-                <com.yyzy.constellation.utils.MyEditText
-                    android:id="@+id/edRegister_user"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textCursorDrawable="@drawable/color_cursor_red"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:lines="1"
-                    android:background="@null"
-                    android:inputType="text"
-                    android:hint="@string/eduser"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="@dimen/size_16sp" />
-            </LinearLayout>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_23dp"
-                android:layout_marginBottom="@dimen/dimen_23dp"
-                android:background="@color/gray_200" />
+                    <ImageView
+                        android:layout_width="@dimen/dimen_25dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@mipmap/account"
+                        />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
 
+                    <com.yyzy.constellation.utils.MyEditText
+                        android:id="@+id/edRegister_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textCursorDrawable="@drawable/color_cursor_red"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:lines="1"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:hint="@string/eduser"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_15sp"
+                        />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/icon_iv_pwd" />
+                </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_23dp"
+                    android:layout_marginBottom="@dimen/dimen_23dp"
                     android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
+                    />
 
-                <com.yyzy.constellation.utils.MyPasswordEditText
-                    android:id="@+id/edRegister_pwd"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textCursorDrawable="@drawable/color_cursor_red"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:background="@null"
-                    android:lines="1"
-                    android:hint="@string/edpwd"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="@dimen/size_16sp"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_23dp"
-                android:layout_marginBottom="@dimen/dimen_23dp"
-                android:background="@color/gray_200" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
 
-<!--                <ImageView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/ic_register_phone" />-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_iv_pwd"
+                        />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <com.yyzy.constellation.utils.MyPasswordEditText
+                        android:id="@+id/edRegister_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textCursorDrawable="@drawable/color_cursor_red"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:background="@null"
+                        android:lines="1"
+                        android:hint="@string/edpwd"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_23dp"
+                    android:layout_marginBottom="@dimen/dimen_23dp"
+                    android:background="@color/gray_200"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="86+"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
                     android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/size_15sp"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal">
+
+
+                    <!--                <ImageView-->
+                    <!--                    android:layout_width="wrap_content"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:background="@drawable/ic_register_phone" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+86"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_15sp"
+                        android:textStyle="bold"
+                        />
+
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <com.yyzy.constellation.utils.MyEditText
+                        android:id="@+id/edRegister_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:background="@null"
+                        android:hint="请输入手机号"
+                        android:textCursorDrawable="@drawable/color_cursor_red"
+                        android:lines="1"
+                        android:inputType="phone"
+                        android:maxLength="13"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                </LinearLayout>
 
                 <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_23dp"
+                    android:layout_marginBottom="@dimen/dimen_23dp"
                     android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
+                    />
 
-                <com.yyzy.constellation.utils.MyEditText
-                    android:id="@+id/edRegister_phone"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:background="@null"
-                    android:hint="请输入手机号"
-                    android:textCursorDrawable="@drawable/color_cursor_red"
-                    android:lines="1"
-                    android:inputType="phone"
-                    android:maxLength="13"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="@dimen/size_16sp" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <com.yyzy.constellation.utils.MyEditText
+                        android:id="@+id/validateNum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:inputType="number"
+                        android:hint="请输入验证码"
+                        android:textCursorDrawable="@drawable/color_cursor_red"
+                        android:background="@drawable/ver_code_bg"
+                        android:textColorHint="@color/grey"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/validateNum_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:background="@drawable/selector_get_val_code"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/size_13sp"
+                        android:textColor="@color/white"
+                        android:text="点击获取"
+                        android:gravity="center"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-            <View
+            <TextView
+                android:id="@+id/btnRegister_register"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_23dp"
-                android:layout_marginBottom="@dimen/dimen_23dp"
-                android:background="@color/gray_200" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_height="@dimen/dimen_40dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_70dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:background="@drawable/selector_register_btn"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_16sp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                />
 
+            <TextView
+                android:id="@+id/btnRegister_tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/selector_login_activity_tv_bg"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_gravity="right"
+                android:textSize="@dimen/size_15sp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:text="@string/youzhanghao"
+                />
 
-                <com.yyzy.constellation.utils.MyEditText
-                    android:id="@+id/validateNum"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:inputType="number"
-                    android:hint="请输入验证码"
-                    android:textCursorDrawable="@drawable/color_cursor_red"
-                    android:background="@drawable/ver_code_bg"
-                    android:textColorHint="@color/grey"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/validateNum_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:background="@drawable/selector_get_val_code"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/size_13sp"
-                    android:textColor="@color/white"
-                    android:text="点击获取"
-                    android:gravity="center"/>
-            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/btnRegister_register"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginTop="@dimen/dimen_70dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:background="@drawable/selector_register_btn"
-            android:text="@string/register"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
-            android:gravity="center"/>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/btnRegister_tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@drawable/selector_login_activity_tv_bg"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_gravity="right"
-            android:textSize="@dimen/size_15sp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:text="@string/youzhanghao"/>
-    </LinearLayout>
-</RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

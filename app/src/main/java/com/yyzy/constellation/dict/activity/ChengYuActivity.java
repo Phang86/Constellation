@@ -77,10 +77,10 @@ public class ChengYuActivity extends BaseActivity implements View.OnClickListene
         searchEt.setOnEditorActionListener(this);
         relativeLayout.setVisibility(View.GONE);
 
-        SharedPreferences app = getSharedPreferences("busApp", MODE_PRIVATE);
-        String username = app.getString("username", "");
+//        SharedPreferences app = getSharedPreferences("busApp", MODE_PRIVATE);
+//        String username = app.getString("username", "");
         //初始化数据库
-        mRecordsDao = new RecordsDao(this, username);
+        mRecordsDao = new RecordsDao(this, base_user_names);
     }
 
     @Override

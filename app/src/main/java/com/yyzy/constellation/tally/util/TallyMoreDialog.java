@@ -1,6 +1,7 @@
 package com.yyzy.constellation.tally.util;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import com.yyzy.constellation.utils.MyToast;
 
 import java.util.List;
 
-public class TallyMoreDialog extends BottomSheetDialog implements View.OnClickListener {
+public class TallyMoreDialog extends Dialog implements View.OnClickListener {
 
     private ImageView imgClose;
     private CardView cvSet,cvTallyInfo,cvTallyJilu,cvSearch;
@@ -126,8 +127,9 @@ public class TallyMoreDialog extends BottomSheetDialog implements View.OnClickLi
         //获取屏幕尺寸
         Display d = window.getWindowManager().getDefaultDisplay();
         wlp.width = d.getWidth();
-//        wlp.gravity = Gravity.BOTTOM;
+        wlp.gravity = Gravity.BOTTOM;
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setAttributes(wlp);
+
     }
 }

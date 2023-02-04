@@ -31,5 +31,28 @@
             android:layout_gravity="center"
             />
 
+        <TextView
+            android:id="@+id/details_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_star_feedback"
+            android:textSize="@dimen/size_14sp"
+            android:textColor="@color/black"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/details_right_iv"
+            android:layout_width="@dimen/dimen_20dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dimen_20dp"
+            android:visibility="gone"/>
+
     </androidx.appcompat.widget.Toolbar>
 </RelativeLayout>

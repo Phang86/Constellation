@@ -20,18 +20,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
         android:layout_below="@+id/star_details_title">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="账号即将注销，为了确保是本人操作则进行身份验证。"
-            android:textSize="@dimen/size_15sp"
-            android:textColor="@color/grey"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:layout_marginBottom="@dimen/dimen_15dp"/>
+            android:textSize="@dimen/size_14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     android:id="@+id/tv_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="86+"
+                    android:text="+86"
                     android:textColor="@color/black"
                     android:textSize="@dimen/size_15sp"
                     android:textStyle="bold"
@@ -99,7 +99,7 @@
         android:textSize="@dimen/size_16sp"
         android:layout_marginLeft="@dimen/dimen_30dp"
         android:layout_marginRight="@dimen/dimen_30dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
         android:layout_below="@+id/star_details_center"
         android:gravity="center"
         />

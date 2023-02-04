@@ -1,226 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FindPwdActivity"
+    tools:context=".user.findPwd.FindPwdActivity"
     android:background="@color/white">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_350dp"
-        android:background="@mipmap/login"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_350dp"
+            android:background="@mipmap/login"
+            android:scaleType="centerCrop"
+            />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_18dp"
-            android:layout_marginTop="@dimen/dimen_250dp"
-            android:layout_marginRight="@dimen/dimen_18dp"
-            android:padding="@dimen/dimen_15dp"
-            android:background="@drawable/shape_register_activity"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_18dp"
+                android:layout_marginTop="@dimen/dimen_250dp"
+                android:layout_marginRight="@dimen/dimen_18dp"
+                android:padding="@dimen/dimen_15dp"
+                android:background="@drawable/shape_register_activity"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/dimen_5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_25dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@mipmap/account" />
-
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
-
-                <EditText
-                    android:id="@+id/config_ed_user"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="用户名（默认）"
-                    android:inputType="text"
-                    android:lines="1"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:textColor="@color/grey"
-                    android:textStyle="italic"
-                    android:textColorHint="@color/grey"
-                    android:textSize="@dimen/size_16sp" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_25dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@mipmap/account"
+                        />
+
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/config_ed_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="用户名（默认）"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:textColor="@color/grey"
+                        android:textStyle="italic"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:background="@color/gray_200"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+86"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_15sp"
+                        android:textStyle="bold"
+                        />
+
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <EditText
+                        android:id="@+id/config_ed_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="手机号（默认）"
+                        android:lines="1"
+                        android:inputType="phone"
+                        android:maxLength="13"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:textColor="@color/grey"
+                        android:textStyle="italic"
+                        android:textColorHint="@color/grey"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:background="@color/gray_200"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_update_pwd"
+                        />
+
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <com.yyzy.constellation.utils.MyPasswordEditText
+                        android:id="@+id/config_ed_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/newPwd"
+                        android:inputType="textPassword"
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_15sp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:background="@color/gray_200"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimen_5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_update_pwd"
+                        />
+
+                    <View
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="@dimen/dimen_25dp"
+                        android:background="@color/gray_200"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        />
+
+                    <com.yyzy.constellation.utils.MyPasswordEditText
+                        android:id="@+id/config_ed_pwd_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        android:hint="@string/newPwdConfig"
+                        android:lines="1"
+                        android:paddingRight="@dimen/dimen_15dp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/size_15sp"
+                        android:inputType="textPassword"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-            <View
+            <TextView
+                android:id="@+id/config_btn_pwd"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_marginBottom="@dimen/dimen_20dp"
-                android:background="@color/gray_200" />
+                android:layout_height="@dimen/dimen_40dp"
+                android:layout_marginLeft="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dimen_70dp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:background="@drawable/selector_update_btn"
+                android:text="@string/buyFind"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_16sp"
+                android:gravity="center"
+                />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/config_tv_login"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:textColor="@drawable/selector_login_activity_tv_bg"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_gravity="right"
+                android:textSize="@dimen/size_15sp"
+                android:layout_marginRight="@dimen/dimen_20dp"
+                android:text="@string/pwdFindByLogin"
+                />
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="86+"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/size_15sp"
-                    android:textStyle="bold"/>
-
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
-
-                <EditText
-                    android:id="@+id/config_ed_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="手机号（默认）"
-                    android:lines="1"
-                    android:inputType="phone"
-                    android:maxLength="13"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:textColor="@color/grey"
-                    android:textStyle="italic"
-                    android:textColorHint="@color/grey"
-                    android:textSize="@dimen/size_16sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_marginBottom="@dimen/dimen_20dp"
-                android:background="@color/gray_200" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_update_pwd" />
-
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
-
-                <com.yyzy.constellation.utils.MyPasswordEditText
-                    android:id="@+id/config_ed_pwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:hint="@string/newPwd"
-                    android:inputType="textPassword"
-                    android:textCursorDrawable="@drawable/color_cursor"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:lines="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/size_16sp"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_1dp"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                android:layout_marginBottom="@dimen/dimen_20dp"
-                android:background="@color/gray_200" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:gravity="center"
-                android:paddingBottom="@dimen/dimen_5dp"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_update_pwd" />
-
-                <View
-                    android:layout_width="@dimen/dimen_0.5dp"
-                    android:layout_height="@dimen/dimen_25dp"
-                    android:background="@color/gray_200"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"/>
-
-                <com.yyzy.constellation.utils.MyPasswordEditText
-                    android:id="@+id/config_ed_pwd_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:textCursorDrawable="@drawable/color_cursor"
-                    android:hint="@string/newPwdConfig"
-                    android:lines="1"
-                    android:paddingRight="@dimen/dimen_15dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/size_16sp"/>
-            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/config_btn_pwd"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40dp"
-            android:layout_marginLeft="@dimen/dimen_20dp"
-            android:layout_marginTop="@dimen/dimen_70dp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:background="@drawable/selector_update_btn"
-            android:text="@string/buyFind"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16sp"
-            android:gravity="center"/>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/config_tv_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@drawable/selector_login_activity_tv_bg"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_gravity="right"
-            android:textSize="@dimen/size_15sp"
-            android:layout_marginRight="@dimen/dimen_20dp"
-            android:text="@string/pwdFindByLogin"/>
-    </LinearLayout>
-</RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

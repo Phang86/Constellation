@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -25,9 +26,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.gson.Gson;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.entity.IpBean;
 import com.yyzy.constellation.user.LoginActivity;
 import com.yyzy.constellation.utils.StringUtils;
+import com.yyzy.constellation.utils.URLContent;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -182,27 +186,7 @@ public class HomeActivity extends BaseActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                //如账号、密码未注销，则直接跳到应用主界面
-                isFirst = firstSpf.getBoolean("isFirst", true);
-                if (isFirst){
-                    intent.setClass(HomeActivity.this,WelcomeActivity.class);
-                    //为了下一次不进行跳转引导界面，把状态设置为false
-                    SharedPreferences.Editor edit = firstSpf.edit();
-                    edit.putBoolean("isFirst",false);
-                    edit.commit();
-                }else {
-                    if (!base_user_names.isEmpty() && !base_create_times.isEmpty() && !base_pass_words.isEmpty() && !base_phones.isEmpty()){
-                        intent.setClass(HomeActivity.this, MainActivity.class);
-                    }else {
-                        //不是第一次进入  直接跳过引导页面进入
-                        intent.setClass(HomeActivity.this, LoginActivity.class);
-                    }
-                }
-                handler.removeCallbacksAndMessages(null);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+                checkFirst();
             }
         });
     }
@@ -219,30 +203,7 @@ public class HomeActivity extends BaseActivity {
                 if (msg.what == 1) {
                     time--;
                     if (time == -1) {
-                        //判断是否第一次进入
-                        isFirst = firstSpf.getBoolean("isFirst", true);
-                        Intent intent = new Intent();
-                        if (isFirst){
-                            intent.setClass(HomeActivity.this,WelcomeActivity.class);
-                            //为了下一次不进行跳转引导界面，把状态设置为false
-                            SharedPreferences.Editor edit = firstSpf.edit();
-                            edit.putBoolean("isFirst",false);
-                            edit.commit();
-                        }else {
-                            try {
-                                if (!base_create_times.isEmpty() && !base_pass_words.isEmpty() && !base_phones.isEmpty() && !base_user_names.isEmpty()){
-                                    intent.setClass(HomeActivity.this, MainActivity.class);
-                                }else{
-                                    //不是第一次进入  直接跳过引导页面进入
-                                    intent.setClass(HomeActivity.this, LoginActivity.class);
-                                }
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                        }
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
+                        checkFirst();
                     }else {
                         tv.setEnabled(true);
                         tv.setVisibility(View.VISIBLE);
@@ -253,10 +214,38 @@ public class HomeActivity extends BaseActivity {
         }
     };
 
+    private void checkFirst() {
+        //判断是否第一次进入
+        isFirst = firstSpf.getBoolean("isFirst", true);
+        Intent intent = new Intent();
+//        loadDatas(URLContent.IP_URL);
+        if (isFirst){
+            intent.setClass(HomeActivity.this,WelcomeActivity.class);
+            //为了下一次不进行跳转引导界面，把状态设置为false
+            SharedPreferences.Editor edit = firstSpf.edit();
+            edit.putBoolean("isFirst",false);
+            edit.commit();
+        }else {
+            try {
+                if (!base_create_times.isEmpty() && !base_pass_words.isEmpty() && !base_phones.isEmpty() && !base_user_names.isEmpty()){
+                    intent.setClass(HomeActivity.this, MainActivity.class);
+                }else{
+                    //不是第一次进入  直接跳过引导页面进入
+                    intent.setClass(HomeActivity.this, LoginActivity.class);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.zoomin,R.anim.zoomout);
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && keyCode == KeyEvent.KEYCODE_HOME) {
-            handler.removeCallbacksAndMessages(null);
+            //handler.removeCallbacksAndMessages(null);
             finish();
             return true;
         }
@@ -268,5 +257,4 @@ public class HomeActivity extends BaseActivity {
         handler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
-
 }

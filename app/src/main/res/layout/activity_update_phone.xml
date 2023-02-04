@@ -15,10 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen_30dp"
         android:orientation="vertical"
-        android:layout_margin="@dimen/dimen_10dp">
-
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,16 +29,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="验证码将发送到手机\t\t86+"
-                android:textColor="@color/grey"
-                android:textSize="@dimen/size_15sp"/>
+                android:text="验证码将发送到手机\t\t+86\t\t"
+                android:textSize="@dimen/size_14sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/updatePhone_send_tv_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/size_15sp"/>
+                android:textSize="@dimen/size_15sp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
@@ -54,7 +55,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_25dp"
+                android:layout_height="match_parent"
                 android:baselineAligned="true"
                 android:orientation="horizontal">
 
@@ -85,7 +86,7 @@
                     android:text="发送验证码"
                     android:textColor="@color/zhuBlue"
                     android:ellipsize="end"
-                    android:textSize="@dimen/size_14sp"/>
+                    android:textSize="@dimen/size_13sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -94,12 +95,10 @@
         android:id="@+id/updatePhone_btn_next"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_40dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
         android:background="@drawable/selector_update_btn"
         android:text="下一步"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16sp"
-        android:layout_marginLeft="@dimen/dimen_30dp"
-        android:layout_marginRight="@dimen/dimen_30dp"
+        android:layout_margin="@dimen/dimen_30dp"
         android:gravity="center"/>
 </LinearLayout>

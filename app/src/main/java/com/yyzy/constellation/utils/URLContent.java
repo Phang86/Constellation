@@ -4,14 +4,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class URLContent {
+    private static String MY_KEY = "app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
+
     //登录、注册  本地服务器接口
     public static final String BASE_URL = "http://192.168.2.20:8080/myapp";
-
+    //IP属地接口
+    public static String IP_URL = "https://www.mxnzp.com/api/ip/self?"+MY_KEY;
+    //走马灯接口
+    public static String NOTABLE = "https://www.mxnzp.com/api/jokes/list/random?"+MY_KEY;
     //字典 每日一句接口
-    public static final String DICT_EVERYDAY_URL = "https://www.mxnzp.com/api/daily_word/recommend?count=1&app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
+    public static final String DICT_EVERYDAY_URL = "https://www.mxnzp.com/api/daily_word/recommend?count=1&"+MY_KEY;
 
     //随机图片
-    public static final String RANDOM_IMG_URL = "https://www.mxnzp.com/api/image/girl/list/random?app_id=n3kqimomsucpkyri&app_secret=b1lKVUNtTG1PMk95RE8yanFUYjZvQT09";
+    public static final String RANDOM_IMG_URL = "https://www.mxnzp.com/api/image/girl/list/random?"+MY_KEY;
 
     //注册  本地服务器接口
     //星座配对网络接口

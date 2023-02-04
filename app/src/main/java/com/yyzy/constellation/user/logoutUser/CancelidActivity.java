@@ -184,6 +184,8 @@ public class CancelidActivity extends BaseActivity implements View.OnClickListen
         if (num.length() == 6){
             btnZhuxiao.setEnabled(true);
             ViewUtil.hideOneInputMethod(CancelidActivity.this, etNum);
+            loading();
+            SMSSDK.submitVerificationCode("+86",base_phones,num);
         }else {
             btnZhuxiao.setEnabled(false);
         }

@@ -26,9 +26,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="拖动下方滑块完成验证"
-                android:textColor="@color/grey"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/size_15sp"/>
+                android:textSize="@dimen/size_15sp"
+                android:textStyle="bold"
+                android:textColor="@color/yaBlack"/>
 
             <ImageView
                 android:id="@+id/swipe_refresh"

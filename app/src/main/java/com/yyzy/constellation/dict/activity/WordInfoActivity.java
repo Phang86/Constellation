@@ -92,7 +92,7 @@ public class WordInfoActivity extends BaseActivity implements View.OnClickListen
         layoutBottom.setVisibility(View.GONE);
         ivCollect.setVisibility(View.GONE);
 
-        dialog = new DiyProgressDialog(this, "Loading...");
+        dialog = new DiyProgressDialog(this);
         dialog.show();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);

@@ -32,25 +32,22 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-
-        <activity android:name=".tally.ChartActivity"/>
-
+        <activity android:name=".user.GexingActivity"></activity>
+        <activity android:name=".user.UserLoginInfoActivity" />
+        <activity android:name=".user.feedback.HistoryFeedBackActivity" />
+        <activity android:name=".user.feedback.FeedBackActivity" />
+        <activity android:name=".tally.ChartActivity" />
         <activity android:name=".tally.TallyJiluActivity" />
-
-        <activity android:name=".tally.TallySearchActivity"
+        <activity
+            android:name=".tally.TallySearchActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible"
-            />
-
-        <activity android:name=".tally.RecordActivity"
+            android:windowSoftInputMode="stateVisible" />
+        <activity
+            android:name=".tally.RecordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-
-        <activity android:name=".tally.TallyActivity"
-            />
-
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".tally.TallyActivity" />
         <activity android:name=".news.NewsInfoActivity" />
-
         <activity android:name=".news.AddItemActivity" />
 
         <uses-library
@@ -58,21 +55,15 @@
             android:required="false" />
 
         <activity android:name=".news.NewsActivity" />
-
         <activity android:name=".history.HistoryInfoActivity" />
-
         <activity android:name=".history.HistoryActivity" />
-
         <activity android:name=".history.MoreHistoryActivity" />
-
-        <activity android:name=".user.alertPhone.UpdatePhoneOutActivity"
+        <activity
+            android:name=".user.alertPhone.UpdatePhoneOutActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible"/>
-
+            android:windowSoftInputMode="stateVisible" />
         <activity android:name=".user.alertPhone.UpdatePhoneActivity" />
-
         <activity android:name=".user.logoutUser.CancelidActivity" />
-
         <activity android:name=".user.logoutUser.CancelActivity" />
 
         <receiver
@@ -82,40 +73,25 @@
 
         <activity android:name=".user.alertPwd.SwipeCheckActivity" />
         <activity
-            android:name=".activity.ConfigPwdActivity"
+            android:name=".user.findPwd.ConfigPwdActivity"
             android:theme="@style/Login" />
         <activity
-            android:name=".activity.FindPwdActivity"
+            android:name=".user.findPwd.FindPwdActivity"
             android:theme="@style/Login" />
-
         <activity android:name=".user.alertPwd.UpdatePwdActivity" />
-
         <activity android:name=".dict.activity.CollectActivity" />
-
         <activity android:name=".dict.activity.SetActivity" />
-
         <activity android:name=".dict.activity.ChengYuInfoActivity" />
-
         <activity android:name=".dict.activity.ChengYuActivity" />
-
         <activity android:name=".dict.activity.IdentifyImgActivity" />
-
         <activity android:name=".user.AppInfoActivity" />
-
         <activity android:name=".dict.activity.WordInfoActivity" />
-
         <activity android:name=".dict.activity.SearchPinyinActivity" />
-
         <activity android:name=".dict.activity.SearchBushouActivity" />
-
         <activity android:name=".dict.activity.DictActivity" />
-
         <activity android:name=".weather.activity.MoreActivity" />
-
         <activity android:name=".weather.activity.SearchCityActivity" />
-
         <activity android:name=".weather.activity.DeleteCityActivity" />
-
         <activity android:name=".weather.activity.CityManagerActivity" />
         <activity
             android:name=".weather.activity.WeatherActivity"
@@ -140,15 +116,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LuckDetailsActivity" />
-
         <activity android:name=".activity.StarStartActivity" />
-
         <activity android:name=".activity.StarDetailsActivity" />
-
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

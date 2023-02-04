@@ -85,7 +85,7 @@ public class ChengYuInfoActivity extends BaseActivity implements View.OnClickLis
         collectImg.setVisibility(View.GONE);
         Intent intent = getIntent();
         chengyu = intent.getStringExtra("chengyu");
-        dialog = new DiyProgressDialog(this, "加载中...");
+        dialog = new DiyProgressDialog(this);
         dialog.show();
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);

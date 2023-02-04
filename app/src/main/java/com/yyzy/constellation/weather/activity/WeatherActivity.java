@@ -81,7 +81,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initData() {
         if (cityList.size() == 0){
-            cityList.add("衡阳");
+            cityList.add(base_ipCity);
         }
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
@@ -157,49 +157,18 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.weather_iv_back:
-                //intentJump(MainActivity.class);
                 finish();
                 break;
             case R.id.weather_iv_more:
-                //intentJump(MoreActivity.class);
                 intent.setClass(this,MoreActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
                 break;
             case R.id.weather_iv_add:
-                //intentJump(CityManagerActivity.class);
                 intent.setClass(this,CityManagerActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
                 break;
         }
     }
-
-    //当页面重新加载时调用的方法，这个方法在获取焦点之前调用，此处完成Viewpager页面的更新
-    @Override
-    protected void onRestart() {
-//        List<String> list = DBManager.queryAllCityName();
-//        if (list.size() == 0 || list == null) {
-//            list.add("衡阳");
-//        }
-//        //清空原来的数据源
-//        cityList.clear();
-//        //添加新的数据
-//        cityList.addAll(list);
-//        //剩余城市也要创建对象fragment页面
-//        initPager();
-//        adapter.notifyDataSetChanged();
-//        //页面数量发生改变，指示器数量也会发生变化，重新设置指示器
-//        imgList.clear();      //清空
-//        pointLayout.removeAllViews();   //将布局当中所有元素移除
-//        initPoint();
-//        viewPager.setCurrentItem(fragmentList.size()-1);
-//        Log.e("TAG", "onRestart: "+111111);
-        super.onRestart();
-    }
-
 
     //换壁纸的方法
     public void changeBg(){

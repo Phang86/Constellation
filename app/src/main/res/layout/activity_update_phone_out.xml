@@ -11,12 +11,35 @@
     <include
         layout="@layout/star_details_title"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请重新设置手机号"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_18sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="身份验证成功"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_14sp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_margin="@dimen/dimen_10dp">
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -25,8 +48,7 @@
             app:contentPadding="@dimen/dimen_13dp"
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
-            app:cardCornerRadius="@dimen/dimen_10dp"
-            android:layout_marginTop="@dimen/dimen_10dp">
+            app:cardCornerRadius="@dimen/dimen_10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -36,7 +58,7 @@
                     android:id="@+id/updateOut_tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="86+"
+                    android:text="+86"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
                     android:textSize="@dimen/size_15sp"
@@ -83,11 +105,11 @@
             app:cardElevation="@dimen/dimen_0dp"
             app:cardMaxElevation="@dimen/dimen_0dp"
             app:cardCornerRadius="@dimen/dimen_10dp"
-            android:layout_marginTop="@dimen/dimen_20dp">
+            android:layout_marginTop="@dimen/dimen_10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_25dp"
+                android:layout_height="match_parent"
                 android:baselineAligned="true"
                 android:orientation="horizontal">
 
@@ -118,7 +140,7 @@
                     android:lines="1"
                     android:text="发送验证码"
                     android:textColor="@color/zhuBlue"
-                    android:textSize="@dimen/size_14sp"
+                    android:textSize="@dimen/size_13sp"
                     android:ellipsize="end"/>
 
             </LinearLayout>

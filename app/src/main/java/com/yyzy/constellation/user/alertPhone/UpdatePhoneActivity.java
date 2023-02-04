@@ -64,7 +64,7 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
         replacePhone = base_phones.replace(" ", "");
         Log.e("TAG", "现手机号为："+base_phones);
         String enPhone = replacePhone.substring(0, 3) + "****" + replacePhone.substring(7, replacePhone.length());
-        tvSendValNumTo.setText("\t" + enPhone);
+        tvSendValNumTo.setText(enPhone);
         mTimeCount = new TimeCount(60000,1000);
     }
 
@@ -200,6 +200,8 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
     public void afterTextChanged(Editable s) {
         String valNum = etValNum.getText().toString().trim();
         if (valNum.length() == 6) {
+            loading();
+            SMSSDK.submitVerificationCode("+86",replacePhone,valNum);
             btnNext.setEnabled(true);
         } else {
             btnNext.setEnabled(false);

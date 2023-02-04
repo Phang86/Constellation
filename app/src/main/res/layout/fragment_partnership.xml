@@ -1,115 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.PartnershipFragment"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/dimen_20dp"
-
-    android:background="@drawable/left_right_radio">
-
+    android:background="@drawable/left_right_radio"
+    android:paddingTop="@dimen/dimen_10dp"
+    android:paddingBottom="@dimen/dimen_10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="@dimen/dimen_20dp"
-        android:layout_marginRight="@dimen/dimen_20dp">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/partnershipFrag_layout_man"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_130dp"
-            android:orientation="horizontal"
-            android:padding="@dimen/dimen_15dp"
-            android:background="@drawable/partnership_man_bg">
-
-            <TextView
-                android:id="@+id/partnershipFrag_tv_man"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/man"
-                android:textColor="@color/black_200"
-                android:textSize="@dimen/size_18sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-
-            <ImageView
-                android:id="@+id/partnershipFrag_iv_man"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <Spinner
-                android:id="@+id/partnershipFrag_sn_man"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/partnershipFrag_layout_woman"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_130dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:padding="@dimen/dimen_15dp"
-            android:background="@drawable/partnership_woman_bg"
-            android:layout_below="@+id/partnershipFrag_layout_man">
-
-            <TextView
-                android:id="@+id/partnershipFrag_tv_woman"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/woman"
-                android:textColor="@color/black_200"
-                android:textSize="@dimen/size_18sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
-
-            <ImageView
-                android:id="@+id/partnershipFrag_iv_woman"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <Spinner
-                android:id="@+id/partnershipFrag_sn_woman"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/partnershipFrag_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/partnership_info"
-            android:layout_marginTop="@dimen/dimen_20dp"
-            android:layout_below="@+id/partnershipFrag_layout_woman"
-            android:textSize="@dimen/size_14sp"
-            android:textColor="@color/black_200"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            >
 
+            <TextView
+                android:id="@+id/partnershipFrag_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:textSize="@dimen/size_15sp"
+                android:textColor="@color/black_200"
+                android:layout_marginBottom="@dimen/dimen_15dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                />
 
+            <LinearLayout
+                android:id="@+id/partnershipFrag_layout_man"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_130dp"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_15dp"
+                android:background="@drawable/partnership_man_bg">
+
+                <TextView
+                    android:id="@+id/partnershipFrag_tv_man"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/man"
+                    android:textColor="@color/black_200"
+                    android:textSize="@dimen/size_18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/partnershipFrag_iv_man"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/partnershipFrag_sn_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/partnershipFrag_layout_woman"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_130dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:padding="@dimen/dimen_15dp"
+                android:background="@drawable/partnership_woman_bg"
+                android:layout_below="@+id/partnershipFrag_layout_man">
+
+                <TextView
+                    android:id="@+id/partnershipFrag_tv_woman"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/woman"
+                    android:textColor="@color/black_200"
+                    android:textSize="@dimen/size_18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/partnershipFrag_iv_woman"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/partnershipFrag_sn_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/partnershipFrag_btn_start"
             android:text="@string/start_partnership"
             style="@style/frag_partnership"
-            android:layout_marginTop="@dimen/dimen_50dp"/>
+            android:layout_marginTop="@dimen/dimen_60dp"
+            />
 
 
         <TextView
             android:id="@+id/partnershipFrag_btn_lucky"
             android:text="@string/lucky"
             style="@style/frag_partnership"
-            android:layout_marginTop="@dimen/dimen_20dp"/>
+            android:layout_marginTop="@dimen/dimen_20dp"
+            />
 
         <TextView
             android:id="@+id/partnershipFrag_btn_game"
@@ -117,4 +127,7 @@
             style="@style/frag_partnership"
             android:layout_marginTop="@dimen/dimen_20dp"
             />
-</LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

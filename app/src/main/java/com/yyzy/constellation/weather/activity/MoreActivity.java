@@ -191,7 +191,7 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void showLoadingDialog() {
-        DiyProgressDialog dialog1 = new DiyProgressDialog(this,"数据清理中...");
+        DiyProgressDialog dialog1 = new DiyProgressDialog(this);
         dialog1.setCancelable(false);//设置不能通过后退键取消
         dialog1.show();
         new Handler().postDelayed(new Runnable() {

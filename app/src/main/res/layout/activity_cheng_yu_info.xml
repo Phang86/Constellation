@@ -46,13 +46,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/dimen_20dp">
+            android:padding="@dimen/dimen_10dp">
 
             <LinearLayout
                 android:id="@+id/chengyuInfo_layout_zi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/chengyuInfo_tv_one"
@@ -71,6 +72,7 @@
                     style="@style/chengyuInfoTvMax"/>
             </LinearLayout>
             <TextView
+                android:layout_gravity="center"
                 android:id="@+id/chengyuInfo_tv_pinyin"
                 style="@style/chengyuInfoMin"/>
 

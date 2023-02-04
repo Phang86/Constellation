@@ -129,14 +129,18 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
             public void afterTextChanged(Editable s) {
                 String ph = etPhone.getText().toString().trim();
                 String num = etValNum.getText().toString().trim();
-                if (!TextUtils.isEmpty(ph) && !TextUtils.isEmpty(num)) {
-                    btnConfirm.setEnabled(true);
-                } else {
-                    btnConfirm.setEnabled(false);
-                }
-                if (etPhone.getText().length() == 13){
+                if (ph.length() == 13){
                     tvSendValNum.setClickable(true);
                     tvSendValNum.setTextColor(getResources().getColor(R.color.zhuBlue));
+                    if (ph.length() == 13 && num.length() == 6) {
+                        btnConfirm.setEnabled(true);
+                        loading();
+                        //进行验证码和手机号效验
+                        SMSSDK.submitVerificationCode("+86", ph, num);
+                        ViewUtil.hideOneInputMethod(UpdatePhoneOutActivity.this, etPhone);
+                        return;
+                    }
+                    btnConfirm.setEnabled(false);
                 }else{
                     tvSendValNum.setClickable(false);
                     tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
@@ -276,7 +280,13 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
         String ph = etPhone.getText().toString().trim();
         String num = etValNum.getText().toString().trim();
         if (!TextUtils.isEmpty(ph) && !TextUtils.isEmpty(num)) {
-            btnConfirm.setEnabled(true);
+            if (num.length() == 6 && ph.length() == 13) {
+                btnConfirm.setEnabled(true);
+                loading();
+                //进行验证码和手机号效验
+                SMSSDK.submitVerificationCode("+86", ph, num);
+                ViewUtil.hideOneInputMethod(UpdatePhoneOutActivity.this, etValNum);
+            }
         } else {
             btnConfirm.setEnabled(false);
         }
@@ -298,15 +308,14 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
 
         @Override
         public void onFinish() {
+            tvSendValNum.setText("重新获取");
             if (!TextUtils.isEmpty(etPhone.getText()) && etPhone.getText().length() == 13){
                 tvSendValNum.setClickable(true);
                 tvSendValNum.setTextColor(getResources().getColor(R.color.zhuBlue));
             }else{
-                tvSendValNum.setEnabled(false);
+                tvSendValNum.setClickable(false);
                 tvSendValNum.setTextColor(getResources().getColor(R.color.grey));
             }
-            tvSendValNum.setText("重新获取");
-
         }
     }
 
@@ -345,10 +354,14 @@ public class UpdatePhoneOutActivity extends BaseActivity implements View.OnClick
                                     showDiyDialog("修改失败！");
                                     return;
                                 }
+                                if (resultStr.equals("su_error")) {
+                                    showDiyDialog("当前手机号已注册，请更换手机号！");
+                                    return;
+                                }
                                 if (resultStr.equals("success")){
                                     if (!TextUtils.isEmpty(resultStr)) {
                                         MyToast.showText(UpdatePhoneOutActivity.this,"手机号修改完成！",true);
-                                        updateUserPhone(newPhone);
+                                        updateSpfUserInfo("phone",newPhone);
                                         finish();
                                         return;
                                     }

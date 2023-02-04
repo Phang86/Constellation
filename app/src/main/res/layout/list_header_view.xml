@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:id="@+id/header_layout_max"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/state_bg_f4f3f8">
 
     <TextView
         android:id="@+id/header_tv_gongli"
@@ -45,7 +46,6 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:gravity="center"
-        android:text=""
         android:layout_marginTop="@dimen/dimen_20dp"/>
 
     <LinearLayout

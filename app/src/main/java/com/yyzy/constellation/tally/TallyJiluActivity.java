@@ -144,7 +144,7 @@ public class TallyJiluActivity extends BaseActivity implements View.OnClickListe
 
 
     private void loadData(int year,int month) {
-        progressDialog = new DiyProgressDialog(this,"加载中...");
+        progressDialog = new DiyProgressDialog(this);
         linearLayout.setVisibility(View.GONE);
         progressDialog.show();
         new Handler().postDelayed(new Runnable() {

@@ -138,13 +138,20 @@ public abstract class TallyBaseFragment extends Fragment implements View.OnClick
                 if (TextUtils.isEmpty(money) || money.length() < 1){
                     MyToast.showText(getContext(),"金额不能为空哦！");
                     return;
-                }else if (money.equals("0") || Float.valueOf(money) == 0){
+                }
+                if (money.equals(".")){
+                    MyToast.showText(getContext(),"特殊符号不能充当金额！");
+                    return;
+                }
+                if (money.equals("0") || Float.valueOf(money) == 0){
                     MyToast.showText(getContext(),"金额不能为零哦！");
                     return;
-                }else if (imgType.getBackground() == null || TextUtils.isEmpty(tvType.getText())){
+                }
+                if (imgType.getBackground() == null || TextUtils.isEmpty(tvType.getText())){
                     MyToast.showText(getContext(),"请选择以下列表！");
                     return;
-                }else if (money.length() > 7){
+                }
+                if (money.length() > 7){
                     MyToast.showText(getContext(),"金额过大，请谨慎输入！");
                     return;
                 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.LuckDetailsActivity"
     android:background="@drawable/bg"
-    android:orientation="vertical">
+    >
 
     <include
         android:id="@+id/top_layout"
@@ -38,7 +38,6 @@
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/dimen_15dp"
                     android:src="@drawable/ic_launcher_background"/>
-
 
                 <com.yyzy.constellation.utils.MyListView
                     android:id="@+id/luck_details_lv"

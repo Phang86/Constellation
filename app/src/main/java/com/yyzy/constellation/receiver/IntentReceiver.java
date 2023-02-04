@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -13,13 +14,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.gson.Gson;
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
+import com.yyzy.constellation.entity.IpBean;
 import com.yyzy.constellation.fragment.MeFragment;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.utils.Mydialog;
+import com.yyzy.constellation.utils.URLContent;
 
-public class IntentReceiver extends BroadcastReceiver {
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import static android.content.Context.MODE_PRIVATE;
+
+public class IntentReceiver extends BroadcastReceiver{
 
     private static IntentReceiver mInstance;
 
@@ -84,4 +95,5 @@ public class IntentReceiver extends BroadcastReceiver {
 //            }
 //        });
     }
+
 }

@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
     <group
         android:checkableBehavior="single">
 
         <item
             android:id="@+id/gongneng"
-            android:icon="@drawable/ic_gongneng"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;功能介绍"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_gongneng"
+            tools:ignore="MenuTitle"
+            />
 
         <item
             android:id="@+id/weather"
-            android:icon="@drawable/ic_weather"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;出行天气"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_weather"
+            tools:ignore="MenuTitle"
+            />
 
         <item
             android:id="@+id/news"
-            android:icon="@drawable/ic_news"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;聚合新闻"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_news"
+            tools:ignore="MenuTitle"
+            />
 
 
         <item
             android:id="@+id/xingshi"
-            android:icon="@drawable/ic_dict_search"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;姓氏查询"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_dict"
+            tools:ignore="MenuTitle"
+            />
 
         <item
             android:id="@+id/tally"
-            android:icon="@drawable/icon_jizhang"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;生活记账"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_tally"
+            tools:ignore="MenuTitle"
+            />
 
         <item
             android:id="@+id/user_info"
-            android:icon="@drawable/ic_user_info"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;用户信息"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_appinfo"
+            tools:ignore="MenuTitle"
+            />
 
         <item
             android:id="@+id/exit"
-            android:icon="@drawable/ic_exit"
-            android:title="&#160;&#160;&#8201;&#160;&#160;&#8201;&#160;&#160;&#8201;退出"/>
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_exit"
+            tools:ignore="MenuTitle"
+            />
+
     </group>
+
 </menu>

@@ -35,9 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="@drawable/view_foreground"
-        app:cardCornerRadius="22dp"
+        app:cardCornerRadius="@dimen/dimen_20dp"
         app:cardElevation="@dimen/dimen_0dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/white"
+        >
 
         <TextView
             android:id="@+id/tv_take_pictures"
@@ -49,7 +50,9 @@
             android:text="拍照"
             android:textSize="@dimen/size_15sp"
             android:textColor="@color/black_200"
-            android:padding="@dimen/dimen_12dp"/>
+            android:padding="@dimen/dimen_10dp"
+            />
+
     </androidx.cardview.widget.CardView>
 
     <View
@@ -63,9 +66,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="@drawable/view_foreground"
-        app:cardCornerRadius="22dp"
+        app:cardCornerRadius="@dimen/dimen_20dp"
         app:cardElevation="@dimen/dimen_0dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/white"
+        >
 
         <TextView
             android:id="@+id/tv_open_album"
@@ -77,6 +81,42 @@
             android:text="打开相册"
             android:textSize="@dimen/size_15sp"
             android:textColor="@color/black_200"
-            android:padding="@dimen/dimen_12dp"/>
+            android:padding="@dimen/dimen_10dp"/>
     </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/gray_200"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:visibility="gone"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/view_foreground"
+        app:cardCornerRadius="@dimen/dimen_20dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:cardBackgroundColor="@color/white"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/tv_open_baomi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/view_foreground"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/size_15sp"
+            android:textColor="@color/black_200"
+            android:padding="@dimen/dimen_10dp"
+            android:text="保密"
+            />
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

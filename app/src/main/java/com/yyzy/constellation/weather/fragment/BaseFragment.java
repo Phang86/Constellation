@@ -1,7 +1,10 @@
 package com.yyzy.constellation.weather.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaSync;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -17,8 +20,17 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class BaseFragment extends Fragment implements Callback.CommonCallback<String>, Response.Listener<String>, Response.ErrorListener {
 
+    public SharedPreferences base_app;
+    public String base_user_names;
+    public String base_pass_words;
+    public String base_create_times;
+    public String base_phones;
+    public String base_ip;
+    public String base_ipaddress;
 
     public void loadData(String path){
         RequestParams params = new RequestParams(path);
@@ -78,7 +90,18 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
     public void onResponse(String response) {
         //获取网络请求成功的方法
         //dialog.dismiss();
-
     }
 
+
+    //获取用户信息
+    protected void getUserInfo(Context context) {
+        base_app = context.getSharedPreferences("constellation", MODE_PRIVATE);
+        base_user_names = base_app.getString("name", "");
+        base_pass_words = base_app.getString("passWord", "");
+        base_create_times = base_app.getString("createTime", "");
+        base_phones = base_app.getString("phone", "");
+        base_ip = base_app.getString("ip","");
+        base_ipaddress = base_app.getString("ipaddress","");
+        Log.e("TAG", "BaseActivity_onCreate: "+base_user_names+base_pass_words+base_create_times+base_phones);
+    }
 }

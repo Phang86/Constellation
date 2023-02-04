@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">星缘</string>
     <string name="label_star" translatable="false">星座</string>
     <string name="label_star_details" translatable="false">星座详情</string>
+    <string name="label_star_feedback" translatable="false">历史反馈</string>
     <string name="label_partnership" translatable="false">配对</string>
     <string name="label_luck" translatable="false">运势</string>
     <string name="label_me" translatable="false">我的</string>
@@ -9,13 +10,13 @@
     <string name="starParse" translatable="false">星座解析</string>
     <string name="man" translatable="false">男生</string>
     <string name="woman" translatable="false">女生</string>
-    <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击配对分析即可查看。</string>
-    <string name="start_partnership" translatable="false">配对分析</string>
+    <string name="partnership_info" translatable="false">分别选择男生星座和女生星座，再点击匹配分析即可查看。</string>
+    <string name="start_partnership" translatable="false">匹配分析</string>
     <string name="lucky" translatable="false">放松一下</string>
     <string name="historyToday" translatable="false">历史上的今天</string>
     <string name="jieshao" translatable="false">功能介绍</string>
     <string name="guanyu" translatable="false">用户信息</string>
-    <string name="appInfo" translatable="false">用户详情</string>
+    <string name="appInfo" translatable="false">用户信息</string>
     <string name="tuichu" translatable="false">退出登陆</string>
     <string name="weather" translatable="false">出行天气</string>
     <string name="nameLookup" translatable="false">姓氏查找</string>
@@ -51,13 +52,14 @@
     <string name="blue" translatable="false">透明润泽</string>
     <string name="updateBg" translatable="false">更换壁纸</string>
     <string name="clear" translatable="false">清理缓存</string>
-    <string name="version" translatable="false">应用版本号</string>
+    <string name="version" translatable="false">应用版本</string>
     <string name="updatePwd" translatable="false">修改密码</string>
     <string name="cancelUser" translatable="false">注销账号</string>
+    <string name="feedback" translatable="false">意见反馈</string>
     <string name="phone" translatable="false">手机号</string>
     <string name="userName" translatable="false">用户名</string>
-    <string name="updateTime" translatable="false">最近更新时间</string>
-    <string name="registerTime" translatable="false">注册时间</string>
+    <string name="updateTime" translatable="false">近期更新时间</string>
+    <string name="registerTime" translatable="false">账号注册时间</string>
     <string name="enjoyApp" translatable="false">分享应用</string>
     <string name="enjoy" translatable="false">分享</string>
     <string name="about" translatable="false">关于我们</string>
@@ -65,7 +67,7 @@
     <string name="star" translatable="false">星夜彩绘</string>
     <string name="findCity" translatable="false">查找城市</string>
     <string name="deleteCity" translatable="false">删除城市</string>
-    <string name="findDict" translatable="false">姓氏查找</string>
+    <string name="findDict" translatable="false">姓氏查询</string>
     <string name="set" translatable="false">设置</string>
     <string name="go_to_add" translatable="false">《前往添加...》</string>
     <string name="findText" translatable="false">请输入需要查找的文字</string>

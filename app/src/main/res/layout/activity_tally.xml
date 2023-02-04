@@ -69,7 +69,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_170dp"
+                android:layout_height="wrap_content"
                 app:contentPaddingTop="@dimen/dimen_15dp"
                 app:contentPaddingBottom="@dimen/dimen_20dp"
                 app:contentPaddingLeft="@dimen/dimen_10dp"
@@ -184,7 +184,7 @@
                         android:layout_below="@+id/tally_lv_header_layout"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/dimen_15dp"
-                        app:cardCornerRadius="@dimen/dimen_18dp"
+                        app:cardCornerRadius="@dimen/dimen_20dp"
                         app:contentPaddingLeft="@dimen/dimen_15dp"
                         app:contentPaddingRight="@dimen/dimen_15dp"
                         app:contentPaddingTop="@dimen/dimen_5dp"

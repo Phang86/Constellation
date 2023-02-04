@@ -2,28 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg">
-    <TextView
-        android:id="@+id/luck_details_lv_title"
-        android:layout_width="@dimen/dimen_100dp"
-        android:layout_height="@dimen/dimen_40dp"
-        android:padding="@dimen/dimen_10dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:text="沃尔克的"
-        android:textColor="@color/white"
-        android:background="@drawable/partnership_man_bg"
-        android:textSize="@dimen/size_16sp"
-        android:gravity="center"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardMaxElevation="@dimen/dimen_0dp"
+        app:cardCornerRadius="@dimen/dimen_20dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        android:layout_marginTop="@dimen/dimen_20dp">
+
+        <TextView
+            android:id="@+id/luck_details_lv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_10dp"
+            android:paddingRight="@dimen/dimen_10dp"
+            android:paddingTop="@dimen/dimen_5dp"
+            android:paddingBottom="@dimen/dimen_5dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_16sp"
+            android:gravity="center"
+            android:background="@drawable/searchbox_bg"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <TextView
         android:id="@+id/luck_details_lv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_5dp"
-        android:text="@string/partnership_info"
         android:background="@drawable/footer_tv_bg"
         android:padding="@dimen/dimen_10dp"
         android:textColor="@color/gray_600"
-        android:textSize="@dimen/size_15sp"/>
+        android:textSize="@dimen/size_15sp"
+        android:textIsSelectable="true"
+        />
 </LinearLayout>

@@ -204,8 +204,9 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                             if (result.equals("success")) {
                                                 MyToast.showText(UpdatePwdActivity.this, "原始密码不正确！");
                                                 oldPwdEt.setText("");
-                                                oldPwdEt.setHint("请重新输入旧密码");
-                                                updateBtn.setEnabled(false);
+                                                oldPwdEt.requestFocus();
+                                                oldPwdEt.setHint("请重新输入原始密码");
+//                                                updateBtn.setEnabled(false);
                                                 return;
                                             }
                                             List<User> dataEntity = new Gson().fromJson(result, new TypeToken<List<User>>() {
@@ -221,7 +222,7 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                                             e.printStackTrace();
                                         }
                                     }
-                                }, 500);
+                                }, 300);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -266,11 +267,8 @@ public class UpdatePwdActivity extends BaseActivity implements View.OnClickListe
                         if (result.equals("success")) {
                             MyToast.showText(UpdatePwdActivity.this, "密码修改成功！", true);
                             oldPwdEt.setText("");
-                            oldPwdEt.setHint("");
                             newPwdEt.setText("");
-                            newPwdEt.setHint("");
                             configNewPwdEt.setText("");
-                            configNewPwdEt.setHint("");
                             clearUserInfo();
                             clearNotificationManger();
                             showDiyDialog();

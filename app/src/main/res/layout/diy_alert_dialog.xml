@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="@dimen/dimen_0dp"
         app:cardMaxElevation="@dimen/dimen_0dp"
-        android:layout_margin="@dimen/dimen_25dp"
+        android:layout_margin="@dimen/dimen_35dp"
         app:cardCornerRadius="@dimen/dimen_10dp">
 
         <LinearLayout

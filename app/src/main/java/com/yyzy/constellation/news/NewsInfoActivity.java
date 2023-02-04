@@ -124,7 +124,7 @@ public class NewsInfoActivity extends BaseActivity implements View.OnClickListen
 
     public void loadProgress(int newProgress){
         if (mDialog == null) {
-            mDialog = new DiyProgressDialog(NewsInfoActivity.this, "加载中...");
+            mDialog = new DiyProgressDialog(NewsInfoActivity.this);
             mDialog.setCancelable(true);//设置能通过后退键取消
             mDialog.setCanceledOnTouchOutside(false);
             mDialog.show();

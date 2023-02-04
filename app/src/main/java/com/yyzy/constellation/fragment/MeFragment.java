@@ -307,7 +307,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 //editor.remove("username");
                 //editor.remove("password");
                 //提交
-                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext(),"退出登录中...");
+                DiyProgressDialog dialog1 = new DiyProgressDialog(getContext());
                 dialog1.setCancelable(false);//设置不能通过后退键取消
                 dialog1.show();
                 new Handler().postDelayed(new Runnable() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
 
     private ImageView imgWoman, imgMan;
     private Spinner snWoman, snMan;
+    private TextView partnershipFrag_tv;
     private TextView btnLucky, btnStart, btnGame;
     private StarInfoEntity info;
     private List<StarInfoEntity.StarinfoDTO> dtoList;
@@ -85,12 +87,18 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
         btnLucky = view.findViewById(R.id.partnershipFrag_btn_lucky);
         btnStart = view.findViewById(R.id.partnershipFrag_btn_start);
         btnGame = view.findViewById(R.id.partnershipFrag_btn_game);
-
+        partnershipFrag_tv = view.findViewById(R.id.partnershipFrag_tv);
+        partnershipFrag_tv.setText("\t\t\t\t"+getResources().getString(R.string.partnership_info));
+        partnershipFrag_tv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        partnershipFrag_tv.setSelected(true);
+        partnershipFrag_tv.setFocusable(true);
+        partnershipFrag_tv.setFocusableInTouchMode(true);
         btnLucky.setOnClickListener(this);
         btnStart.setOnClickListener(this);
         snWoman.setOnItemSelectedListener(this);
         snMan.setOnItemSelectedListener(this);
         btnGame.setOnClickListener(this);
+
     }
 
     @Override
