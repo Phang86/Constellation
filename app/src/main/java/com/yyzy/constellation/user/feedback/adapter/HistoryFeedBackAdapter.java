@@ -51,10 +51,11 @@ public class HistoryFeedBackAdapter extends RecyclerView.Adapter<HistoryFeedBack
 //        Log.e("TAG", "onBindViewHolder: "+currDate2);
         holder.tvTime.setText(bean.getFeedBackTime());
         holder.tvContent.setText(bean.getUserContent());
-        holder.tvAddress.setText("IP详情："+bean.getUserAddress());
+        String repAddress = bean.getUserAddress().replace("·", "").replace(" ","");
+        holder.tvAddress.setText(repAddress);
         String userPhone = bean.getUserPhone();
         String subPhone = userPhone.substring(0,3)+"****"+userPhone.substring(7);
-        holder.tvPhone.setText("联系电话："+subPhone);
+        holder.tvPhone.setText(subPhone);
         holder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

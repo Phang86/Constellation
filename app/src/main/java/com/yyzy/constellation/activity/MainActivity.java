@@ -51,6 +51,7 @@ import com.yyzy.constellation.fragment.StarFragment;
 import com.yyzy.constellation.news.NewsActivity;
 import com.yyzy.constellation.tally.TallyActivity;
 import com.yyzy.constellation.tally.util.OnClickSure;
+import com.yyzy.constellation.user.AboutMeActivity;
 import com.yyzy.constellation.user.AppInfoActivity;
 import com.yyzy.constellation.user.CallBackOkhttp;
 import com.yyzy.constellation.user.GexingActivity;
@@ -252,6 +253,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                         break;
                     case R.id.tally:
                         intentJump(TallyActivity.class);
+                        break;
+                    case R.id.aboutMe:
+                        intentJump(AboutMeActivity.class);
                         break;
                     default:
                         //drawerLayout.closeDrawers();

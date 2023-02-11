@@ -17,8 +17,11 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +47,6 @@ import java.net.URL;
 import java.util.List;
 
 public class HistoryInfoActivity extends BaseActivity implements View.OnClickListener{
-
 
     private TextView tvTitle,tvContent,tvInfoTitle;
     private LinearLayout tvWu;
@@ -74,8 +76,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
         //titleLayout.setBackgroundColor();
         tvTitle.setText("历史详情");
         imgBack.setOnClickListener(this);
-
-
+        loading();
         Intent intent = getIntent();
         String info_id = intent.getStringExtra("info_id");
         String descURL = URLContent.getHistoryDescURL("1.0", info_id);
@@ -97,6 +98,7 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onSuccess(String result) {
         try {
+            stopLoading();
             sv.setVisibility(View.VISIBLE);
             HistoryInfoEntity entity = new Gson().fromJson(result, HistoryInfoEntity.class);
             List<HistoryInfoEntity.ResultBean> beans = entity.getResult();
@@ -104,21 +106,22 @@ public class HistoryInfoActivity extends BaseActivity implements View.OnClickLis
             String title = bean.getTitle();
             String content = bean.getContent();
             String pic = bean.getPic();
-            tvInfoTitle.setText(title+"。");
-            tvContent.setText(content);
+            tvInfoTitle.setText(title + "。");
+            tvContent.setText("\t\t\t\t" + content);
             if (!TextUtils.isEmpty(pic)) {
                 imgTitle.setVisibility(View.VISIBLE);
                 cardView.setVisibility(View.VISIBLE);
                 Glide.with(this).load(pic).into(imgTitle);
-                
-            }else{
+            } else {
                 imgTitle.setVisibility(View.GONE);
                 cardView.setVisibility(View.GONE);
             }
+
         }catch (Exception e){
             e.printStackTrace();
             sv.setVisibility(View.GONE);
             tvWu.setVisibility(View.VISIBLE);
+            stopLoading();
         }
     }
 

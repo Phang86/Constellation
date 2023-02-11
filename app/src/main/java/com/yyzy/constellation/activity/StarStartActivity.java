@@ -106,8 +106,8 @@ public class StarStartActivity extends BaseActivity implements View.OnClickListe
                 }
                 pfTv.setText("配对："+result.getZhishu()+" "+result.getJieguo());
                 bzTv.setText("星座比重："+result.getBizhong());
-                jxTv.setText("解析：\n\n"+result.getLianai());
-                zyTv.setText("注意事项：\n\n"+result.getZhuyi());
+                jxTv.setText("解析：\n\t\t\t\t"+result.getLianai());
+                zyTv.setText("注意事项：\n\t\t\t\t"+result.getZhuyi());
             }else{
                 showOrHide(false);
             }

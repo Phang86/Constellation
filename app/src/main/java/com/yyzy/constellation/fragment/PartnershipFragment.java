@@ -12,16 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.history.HistoryActivity;
-import com.yyzy.constellation.activity.LocalMusicActivity;
 import com.yyzy.constellation.activity.StarStartActivity;
 import com.yyzy.constellation.entity.StarInfoEntity;
+import com.yyzy.constellation.music.MusicActivity;
 import com.yyzy.constellation.utils.AssetsUtils;
 
 import java.util.ArrayList;
@@ -105,7 +104,8 @@ public class PartnershipFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.partnershipFrag_btn_lucky:
-                startActivity(new Intent(getContext(), LocalMusicActivity.class));
+//                startActivity(new Intent(getContext(), LocalMusicActivity.class));
+                startActivity(new Intent(getContext(), MusicActivity.class));
                 break;
             case R.id.partnershipFrag_btn_start:
                 //获取当前图片位置

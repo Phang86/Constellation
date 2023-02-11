@@ -10,6 +10,15 @@
 
     <include android:id="@+id/layout_top" layout="@layout/star_details_title"/>
 
+<!--    <ProgressBar-->
+<!--        android:id="@+id/load_progress"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/dimen_3dp"-->
+<!--        android:layout_below="@+id/layout_top"-->
+<!--        android:max="100"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:progressDrawable="@drawable/lyle_base_webview_progress_bg"/>-->
+
     <ScrollView
         android:id="@+id/history_info_sv"
         android:layout_width="match_parent"

@@ -2,7 +2,10 @@ package com.yyzy.constellation.weather.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.Gravity;
@@ -12,22 +15,34 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.yyzy.constellation.R;
 import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.utils.AlertDialogUtils;
 import com.yyzy.constellation.utils.DiyProgressDialog;
+import com.yyzy.constellation.utils.MyToast;
 import com.yyzy.constellation.weather.db.DBManager;
 
 
 public class MoreActivity extends BaseActivity implements View.OnClickListener {
-    private CardView layoutUpdate,layoutClear,layoutEnjoy;
+    private CardView layoutUpdate,layoutClear,layoutEnjoy,layoutSame;
     private RadioGroup radioGroup;
     private ImageView back;
     private SharedPreferences bgPref;
     private String versionName;
+    // APP_ID 替换为你的应用从官方网站申请到的合法appID
+    private static final String APP_ID = "wx116eea39d7c46d32";
+
+    // IWXAPI 是第三方app和微信通信的openApi接口
+    private IWXAPI api;
 
     @Override
     protected int initLayout() {
@@ -40,12 +55,46 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
         layoutUpdate = findViewById(R.id.more_layout_updateBg);
         layoutClear = findViewById(R.id.more_layout_clear);
         layoutEnjoy = findViewById(R.id.more_layout_enjoy);
+        layoutSame = findViewById(R.id.more_layout_same);
         radioGroup = findViewById(R.id.more_rg);
 
         back.setOnClickListener(this);
         layoutUpdate.setOnClickListener(this);
         layoutClear.setOnClickListener(this);
         layoutEnjoy.setOnClickListener(this);
+        layoutSame.setOnClickListener(this);
+
+    }
+
+    private void regToWx() {
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+//        api = WXAPIFactory.createWXAPI(this,null);
+
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
+
+        PayReq request = new PayReq();
+        request.appId = APP_ID;
+        request.partnerId = "fsdfdsf";
+        request.prepayId = "prepayId";
+        request.packageValue = "Sign=WXPay";
+        request.nonceStr = "nonceStr";
+        request.timeStamp = "111";
+        request.sign = "b764a165b1f2a923d8d243316730891b";
+
+        api.sendReq(request);
+
+        //建议动态监听微信启动广播进行注册到微信
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // 将该app注册到微信
+                api.registerApp(APP_ID);
+            }
+        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
+
     }
 
     @Override
@@ -134,9 +183,22 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener {
             case R.id.more_layout_enjoy:
                 enjoyApp("ConstellationAPK_debug_v1.2.8_2022_11_22_18_30_11.apk");
                 break;
-//            case R.id.more_layout_version:
-//                //showAlertDialog();
-//                break;
+            case R.id.more_layout_same:
+//                regToWx();
+                // 通过包名获取要跳转的app，创建intent对象
+
+                Intent app = getPackageManager().getLaunchIntentForPackage("com.hnhy.weather");
+                //Intent app = new Intent();
+                //app.setClassName(MoreActivity.this, "com.hnhy.weather.MainActivity");
+                // 这里如果intent为空，就说名没有安装要跳转的应用嘛
+                if (app != null) {
+                    startActivity(app);
+                } else {
+                    // 没有安装要跳转的app应用，提醒一下
+                    MyToast.showText(getApplicationContext(), "不好意思，未找到相似应用", Gravity.BOTTOM);
+                }
+//                intentJump();
+                break;
             default:
                 break;
 

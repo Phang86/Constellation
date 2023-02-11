@@ -1,5 +1,6 @@
 package com.yyzy.constellation.utils;
 
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.widget.ListView;
@@ -11,9 +12,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringUtils {
+    public static String BLOG_URL = "https://blog.csdn.net/weixin_52015740?spm=1000.2115.3001.5343";
+    public static String GITHUB_CODE_URL = "https://github.com/Phang86/Constellation";
+    public static String GITEE_CODE_URL = "https://gitee.com/P_hang/Constellation";
+    public static String GITLAB_CODE_URL = "https://jihulab.com/Phang86/Constellation";
+
     public static String setContent(){
         String content = "此应用软件是一款星座配对多功能软件，主要包括：星座介绍、星配分析、星座配对、星座运势、出行天气、聚合新闻、姓氏查询、生活记账等一些日常功能。";
         return content;
+    }
+
+    public static String getVersion(Context context) {
+        //获取应用的版本名称
+        PackageManager packageManager = context.getPackageManager();
+        String versionName = null;
+        try {
+            PackageInfo info = packageManager.getPackageInfo(context.getPackageName(), 0);
+            versionName = info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionName;
     }
 
     public final static  List<String> URLS = Arrays.asList(

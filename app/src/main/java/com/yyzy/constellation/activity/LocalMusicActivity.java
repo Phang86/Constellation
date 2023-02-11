@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yyzy.constellation.R;
+import com.yyzy.constellation.activity.BaseActivity;
 import com.yyzy.constellation.adapter.LocalMusicAdapter;
 import com.yyzy.constellation.entity.LocalMusicEntity;
 import com.yyzy.constellation.utils.DiyProgressDialog;

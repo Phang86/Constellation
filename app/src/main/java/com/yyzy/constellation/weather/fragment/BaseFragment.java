@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.yyzy.constellation.MusicApplication;
 import com.yyzy.constellation.utils.Constellation;
 import com.yyzy.constellation.utils.DiyProgressDialog;
 import com.yyzy.constellation.utils.MyToast;
@@ -41,7 +42,7 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
         //创建Volley网络请求框架
         StringRequest request = new StringRequest(url, this, this);
         //添加到网络请求队列当中
-        Constellation.getHttpQueue().add(request);
+        MusicApplication.getHttpQueue().add(request);
 
     }
 

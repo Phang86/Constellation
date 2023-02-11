@@ -206,6 +206,49 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/more_layout_same"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:contentPadding="@dimen/dimen_16dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            app:cardMaxElevation="@dimen/dimen_0dp"
+            app:cardCornerRadius="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:foreground="@drawable/view_foreground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/more_img_same"
+                    android:layout_width="@dimen/dimen_25dp"
+                    android:layout_height="@dimen/dimen_25dp"
+                    android:src="@mipmap/ic_setting"
+                    android:layout_marginRight="@dimen/dimen_10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sameApp"
+                    style="@style/weatherMoreTv"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/more_img_same"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_app_info_back"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 <!--    <LinearLayout-->

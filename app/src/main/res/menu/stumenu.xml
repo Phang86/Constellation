@@ -51,6 +51,13 @@
             />
 
         <item
+            android:id="@+id/aboutMe"
+            app:showAsAction="always"
+            app:actionLayout="@layout/menu_about_me"
+            tools:ignore="MenuTitle"
+            />
+
+        <item
             android:id="@+id/exit"
             app:showAsAction="always"
             app:actionLayout="@layout/menu_exit"

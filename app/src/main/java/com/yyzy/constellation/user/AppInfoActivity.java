@@ -3,6 +3,7 @@ package com.yyzy.constellation.user;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,8 +50,8 @@ import static com.yyzy.constellation.utils.URLContent.BASE_URL;
 
 public class AppInfoActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView titleTv,userNameTv,updateTimeTv,versionTv,phoneTv,createTimeTv;
-    private CardView versionLayout,updatePwdLayout,cancelUserLayout,userPhoneLayout,feedbackLayout;
+    private TextView titleTv,userNameTv,updateTimeTv,phoneTv,createTimeTv;
+    private CardView updatePwdLayout,cancelUserLayout,userPhoneLayout,feedbackLayout;
     private ImageView backImg;
     private String version;
     private SmartRefreshLayout swipeRefresh;
@@ -67,9 +68,9 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         backImg = findViewById(R.id.details_back);
         userNameTv = findViewById(R.id.appInfo_tv_user);
         updateTimeTv = findViewById(R.id.appInfo_tv_updateTime);
-        versionTv = findViewById(R.id.appInfo_tv_version);
+//        versionTv = findViewById(R.id.appInfo_tv_version);
         phoneTv = findViewById(R.id.appInfo_tv_phone);
-        versionLayout = findViewById(R.id.appInfo_layout_version);
+//        versionLayout = findViewById(R.id.appInfo_layout_version);
         updatePwdLayout = findViewById(R.id.appInfo_layout_update);
         cancelUserLayout = findViewById(R.id.appInfo_layout_cancel);
         swipeRefresh = findViewById(R.id.appInfo_refresh);
@@ -78,7 +79,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
         feedbackLayout = findViewById(R.id.appInfo_layout_feedback);
         cancelUserLayout.setOnClickListener(this);
         updatePwdLayout.setOnClickListener(this);
-        versionLayout.setOnClickListener(this);
+//        versionLayout.setOnClickListener(this);
         backImg.setOnClickListener(this);
         userPhoneLayout.setOnClickListener(this);
         feedbackLayout.setOnClickListener(this);
@@ -109,9 +110,10 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
             case R.id.details_back:
                 finish();
                 break;
-            case R.id.appInfo_layout_version:
-                MeFragment.showDialogSure(this,"当前应用版本为\t"+getVersion());
-                break;
+//            case R.id.appInfo_layout_version:
+//                //MeFragment.showDialogSure(this,"当前应用版本为\t"+getVersion());
+//
+//                break;
             case R.id.appInfo_layout_update:
                 intentJump(SwipeCheckActivity.class);
                 break;
@@ -196,7 +198,7 @@ public class AppInfoActivity extends BaseActivity implements View.OnClickListene
                             data = dataEntity;
                             if (data.size() > 0 && data != null) {
                                 //数据获取成功
-                                versionTv.setText(version);
+//                                versionTv.setText(version);
                                 updateTimeTv.setText(data.get(0).getUpdateTime());
                                 userNameTv.setText(data.get(0).getUserName());
                                 createTimeTv.setText(data.get(0).getCreateTime());

@@ -121,7 +121,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         initData();
         StatusBarUtil.setColor(this, getResources().getColor(R.color.state_bg), 0);
 //
+        
     }
+
 
     protected void loading() {
         if (mDialogBase != null) {

@@ -41,7 +41,20 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('E:\\Android_Key\\ConstellationKey.jks')
+            storePassword '123456'
+            keyAlias 'Key0'
+            keyPassword '123456'
+        }
+    }
     sourceSets {main {res.srcDirs = ['src/main/res', 'src/main/res-night']}}
+
+    //使用dataBinding
+    dataBinding{
+        enabled = true
+    }
 }
 
 //构建时间
@@ -57,6 +70,7 @@ dependencies {
     implementation project(path: ':refresh_library')
     implementation project(path: ':ocr_ui')
     implementation project(path: ':flowlayout-lib')
+//    implementation project(path: ':musiclibrary')
 
     implementation files('libs\\ocr-sdk.jar')
     testImplementation 'junit:junit:4.13.2'
@@ -72,7 +86,7 @@ dependencies {
     implementation 'org.xutils:xutils:3.8.12'
 
     //Google Material控件,以及迁移到AndroidX下一些控件的依赖
-    implementation 'com.google.android.material:material:1.0.0'
+//    implementation 'com.google.android.material:material:1.0.0'
 
     //网络图片加载框架
     implementation 'com.github.bumptech.glide:glide:4.13.2'
@@ -100,5 +114,22 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
 
     implementation 'io.github.razerdp:BasePopup:3.2.1'
+
+    //Google Material控件,以及迁移到AndroidX下一些控件的依赖
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //RecyclerView最好的适配器，让你的适配器一目了然，告别代码冗余
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //权限请求框架
+    implementation 'com.permissionx.guolindev:permissionx:1.4.0'
+    //Android SQLite操作框架
+    implementation 'org.litepal.guolindev:core:3.1.1'
+    //微信支付
+//    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+//    api 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
 
 }

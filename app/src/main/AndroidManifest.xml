@@ -18,10 +18,17 @@
     <uses-permission android:name="android.permission.READ_SMS" /> <!-- 从短信中读取验证码接口（非必须） -->
     <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 文件读写权限  Android6.0 以后需要动态获取  10.0之后对文件的处理更复杂了 -->
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" /> <!-- 网络请求 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <queries>
+        <package android:name="com.tencent.mm" />
+    </queries>
 
     <application
-        android:name=".utils.Constellation"
+        android:name=".MusicApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
@@ -32,7 +39,28 @@
         android:theme="@style/Theme.Constellation"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".user.GexingActivity"></activity>
+        <activity android:name=".user.AboutMeActivity"></activity>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:taskAffinity="com.yyzy.constellation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service
+            android:name=".music.service.MusicService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".music.receiver.NotificationClickReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".music.LocalMusicOutActivity" />
+        <activity android:name=".music.MusicActivity" />
+        <activity android:name=".user.GexingActivity" />
         <activity android:name=".user.UserLoginInfoActivity" />
         <activity android:name=".user.feedback.HistoryFeedBackActivity" />
         <activity android:name=".user.feedback.FeedBackActivity" />
